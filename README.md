@@ -24,12 +24,13 @@ My defense project for **ASP.NET Core** course at Softuni.
 
 ## :floppy_disk: Database Diagram
 
-## License
+## Author Name 
+Stanislava Stoeva
 
+## License
 This project is licensed with the [MIT license](LICENSE).
 
 ## Acknowledgments
-
 Using [ASP.NET-MVC-Template](https://github.com/NikolayIT/ASP.NET-MVC-Template) developed by:
 - [Nikolay Kostov](https://github.com/NikolayIT)
 - [Vladislav Karamfilov](https://github.com/vladislav-karamfilov)
