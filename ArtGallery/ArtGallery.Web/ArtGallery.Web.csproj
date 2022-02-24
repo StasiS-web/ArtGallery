@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-ArtGallery.Web-D537313B-01AF-4CDB-B86D-B9D34E30DE3B</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
+    <PackageReference Include="CloudinaryDotNet" Version="1.17.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.2" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.161" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ArtGallery.Common\ArtGallery.Common.csproj" />
+    <ProjectReference Include="..\ArtGallery.Data.Models\ArtGallery.Data.Models.csproj" />
+    <ProjectReference Include="..\ArtGallery.Data\ArtGallery.Data.csproj" />
+    <ProjectReference Include="..\ArtGallery.Services.Data\ArtGallery.Services.Data.csproj" />
+    <ProjectReference Include="..\ArtGallery.Services.Messaging\ArtGallery.Services.Messaging.csproj" />
+    <ProjectReference Include="..\ArtGallery.Services\ArtGallery.Services.csproj" />
+    <ProjectReference Include="..\ArtGallery.Web.Infrastructure\ArtGallery.Web.Infrastructure.csproj" />
+    <ProjectReference Include="..\ArtGallery.Web.ViiewModels\ArtGallery.Web.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>
