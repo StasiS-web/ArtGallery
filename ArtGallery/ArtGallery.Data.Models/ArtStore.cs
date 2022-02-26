@@ -18,6 +18,9 @@
         [MaxLength(AuthorNameMaxLenth), Required]
         public string AuthorName { get; set; }
 
+        [Required]
+        public string UrlImage { get; set; }
+
         [Range(PriceMinLength, PriceMaxLength), Required]
         [Column(TypeName = "money")]
         public decimal Price { get; set; }

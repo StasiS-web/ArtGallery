@@ -1,6 +1,4 @@
-﻿#nullable disable
-
-namespace ArtGallery.Data.Migrations
+﻿namespace ArtGallery.Data.Migrations
 {
     using System;
     using Microsoft.EntityFrameworkCore.Migrations;

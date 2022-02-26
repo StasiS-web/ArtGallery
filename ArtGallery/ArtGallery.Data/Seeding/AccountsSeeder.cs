@@ -2,12 +2,12 @@
 {
     using System;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
     using ArtGallery.Common;
     using ArtGallery.Data.Models;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
+
     public class AccountsSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)

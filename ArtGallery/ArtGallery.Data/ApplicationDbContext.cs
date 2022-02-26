@@ -31,6 +31,8 @@
 
         public DbSet<Event> Events { get; set; }
 
+        public DbSet<ExhibitionHall> ExhibitionHalls { get; set; }
+
         public DbSet<ArtOrder> ArtsOrders { get; set; }
 
         public DbSet<EventOrder> EventsOrders { get; set; }

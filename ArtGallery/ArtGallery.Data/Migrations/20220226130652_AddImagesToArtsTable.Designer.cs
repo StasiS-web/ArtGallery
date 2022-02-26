@@ -4,6 +4,7 @@ using ArtGallery.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtGallery.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220226130652_AddImagesToArtsTable")]
+    partial class AddImagesToArtsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -416,11 +418,11 @@ namespace ArtGallery.Data.Migrations
                         .HasMaxLength(1500)
                         .HasColumnType("nvarchar(1500)");
 
-                    b.Property<int>("ExhibitionHallId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<int>("MaxCapacity")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
@@ -433,17 +435,12 @@ namespace ArtGallery.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("money");
 
-                    b.Property<int>("TicketType")
-                        .HasColumnType("int");
-
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ArtGalleryUserId");
-
-                    b.HasIndex("ExhibitionHallId");
 
                     b.HasIndex("IsDeleted");
 
@@ -489,39 +486,6 @@ namespace ArtGallery.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("EventsOrders");
-                });
-
-            modelBuilder.Entity("ArtGallery.Data.Models.ExhibitionHall", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Capacity")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ExhibitionHallType")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.ToTable("ExhibitionHalls");
                 });
 
             modelBuilder.Entity("ArtGallery.Data.Models.FaqEntity", b =>
@@ -840,14 +804,6 @@ namespace ArtGallery.Data.Migrations
                     b.HasOne("ArtGallery.Data.Models.ArtGalleryUser", null)
                         .WithMany("Events")
                         .HasForeignKey("ArtGalleryUserId");
-
-                    b.HasOne("ArtGallery.Data.Models.ExhibitionHall", "ExhibitionHall")
-                        .WithMany()
-                        .HasForeignKey("ExhibitionHallId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("ExhibitionHall");
                 });
 
             modelBuilder.Entity("ArtGallery.Data.Models.EventOrder", b =>

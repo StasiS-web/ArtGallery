@@ -36,6 +36,8 @@
             public const int PaintingNameMaxLenth = 35;
             public const int AuthorNameMinLenth = 50;
             public const int AuthorNameMaxLenth = 100;
+            public const int DimentionsMinLenght = 5;
+            public const int DimentionsMaxLenght = 7;
             public const int PriceMinLength = 150;
             public const int PriceMaxLength = 8000;
             public const int DescriptionMinLenth = 200;
@@ -52,6 +54,25 @@
             public const int AdminAuthorMaxLength = 100;
             public const int CommnetContentMinLength = 5;
             public const int CommentContentMaxLength = 250;
+        }
+
+        public static class ExhibitionHall
+        {
+            public const int CapacityMinLength = 5;
+            public const int CapacityMaxLength = 100;
+        }
+
+        public static class Images
+        {
+            // public const string Index = " ";
+            public const string Error404 = "https://res.cloudinary.com/art-gallery/image/upload/c_fit,h_325,w_1200/v1645821424/app_gallery/error404-jpg_xnvavw.jpg";
+
+            // Art Store
+            public const string MrPeacock = "https://res.cloudinary.com/art-gallery/image/upload/c_fit,h_300,w_300/v1645821443/app_gallery/peacock-jpeg_d9gei3.jpg";
+            public const string TheStaryNight = "https://res.cloudinary.com/art-gallery/image/upload/c_fit,h_300,w_300/v1645821452/app_gallery/The_Starry_Night-jpeg_ph9mxf.jpg";
+            public const string TerraceProspect = "https://res.cloudinary.com/art-gallery/image/upload/c_fit,h_300,w_300/v1645821445/app_gallery/Terrace_Prospect_Park_1887_-jpeg_uesqef.jpg";
+            public const string GreeanWheatFields = "https://res.cloudinary.com/art-gallery/image/upload/c_fit,h_300,w_300/v1645821441/app_gallery/Green_Wheat_Fields-jpeg_dzmndr.jpg";
+            public const string MonaLisa = "https://res.cloudinary.com/art-galleryl/image/upload/c_fit,h_300,w_300/v1645821444/app_gallery/Portrait_of_Mona_Lisa-jpeg_jhvgpi.jpg";
         }
 
         public static class Privacy

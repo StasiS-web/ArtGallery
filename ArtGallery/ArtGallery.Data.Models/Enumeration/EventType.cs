@@ -2,7 +2,7 @@
 {
     public enum EventType
     {
-        InPerson = 0,
-        Online = 1,
+        InPerson = 1,
+        Online = 2,
     }
 }

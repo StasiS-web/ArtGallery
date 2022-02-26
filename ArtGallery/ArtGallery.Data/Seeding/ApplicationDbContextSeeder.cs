@@ -1,18 +1,18 @@
 ﻿namespace ArtGallery.Data.Seeding
 {
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
 
     public class ApplicationDbContextSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
-            if(dbContext == null)
+            if (dbContext == null)
             {
                 throw new ArgumentNullException(nameof(dbContext));
             }
@@ -28,8 +28,11 @@
                         {
                             new RoleSeeder(),
                             new AccountsSeeder(),
-                            //new BlogPostSeeder(),
+                            new BlogPostSeeder(),
+                            //new BlogCommentSeeder(),
                             //new EventSeeder(),
+                            new ArtStoreSeeder(),
+                            //new FaqEntitySeeder(),
                             new SettingsSeeder(),
                         };
 
