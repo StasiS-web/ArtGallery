@@ -29,20 +29,17 @@
                             new RoleSeeder(),
                             new AccountsSeeder(),
                             new BlogPostSeeder(),
-                            //new BlogCommentSeeder(),
-                            //new EventSeeder(),
+                            new EventSeeder(),
                             new ArtStoreSeeder(),
-                            //new FaqEntitySeeder(),
                             new SettingsSeeder(),
                         };
 
-            foreach(var seeder in seeders)
+            foreach (var seeder in seeders)
             {
                 await seeder.SeedAsync(dbContext, serviceProvider);
                 await dbContext.SaveChangesAsync();
                 logger.LogInformation($"Seeder {seeder.GetType().Name} done.");
             }
-        
         }
     }
 }

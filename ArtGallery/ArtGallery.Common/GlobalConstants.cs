@@ -42,6 +42,7 @@
             public const int PriceMaxLength = 8000;
             public const int DescriptionMinLenth = 200;
             public const int DescriptionMaxLenth = 1000;
+            // public static readonly string[] PermittedImageExtensions = { ".jpg", ".png" };
         }
 
         public static class BlogPost
@@ -66,7 +67,7 @@
         {
             // public const string Index = " ";
             public const string Error404 = "https://res.cloudinary.com/art-gallery/image/upload/c_fit,h_325,w_1200/v1645821424/app_gallery/error404-jpg_xnvavw.jpg";
-
+            
             // Art Store
             public const string MrPeacock = "https://res.cloudinary.com/art-gallery/image/upload/c_fit,h_300,w_300/v1645821443/app_gallery/peacock-jpeg_d9gei3.jpg";
             public const string TheStaryNight = "https://res.cloudinary.com/art-gallery/image/upload/c_fit,h_300,w_300/v1645821452/app_gallery/The_Starry_Night-jpeg_ph9mxf.jpg";

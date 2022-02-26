@@ -7,6 +7,8 @@
 
     public class FaqEntity : BaseDeletableModel<int>
     {
+        // Faq could be only created and updated from admin.
+        // User are only able to read.
         [Required]
         [MaxLength(QuestionMaxLength)]
         public string Question { get; set; }

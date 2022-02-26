@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ArtGallery.Services.Data.Contracts
+﻿namespace ArtGallery.Services.Data.Contracts
 {
     public interface ISettingsService
     {
+        int Count();
+
+        IEnumerable<T> GetAll<T>();
     }
 }

@@ -31,6 +31,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtGallery.Services.Data", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtGallery.Web.ViewModels", "ArtGallery.Web.ViiewModels\ArtGallery.Web.ViewModels.csproj", "{06415AA7-01D7-4D90-9F75-D43E0C97A74B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtGallery.Services.Mapping", "ArtGallery.Services.Mapping\ArtGallery.Services.Mapping.csproj", "{C2216A84-EA21-42C7-B8E7-19B3AE6C12DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{06415AA7-01D7-4D90-9F75-D43E0C97A74B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06415AA7-01D7-4D90-9F75-D43E0C97A74B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06415AA7-01D7-4D90-9F75-D43E0C97A74B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2216A84-EA21-42C7-B8E7-19B3AE6C12DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2216A84-EA21-42C7-B8E7-19B3AE6C12DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2216A84-EA21-42C7-B8E7-19B3AE6C12DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2216A84-EA21-42C7-B8E7-19B3AE6C12DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -91,6 +97,7 @@ Global
 		{786C3EA2-FA3A-46B4-B0A6-D074DED27B9B} = {B77AC456-9F18-442E-9A7E-F21DC50AFE48}
 		{1FBC881D-45AC-4314-9DBA-98E214930618} = {B77AC456-9F18-442E-9A7E-F21DC50AFE48}
 		{06415AA7-01D7-4D90-9F75-D43E0C97A74B} = {E6B5298D-519D-4794-B0EB-63F756CC2681}
+		{C2216A84-EA21-42C7-B8E7-19B3AE6C12DA} = {B77AC456-9F18-442E-9A7E-F21DC50AFE48}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1F66CDBE-536E-4D20-857A-534AF1CF251C}

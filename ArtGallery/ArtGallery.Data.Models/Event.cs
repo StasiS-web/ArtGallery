@@ -4,7 +4,6 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using ArtGallery.Data.Common.Models;
     using ArtGallery.Data.Models.Enumeration;
-    using static ArtGallery.Common.GlobalConstants;
     using static ArtGallery.Common.GlobalConstants.Event;
 
     public class Event : BaseDeletableModel<string>
@@ -25,7 +24,8 @@
 
         public EventType Type { get; set; }
 
-        [ForeignKey(nameof(ExhibitionHall)), Required]
+        [ForeignKey(nameof(ExhibitionHall))]
+        [Required]
         public int ExhibitionHallId { get; set; }
 
         public ExhibitionHall ExhibitionHall { get; set; }
