@@ -16,11 +16,11 @@ My defense project for **ASP.NET Core** course at Softuni.
 ## :pencil: Project Description
 
 ## :pushpin: How It Works
-* Guest vistors: browse through events and Gallery Art Store. Also through the Blog Post thta are available to them for reading.
-* Logged Users: books events in the Gallery, buy paintings, cancle events they had booked or request orders cancelation
-  - Once a Logger User to cancle already made order it is should be approved by the manager or admin
-* Gallery Manager: confirm or decline user's booked event depends on Max Capacity for an event and controll what events are available for booking.
-* Gallery Admoin: creates or delete Blog Posts, events and arts available for sale. Admins can review sale orders and booking history.
+* Guest visitors: browse through events and Gallery Art Store. Also through the Blog Post thta are available to them for reading.
+* Logged Users: books events in the Gallery, buy paintings, cancel events they had booked or request orders cancelation
+  - Once a Logger User to cancel already made order it is should be approved by the manager or admin
+* Gallery Manager: confirm or decline user's booked event depends on Max Capacity for an event and control what events are available for booking.
+* Gallery Admin: creates or delete Blog Posts, events and arts available for sale. Admins can review sale orders and booking history.
 
 ## :floppy_disk: Database Diagram
 
