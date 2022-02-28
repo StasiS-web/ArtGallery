@@ -25,7 +25,7 @@
 
         public int Quantity { get; set; }
 
-        [Range(PriceMinLength, PriceMaxLength), Required]
+        [Required]
         [Column(TypeName = "money")]
         public decimal Price { get; set; }
 

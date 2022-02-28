@@ -1,7 +1,7 @@
 ﻿namespace ArtGallery.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
-    using ArtGallery.Common;
+    using System.ComponentModel.DataAnnotations.Schema;
     using ArtGallery.Data.Common.Models;
     using static ArtGallery.Common.GlobalConstants.BlogPost;
 
@@ -15,9 +15,10 @@
         [MaxLength(CommentContentMaxLength), Required]
         public string CommentContent { get; set; }
 
+        [Required]
+        [ForeignKey(nameof(User))]
         public string UserId { get; set; }
 
-        [Required]
         public ArtGalleryUser User { get; set; }
     }
 }

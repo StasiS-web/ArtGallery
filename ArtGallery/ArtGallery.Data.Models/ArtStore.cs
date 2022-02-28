@@ -21,11 +21,11 @@
         [Required]
         public string UrlImage { get; set; }
 
-        [Range(PriceMinLength, PriceMaxLength), Required]
+        [Required]
         [Column(TypeName = "money")]
         public decimal Price { get; set; }
 
-        [MaxLength(DescriptionMaxLenth), Required]
+        [MaxLength(ArtsDescriptionMaxLenth), Required]
         public string Description { get; set; }
 
         public ICollection<ArtOrder> ArtOrders { get; set; }

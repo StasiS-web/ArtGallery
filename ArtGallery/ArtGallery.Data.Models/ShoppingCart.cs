@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using ArtGallery.Data.Common.Models;
 
     public class ShoppingCart : BaseModel<int>
@@ -11,6 +13,8 @@
             this.SaleTransactions = new HashSet<SaleTransaction>();
         }
 
+        [Required]
+        [ForeignKey(nameof(User))]
         public string UserId { get; set; }
 
         public ArtGalleryUser User { get; set; }

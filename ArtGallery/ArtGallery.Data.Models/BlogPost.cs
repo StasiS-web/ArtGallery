@@ -12,6 +12,9 @@
         public string Title { get; set; }
 
         [Required]
+        public string UrlImage { get; set; }
+
+        [Required]
         [MaxLength(ContentMaxLength)]
         public string Content { get; set; }
 

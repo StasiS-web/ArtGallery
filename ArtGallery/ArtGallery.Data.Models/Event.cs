@@ -16,7 +16,7 @@
         [MaxLength(EventNameMaxLenth)]
         public string Name { get; set; }
 
-        [Range(PriceMinLenth, PriceMaxLenth)]
+        [Required]
         [Column(TypeName = "money")]
         public decimal Price { get; set; }
 
@@ -32,10 +32,9 @@
 
         public TicketType TicketType { get; set; }
 
-        [MaxLength(DescriptionMaxLenth)]
+        [MaxLength(EventDescriptionMaxLenth)]
         public string Description { get; set; }
 
         public ICollection<EventOrder> EventTickets { get; set; }
-
     }
 }

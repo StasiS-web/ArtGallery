@@ -17,6 +17,8 @@
 
         public ArtGalleryUser User { get; set; }
 
+        [Required]
+        [ForeignKey(nameof(Event))]
         public string EventId { get; set; }
 
         public Event Event { get; set; }

@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Settings\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -20,6 +16,8 @@
   <ItemGroup>
     <ProjectReference Include="..\ArtGallery.Common\ArtGallery.Common.csproj" />
     <ProjectReference Include="..\ArtGallery.Data.Models\ArtGallery.Data.Models.csproj" />
+    <ProjectReference Include="..\ArtGallery.Services.Mapping\ArtGallery.Services.Mapping.csproj" />
+    <ProjectReference Include="..\ArtGallery.Services.Messaging\ArtGallery.Services.Messaging.csproj" />
   </ItemGroup>
 
 </Project>

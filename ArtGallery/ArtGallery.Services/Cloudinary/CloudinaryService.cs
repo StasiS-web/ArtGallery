@@ -15,7 +15,7 @@
            this.cloudinary = cloudinary;
         }
 
-        public async Task<string> UploadImageAsync(IFormFile imageFile, string fileName, int height, int width)
+        public async Task<string> UploadImageAsync(IFormFile imageFile, string fileName)
         {
             byte[] data;
             var stream = new MemoryStream();
@@ -34,13 +34,13 @@
                 {
                     Folder = "app_gallery",
                     File = new FileDescription(fileName, message),
+                    Transformation = new Transformation().Height(300).Width(300).Crop("fit"),
                 };
 
-                uploadResult = this.cloudinary.Upload(uploadParams);
+                uploadResult = await this.cloudinary.UploadAsync(uploadParams);
             }
 
-            return this.cloudinary.Api.UrlImgUp.Transform(new Transformation().Height(height).Width(width).Crop("fit"))
-                 .BuildImageTag(string.Format("{0}", uploadResult.Format));
+            return uploadResult.SecureUrl.AbsoluteUri;
         }
     }
 }

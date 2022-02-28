@@ -24,7 +24,7 @@
         }
 
         [Required]
-        [MaxLength(UserFullNameMaxLenth)]
+        [MaxLength(FullNameMaxLenth)]
         public string FullName { get; set; }
 
         public Gender Gender { get; set; }

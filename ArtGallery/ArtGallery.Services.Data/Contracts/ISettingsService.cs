@@ -2,7 +2,7 @@
 {
     public interface ISettingsService
     {
-        int Count();
+        int GetCount();
 
         IEnumerable<T> GetAll<T>();
     }
