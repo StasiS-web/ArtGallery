@@ -10,6 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\Shared\**" />
+    <Content Remove="wwwroot\Shared\**" />
+    <EmbeddedResource Remove="wwwroot\Shared\**" />
+    <None Remove="wwwroot\Shared\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
     <PackageReference Include="CloudinaryDotNet" Version="1.17.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.2" />
@@ -33,7 +40,11 @@
     <ProjectReference Include="..\ArtGallery.Services.Messaging\ArtGallery.Services.Messaging.csproj" />
     <ProjectReference Include="..\ArtGallery.Services\ArtGallery.Services.csproj" />
     <ProjectReference Include="..\ArtGallery.Web.Infrastructure\ArtGallery.Web.Infrastructure.csproj" />
-    <ProjectReference Include="..\ArtGallery.Web.ViiewModels\ArtGallery.Web.ViewModels.csproj" />
+    <ProjectReference Include="..\ArtGallery.Web.ViewModels\ArtGallery.Web.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\img\" />
   </ItemGroup>
 
 </Project>

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -14,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ArtGallery.Common\ArtGallery.Common.csproj" />
     <ProjectReference Include="..\ArtGallery.Data.Models\ArtGallery.Data.Models.csproj" />
+    <ProjectReference Include="..\ArtGallery.Data\ArtGallery.Data.csproj" />
     <ProjectReference Include="..\ArtGallery.Services.Mapping\ArtGallery.Services.Mapping.csproj" />
     <ProjectReference Include="..\ArtGallery.Services.Messaging\ArtGallery.Services.Messaging.csproj" />
   </ItemGroup>
