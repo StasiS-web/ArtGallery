@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ArtGallery.Data.Models;
+    using static ArtGallery.Common.GlobalConstants.Images;
 
     public class BlogPostSeeder : ISeeder
     {
@@ -19,6 +20,7 @@
                 new BlogPost
                 {
                     Title = "Art in the Home",
+                    UrlImage = ArtisticPainter,
                     Content = @"Most, but not all, of the art we sell on this site is destined for private homes.
 
 There’s a 1964 ballad written by Bacharach and David – originally recorded by Dionne Warwick, which explains, “A house is not a home….”. In the case of art, I would claim that a house is not a home, until there is some on the walls or displayed within.
@@ -29,6 +31,7 @@ If you doubt me, why do all show homes and hotels, have paintings, or more likel
                 new BlogPost
                 {
                     Title = "Paintings of Pets - Capturing Animal Spirit in Art",
+                    UrlImage = AnimalSpirits,
                     Content = @"This week, pet owners show off their special animal friends on Love your Pet Day.
 
 Studies have shown that owning a pet can increase your chances of being happy and successful. In fact, of 1,000 pet owners studied, researchers found that they brought laughter to six in 10 owners and made seven in 10 feel more relaxed.
@@ -50,6 +53,7 @@ Here's a modern cat-tastic take on the Arnolfini Portrait.",
                 new BlogPost
                 {
                     Title = "Italian Art",
+                    UrlImage = Art,
                     Content = @"Who doesn’t love Italy? Bellisima weather, bellisima landscapes and bellisima cuisine.
 
 Offering a wealth of subject matter, it’s no surprise Italy is such a popular country for artists. Let’s also not forget that it’s considered to be the birthplace of ‘modern’ art, making it a place that has a strong heritage of creative inspiration.

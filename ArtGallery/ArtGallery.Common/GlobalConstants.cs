@@ -18,7 +18,14 @@
         public static class ArtGalleryUser
         {
             public const int FullNaneMinLenth = 90;
-            public const int FullNameMaxLenth = 500;
+            public const int FullNameMinLenth = 500;
+            public const int PasswordMinLength = 8;
+            public const int PasswordMaxLength = 16;
+            public const string FullNameDisplayName = "Full Name";
+            public const string EmailDisplay = "Email";
+            public const string UsernameDisplay = "Username";
+            public const string PasswordDisplay = "Password";
+            public const string ConfirmPasswordDisplay = "Confiirm Password";
         }
 
         public static class Event
@@ -59,14 +66,21 @@
 
         public static class Images
         {
-            public const string Error404 = "https://res.cloudinary.com/art-gallery/image/upload/c_fit,h_325,w_1200/v1645821424/app_gallery/error404-jpg_xnvavw.jpg";
+            // (Images Resourse from rawpixel)
+            public const string Error404 = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_325,w_1200/v1645821424/app_gallery/error404-jpg_xnvavw.jpg";
 
-            // Art Store
-            public const string MrPeacock = "https://res.cloudinary.com/art-gallery/image/upload/c_fit,h_300,w_300/v1645821443/app_gallery/peacock-jpeg_d9gei3.jpg";
-            public const string TheStaryNight = "https://res.cloudinary.com/art-gallery/image/upload/c_fit,h_300,w_300/v1645821452/app_gallery/The_Starry_Night-jpeg_ph9mxf.jpg";
-            public const string TerraceProspect = "https://res.cloudinary.com/art-gallery/image/upload/c_fit,h_300,w_300/v1645821445/app_gallery/Terrace_Prospect_Park_1887_-jpeg_uesqef.jpg";
-            public const string GreeanWheatFields = "https://res.cloudinary.com/art-gallery/image/upload/c_fit,h_300,w_300/v1645821441/app_gallery/Green_Wheat_Fields-jpeg_dzmndr.jpg";
-            public const string MonaLisa = "https://res.cloudinary.com/art-galleryl/image/upload/c_fit,h_300,w_300/v1645821444/app_gallery/Portrait_of_Mona_Lisa-jpeg_jhvgpi.jpg";
+            // Art Store (Images Resourse from rawpixel)
+            public const string MrPeacock = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1645821443/app_gallery/peacock-jpeg_d9gei3.jpg";
+            public const string TheStaryNight = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1645821452/app_gallery/The_Starry_Night-jpeg_ph9mxf.jpg";
+            public const string TerraceProspect = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1645821445/app_gallery/Terrace_Prospect_Park_1887_-jpeg_uesqef.jpg";
+            public const string GreeanWheatFields = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1645821441/app_gallery/Green_Wheat_Fields-jpeg_dzmndr.jpg";
+            public const string MonaLisa = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1645821444/app_gallery/Portrait_of_Mona_Lisa-jpeg_jhvgpi.jpg";
+            public const string Landscape = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1646154562/app_gallery/landscape-jpeg_odeze0.jpg";
+
+            // Blog (Images Resourse from rawpixel)
+            public const string ArtisticPainter = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1646156702/app_gallery/Artist_painting-jpeg_nn02fh.jpg";
+            public const string Art = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1646156777/app_gallery/image-from-id-405327-jpeg_njsywp.jpg";
+            public const string AnimalSpirits = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1646157537/app_gallery/image-from-id-556828-jpeg_pvzrkd.jpg";
         }
 
         public static class Privacy
@@ -87,6 +101,9 @@
         public static class ErrorMessages
         {
             public const string UserFullname = "Fullname is invalid. It should be between 90 and 500 characters long.";
+            public const string Password = "Password is not valid, because Password and Confirm Password doesn't match.";
+            public const string EmptyField = "The field should not be empthy. It is required to have a content.";
+            public const string PageContentLength = "Page content should be between 1000 and 15000 characters long.";
 
             // Events
             public const string EventName = "Event Name should be between 8 and 60 characters long.";

@@ -57,7 +57,15 @@
                     AuthorName = "Leonardo da Vinci",
                     UrlImage = MonaLisa,
                     Price = 840M,
-                    Description = " ",
+                    Description = "A portrait famous painting.",
+                },
+                new ArtStore
+                {
+                    PaintingName = "Italianizing landscape",
+                    AuthorName = " Michiel van Huysum ",
+                    UrlImage = Landscape,
+                    Price = 650M,
+                    Description = "The Rijksmuseum.",
                 },
             };
 
