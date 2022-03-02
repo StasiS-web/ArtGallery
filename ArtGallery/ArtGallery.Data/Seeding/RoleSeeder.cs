@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
     using ArtGallery.Common;
     using ArtGallery.Data.Models;
+    using ArtGallery.Data.Seeding.Contracts;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
 

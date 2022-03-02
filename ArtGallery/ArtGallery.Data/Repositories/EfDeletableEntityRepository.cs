@@ -3,7 +3,7 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using ArtGallery.Data.Common.Models;
+    using ArtGallery.Data.Common.Models.Contarcts;
     using ArtGallery.Data.Common.Repositories;
     using Microsoft.EntityFrameworkCore;
 

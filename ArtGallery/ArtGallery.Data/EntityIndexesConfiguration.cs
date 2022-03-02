@@ -1,7 +1,7 @@
 ﻿namespace ArtGallery.Data
 {
     using System.Linq;
-    using ArtGallery.Data.Common.Models;
+    using ArtGallery.Data.Common.Models.Contarcts;
     using Microsoft.EntityFrameworkCore;
 
     internal static class EntityIndexesConfiguration

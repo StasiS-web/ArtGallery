@@ -3,8 +3,8 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-
     using ArtGallery.Data.Models;
+    using ArtGallery.Data.Seeding.Contracts;
 
     internal class SettingsSeeder : ISeeder
     {

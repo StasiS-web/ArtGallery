@@ -2,6 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using static ArtGallery.Common.GlobalConstants.ArtGalleryUser;
+
     public class RegisterInputViewModel
     {
         [Required]

@@ -3,7 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using ArtGallery.Data.Common.Models;
+    using ArtGallery.Data.Common.Models.Contarcts;
     using ArtGallery.Data.Models.Enumeration;
 
     public class EventOrder : IDeletableEntity

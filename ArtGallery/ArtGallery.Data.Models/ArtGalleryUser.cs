@@ -3,6 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using ArtGallery.Data.Common.Models;
+    using ArtGallery.Data.Common.Models.Contarcts;
     using ArtGallery.Data.Models.Enumeration;
     using Microsoft.AspNetCore.Identity;
     using static ArtGallery.Common.GlobalConstants.ArtGalleryUser;

@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtGallery.Services.Data", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtGallery.Services.Mapping", "ArtGallery.Services.Mapping\ArtGallery.Services.Mapping.csproj", "{C2216A84-EA21-42C7-B8E7-19B3AE6C12DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtGallery.Web.ViewModels", "ArtGallery.Web.ViewModels\ArtGallery.Web.ViewModels.csproj", "{C4AE554D-8EDC-4425-A78A-3D42298C5D66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtGallery.Web.ViewModels", "ArtGallery.Web.ViewModels\ArtGallery.Web.ViewModels.csproj", "{C4AE554D-8EDC-4425-A78A-3D42298C5D66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

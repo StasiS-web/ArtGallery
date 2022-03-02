@@ -5,7 +5,7 @@
     using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
-    using ArtGallery.Data.Common.Models;
+    using ArtGallery.Data.Common.Models.Contarcts;
     using ArtGallery.Data.Models;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;

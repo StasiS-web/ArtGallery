@@ -1,4 +1,4 @@
-﻿namespace ArtGallery.Data.Common.Models
+﻿namespace ArtGallery.Data.Common.Models.Contarcts
 {
     using System;
 

@@ -32,21 +32,22 @@ body {
     margin-left: auto;
     margin-right: auto;
     image-resolution: 300dpi;
-    width: 20%;
+    width: 100%;
+    height: 100%;
 }
 
-.user-panel
-{
+.user-panel {
     align-items: start;
     justify-content: start;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
 }
 
 .img-circle {
     border: 0;
     border-radius: 50%;
     padding-left: 15px;
+    width: 85px;
     text-align: center;
     display: flex;
     align-items: center;

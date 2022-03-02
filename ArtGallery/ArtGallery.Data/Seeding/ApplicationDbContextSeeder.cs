@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using ArtGallery.Data.Seeding.Contracts;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
 

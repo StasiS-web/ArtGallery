@@ -1,7 +1,7 @@
 ﻿namespace ArtGallery.Web.ViewModels.Settings
 {
     using ArtGallery.Data.Models;
-    using ArtGallery.Services.Mapping;
+    using ArtGallery.Services.Mapping.Contracts;
     using AutoMapper;
 
     public class SettingViewModel : IMapFrom<Setting>, IHaveCustomMappings

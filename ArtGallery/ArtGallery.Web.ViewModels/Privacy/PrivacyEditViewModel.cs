@@ -1,7 +1,7 @@
 ﻿namespace ArtGallery.Web.ViewModels.Privacy
 {
     using System.ComponentModel.DataAnnotations;
-    using ArtGallery.Services.Mapping;
+    using ArtGallery.Services.Mapping.Contracts;
     using static ArtGallery.Common.GlobalConstants.Privacy;
     using Privacy = ArtGallery.Data.Models.Privacy;
 

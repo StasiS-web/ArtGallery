@@ -1,4 +1,4 @@
-﻿namespace ArtGallery.Services.Cloudinary
+﻿namespace ArtGallery.Services.Cloudinary.Contracts
 {
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Http;

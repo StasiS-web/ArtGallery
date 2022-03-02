@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ArtGallery.Data.Models;
+    using ArtGallery.Data.Seeding.Contracts;
     using static ArtGallery.Common.GlobalConstants.Images;
 
     public class BlogPostSeeder : ISeeder

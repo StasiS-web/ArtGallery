@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using ArtGallery.Data.Models;
     using ArtGallery.Data.Models.Enumeration;
+    using ArtGallery.Data.Seeding.Contracts;
 
     public class EventSeeder : ISeeder
     {

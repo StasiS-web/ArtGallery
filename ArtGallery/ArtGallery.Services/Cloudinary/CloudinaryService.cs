@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
+    using ArtGallery.Services.Cloudinary.Contracts;
     using CloudinaryDotNet;
     using CloudinaryDotNet.Actions;
     using Microsoft.AspNetCore.Http;

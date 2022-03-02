@@ -3,8 +3,8 @@
     using System;
     using System.Linq;
     using System.Linq.Expressions;
-
     using AutoMapper.QueryableExtensions;
+
     public static class QueryableMappingExtensions
     {
         public static IQueryable<TDestination> To<TDestination>(
