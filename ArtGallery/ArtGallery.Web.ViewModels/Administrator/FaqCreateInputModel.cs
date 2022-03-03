@@ -1,4 +1,4 @@
-﻿namespace ArtGallery.Web.ViewModels.AdministrationInputModels
+﻿namespace ArtGallery.Web.ViewModels.Administrator
 {
     using System.ComponentModel.DataAnnotations;
     using static ArtGallery.Common.GlobalConstants.ErrorMessages;

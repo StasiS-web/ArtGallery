@@ -1,20 +1,16 @@
 ﻿namespace ArtGallery.Data.Models
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ArtGallery.Data.Common.Models;
     using ArtGallery.Data.Models.Enumeration;
-    using static ArtGallery.Common.GlobalConstants.ArtStore;
 
-    public class SaleTransaction : BaseDeletableModel<string>
+    public class BookingTransaction : BaseDeletableModel<string>
     {
-        public SaleTransaction()
+        public BookingTransaction()
         {
             this.Id = Guid.NewGuid().ToString();
         }
-
-        public DateTime Date { get; set; }
 
         public SaleType SaleType { get; set; }
 
@@ -24,11 +20,13 @@
 
         public ArtGalleryUser User { get; set; }
 
-        [ForeignKey(nameof(ArtStore))]
-        public int ArtId { get; set; }
+        [Required]
+        [ForeignKey(nameof(Event))]
+        public int EventId { get; set; }
 
-        [MaxLength(PaintingNameMaxLenth)]
-        public ArtStore PaintingName { get; set; }
+        public Event Event { get; set; }
+
+        public EventType Type { get; set; }
 
         [Required]
         public PaymentMethod PaymentMethod { get; set; }

@@ -6,7 +6,7 @@
     using ArtGallery.Data.Models.Enumeration;
     using static ArtGallery.Common.GlobalConstants.Event;
 
-    public class Event : BaseDeletableModel<string>
+    public class Event : BaseDeletableModel<int>
     {
         public Event()
         {

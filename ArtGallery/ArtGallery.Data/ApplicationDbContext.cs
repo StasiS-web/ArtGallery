@@ -37,7 +37,9 @@
 
         public DbSet<EventOrder> EventsOrders { get; set; }
 
-        public DbSet<SaleTransaction> AllOrders { get; set; }
+        public DbSet<SaleTransaction> SaleTransactions { get; set; }
+
+        public DbSet<BookingTransaction> BookingTransactions { get; set; }
 
         public DbSet<Setting> Settings { get; set; } // Default from template
 
@@ -92,6 +94,7 @@
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
 
+            // Needed for Entity with many-to-many relationship
             builder.Entity<BlogComment>()
                 .HasKey(x => new { x.BlogPostId, x.UserId });
 
@@ -102,6 +105,9 @@
                 .HasKey(x => new { x.EventId, x.UserId });
 
             builder.Entity<SaleTransaction>()
+                .HasKey(x => new { x.ArtId, x.UserId });
+
+            builder.Entity<BookingTransaction>()
                 .HasKey(x => new { x.EventId, x.UserId });
         }
 

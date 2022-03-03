@@ -5,10 +5,10 @@
     using ArtGallery.Data.Common.Models;
     using static ArtGallery.Common.GlobalConstants.BlogPost;
 
-    public class BlogComment : BaseDeletableModel<string>
+    public class BlogComment : BaseDeletableModel<int>
     {
         [Required]
-        public string BlogPostId { get; set; }
+        public int BlogPostId { get; set; }
 
         public BlogPost BlogPost { get; set; }
 

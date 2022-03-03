@@ -5,7 +5,7 @@
     using ArtGallery.Data.Models.Enumeration;
     using static ArtGallery.Common.GlobalConstants.BlogPost;
 
-    public class BlogPost : BaseDeletableModel<string>
+    public class BlogPost : BaseDeletableModel<int>
     {
         [Required]
         [MaxLength(TitleMaxLength)]

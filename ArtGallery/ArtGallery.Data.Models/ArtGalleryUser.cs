@@ -50,7 +50,7 @@
 
         public ICollection<BlogComment> Comments { get; set; }
 
-        public ICollection<Event> Events { get; set; } // Users are only able to book and cancle events 
+        public ICollection<Event> Events { get; set; } // Users are only able to book and cancle events.
 
         public ICollection<ArtStore> Arts { get; set; } // Users are able to buy or cancle orders.Canclation of order need approvements from manager.
 

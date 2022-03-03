@@ -9,7 +9,7 @@
     public class EventOrder : IDeletableEntity
     {
         [Required]
-        public DateTime OrderDate { get; set; }
+        public DateTime BookingDate { get; set; }
 
         [Required]
         [ForeignKey(nameof(User))]
@@ -19,21 +19,19 @@
 
         [Required]
         [ForeignKey(nameof(Event))]
-        public string EventId { get; set; }
+        public int EventId { get; set; }
 
         public Event Event { get; set; }
-
-        public EventType Type { get; set; }
 
         public int Quantity { get; set; }
 
         [Column(TypeName = "money")]
         public decimal Price { get; set; }
 
-        // Gallery should confirm the place of the user on the event.
+        // Gallery should confirm the place of the user on the event. It depends from the available capacity for the event.
         public bool? Confirmed { get; set; }
 
-        public PaymentMethod Payment { get; set; }
+        public PaymentMethod PaymentMethod { get; set; }
 
         public bool IsDeleted { get ; set; }
 

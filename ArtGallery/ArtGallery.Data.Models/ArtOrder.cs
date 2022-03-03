@@ -18,10 +18,11 @@
 
         public ArtGalleryUser User { get; set; }
 
+        [ForeignKey(nameof(ArtStore))]
         public int ArtId { get; set; }
 
         [MaxLength(PaintingNameMaxLenth)]
-        public string PaintingName { get; set; }
+        public ArtStore PaintingName { get; set; }
 
         public int Quantity { get; set; }
 

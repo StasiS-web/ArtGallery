@@ -5,7 +5,7 @@
     using ArtGallery.Data.Common.Models;
     using static ArtGallery.Common.GlobalConstants.ArtStore;
 
-    public class ArtStore : BaseDeletableModel<string>
+    public class ArtStore : BaseDeletableModel<int>
     {
         public ArtStore()
         {
