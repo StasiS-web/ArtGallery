@@ -262,9 +262,6 @@ namespace ArtGallery.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("ArtGalleryUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("AuthorName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -300,8 +297,6 @@ namespace ArtGallery.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ArtGalleryUserId");
 
                     b.HasIndex("IsDeleted");
 
@@ -353,9 +348,6 @@ namespace ArtGallery.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("ArtGalleryUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Author")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -391,8 +383,6 @@ namespace ArtGallery.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ArtGalleryUserId");
 
                     b.HasIndex("IsDeleted");
 
@@ -448,9 +438,6 @@ namespace ArtGallery.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("ArtGalleryUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -489,8 +476,6 @@ namespace ArtGallery.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ArtGalleryUserId");
 
                     b.HasIndex("ExhibitionHallId");
 
@@ -860,13 +845,6 @@ namespace ArtGallery.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ArtGallery.Data.Models.ArtStore", b =>
-                {
-                    b.HasOne("ArtGallery.Data.Models.ArtGalleryUser", null)
-                        .WithMany("Arts")
-                        .HasForeignKey("ArtGalleryUserId");
-                });
-
             modelBuilder.Entity("ArtGallery.Data.Models.BlogComment", b =>
                 {
                     b.HasOne("ArtGallery.Data.Models.BlogPost", "BlogPost")
@@ -886,13 +864,6 @@ namespace ArtGallery.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ArtGallery.Data.Models.BlogPost", b =>
-                {
-                    b.HasOne("ArtGallery.Data.Models.ArtGalleryUser", null)
-                        .WithMany("BlogPosts")
-                        .HasForeignKey("ArtGalleryUserId");
-                });
-
             modelBuilder.Entity("ArtGallery.Data.Models.BookingTransaction", b =>
                 {
                     b.HasOne("ArtGallery.Data.Models.Event", "Event")
@@ -902,7 +873,7 @@ namespace ArtGallery.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("ArtGallery.Data.Models.ArtGalleryUser", "User")
-                        .WithMany()
+                        .WithMany("BookingsTransactions")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -914,10 +885,6 @@ namespace ArtGallery.Data.Migrations
 
             modelBuilder.Entity("ArtGallery.Data.Models.Event", b =>
                 {
-                    b.HasOne("ArtGallery.Data.Models.ArtGalleryUser", null)
-                        .WithMany("Events")
-                        .HasForeignKey("ArtGalleryUserId");
-
                     b.HasOne("ArtGallery.Data.Models.ExhibitionHall", "ExhibitionHall")
                         .WithMany()
                         .HasForeignKey("ExhibitionHallId")
@@ -955,7 +922,7 @@ namespace ArtGallery.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("ArtGallery.Data.Models.ArtGalleryUser", "User")
-                        .WithMany("AllSales")
+                        .WithMany("SaleTransaction")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1039,21 +1006,17 @@ namespace ArtGallery.Data.Migrations
 
             modelBuilder.Entity("ArtGallery.Data.Models.ArtGalleryUser", b =>
                 {
-                    b.Navigation("AllSales");
-
-                    b.Navigation("Arts");
-
-                    b.Navigation("BlogPosts");
+                    b.Navigation("BookingsTransactions");
 
                     b.Navigation("Claims");
 
                     b.Navigation("Comments");
 
-                    b.Navigation("Events");
-
                     b.Navigation("Logins");
 
                     b.Navigation("Roles");
+
+                    b.Navigation("SaleTransaction");
                 });
 
             modelBuilder.Entity("ArtGallery.Data.Models.ArtStore", b =>

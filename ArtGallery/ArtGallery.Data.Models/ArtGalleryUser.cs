@@ -17,11 +17,9 @@
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
 
-            this.BlogPosts = new HashSet<BlogPost>();
             this.Comments = new HashSet<BlogComment>();
-            this.Events = new HashSet<Event>();
-            this.Arts = new HashSet<ArtStore>();
-            this.AllSales = new HashSet<SaleTransaction>();
+            this.SaleTransaction = new HashSet<SaleTransaction>();
+            this.BookingsTransactions = new HashSet<BookingTransaction>();
         }
 
         [Required]
@@ -46,14 +44,10 @@
 
         public ICollection<IdentityUserLogin<string>> Logins { get; set; }
 
-        public ICollection<BlogPost> BlogPosts { get; set; } // Users are only able to read and comment on Blog Post
-
         public ICollection<BlogComment> Comments { get; set; }
 
-        public ICollection<Event> Events { get; set; } // Users are only able to book and cancle events.
+        public ICollection<SaleTransaction> SaleTransaction { get; set; }
 
-        public ICollection<ArtStore> Arts { get; set; } // Users are able to buy or cancle orders.Canclation of order need approvements from manager.
-
-        public ICollection<SaleTransaction> AllSales { get; set; }
+        public ICollection<BookingTransaction> BookingsTransactions { get; set; }
     }
 }

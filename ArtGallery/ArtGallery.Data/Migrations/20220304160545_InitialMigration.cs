@@ -41,6 +41,27 @@ namespace ArtGallery.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Arts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PaintingName = table.Column<string>(type: "nvarchar(35)", maxLength: 35, nullable: false),
+                    AuthorName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    UrlImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "money", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Arts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -85,6 +106,27 @@ namespace ArtGallery.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BlogPosts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
+                    UrlImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(3500)", maxLength: 3500, nullable: false),
+                    Author = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    UserReaction = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BlogPosts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -159,44 +201,47 @@ namespace ArtGallery.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Arts",
+                name: "ArtsOrders",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PaintingName = table.Column<string>(type: "nvarchar(35)", maxLength: 35, nullable: false),
-                    AuthorName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    UrlImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ArtId = table.Column<int>(type: "int", nullable: false),
+                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PaintingNameId = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "money", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    ArtGalleryUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    PaymentMethod = table.Column<int>(type: "int", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Arts", x => x.Id);
+                    table.PrimaryKey("PK_ArtsOrders", x => new { x.UserId, x.ArtId });
                     table.ForeignKey(
-                        name: "FK_Arts_ArtGalleryUser_ArtGalleryUserId",
-                        column: x => x.ArtGalleryUserId,
+                        name: "FK_ArtsOrders_ArtGalleryUser_UserId",
+                        column: x => x.UserId,
                         principalTable: "ArtGalleryUser",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ArtsOrders_Arts_PaintingNameId",
+                        column: x => x.PaintingNameId,
+                        principalTable: "Arts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "BlogPosts",
+                name: "SaleTransactions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
-                    UrlImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Content = table.Column<string>(type: "nvarchar(3500)", maxLength: 3500, nullable: false),
-                    Author = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    UserReaction = table.Column<int>(type: "int", nullable: false),
-                    ArtGalleryUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ArtId = table.Column<int>(type: "int", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SaleType = table.Column<int>(type: "int", nullable: false),
+                    PaintingNameId = table.Column<int>(type: "int", nullable: false),
+                    PaymentMethod = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
@@ -204,12 +249,19 @@ namespace ArtGallery.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BlogPosts", x => x.Id);
+                    table.PrimaryKey("PK_SaleTransactions", x => new { x.ArtId, x.UserId });
                     table.ForeignKey(
-                        name: "FK_BlogPosts_ArtGalleryUser_ArtGalleryUserId",
-                        column: x => x.ArtGalleryUserId,
+                        name: "FK_SaleTransactions_ArtGalleryUser_UserId",
+                        column: x => x.UserId,
                         principalTable: "ArtGalleryUser",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_SaleTransactions_Arts_PaintingNameId",
+                        column: x => x.PaintingNameId,
+                        principalTable: "Arts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -337,105 +389,6 @@ namespace ArtGallery.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Events",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
-                    Price = table.Column<decimal>(type: "money", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Type = table.Column<int>(type: "int", nullable: false),
-                    ExhibitionHallId = table.Column<int>(type: "int", nullable: false),
-                    TicketType = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1500)", maxLength: 1500, nullable: false),
-                    ArtGalleryUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Events", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Events_ArtGalleryUser_ArtGalleryUserId",
-                        column: x => x.ArtGalleryUserId,
-                        principalTable: "ArtGalleryUser",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Events_ExhibitionHalls_ExhibitionHallId",
-                        column: x => x.ExhibitionHallId,
-                        principalTable: "ExhibitionHalls",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ArtsOrders",
-                columns: table => new
-                {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ArtId = table.Column<int>(type: "int", nullable: false),
-                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PaintingNameId = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<decimal>(type: "money", nullable: false),
-                    PaymentMethod = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ArtsOrders", x => new { x.UserId, x.ArtId });
-                    table.ForeignKey(
-                        name: "FK_ArtsOrders_ArtGalleryUser_UserId",
-                        column: x => x.UserId,
-                        principalTable: "ArtGalleryUser",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_ArtsOrders_Arts_PaintingNameId",
-                        column: x => x.PaintingNameId,
-                        principalTable: "Arts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SaleTransactions",
-                columns: table => new
-                {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ArtId = table.Column<int>(type: "int", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SaleType = table.Column<int>(type: "int", nullable: false),
-                    PaintingNameId = table.Column<int>(type: "int", nullable: false),
-                    PaymentMethod = table.Column<int>(type: "int", nullable: false),
-                    Id = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SaleTransactions", x => new { x.ArtId, x.UserId });
-                    table.ForeignKey(
-                        name: "FK_SaleTransactions_ArtGalleryUser_UserId",
-                        column: x => x.UserId,
-                        principalTable: "ArtGalleryUser",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_SaleTransactions_Arts_PaintingNameId",
-                        column: x => x.PaintingNameId,
-                        principalTable: "Arts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Comments",
                 columns: table => new
                 {
@@ -461,6 +414,35 @@ namespace ArtGallery.Data.Migrations
                         name: "FK_Comments_BlogPosts_BlogPostId",
                         column: x => x.BlogPostId,
                         principalTable: "BlogPosts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Events",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    Price = table.Column<decimal>(type: "money", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false),
+                    ExhibitionHallId = table.Column<int>(type: "int", nullable: false),
+                    TicketType = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1500)", maxLength: 1500, nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Events", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Events_ExhibitionHalls_ExhibitionHallId",
+                        column: x => x.ExhibitionHallId,
+                        principalTable: "ExhibitionHalls",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -532,11 +514,6 @@ namespace ArtGallery.Data.Migrations
                 name: "IX_ArtGalleryUser_IsDeleted",
                 table: "ArtGalleryUser",
                 column: "IsDeleted");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Arts_ArtGalleryUserId",
-                table: "Arts",
-                column: "ArtGalleryUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Arts_IsDeleted",
@@ -618,11 +595,6 @@ namespace ArtGallery.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BlogPosts_ArtGalleryUserId",
-                table: "BlogPosts",
-                column: "ArtGalleryUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_BlogPosts_IsDeleted",
                 table: "BlogPosts",
                 column: "IsDeleted");
@@ -646,11 +618,6 @@ namespace ArtGallery.Data.Migrations
                 name: "IX_Comments_UserId",
                 table: "Comments",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Events_ArtGalleryUserId",
-                table: "Events",
-                column: "ArtGalleryUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Events_ExhibitionHallId",
@@ -762,13 +729,13 @@ namespace ArtGallery.Data.Migrations
                 name: "Events");
 
             migrationBuilder.DropTable(
+                name: "ArtGalleryUser");
+
+            migrationBuilder.DropTable(
                 name: "Arts");
 
             migrationBuilder.DropTable(
                 name: "ExhibitionHalls");
-
-            migrationBuilder.DropTable(
-                name: "ArtGalleryUser");
         }
     }
 }
