@@ -1,14 +1,14 @@
 ﻿namespace ArtGallery.Services
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
     using System.Globalization;
+    using static ArtGallery.Common.GlobalConstants.Formating;
 
     public class DateTimeService
     {
         public bool DateValidation(object value)
         {
-            string format = "dd-mm-yyyy hh:mm";
+            string format = DateTimeFormate;
             var isValid = DateTime.TryParseExact(
                 Convert.ToString(value),
                 format,

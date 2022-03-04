@@ -1,6 +1,7 @@
 ﻿namespace ArtGallery.Web.ViewModels.Administrator
 {
     using System.ComponentModel.DataAnnotations;
+    using static ArtGallery.Common.GlobalConstants.DisplayNames;
     using static ArtGallery.Common.GlobalConstants.ErrorMessages;
     using static ArtGallery.Common.GlobalConstants.Privacy;
 
@@ -8,7 +9,8 @@
     {
         [Display(Name = PageContentDisplayName)]
         [Required(ErrorMessage = EmptyField)]
-        [StringLength(PageContentMaxLength, MinimumLength = PageContentMinLength, ErrorMessage = PageContentLength)]
+        [MinLength(PageContentMinLength)]
+        [MaxLength(PageContentMaxLength, ErrorMessage = PageContentLength)]
         public string PageConetent { get; set; }
     }
 }

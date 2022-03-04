@@ -21,11 +21,6 @@
             public const int FullNameMinLenth = 500;
             public const int PasswordMinLength = 8;
             public const int PasswordMaxLength = 16;
-            public const string FullNameDisplayName = "Full Name";
-            public const string EmailDisplay = "Email";
-            public const string UsernameDisplay = "Username";
-            public const string PasswordDisplay = "Password";
-            public const string ConfirmPasswordDisplay = "Confiirm Password";
         }
 
         public static class Event
@@ -87,7 +82,6 @@
         {
             public const int PageContentMinLength = 1000;
             public const int PageContentMaxLength = 15000;
-            public const string PageContentDisplayName = "Page Content";
         }
 
         public static class FaqEntity
@@ -98,10 +92,26 @@
             public const int AnswerMaxLength = 1000;
         }
 
+        public static class Formating
+        {
+            public const string NormalDateFormate = "dd-mm-yyyy";
+            public const string DateTimeFormate = "dd-mm-yyyy hh:mm";
+        }
+
+        public static class DisplayNames
+        {
+            public const string FullNameDisplayName = "Full Name";
+            public const string EmailDisplay = "Email";
+            public const string UsernameDisplay = "Username";
+            public const string PasswordDisplay = "Password";
+            public const string ConfirmPasswordDisplay = "Confiirm Password";
+            public const string PageContentDisplayName = "Page Content";
+        }
+
         public static class ErrorMessages
         {
             public const string UserFullname = "Fullname is invalid. It should be between 90 and 500 characters long.";
-            public const string Password = "Password is not valid, because Password and Confirm Password doesn't match.";
+            public const string PasswordValidation = "Password is not valid, because Password and Confirm Password didn't match.";
             public const string EmptyField = "The field should not be empthy. It is required to have a content.";
             public const string PageContentLength = "Page content should be between 1000 and 15000 characters long.";
 

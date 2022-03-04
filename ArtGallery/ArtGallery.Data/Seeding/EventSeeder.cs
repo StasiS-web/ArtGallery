@@ -7,6 +7,7 @@
     using ArtGallery.Data.Models;
     using ArtGallery.Data.Models.Enumeration;
     using ArtGallery.Data.Seeding.Contracts;
+    using static ArtGallery.Common.GlobalConstants.Formating;
 
     public class EventSeeder : ISeeder
     {
@@ -26,7 +27,7 @@
                     Price = 0.0M,
                     Date = DateTime.ParseExact(
                                 "25.02.2022 12:30",
-                                "dd.mm.yyyy hh:mm",
+                                DateTimeFormate,
                                 CultureInfo.InvariantCulture),
                     Type = EventType.Online,
                     ExhibitionHallId = (int)ExhibitionHallType.Small,
@@ -39,7 +40,7 @@
                     Price = 15M,
                     Date = DateTime.ParseExact(
                                 "29.02.2022 13:00",
-                                "dd.mm.yyyy hh:mm",
+                                DateTimeFormate,
                                 CultureInfo.InvariantCulture),
                     Type = EventType.Online,
                     ExhibitionHallId = (int)ExhibitionHallType.Small,
@@ -52,7 +53,7 @@
                     Price = 10M,
                     Date = DateTime.ParseExact(
                                 "12.03.2022 11:30",
-                                "dd.mm.yyyy hh:mm",
+                                DateTimeFormate,
                                 CultureInfo.InvariantCulture),
                     Type = EventType.Online,
                     ExhibitionHallId = (int)ExhibitionHallType.Small,

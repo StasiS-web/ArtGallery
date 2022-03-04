@@ -7,11 +7,13 @@
     public class FaqCreateInputModel
     {
         [Required(ErrorMessage = EmptyField)]
-        [StringLength(QuestionMaxLength, MinimumLength = QuestionMinLength)]
+        [MinLength(QuestionMinLength)]
+        [MaxLength(QuestionMaxLength)]
         public string Question { get; set; }
 
         [Required(ErrorMessage = EmptyField)]
-        [StringLength(AnswerMaxLength, MinimumLength = AnswerMinLength)]
+        [MinLength(AnswerMinLength)]
+        [MaxLength(AnswerMaxLength)]
         public string Answer { get; set; }
     }
 }

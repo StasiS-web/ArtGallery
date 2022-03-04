@@ -6,16 +6,19 @@
     public class BlogPostCreateInputModel
     {
         [Required]
-        [StringLength(TitleMaxLength, MinimumLength = TitleMinLength)]
+        [MinLength(TitleMinLength)]
+        [MaxLength(TitleMaxLength)]
         public string Title { get; set; }
 
         [DataType(DataType.ImageUrl)]
         public string UrlImage { get; set; }
 
-        [StringLength(ContentMaxLength, MinimumLength = ContentMinLength)]
+        [MinLength(ContentMinLength)]
+        [MaxLength(ContentMaxLength)]
         public string Content { get; set; }
 
-        [StringLength(AdminAuthorMaxLength, MinimumLength = AdminAuthorMinLength)]
+        [MinLength(AdminAuthorMinLength)]
+        [MaxLength(AdminAuthorMaxLength)]
         public string Author { get; set; }
     }
 }
