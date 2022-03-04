@@ -8,7 +8,7 @@
     {
         public bool DateValidation(object value)
         {
-            string format = DateTimeFormate;
+            string format = DateTimeFormat;
             var isValid = DateTime.TryParseExact(
                 Convert.ToString(value),
                 format,

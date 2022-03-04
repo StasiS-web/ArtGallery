@@ -94,8 +94,8 @@
 
         public static class Formating
         {
-            public const string NormalDateFormate = "dd-mm-yyyy";
-            public const string DateTimeFormate = "dd-mm-yyyy hh:mm";
+            public const string NormalDateFormat = "dd-mm-yyyy";
+            public const string DateTimeFormat = "dd-mm-yyyy hh:mm";
         }
 
         public static class DisplayNames

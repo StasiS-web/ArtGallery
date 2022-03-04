@@ -2,9 +2,11 @@
 global using ArtGallery.Common;
 global using ArtGallery.Data;
 global using ArtGallery.Data.Models;
+global using ArtGallery.Web.ModelBinders;
 global using CloudinaryDotNet;
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.EntityFrameworkCore;
+global using static ArtGallery.Common.GlobalConstants;
 
 #pragma warning disable SA1404 // Code analysis suppression should have justification
 [assembly: SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1200:Using directives should be placed correctly", Justification = "<Pending>")]
