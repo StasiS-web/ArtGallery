@@ -14,6 +14,8 @@
         public string FullName { get; set; }
 
         [Required]
+        [MinLength(UsernameMinLength)]
+        [MaxLength(UsernameMaxLength)]
         [Display(Name = UsernameDisplay)]
         public string Username { get; set; }
 

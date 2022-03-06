@@ -2,7 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using ArtGallery.Data.Common.Models.Contarcts;
+    using ArtGallery.Data.Common.Models.Contracts;
 
     public abstract class BaseModel<TKey> : IAuditInfo
     {

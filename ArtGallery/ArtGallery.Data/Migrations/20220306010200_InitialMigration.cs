@@ -16,6 +16,7 @@ namespace ArtGallery.Data.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     Gender = table.Column<int>(type: "int", nullable: false),
+                    UrlImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
@@ -198,6 +199,31 @@ namespace ArtGallery.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Settings", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ShoppingCarts",
+                columns: table => new
+                {
+                    Price = table.Column<decimal>(type: "decimal", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PaintingName = table.Column<string>(type: "nvarchar(35)", maxLength: 35, nullable: false),
+                    Price1 = table.Column<decimal>(type: "money", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShoppingCarts", x => x.Price);
+                    table.ForeignKey(
+                        name: "FK_ShoppingCarts_ArtGalleryUser_UserId",
+                        column: x => x.UserId,
+                        principalTable: "ArtGalleryUser",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -673,6 +699,16 @@ namespace ArtGallery.Data.Migrations
                 name: "IX_Settings_IsDeleted",
                 table: "Settings",
                 column: "IsDeleted");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingCarts_IsDeleted",
+                table: "ShoppingCarts",
+                column: "IsDeleted");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingCarts_UserId",
+                table: "ShoppingCarts",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -717,6 +753,9 @@ namespace ArtGallery.Data.Migrations
                 name: "Settings");
 
             migrationBuilder.DropTable(
+                name: "ShoppingCarts");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -729,10 +768,10 @@ namespace ArtGallery.Data.Migrations
                 name: "Events");
 
             migrationBuilder.DropTable(
-                name: "ArtGalleryUser");
+                name: "Arts");
 
             migrationBuilder.DropTable(
-                name: "Arts");
+                name: "ArtGalleryUser");
 
             migrationBuilder.DropTable(
                 name: "ExhibitionHalls");

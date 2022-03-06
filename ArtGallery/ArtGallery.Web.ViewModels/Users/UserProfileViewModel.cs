@@ -19,7 +19,7 @@ namespace ArtGallery.Web.ViewModels.Users
         [Display(Name = "UsernameDisplay")]
         public string Username { get; set; }
 
-        public string Image { get; set; }
+        public string UrlImage { get; set; }
 
         [Required]
         [EmailAddress]

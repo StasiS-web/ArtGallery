@@ -19,6 +19,8 @@
         {
             public const int FullNaneMinLenth = 90;
             public const int FullNameMinLenth = 500;
+            public const int UsernameMinLength = 5;
+            public const int UsernameMaxLength = 20;
             public const int PasswordMinLength = 8;
             public const int PasswordMaxLength = 16;
         }
@@ -29,6 +31,8 @@
             public const int EventNameMaxLenth = 60;
             public const int EventDescriptionMinLength = 250;
             public const int EventDescriptionMaxLenth = 1500;
+            public const double PriceMin = 0.0;
+            public const double PriceMax = 80;
         }
 
         public static class ArtStore
@@ -39,6 +43,8 @@
             public const int AuthorNameMaxLenth = 100;
             public const int ArtsDescriptionMinLenth = 150;
             public const int ArtsDescriptionMaxLenth = 1000;
+            public const double PriceMin = 0.0;
+            public const double PriceMax = 10000;
         }
 
         public static class BlogPost
@@ -110,6 +116,7 @@
 
         public static class ErrorMessages
         {
+            public const string InvalidUserId = "This user with ID: {0} does not exist.";
             public const string UserFullname = "Fullname is invalid. It should be between 90 and 500 characters long.";
             public const string PasswordValidation = "Password is not valid, because Password and Confirm Password didn't match.";
             public const string EmptyField = "The field should not be empthy. It is required to have a content.";

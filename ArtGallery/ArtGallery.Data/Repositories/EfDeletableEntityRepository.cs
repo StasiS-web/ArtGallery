@@ -1,9 +1,10 @@
 ﻿namespace ArtGallery.Data.Repositories
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ArtGallery.Data.Common.Models.Contarcts;
+    using ArtGallery.Data.Common.Models.Contracts;
     using ArtGallery.Data.Common.Repositories;
     using Microsoft.EntityFrameworkCore;
 
@@ -22,6 +23,11 @@
         public IQueryable<TEntity> AllWithDeleted() => base.All().IgnoreQueryFilters();
 
         public IQueryable<TEntity> AllAsNoTrackingWithDeleted() => base.AllAsNoTracking().IgnoreQueryFilters();
+
+        public IEnumerable<TEntity> All<T>()
+        {
+            return base.All().Where(x => x.IsDeleted);
+        }
 
         public void HardDelete(TEntity entity) => base.Delete(entity);
 

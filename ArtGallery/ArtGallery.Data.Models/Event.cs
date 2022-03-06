@@ -18,6 +18,7 @@
 
         [Required]
         [Column(TypeName = "money")]
+        [Range(PriceMin, PriceMax)]
         public decimal Price { get; set; }
 
         public DateTime Date { get; set; }

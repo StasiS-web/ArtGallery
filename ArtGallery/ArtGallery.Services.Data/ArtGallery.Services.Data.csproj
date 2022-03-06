@@ -18,6 +18,7 @@
     <ProjectReference Include="..\ArtGallery.Data.Models\ArtGallery.Data.Models.csproj" />
     <ProjectReference Include="..\ArtGallery.Services.Mapping\ArtGallery.Services.Mapping.csproj" />
     <ProjectReference Include="..\ArtGallery.Services.Messaging\ArtGallery.Services.Messaging.csproj" />
+    <ProjectReference Include="..\ArtGallery.Web.ViewModels\ArtGallery.Web.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

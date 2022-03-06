@@ -2,7 +2,7 @@
 {
     using System;
     using ArtGallery.Data.Common.Models;
-    using ArtGallery.Data.Common.Models.Contarcts;
+    using ArtGallery.Data.Common.Models.Contracts;
     using Microsoft.AspNetCore.Identity;
 
     public class ApplicationRole : IdentityRole, IAuditInfo, IDeletableEntity

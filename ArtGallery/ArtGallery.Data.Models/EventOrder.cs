@@ -3,8 +3,9 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using ArtGallery.Data.Common.Models.Contarcts;
+    using ArtGallery.Data.Common.Models.Contracts;
     using ArtGallery.Data.Models.Enumeration;
+    using static ArtGallery.Common.GlobalConstants.Event;
 
     public class EventOrder : IDeletableEntity
     {
@@ -26,6 +27,7 @@
         public int Quantity { get; set; }
 
         [Column(TypeName = "money")]
+        [Range(PriceMin, PriceMax)]
         public decimal Price { get; set; }
 
         // Gallery should confirm the place of the user on the event. It depends from the available capacity for the event.

@@ -23,6 +23,7 @@
 
         [Required]
         [Column(TypeName = "money")]
+        [Range(PriceMin, PriceMax)]
         public decimal Price { get; set; }
 
         [MaxLength(ArtsDescriptionMaxLenth), Required]

@@ -1,7 +1,7 @@
 ﻿namespace ArtGallery.Data.Common.Models
 {
     using System;
-    using ArtGallery.Data.Common.Models.Contarcts;
+    using ArtGallery.Data.Common.Models.Contracts;
 
     public abstract class BaseDeletableModel<TKey> : BaseModel<TKey>, IDeletableEntity
     {

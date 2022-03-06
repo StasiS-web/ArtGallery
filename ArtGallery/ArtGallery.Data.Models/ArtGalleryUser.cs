@@ -2,8 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using ArtGallery.Data.Common.Models;
-    using ArtGallery.Data.Common.Models.Contarcts;
+    using ArtGallery.Data.Common.Models.Contracts;
     using ArtGallery.Data.Models.Enumeration;
     using Microsoft.AspNetCore.Identity;
     using static ArtGallery.Common.GlobalConstants.ArtGalleryUser;
@@ -27,6 +26,8 @@
         public string FullName { get; set; }
 
         public Gender Gender { get; set; }
+
+        public string UrlImage { get; set; }
 
         // Audit info
         public DateTime CreatedOn { get; set; }

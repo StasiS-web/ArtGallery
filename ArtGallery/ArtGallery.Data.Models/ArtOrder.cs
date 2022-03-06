@@ -3,7 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using ArtGallery.Data.Common.Models.Contarcts;
+    using ArtGallery.Data.Common.Models.Contracts;
     using ArtGallery.Data.Models.Enumeration;
     using static ArtGallery.Common.GlobalConstants.ArtStore;
 
@@ -28,6 +28,7 @@
 
         [Required]
         [Column(TypeName = "money")]
+        [Range(PriceMin, PriceMax)]
         public decimal Price { get; set; }
 
         public PaymentMethod PaymentMethod { get; set; }

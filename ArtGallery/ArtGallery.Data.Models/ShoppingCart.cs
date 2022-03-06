@@ -5,20 +5,23 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ArtGallery.Data.Common.Models;
+    using static ArtGallery.Common.GlobalConstants.ArtStore;
 
-    public class ShoppingCart : BaseModel<int>
+    public class ShoppingCart : BaseDeletableModel<int>
     {
-        public ShoppingCart()
-        {
-            this.SaleTransactions = new HashSet<SaleTransaction>();
-        }
-
         [Required]
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
 
         public ArtGalleryUser User { get; set; }
 
-        public ICollection<SaleTransaction> SaleTransactions { get; set; }
+        [Required]
+        [MaxLength(PaintingNameMaxLenth)]
+        public string PaintingName { get; set; }
+
+        [Required]
+        [Column(TypeName = "money")]
+        [Range(PriceMin, PriceMax)]
+        public decimal Price { get; set; }
     }
 }

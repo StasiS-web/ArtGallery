@@ -5,10 +5,11 @@
     using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
-    using ArtGallery.Data.Common.Models.Contarcts;
+    using ArtGallery.Data.Common.Models.Contracts;
     using ArtGallery.Data.Models;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using static ArtGallery.Common.GlobalConstants.ArtStore;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
@@ -40,6 +41,8 @@
         public DbSet<SaleTransaction> SaleTransactions { get; set; }
 
         public DbSet<BookingTransaction> BookingTransactions { get; set; }
+
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 
         public DbSet<Setting> Settings { get; set; } // Default from template
 
@@ -109,6 +112,11 @@
 
             builder.Entity<BookingTransaction>()
                 .HasKey(x => new { x.EventId, x.UserId });
+
+            builder.Entity<ShoppingCart>()
+                .Property(x => x.Id)
+                .HasColumnName("Price")
+                .HasColumnType("decimal");
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)
