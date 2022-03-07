@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using ArtGallery.Data.Common.Models.Contracts;
     using ArtGallery.Data.Models.Enumeration;
     using Microsoft.AspNetCore.Identity;
@@ -28,6 +29,12 @@
         public Gender Gender { get; set; }
 
         public string UrlImage { get; set; }
+
+        [ForeignKey(nameof(ShoppingCart))]
+        [Required]
+        public int ShoppingCartId { get; set; }
+
+        public ShoppingCart ShoppingCart { get; set; }
 
         // Audit info
         public DateTime CreatedOn { get; set; }

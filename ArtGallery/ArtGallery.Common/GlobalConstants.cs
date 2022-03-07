@@ -82,6 +82,15 @@
             public const string ArtisticPainter = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1646156702/app_gallery/Artist_painting-jpeg_nn02fh.jpg";
             public const string Art = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1646156777/app_gallery/image-from-id-405327-jpeg_njsywp.jpg";
             public const string AnimalSpirits = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1646157537/app_gallery/image-from-id-556828-jpeg_pvzrkd.jpg";
+
+            // User Reactiosn (Image Resourse from flaticon)
+            public const string Like = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--yUbJIoLH--/c_fit,h_300,w_300/v1646622718/app_gallery/userReaction/like_n9eqy5.png";
+            public const string Love = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--xljmDf6J--/c_fit,h_300,w_300/v1646622804/app_gallery/userReaction/love_vph4np.png";
+            public const string Care = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--XtBUfpfO--/c_fill,h_300,w_300/v1646623102/app_gallery/userReaction/care_ahys3v.png";
+            public const string Haha = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--wlIa_i1J--/c_fit,h_300,w_300/v1646623121/app_gallery/userReaction/laughing_gvhjav.png";
+            public const string Sad = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--Tg_IWpwl--/c_fit,h_300,w_300/v1646623104/app_gallery/userReaction/sad_qmoef2.png";
+            public const string Wow = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--nnKxfZg5--/c_fit,h_300,w_300/v1646623111/app_gallery/userReaction/wow_yzaigj.png";
+            public const string Angry = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--hSTvysVb--/c_fit,h_300,w_300/v1646623146/app_gallery/userReaction/angry_lj6awp.png";
         }
 
         public static class Privacy
@@ -116,7 +125,8 @@
 
         public static class ErrorMessages
         {
-            public const string InvalidUserId = "This user with ID: {0} does not exist.";
+            public const string InvalidUsername = "User with Username: {0} does not exist.";
+            public const string InvalidUserId = "User with ID: {0} does not exist.";
             public const string UserFullname = "Fullname is invalid. It should be between 90 and 500 characters long.";
             public const string PasswordValidation = "Password is not valid, because Password and Confirm Password didn't match.";
             public const string EmptyField = "The field should not be empthy. It is required to have a content.";
