@@ -7,17 +7,15 @@
 <div class="container">
     <div class="error-page">
         <div class="error-content text">
-            <h1 class="text-danger">Error.</h1>
-            <h2 class="text-danger">Oops! An error occurred while processing your request.</h2>
+            <h1 class="text-danger">Oops!</h1>
+            <h2 class="text-danger">An error occurred while processing your request.</h2>
+        </div>
 
-            <link rel="rellestyle" href="Error404" />
-        </div>
-        <div class="error-content text">
-            Page you are looking is not found or temporarlly unavailable. Please go back to Home Page. Thank you!
-        </div>
-        <div class="btn btn-primary">
-            <button href="" asp-controller="Home" asp-action="Index"></button>
-            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">GO HOME PAGE</a>
-        </div>
+        @if (Model.ShowRequestId)
+            {
+                <p>
+                    <strong>Request ID:</strong> <code>@Model.RequestId</code>
+                </p>
+            } 
     </div>
 </div>
