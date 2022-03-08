@@ -8,7 +8,7 @@
 
         public string User { get; set; }
 
-        public int ArtId { get; set; }
+        public int Id { get; set; }
 
         public string PaintingName { get; set; }
 

@@ -2,8 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
     using static ArtGallery.Common.GlobalConstants.DisplayNames;
-    using static ArtGallery.Common.GlobalConstants.ErrorMessages;
     using static ArtGallery.Common.GlobalConstants.Privacy;
+    using static ArtGallery.Common.MessageConstants.ErrorMessages;
 
     public class PrivacyCreateInputModel
     {

@@ -4,7 +4,7 @@
     using ArtGallery.Services.Mapping.Contracts;
     using static ArtGallery.Common.GlobalConstants.DisplayNames;
     using static ArtGallery.Common.GlobalConstants.Privacy;
-    using  Privacy = ArtGallery.Data.Models.Privacy;
+    using Privacy = ArtGallery.Data.Models.Privacy;
 
     public class PrivacyEditVewModel : IMapFrom<Privacy>
     {

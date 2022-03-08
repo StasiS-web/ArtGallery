@@ -1,8 +1,8 @@
 ﻿namespace ArtGallery.Web.ViewModels.Administrator
 {
     using System.ComponentModel.DataAnnotations;
-    using static ArtGallery.Common.GlobalConstants.ErrorMessages;
     using static ArtGallery.Common.GlobalConstants.FaqEntity;
+    using static ArtGallery.Common.MessageConstants.ErrorMessages;
 
     public class FaqCreateInputModel
     {
