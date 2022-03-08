@@ -16,7 +16,7 @@
            this.cloudinary = cloudinary;
         }
 
-        public async Task<string> UploadImage(IFormFile file, string fileName)
+        public async Task<string> UploadImageAsync(IFormFile file, string fileName, int heigth, int width)
         {
             byte[] data;
             var stream = new MemoryStream();
@@ -35,7 +35,7 @@
                 {
                     Folder = "app_gallery",
                     File = new FileDescription(fileName, message),
-                    Transformation = new Transformation().Height(300).Width(300).Crop("fit"),
+                    Transformation = new Transformation().Height(heigth).Width(width).Crop("fit"),
                 };
 
                 uploadResult = await this.cloudinary.UploadAsync(uploadParams);
