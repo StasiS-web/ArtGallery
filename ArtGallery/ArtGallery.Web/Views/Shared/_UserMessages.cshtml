@@ -1,0 +1,37 @@
+﻿@using ArtGallery.Common
+    
+@if (ViewData[MessageConstants.ErrorMessages.PasswordValidation] != null)
+{
+    <script>
+        $(function(){
+            toastr.error('@ViewData[MessageConstants.ErrorMessages.PasswordValidation]?.ToString()');
+        });
+    </script>
+}
+
+@if (ViewData[MessageConstants.WarningMessage] != null)
+{
+    <script>
+        $(function(){
+            toastr.error('@ViewData[MessageConstants.WarningMessage]?.ToString()');
+        });
+    </script>
+}
+
+@if (ViewData[MessageConstants.OperationalMessages.SuccessfullyCheckoutOrder] != null)
+{
+    <script>
+        $(function(){
+            toastr.error('@ViewData[MessageConstants.OperationalMessages.SuccessfullyCheckoutOrder]?.ToString()');
+        });
+    </script>
+}
+
+@if (ViewData[MessageConstants.OperationalMessages.SuccessfullyBookedEvent] != null)
+{
+    <script>
+        $(function(){
+            toastr.error('@ViewData[MessageConstants.OperationalMessages.SuccessfullyBookedEvent]?.ToString()');
+        });
+    </script>
+}
