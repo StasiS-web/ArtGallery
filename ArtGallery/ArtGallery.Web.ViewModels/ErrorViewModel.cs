@@ -6,11 +6,13 @@
 
         public bool ShowRequestId => !string.IsNullOrEmpty(this.RequestId);
 
-        public string ErrorMessage { get; init; }
+        public string ErrorMessage { get; set; }
 
-        public ErrorViewModel(string message)
+        public int StatusCode { get; set; }
+
+       /* public ErrorViewModel(string message)
         {
             this.ErrorMessage = message;
-        }
+        } */
     }
 }
