@@ -4,7 +4,7 @@ namespace ArtGallery.Web.ViewModels.Users
 {
     public class UserProfileViewModel
     {
-        public string Id { get; set; }
+        public string UserId { get; set; }
 
         [Required]
         [Display(Name = "FullNameDisplayName")]

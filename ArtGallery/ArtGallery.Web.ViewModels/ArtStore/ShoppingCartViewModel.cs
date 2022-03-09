@@ -13,5 +13,7 @@
         public string PaintingName { get; set; }
 
         public decimal ArtPrice { get; set; }
+
+        public int Quantity { get; set; }
     }
 }
