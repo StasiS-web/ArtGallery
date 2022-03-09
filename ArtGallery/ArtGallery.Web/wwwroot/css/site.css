@@ -32,7 +32,10 @@ body {
     margin-left: auto;
     margin-right: auto;
     image-resolution: 300dpi;
-    width: 500px;
-    height: 500px;
+}
+
+.img-circle {
+    display: block;
+    image-resolution: 300dpi;
 }
 
