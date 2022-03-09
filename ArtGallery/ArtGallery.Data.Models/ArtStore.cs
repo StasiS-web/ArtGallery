@@ -29,6 +29,12 @@
         [MaxLength(ArtsDescriptionMaxLenth), Required]
         public string Description { get; set; }
 
+        [ForeignKey(nameof(ShoppingCart))]
+        [Required]
+        public int ShoppingCartId { get; set; }
+
+        public ShoppingCart ShoppingCart { get; set; }
+
         public ICollection<ArtOrder> ArtOrders { get; set; }
     }
 }

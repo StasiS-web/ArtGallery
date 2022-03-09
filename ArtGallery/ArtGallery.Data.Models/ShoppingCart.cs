@@ -9,6 +9,12 @@
 
     public class ShoppingCart : BaseDeletableModel<int>
     {
+        public ShoppingCart()
+        {
+            this.UserId = Guid.NewGuid().ToString();
+            this.Arts = new HashSet<ArtStore>();
+        }
+
         [Required]
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
@@ -23,5 +29,7 @@
         [Column(TypeName = "money")]
         [Range(PriceMin, PriceMax)]
         public decimal Price { get; set; }
+
+        public ICollection<ArtStore> Arts { get; set; }
     }
 }
