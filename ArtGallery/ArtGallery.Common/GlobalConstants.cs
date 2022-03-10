@@ -120,7 +120,7 @@
             public const string EmailDisplay = "Email";
             public const string UsernameDisplay = "Username";
             public const string PasswordDisplay = "Password";
-            public const string ConfirmPasswordDisplay = "Confiirm Password";
+            public const string ConfirmPasswordDisplay = "Confirm Password";
             public const string PageContentDisplayName = "Page Content";
         }
     }
