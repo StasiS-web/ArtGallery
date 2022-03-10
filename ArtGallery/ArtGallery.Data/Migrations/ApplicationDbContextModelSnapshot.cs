@@ -240,7 +240,7 @@ namespace ArtGallery.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<int>("PaintingNameId")
                         .HasColumnType("int");
@@ -414,6 +414,9 @@ namespace ArtGallery.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("date");
+
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
@@ -456,7 +459,7 @@ namespace ArtGallery.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
@@ -507,7 +510,7 @@ namespace ArtGallery.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("BookingDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<bool?>("Confirmed")
                         .HasColumnType("bit");
@@ -650,7 +653,7 @@ namespace ArtGallery.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");

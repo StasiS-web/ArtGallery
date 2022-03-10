@@ -12,14 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtGallery.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220306010200_InitialMigration")]
+    [Migration("20220310033701_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.1")
+                .HasAnnotation("ProductVersion", "6.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -205,6 +205,9 @@ namespace ArtGallery.Data.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("ShoppingCartId")
+                        .HasColumnType("decimal");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -218,6 +221,8 @@ namespace ArtGallery.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("ShoppingCartId");
 
                     b.ToTable("ArtGalleryUser");
                 });
@@ -237,7 +242,7 @@ namespace ArtGallery.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<int>("PaintingNameId")
                         .HasColumnType("int");
@@ -298,6 +303,9 @@ namespace ArtGallery.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("money");
 
+                    b.Property<decimal>("ShoppingCartId")
+                        .HasColumnType("decimal");
+
                     b.Property<string>("UrlImage")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -305,6 +313,8 @@ namespace ArtGallery.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("ShoppingCartId");
 
                     b.ToTable("Arts");
                 });
@@ -406,6 +416,9 @@ namespace ArtGallery.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("date");
+
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
@@ -448,7 +461,7 @@ namespace ArtGallery.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
@@ -499,7 +512,7 @@ namespace ArtGallery.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("BookingDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<bool?>("Confirmed")
                         .HasColumnType("bit");
@@ -642,7 +655,7 @@ namespace ArtGallery.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
@@ -875,6 +888,17 @@ namespace ArtGallery.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ArtGallery.Data.Models.ArtGalleryUser", b =>
+                {
+                    b.HasOne("ArtGallery.Data.Models.ShoppingCart", "ShoppingCart")
+                        .WithMany()
+                        .HasForeignKey("ShoppingCartId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ShoppingCart");
+                });
+
             modelBuilder.Entity("ArtGallery.Data.Models.ArtOrder", b =>
                 {
                     b.HasOne("ArtGallery.Data.Models.ArtStore", "PaintingName")
@@ -892,6 +916,17 @@ namespace ArtGallery.Data.Migrations
                     b.Navigation("PaintingName");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ArtGallery.Data.Models.ArtStore", b =>
+                {
+                    b.HasOne("ArtGallery.Data.Models.ShoppingCart", "ShoppingCart")
+                        .WithMany("Arts")
+                        .HasForeignKey("ShoppingCartId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ShoppingCart");
                 });
 
             modelBuilder.Entity("ArtGallery.Data.Models.BlogComment", b =>
@@ -1087,6 +1122,11 @@ namespace ArtGallery.Data.Migrations
             modelBuilder.Entity("ArtGallery.Data.Models.Event", b =>
                 {
                     b.Navigation("EventTickets");
+                });
+
+            modelBuilder.Entity("ArtGallery.Data.Models.ShoppingCart", b =>
+                {
+                    b.Navigation("Arts");
                 });
 #pragma warning restore 612, 618
         }
