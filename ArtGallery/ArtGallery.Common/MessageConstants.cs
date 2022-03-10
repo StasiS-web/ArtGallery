@@ -37,7 +37,7 @@
         {
             public const string SuccessfullyBookedEvent = "Your choosen event has been succefully booked!";
             public const string SuccessfullyCheckoutOrder = "Your order has been successfully checkout!";
+            public const string SuccessfullyRunningToaster = "Well done, you mnage to drive the tostr!";
         }
     }
 }
-
