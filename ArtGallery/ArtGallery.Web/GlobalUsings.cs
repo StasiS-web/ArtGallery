@@ -1,7 +1,10 @@
 ﻿global using System.Diagnostics.CodeAnalysis;
 global using ArtGallery.Common;
 global using ArtGallery.Data;
+global using ArtGallery.Data.Common;
 global using ArtGallery.Data.Models;
+global using ArtGallery.Services.Data;
+global using ArtGallery.Services.Data.Contracts;
 global using ArtGallery.Web.ModelBinders;
 global using CloudinaryDotNet;
 global using Microsoft.AspNetCore.Identity;
