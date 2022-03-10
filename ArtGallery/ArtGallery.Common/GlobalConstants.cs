@@ -5,7 +5,7 @@
         public const string SystemName = "ArtGallery";
         public const string AdministratorRoleName = "Admiinistrator";
         public const string GalleryManagerRoleName = "Manager";
-        public const string CloudName = "art-gallery";
+        public const string CloudName = "dnvg6uuxl";
 
         public static class AccountSeeding
         {
@@ -68,7 +68,8 @@
         public static class Images
         {
             // (Images is for Personal and non-Commercial. Use only for this project. Need repalcement for real app.)
-            public const string Error404 = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--XnOApIFH--/c_fit,h_706,w_1200/v1646650092/app_gallery/error_404_wnxcl7.jpg";
+            public const string Error404 = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--yJ6E6V_n--/c_fit,h_600,w_750/v1646650092/app_gallery/errors/error_404_wnxcl7.jpg";
+            public const string Error500 = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--jesAiZsZ--/c_fit,h_600,w_750/v1646871576/app_gallery/errors/500_g4gern.jpg";
 
             // Art Store (Images Resourse from rawpixel)
             public const string MrPeacock = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1645821443/app_gallery/peacock-jpeg_d9gei3.jpg";
