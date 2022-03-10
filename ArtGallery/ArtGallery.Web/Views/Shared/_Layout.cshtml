@@ -26,8 +26,8 @@
 
     @this.RenderSection("Styles", required: false)
 </head>
- <body class="hold-transition sidebar-mini" data-panel-auto-height-mode="height">
- <div class="wrapper">
+<body class="hold-transition sidebar-mini" data-panel-auto-height-mode="height">
+   <div class="wrapper">
 
        <!-- Navbar -->
           <nav class="main-header navbar navbar-expand navbar-white">
@@ -50,29 +50,21 @@
             <!-- /.navbar -->
 
             <!-- Main Sidebar Container -->
-          <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Sidebar -->
-            <div class="sidebar">
+       <aside class="main-sidebar sidebar-dark-primary elevation-4">
+          <div class="sidebar">
              <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
               <img src="~/img/logo (180 × 180px).png" alt="ArtGallery Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
               <span class="brand-text font-weight-light">ArtGallery</span>
             </a>
 
+             <partial name="_LoginPartial" />
               <!-- Sidebar user panel (optional) -->
-              <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                  <img src="~/img/avatar3.png" class="img-circle elevation-2" alt="User Image">
-                </div>
-                <div class="info">
-                  <a class="d-block" asp-area="" asp-controller="Profile" asp-action="Index">Alexandra Pierce</a>
-                </div>
-              </div>
            </div>
 
            <partial name="_MainNavigation" />
            <!-- /.sidebar -->
-         </aside>
+        </aside>
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">

@@ -23,7 +23,14 @@
                         </li>
                     </ul>
 
-                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-1" data-widget="treeview" role="menu" data-accordion="false">
+                      <li class="nav-item">
+                          <a class="nav-link text-dark" asp-area="Identity" asp-page="/Identity/Account/Register">Register</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link text-dark" asp-area="Identity" asp-page="/Identity/Account/Login">Login</a>
+                       </li>
+                    </ul>
 
                    <partial name="_SearchBox" />
                 </div>
