@@ -38,7 +38,7 @@
                         Manage Account
                       </p>
                     </a>
-               <ul class="nav nav-treeview">
+                 <ul class="nav nav-treeview">
                    <li class="nav-item">
                        <a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a>
                    </li>
@@ -58,6 +58,10 @@
                    <li class="nav-item">
                        <a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a>
                    </li>
+                   <li class="nav-item">
+                    <i class="nav-icon far fa-calendar-alt"></i>
+                    <a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="calendar" asp-page="./Identity/Pages/Account/Calendar">Calendar  <span class="badge badge-info right">2</span></a>
+                  </li>
                 </ul>
               </li>
             </ul>          

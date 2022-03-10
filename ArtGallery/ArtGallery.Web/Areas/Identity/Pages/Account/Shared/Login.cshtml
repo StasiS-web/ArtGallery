@@ -5,50 +5,119 @@
     Layout = null;
 }
 
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-md-4">
-        <section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="ArtGallery" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+     <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css" />
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/css/adminlte.min.css" />
+    <link rel="reponsive" href="~/css/responsive.css" rel="stylesheet" asp-append-version="true" />
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
+
+    <!-- Other head element -->
+    @Html.Partial("_Favicons")
+</head>
+<body class="hold-transition login-page">
+   <div class="logo-xs">
+         <!-- Brand Logo -->
+         <a href="index3.html" class="brand-link">
+         <img src="~/img/logo (180 × 180px).png" alt="ArtGallery Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+          <span class="brand-text font-weight-light">ArtGallery</span>
+          </a>
+    </div>
+    <div class="login-box">
+    <!-- /.login-logo -->
+    <div class="card-outline login-card-body">
+        <div class="card-header text-center">
+            <a href="/" class="h1">Art Gallery</a>
+        </div>
+        <div class="card-body">
+            <p class="login-box-msg">Sign in here</p>
+
             <form id="account" method="post">
-                <h2>Use a local account to log in.</h2>
-                <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-floating">
-                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
                     <label asp-for="Input.Email" class="form-label"></label>
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
                 <div class="form-floating">
-                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
                     <label asp-for="Input.Password" class="form-label"></label>
+                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
-                <div>
-                    <div class="checkbox">
-                        <label asp-for="Input.RememberMe" class="form-label">
-                            <input class="form-check-input" asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
+                <div class="row">
+                    <div class="col-8">
+                        <div class="icheck-primary">
+                            <label asp-for="Input.RememberMe" class="form-label">
+                                <input class="form-check-input" asp-for="Input.RememberMe" />
+                                @Html.DisplayNameFor(m => m.Input.RememberMe)
+                            </label>
+                        </div>
                     </div>
+                    <!-- /.col -->
+                    <div>
+                       <button id="login-submit" type="submit" class="btn btn-lg btn-primary">Log in</button>
+                    </div>
+                    <!-- /.col -->
                 </div>
-                <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
-                </div>
-                <div>
+            </form>
+
+            @*<div class="social-auth-links text-center mb-3">
+            <p>- OR -</p>
+            <a href="#" class="btn btn-block btn-primary">
+              <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+            </a>
+            <a href="#" class="btn btn-block btn-danger">
+              <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+            </a>
+          </div>
+          <!-- /.social-auth-links -->*@
+
+                <div class="mb-1">
                     <p>
                         <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
                     </p>
                     <p>
                         <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-                    <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                    </p>
-                </div>
-            </form>
-        </section>
+                   </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card-outline -->
     </div>
-    <div class="col-md-6 col-md-offset-2">
+    <!-- /.login-box -->
+    </div>
+    <!-- REQUIRED SCRIPTS -->
+
+     <!-- jQuery -->
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/plugins/overlayScrollbars/css/OverlayScrollbars.min.css"></script>
+    <!-- AdminLTE App -->
+    <script src="~/js/adminlte.min.js"></script>
+    <script src="~/plugins/toastr/toastr.min.js"></script> 
+
+    <partial name="_ValidationScriptsPartial" />
+</body>
+</html>
+
+
+    @*<div class="col-md-6 col-md-offset-2">
         <section>
             <h3>Use another service to log in.</h3>
             <hr />
@@ -77,9 +146,6 @@
                 }
             }
         </section>
-    </div>
-</div>
+    </div>*@
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+
