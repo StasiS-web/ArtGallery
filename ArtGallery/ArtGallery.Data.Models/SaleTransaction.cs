@@ -14,6 +14,7 @@
             this.Id = Guid.NewGuid().ToString();
         }
 
+        [Column(TypeName = "date")]
         public DateTime Date { get; set; }
 
         public SaleType SaleType { get; set; }

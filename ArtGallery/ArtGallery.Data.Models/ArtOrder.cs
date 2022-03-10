@@ -10,6 +10,7 @@
     public class ArtOrder : IDeletableEntity
     {
         [Required]
+        [Column(TypeName = "date")]
         public DateTime OrderDate { get; set; }
 
         [Required]

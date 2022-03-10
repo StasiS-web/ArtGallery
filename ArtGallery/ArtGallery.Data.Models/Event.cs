@@ -21,6 +21,7 @@
         [Range(PriceMin, PriceMax)]
         public decimal Price { get; set; }
 
+        [Column(TypeName = "date")]
         public DateTime Date { get; set; }
 
         public EventType Type { get; set; }

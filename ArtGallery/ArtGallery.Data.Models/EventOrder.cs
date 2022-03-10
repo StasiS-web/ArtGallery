@@ -10,6 +10,7 @@
     public class EventOrder : IDeletableEntity
     {
         [Required]
+        [Column(TypeName = "date")]
         public DateTime BookingDate { get; set; }
 
         [Required]
