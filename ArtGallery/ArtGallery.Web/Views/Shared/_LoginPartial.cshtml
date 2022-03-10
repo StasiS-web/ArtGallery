@@ -10,7 +10,7 @@
            <img src="~/img/avatar3.png" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-           <a class="d-block" asp-area="" asp-controller="Profile" asp-action="Index">Alexandra Pierce</a>
+           <a class="d-block" asp-area="" asp-controller="Profile" asp-action="Index">@User.Identity?Name</a>
       </div>
     </div>
 }

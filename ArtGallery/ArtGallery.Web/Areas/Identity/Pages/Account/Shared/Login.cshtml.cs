@@ -88,10 +88,12 @@ namespace ArtGallery.Web.Areas.Identity.Pages.Account.Shared
                     this.logger.LogInformation("User logged in.");
                     return this.LocalRedirect(returnUrl);
                 }
+
                 if (result.RequiresTwoFactor)
                 {
                     return this.RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
                 }
+
                 if (result.IsLockedOut)
                 {
                     this.logger.LogWarning("User account locked out.");

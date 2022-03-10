@@ -31,46 +31,43 @@
     @Html.Partial("_Favicons")
 </head>
 <body class="hold-transition login-page">
-   <div class="logo-xs">
-         <!-- Brand Logo -->
+   <div class="login-box">
+       <div class="card-header text-center">
+           <!-- Brand Logo -->
          <a href="index3.html" class="brand-link">
          <img src="~/img/logo (180 × 180px).png" alt="ArtGallery Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
           <span class="brand-text font-weight-light">ArtGallery</span>
           </a>
-    </div>
-    <div class="login-box">
-    <!-- /.login-logo -->
-    <div class="card-outline login-card-body">
-        <div class="card-header text-center">
-            <a href="/" class="h1">Art Gallery</a>
-        </div>
-        <div class="card-body">
-            <p class="login-box-msg">Sign in here</p>
+       </div>
+       <!-- /.login-logo -->
+       <div class="card">
+           <div class="card-body login-card-body">
+               <p class="login-box-msg">Sign in here</p>
 
-            <form id="account" method="post">
+               <form id="account" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-floating">
                     <label asp-for="Input.Email" class="form-label"></label>
                     <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    <span asp-validation-for="Input.Email" class="fas fa-envelope"></span>
                 </div>
                 <div class="form-floating">
                     <label asp-for="Input.Password" class="form-label"></label>
                     <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    <span asp-validation-for="Input.Password" class="fas fa-lock"></span>
                 </div>
                 <div class="row">
                     <div class="col-8">
                         <div class="icheck-primary">
-                            <label asp-for="Input.RememberMe" class="form-label">
-                                <input class="form-check-input" asp-for="Input.RememberMe" />
-                                @Html.DisplayNameFor(m => m.Input.RememberMe)
-                            </label>
+                                <label asp-for="Input.RememberMe" class="form-label">
+                                    <input type="checkbox" id="remember" class="form-check-input" asp-for="Input.RememberMe" />
+                                    @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                </label>
                         </div>
                     </div>
                     <!-- /.col -->
-                    <div>
-                       <button id="login-submit" type="submit" class="btn btn-lg btn-primary">Log in</button>
+                    <div class="col-4">
+                       <button type="submit" class="btn btn-primary btn-block">Log in</button>
                     </div>
                     <!-- /.col -->
                 </div>
@@ -87,19 +84,22 @@
           </div>
           <!-- /.social-auth-links -->*@
 
-                <div class="mb-1">
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                   </div>
-        <!-- /.card-body -->
-      </div>
-      <!-- /.card-outline -->
+          <div>
+             <p class="mb-1">
+                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+             </p>
+             <p class="mb-0">
+                <a class="text-center" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+             </p>
+          </div>
+
+         </div>
+       <!-- /.card-body -->
+     </div>
+     <!-- card -->
     </div>
-    <!-- /.login-box -->
-    </div>
+   <!-- /.login-box -->
+
     <!-- REQUIRED SCRIPTS -->
 
      <!-- jQuery -->

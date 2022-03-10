@@ -53,6 +53,11 @@ namespace ArtGallery.Web.Areas.Identity.Pages.Account.Shared
         public class InputModel
         {
             [Required]
+            [StringLength(500, ErrorMessage = "The {0} is invalid. It should be between {2} and {1} characters long.", MinimumLength = 90)]
+            [Display(Name= "Full Name")]
+            public string FullName { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -64,9 +69,12 @@ namespace ArtGallery.Web.Areas.Identity.Pages.Account.Shared
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
+            [Display(Name = "Confirm Password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Display(Name = "Checkbox?")]
+            public bool Checkbox { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -83,7 +91,7 @@ namespace ArtGallery.Web.Areas.Identity.Pages.Account.Shared
             {
                 var user = CreateUser();
 
-                await this.userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+                await this.userStore.SetUserNameAsync(user, Input.FullName, CancellationToken.None);
                 await this.emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await this.userManager.CreateAsync(user, Input.Password);
 
@@ -105,7 +113,7 @@ namespace ArtGallery.Web.Areas.Identity.Pages.Account.Shared
 
                     if (this.userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        return RedirectToPage("RegisterConfirmation", new { fullname = Input.FullName, email = Input.Email, returnUrl = returnUrl });
                     }
                     else
                     {
