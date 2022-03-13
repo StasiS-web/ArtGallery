@@ -2,23 +2,27 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using ArtGallery.Web.ViewModels.Administrator;
+    using ArtGallery.Web.ViewModels.BlogPosts;
+    using Microsoft.AspNetCore.Http;
 
     public interface IBlogPostsService
     {
-        Task<IEnumerable<T>> GetAllAsync<T>();
 
-        Task<IEnumerable<int>> CountAsync();
+        IEnumerable<BlogPostViewModel> GetAll();
 
-        Task<IEnumerable<T>> GetAllWithPagesAsync<T>(int? sortId, int pageSize, int pageIndex);
+        int AllBlogsCount();
 
-        Task<int> GetCountForPagesAsync();
+        IEnumerable<BlogPostViewModel> GetAllBlogs();
 
-        Task<T> GetByIdAsync<T>(int id);
+        IEnumerable<int> GetById<T>(int id);
 
-        Task AddAsync(string title, string content, string author, string urlImage, string userReaction);
+        Task CreateBlogPostAsync(BlogPostCreateInputModel model);
 
-        Task<IEnumerable<int>> IncreaseViewCountAsync(int blogId);
+        Task AddAsync(BlogPostViewModel model);
 
-        Task DeleteAsync(int id);
+        Task<string> GetAuthorIdAsync(int postId);
+
+        void Delete(int id);
     }
 }

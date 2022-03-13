@@ -6,78 +6,86 @@
     using System.Security.Cryptography;
     using System.Text;
     using System.Threading.Tasks;
-    using ArtGallery.Data.Common.Repositories;
     using ArtGallery.Data.Models;
+    using ArtGallery.Data.Repositories.Contracts;
     using ArtGallery.Services.Data.Contracts;
     using ArtGallery.Web.ViewModels.Users;
-    using static ArtGallery.Common.GlobalConstants.ErrorMessages;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+    using static ArtGallery.Common.MessageConstants;
 
     public class UserService : IUserService
     {
-        private IDeletableEntityRepository<ArtGalleryUser> entityRepo;
-        private IDeletableEntityRepository<ShoppingCart> carts;
+        private readonly IAppRepository userRepo;
+        private readonly IValidationService validationService;
+        private readonly UserManager<ArtGalleryAccount> userManager;
+        private readonly RoleManager<IdentityRole> roleManager;
+        private readonly SignInManager<ArtGalleryAccount> signInManager;
 
-        public UserService(IDeletableEntityRepository<ArtGalleryUser> entityRepository,
-            IDeletableEntityRepository<ShoppingCart> shoppingCart)
+        public UserService(IAppRepository userRepo, SignInManager<ArtGalleryAccount> signInManager, IValidationService validationService, UserManager<ArtGalleryAccount> userManager, RoleManager<IdentityRole> roleManager)
         {
-           this.entityRepo = entityRepository;
-           this.carts = shoppingCart;
-        }
-
-        public async Task<string> GetUserAsync(string userId)
-        {
-            // var user = await this.entityRepo
-            //    .AllAsNoTracking()
-             //   .SingleOrDefault(u => u.Id == userId)
-             //   (u => u.Id == userId);
-
-           // if (user == null)
-           // {
-           //     throw new ArgumentNullException(string.Format(InvalidUserId, userId));
-           // }
-
-           // return user.Id;
-
-            throw new NotImplementedException();
-        }
-
-        public Task GetUserByRoleAsync(string Username)
-        {
-            throw new NotImplementedException();
-        }
-
-        public (string userId, bool isCorrect) IsLoginCorrectAsync(LoginInputViewModel model)
-        {
-            /*bool isCorrect = false;
-            string userId = String.Empty;
-
-            var user = GetUserByRoleAsync(model.Username);
-
-            if (user != null)
-            {
-                isCorrect = user.PasswordHash == CalculateHashAsync(model.Password);
-            }
-
-            if (isCorrect)
-            {
-               // userId = user.Id;
-            }
-
-            return (userId, isCorrect);*/
-            throw new NotImplementedException();
+            this.userRepo = userRepo;
+            this.validationService = validationService;
+            this.userManager = userManager;
+            this.roleManager = roleManager;
+            this.signInManager = signInManager;
         }
 
         public string Login(LoginInputViewModel model)
         {
-            var user = entityRepo.All<ArtGalleryUser>()
-                 .Where(u => u.UserName == model.Username)
-                 .Where(u => u.PasswordHash == this.CalculateHashAsync(model.Password))
-                 .SingleOrDefault();
+            var user = this.userRepo
+               .All<ArtGalleryUser>()
+               .Where(u => u.UserName == model.Username)
+               .Where(u => u.PasswordHash == this.CalculateHash(model.Password))
+               .SingleOrDefault();
 
             return user?.Id;
         }
 
-        public string CalculateHashAsync(string password)
+        public void Logout()
+        {
+            this.signInManager.SignOutAsync();
+        }
+
+
+        public (bool isRegister, string error) Register(RegisterInputViewModel model)
+        {
+            bool isRegister = false;
+            string error = null;
+
+            var (isValid, validationError) = this.validationService.ValidationModel(model);
+
+            if (!isValid)
+            {
+                return (isValid, validationError);
+            }
+
+            ShoppingCart cart = new ShoppingCart();
+
+            ArtGalleryUser user = new ArtGalleryUser()
+            {
+                Email = model.Email,
+                PasswordHash = this.CalculateHash(model.Password),
+                FullName = model.FullName,
+                UserName = model.Username,
+                ShoppingCart = cart,
+                ShoppingCartId = cart.Id,
+            };
+
+            try
+            {
+                this.userRepo.AddAsync(user);
+                this.userRepo.SaveChanges();
+            }
+            catch (Exception)
+            {
+                error = "Could not save user in Database";
+            }
+
+            return (isRegister, error);
+        }
+
+        public string CalculateHash(string password)
         {
             byte[] passwordArray = Encoding.UTF8.GetBytes(password);
 
@@ -87,14 +95,59 @@
             }
         }
 
-        public string GetCartByUserId(string userId)
+
+        public IEnumerable<UserViewModel> GetAllUser(string userId)
         {
-            throw new NotImplementedException();
+            return this.userRepo
+                .All<UserViewModel>()
+                .Where(u => u.UserId == userId)
+                .ToList();
         }
 
-        public Task DeleteAsync(int userId)
+        public string GetUserById(UserViewModel model)
         {
-            throw new NotImplementedException();
+            var user = this.userRepo
+                .All<ArtGalleryUser>()
+                .SingleOrDefault(x => x.Id == model.UserId);
+
+            if (user == null)
+            {
+                throw new ArgumentNullException(string.Format(InvalidUserId, model.UserId));
+            }
+
+            return user.Id;
+        }
+
+        public string GetIdByUsername(UserViewModel model)
+        {
+            var user = this.userRepo
+                .All<ArtGalleryUser>()
+                .SingleOrDefault(x => x.UserName == model.UserName);
+
+            if (user == null)
+            {
+                throw new ArgumentNullException(string.Format(InvalidUsername, model.UserName));
+            }
+
+            return user.Id;
+        }
+
+        public async Task<string> DeleteAsync(string userId)
+        {
+            var currentUser = await this.userRepo
+                .AllWithDeleted<ArtGalleryUser>()
+                .Where(u => u.Id == userId)
+                .Include(u => u.UrlImage)
+                .SingleOrDefaultAsync();
+
+            var id = currentUser?.Id ?? string.Empty;
+
+            if (id == " ")
+            {
+                id = string.Empty;
+            }
+
+            return id;
         }
     }
 }

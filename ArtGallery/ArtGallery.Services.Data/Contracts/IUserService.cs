@@ -5,22 +5,23 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using ArtGallery.Data.Models;
     using ArtGallery.Web.ViewModels.Users;
 
     public interface IUserService
     {
-        Task<string> GetUserAsync(string username);
-
-        Task GetUserByRoleAsync(string Username);
-
-        (string userId, bool isCorrect) IsLoginCorrectAsync(LoginInputViewModel model);
-
-        string CalculateHashAsync(string password);
-
         string Login(LoginInputViewModel model);
 
-        string GetCartByUserId(string userId);
+        void Logout();
 
-        Task DeleteAsync(int userId);
+        (bool isRegister, string error) Register(RegisterInputViewModel model);
+
+        IEnumerable<UserViewModel> GetAllUser(string userId);
+
+        string GetUserById(UserViewModel model);
+
+        string GetIdByUsername(UserViewModel model);
+
+        Task<string> DeleteAsync(string userId);
     }
 }

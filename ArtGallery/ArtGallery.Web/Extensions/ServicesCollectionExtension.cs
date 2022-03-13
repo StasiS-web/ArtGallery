@@ -8,18 +8,17 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             // Data Repositories
-            services.AddScoped<IDbQueryRunner, DbQueryRunner>();
-            services.AddScoped<IAppRepository, AppRepository>();
+            services.AddTransient<IDbQueryRunner, DbQueryRunner>();
+            services.AddTransient<IAppRepository, AppRepository>();
 
             // Application services
-            services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<IProfileService, ProfileService>();
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IValidationService, ValidationService>();
-            services.AddScoped<ISettingsService, SettingsService>();
-            services.AddScoped<IShoppingCartService, ShoppingCartService>();
-            services.AddScoped<IBlogPostsService, BlogPostService>();
-
+            services.AddTransient<IAccountService, AccountService>();
+            services.AddTransient<IValidationService, ValidationService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<IShoppingCartService, ShoppingCartService>();
+            services.AddTransient<IBlogPostsService, BlogPostService>();
+            services.AddTransient<IArtOrderService, ArtOrderService>();
             return services;
         }
     }

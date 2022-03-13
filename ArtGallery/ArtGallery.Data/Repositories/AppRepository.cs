@@ -38,6 +38,14 @@
             return this.DbSet<T>().AsQueryable();
         }
 
+        public IQueryable<T> AllReadonly<T>()
+            where T : class
+        {
+            return this.DbSet<T>()
+                .AsQueryable()
+                .AsNoTracking();
+        }
+
         public async Task DeleteAsync<T>(object id)
             where T : class
         {
