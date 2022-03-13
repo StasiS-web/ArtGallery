@@ -1,10 +1,10 @@
 ﻿@using ArtGallery.Common
     
-@if (ViewData[MessageConstants.ErrorMessages.PasswordValidation] != null)
+@if (ViewData[MessageConstants.ErrorMessages] != null)
 {
     <script>
         $(function(){
-            toastr.error('@ViewData[MessageConstants.ErrorMessages.PasswordValidation]?.ToString()');
+            toastr.error('@ViewData[MessageConstants.ErrorMessages]?.ToString()');
         });
     </script>
 }
@@ -18,20 +18,11 @@
     </script>
 }
 
-@if (ViewData[MessageConstants.OperationalMessages.SuccessfullyCheckoutOrder] != null)
+@if (ViewData[MessageConstants.OperationalMessages] != null)
 {
     <script>
         $(function(){
-            toastr.error('@ViewData[MessageConstants.OperationalMessages.SuccessfullyCheckoutOrder]?.ToString()');
-        });
-    </script>
-}
-
-@if (ViewData[MessageConstants.OperationalMessages.SuccessfullyBookedEvent] != null)
-{
-    <script>
-        $(function(){
-            toastr.error('@ViewData[MessageConstants.OperationalMessages.SuccessfullyBookedEvent]?.ToString()');
+            toastr.error('@ViewData[MessageConstants.OperationalMessages]?.ToString()');
         });
     </script>
 }

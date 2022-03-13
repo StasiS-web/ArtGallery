@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace ArtGallery.Web.ViewModels.Users
+﻿namespace ArtGallery.Web.ViewModels.Users
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class UserProfileViewModel
     {
         public string UserId { get; set; }
