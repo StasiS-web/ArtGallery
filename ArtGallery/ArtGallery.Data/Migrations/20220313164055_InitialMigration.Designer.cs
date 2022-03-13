@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtGallery.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220310033701_InitialMigration")]
+    [Migration("20220313164055_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1006,7 +1006,7 @@ namespace ArtGallery.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("ArtGallery.Data.Models.ArtGalleryUser", "User")
-                        .WithMany("SaleTransaction")
+                        .WithMany("SaleTransactions")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1111,7 +1111,7 @@ namespace ArtGallery.Data.Migrations
 
                     b.Navigation("Roles");
 
-                    b.Navigation("SaleTransaction");
+                    b.Navigation("SaleTransactions");
                 });
 
             modelBuilder.Entity("ArtGallery.Data.Models.ArtStore", b =>

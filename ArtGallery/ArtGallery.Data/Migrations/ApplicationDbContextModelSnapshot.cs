@@ -1004,7 +1004,7 @@ namespace ArtGallery.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("ArtGallery.Data.Models.ArtGalleryUser", "User")
-                        .WithMany("SaleTransaction")
+                        .WithMany("SaleTransactions")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1109,7 +1109,7 @@ namespace ArtGallery.Data.Migrations
 
                     b.Navigation("Roles");
 
-                    b.Navigation("SaleTransaction");
+                    b.Navigation("SaleTransactions");
                 });
 
             modelBuilder.Entity("ArtGallery.Data.Models.ArtStore", b =>

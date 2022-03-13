@@ -8,8 +8,8 @@
     public class RegisterInputViewModel
     {
         [Required]
-        [MaxLength(FullNameMinLenth)]
-        [MinLength(FullNameMinLenth)]
+        [MaxLength(FullNameMaxLenth)]
+        [MinLength(FullNaneMinLenth)]
         [Display(Name = FullNameDisplayName)]
         public string FullName { get; set; }
 

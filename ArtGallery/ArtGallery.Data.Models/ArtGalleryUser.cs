@@ -18,12 +18,12 @@
             this.Logins = new HashSet<IdentityUserLogin<string>>();
 
             this.Comments = new HashSet<BlogComment>();
-            this.SaleTransaction = new HashSet<SaleTransaction>();
+            this.SaleTransactions = new HashSet<SaleTransaction>();
             this.BookingsTransactions = new HashSet<BookingTransaction>();
         }
 
         [Required]
-        [MaxLength(FullNameMinLenth)]
+        [MaxLength(FullNameMaxLenth)]
         public string FullName { get; set; }
 
         public Gender Gender { get; set; }
@@ -54,7 +54,7 @@
 
         public ICollection<BlogComment> Comments { get; set; }
 
-        public ICollection<SaleTransaction> SaleTransaction { get; set; }
+        public ICollection<SaleTransaction> SaleTransactions { get; set; }
 
         public ICollection<BookingTransaction> BookingsTransactions { get; set; }
     }

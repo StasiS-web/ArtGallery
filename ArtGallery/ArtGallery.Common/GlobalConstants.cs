@@ -5,6 +5,7 @@
         public const string SystemName = "ArtGallery";
         public const string AdministratorRoleName = "Admiinistrator";
         public const string GalleryManagerRoleName = "Manager";
+        public const string UserRoleName = "Identity User";
         public const string CloudName = "dnvg6uuxl";
 
         public static class AccountSeeding
@@ -18,7 +19,7 @@
         public static class ArtGalleryUser
         {
             public const int FullNaneMinLenth = 90;
-            public const int FullNameMinLenth = 500;
+            public const int FullNameMaxLenth = 500;
             public const int UsernameMinLength = 5;
             public const int UsernameMaxLength = 20;
             public const int PasswordMinLength = 8;
