@@ -1,8 +1,13 @@
-﻿namespace ArtGallery.Data.Repositories.Contracts
+﻿using System.Linq.Expressions;
+
+namespace ArtGallery.Data.Repositories.Contracts
 {
     public interface IAppRepository : IDisposable
     {
         IQueryable<T> All<T>()
+            where T : class;
+
+        IQueryable<T> AllReadonly<T>()
             where T : class;
 
         Task<T> GetByIdAsync<T>(object id) 
