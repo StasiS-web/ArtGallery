@@ -9,6 +9,7 @@ global using ArtGallery.Web.ModelBinders;
 global using CloudinaryDotNet;
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.DependencyInjection;
 global using static ArtGallery.Common.GlobalConstants;
 
 #pragma warning disable SA1404 // Code analysis suppression should have justification

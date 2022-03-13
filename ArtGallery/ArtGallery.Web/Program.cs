@@ -1,6 +1,3 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using ArtGallery.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,6 +9,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
 builder.Services.AddControllersWithViews()
     .AddMvcOptions(options =>
     { // Add Model Binding helps to work with model types
@@ -27,20 +25,15 @@ builder.Services.Configure<CookiePolicyOptions>(
              options.MinimumSameSitePolicy = SameSiteMode.None;
         });
 
-// Data Repository
-// builder.Services.AddScoped<IDbQueryRunner, DbQueryRunner>();
-
-// Application services
-// builder.Services.AddTransient<ISettingsService, SettingsService>();
-
 // Cloudinary Setup
 Account account = new Account(
                 GlobalConstants.CloudName,
                 builder.Configuration["Cloudinary:ApiKey"],
                 builder.Configuration["Cloudinary:ApiSecret"]);
 Cloudinary cloudinary = new Cloudinary(account);
-cloudinary.Api.Secure = true;
 builder.Services.AddSingleton(cloudinary);
+
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 
@@ -52,19 +45,26 @@ if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Docker"))
 }
 else
 {
-    app.UseStatusCodePagesWithReExecute("/Home/Error404/{0}");
     app.UseExceptionHandler("/Home/Error");
 
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
-//app.UseStatusCodePagesWithRedurects("/Home/Error404?statusacaode={0}");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-//app.UseCookiePolicy();
+app.UseCookiePolicy();
 
-//app.UseSession();
+app.Use(async (context, next) =>
+{
+    await next();
+
+    if (context.Response.StatusCode == 404)
+    {
+        context.Request.Path = "/Error/Error404";
+        await next();
+    }
+}); 
 app.UseRouting();
 
 app.UseAuthentication();
