@@ -42,10 +42,17 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
               <!-- Navbar Search -->
-              <li class="nav-item">
-                  <partial name="_Navigation" />
-              </li>
-              
+                  <li class="nav-item">
+                      <form class="form-inline" asp-area="Identity" asp-action="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                            <i class="fas fa-door-open"></i>
+                            <button type="submit" class="nav-link btn btn-link text-dark">Log Out</button>
+                      </form>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                      </a>
+                  </li>
               </ul>
            </nav>
             <!-- /.navbar -->
@@ -63,7 +70,7 @@
               <!-- Sidebar user panel (optional) -->
            </div>
 
-           <partial name="_MainNavigation" />
+           <partial name="_Navigation" />
            <!-- /.sidebar -->
         </aside>
 
