@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using ArtGallery.Data.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using ArtGallery.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -15,17 +15,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 
-namespace ArtGallery.Web.Areas.Identity.Pages.Account.Shared
+namespace ArtGallery.Web.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> signInManager;
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly IUserStore<IdentityUser> userStore;
-        private readonly IUserEmailStore<IdentityUser> emailStore;
-        private readonly ILogger<RegisterModel> logger;
-        private readonly IEmailSender emailSender;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly IUserStore<IdentityUser> _userStore;
+        private readonly IUserEmailStore<IdentityUser> _emailStore;
+        private readonly ILogger<RegisterModel> _logger;
+        private readonly IEmailSender _emailSender;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
@@ -35,12 +35,12 @@ namespace ArtGallery.Web.Areas.Identity.Pages.Account.Shared
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
-            this.userManager = userManager;
-            this.signInManager = signInManager;
-            this.logger = logger;
-            this.emailStore = this.GetEmailStore();
-            this.emailSender = emailSender;
-            this.userStore = userStore;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _userStore = userStore;
+            _emailStore = this.GetEmailStore();
+            _logger = logger;
+            _emailSender = emailSender;
         }
 
         [BindProperty]
@@ -53,9 +53,9 @@ namespace ArtGallery.Web.Areas.Identity.Pages.Account.Shared
         public class InputModel
         {
             [Required]
-            [StringLength(500, ErrorMessage = "The {0} is invalid. It should be between {2} and {1} characters long.", MinimumLength = 90)]
-            [Display(Name= "Full Name")]
-            public string FullName { get; set; }
+            [StringLength(20, ErrorMessage = "The {0} should not be null. It should be between {2} and {1} characters long.", MinimumLength = 5)]
+            [Display(Name = "Username")]
+            public string Username { get; set; }
 
             [Required]
             [EmailAddress]
@@ -69,55 +69,52 @@ namespace ArtGallery.Web.Areas.Identity.Pages.Account.Shared
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm Password")]
+            [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
-
-            [Display(Name = "Checkbox?")]
-            public bool Checkbox { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
-            ExternalLogins = (await this.signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
-            ExternalLogins = (await this.signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
 
-                await this.userStore.SetUserNameAsync(user, Input.FullName, CancellationToken.None);
-                await this.emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                var result = await this.userManager.CreateAsync(user, Input.Password);
+                await this._userStore.SetUserNameAsync(user, Input.Username, CancellationToken.None);
+                await this._emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
 
+                var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    this.logger.LogInformation("User created a new account with password.");
+                    _logger.LogInformation("User created a new account with password.");
 
-                    var userId = await this.userManager.GetUserIdAsync(user);
-                    var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var userId = await _userManager.GetUserIdAsync(user);
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
+                        values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await this.emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                    if (this.userManager.Options.SignIn.RequireConfirmedAccount)
+                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return RedirectToPage("RegisterConfirmation", new { fullname = Input.FullName, email = Input.Email, returnUrl = returnUrl });
+                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
                     }
                     else
                     {
-                        await this.signInManager.SignInAsync(user, isPersistent: false);
+                        await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }
                 }
@@ -141,18 +138,18 @@ namespace ArtGallery.Web.Areas.Identity.Pages.Account.Shared
             {
                 throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. +" +
                     $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or " +
-                    $"override the register page in /Area/Identity/Pages/Account/Register.cshtml");
+                    $"override the register page in /Area/Identity/Pages/Account/Shared/Register.cshtml");
             }
         }
 
         private IUserEmailStore<IdentityUser> GetEmailStore()
         {
-            if (!this.userManager.SupportsUserEmail)
+            if (!this._userManager.SupportsUserEmail)
             {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
 
-            return (IUserEmailStore<IdentityUser>)this.userStore;
+            return (IUserEmailStore<IdentityUser>)this._userStore;
         }
     }
 }

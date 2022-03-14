@@ -10,6 +10,8 @@ namespace ArtGallery.Web.Areas.Identity.Pages.Account
     {
         public void OnGet()
         {
+
         }
     }
 }
+
