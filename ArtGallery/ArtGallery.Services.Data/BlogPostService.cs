@@ -14,7 +14,7 @@
     using ArtGallery.Web.ViewModels.BlogPosts;
     using Microsoft.AspNetCore.Http;
 
-    public class BlogPostService : IBlogPostsService
+    public class BlogPostService : IBlogPostService
     {
         private readonly IAppRepository repo;
         //private readonly ICloudinaryService cloudinary;

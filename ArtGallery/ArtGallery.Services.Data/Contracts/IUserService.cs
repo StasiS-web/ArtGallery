@@ -10,12 +10,6 @@
 
     public interface IUserService
     {
-        string Login(LoginInputViewModel model);
-
-        void Logout();
-
-        (bool isRegister, string error) Register(RegisterInputViewModel model);
-
         IEnumerable<UserViewModel> GetAllUser(string userId);
 
         string GetUserById(UserViewModel model);

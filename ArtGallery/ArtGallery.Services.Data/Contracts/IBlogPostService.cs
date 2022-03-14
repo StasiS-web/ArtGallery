@@ -6,7 +6,7 @@
     using ArtGallery.Web.ViewModels.BlogPosts;
     using Microsoft.AspNetCore.Http;
 
-    public interface IBlogPostsService
+    public interface IBlogPostService
     {
 
         IEnumerable<BlogPostViewModel> GetAll();
