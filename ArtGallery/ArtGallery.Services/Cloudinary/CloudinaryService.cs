@@ -16,32 +16,33 @@
            this.cloudinary = cloudinary;
         }
 
-        public async Task<string> UploadImageAsync(IFormFile file, string fileName, int heigth, int width)
+        public string UploadImageAsync(IFormFile imageFile, string file)
         {
             byte[] data;
             var stream = new MemoryStream();
 
             using (stream)
             {
-                await file.CopyToAsync(stream);
+                imageFile.CopyToAsync(stream);
                 data = stream.ToArray();
             }
 
             UploadResult uploadResult = null;
 
-            using (var message = new MemoryStream(data))
-            {
+           using (var message = new MemoryStream(data))
+           {
                 ImageUploadParams uploadParams = new ImageUploadParams()
                 {
                     Folder = "app_gallery",
-                    File = new FileDescription(fileName, message),
-                    Transformation = new Transformation().Height(heigth).Width(width).Crop("fit"),
+                    File = new FileDescription(file, message),
+                    // Transformation = new Transformation().Height(300).Width(300).Crop("fit"),
+                    PublicId = file,
                 };
 
-                uploadResult = await this.cloudinary.UploadAsync(uploadParams);
-            }
+                uploadResult = this.cloudinary.Upload(uploadParams);
+           }
 
-            return uploadResult?.SecureUrl.AbsoluteUri;
+            return uploadResult?.SecureUri.AbsoluteUri;
         }
     }
 }
