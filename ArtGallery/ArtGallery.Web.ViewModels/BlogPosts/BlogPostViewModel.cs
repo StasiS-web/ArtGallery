@@ -3,6 +3,7 @@
     using System;
     using ArtGallery.Data.Models;
     using ArtGallery.Services.Mapping.Contracts;
+    using Microsoft.AspNetCore.Http;
 
     public class BlogPostViewModel : IMapFrom<BlogPost>
     {

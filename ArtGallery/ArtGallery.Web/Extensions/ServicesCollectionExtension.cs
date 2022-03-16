@@ -12,12 +12,12 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IAppRepository, AppRepository>();
 
             // Application services
-            services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<IValidationService, ValidationService>();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<ISettingsService, SettingsService>();
-            services.AddScoped<IBlogPostsService, BlogPostService>();
+            services.AddScoped<IEventService, EventService>();
+            services.AddScoped<IBlogPostService, BlogPostService>();
+            services.AddScoped<IShoppingCartService, ShoppingCartService>();
             services.AddScoped<IArtOrderService, ArtOrderService>();
+            services.AddScoped<ISettingsService, SettingsService>();
             return services;
         }
     }
