@@ -17,23 +17,22 @@
     public class BlogPostService : IBlogPostService
     {
         private readonly IAppRepository repo;
-        //private readonly ICloudinaryService cloudinary;
+        private readonly ICloudinaryService cloudinary;
 
-        public BlogPostService(IAppRepository repo)
+        public BlogPostService(IAppRepository repo, ICloudinaryService cloudinary)
         {
             this.repo = repo;
-            // this.cloudinary = cloudinary;
+            this.cloudinary = cloudinary;
         }
 
         public async Task AddAsync(BlogPostViewModel model)
         {
-            await this.repo.AddAsync(new BlogPostViewModel
+            await this.repo.AddAsync(new BlogPost
             {
                 Title = model.Title,
                 Content = model.Content,
                 Author = model.Author,
                 UrlImage = model.UrlImage,
-                UserReaction = model.UserReaction,
             });
 
             await this.repo.SaveChangesAsync();
@@ -56,10 +55,11 @@
 
         public async Task CreateBlogPostAsync(BlogPostCreateInputModel model)
         {
-            await this.repo.AddAsync(new BlogPost
+
+            await this.repo.AddAsync(new BlogPostViewModel
             {
                 Title = model.Title,
-                UrlImage = model.UrlImage,
+                UrlImage = this.cloudinary.UploadImageAsync(model.UrlImage, model.PostImage),
                 Content = model.Content,
                 Author = model.Author,
             });

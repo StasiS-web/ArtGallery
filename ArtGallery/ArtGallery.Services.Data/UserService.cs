@@ -20,7 +20,7 @@
         public UserService(IAppRepository userRepo)
         {
             this.userRepo = userRepo;
-        }
+         }
 
         public IEnumerable<UserViewModel> GetAllUser(string userId)
         {
