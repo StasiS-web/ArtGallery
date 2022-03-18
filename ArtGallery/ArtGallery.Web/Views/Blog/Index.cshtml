@@ -1,0 +1,33 @@
+﻿@model ArtGallery.Web.ViewModels.BlogPosts.AllBlogPostsListViewModel
+*@{
+    ViewData["Title"] = "BlogPost";
+}
+
+        <div class="card card-success">
+          <div class="card-body">
+            <div class="row">
+            @foreach (var blogPost in Model.AllBlogPosts)
+            {
+                <div class="col-md-12 col-lg-6 col-xl-4">
+                   <div class="card mb-2 bg-gradient-dark">
+                     <img class="card-img-top" src="../dist/img/photo1.png" alt="Dist Photo 1">
+                     <div class="card-img-overlay d-flex flex-column justify-content-end">
+                       <h5 class="card-title text-primary text-white" asp-area="" asp-controller="BlogPost"  asp-action="Details" asp-route-id="@blogPost.Id">@blogPost.Title</h5>
+                       <div class="card-text text-white pb-2 pt-1" asp-controller="BlogPost"  asp-action="Details" asp-route-id="@blogPost.Id">by @blogPost.Author</div>
+                        <a href="#" class="text-white" asp-controller="BlogPost"  asp-action="Details" asp-route-id="@blogPost.Id">@blogPost.CreatedOn.Date.ToString("D")</a>
+                       <div class="card-text text-white">
+                         @blogPost.Content
+                       </div>
+                       <a href="#" class="text-white" asp-controller="BlogPost"  asp-action="Details" asp-route-id="@blogPost.Id">Read More</a>
+                     </div>
+                   </div>
+                </div>
+            }
+
+            </div>
+          </div>
+        </div>
+
+    <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
+      <i class="fas fa-chevron-up"></i>
+    </a>

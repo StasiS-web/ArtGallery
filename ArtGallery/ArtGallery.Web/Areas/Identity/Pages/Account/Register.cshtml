@@ -45,88 +45,74 @@
     <div class="card">
         <div class="card-body register-card-body">
          <p class="login-box-msg">Register a new membership</p>
-         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-              <div class="form-floating">
-                  <label asp-for="Input.Username"></label>
-                  <input asp-for="Input.Username" class="form-control" autocomplete="username" aria-required="true" />
-                  <span asp-validation-for="Input.Username" class="fas fa-user"></span>
-             </div>
-             <div class="form-floating">
-                  <label asp-for="Input.Email"></label>
-                  <input asp-for="Input.Email" class="form-control" autocomplete="email" aria-required="true" />
-                  <span asp-validation-for="Input.Email" class="fas fa-envelope"></span>
-              </div>
-              <div class="form-floating">
-                 <label asp-for="Input.Password"></label>
-                 <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
-                 <span asp-validation-for="Input.Password" class="fas fa-lock"></span>
-              </div>
-
-              <div class="input-group mb-3">
-                    <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
-                    <label asp-for="Input.ConfirmPassword"></label>
-                    <div class="input-group-text">
-                      <span asp-validation-for="Input.ConfirmPassword" class="fas fa-lock"></span>
-                    </div>
-                  </div>
-                   <div class="row">
-                  @*<div class="col-8">
-                        <div class="icheck-primary">
-                        <input asp-for="Input.Checkbox" type="checkbox" id="agreeTerms" name="terms" value="agree"> 
-                        <label asp-for="Input.Checkbox" for="agreeTerms"> I agree to the <a href="#">terms</a> </label>
-                        </div>
-                  </div>
-                  *@
-                  
-                  <!-- /.col -->
-                  <div class="col-4">
-                    <button id="registerSubmit" type="submit" class="btn btn-lg btn-primary">Register</button>
-                  </div>
-                  <!-- /.col -->
-                </div>
-           </form>
-
-            @*<div class="social-auth-links text-center">
-            <p>- OR -</p>
-            <a href="#" class="btn btn-block btn-primary">
-              <i class="fab fa-facebook mr-2"></i>
-              Sign up using Facebook
-            </a>
-            <a href="#" class="btn btn-block btn-danger">
-              <i class="fab fa-google-plus mr-2"></i>
-              Sign up using Google+
-            </a>
-
-            <a href="login.html" class="text-center">I already have a membership</a>
-            </div>
-
-          <section>
-          if ((Model.ExternalLogins?.Count ?? 0) == 0)
-           {
-              <div>
-                  <p>
-                      There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                      about setting up this ASP.NET application to support logging in via external services</a>.
-                  </p>
-               </div>
-            }
-            else
-            {
-              <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                   <div>
-                      <p>
-                         @foreach (var provider in Model.ExternalLogins)
-                         {
-                              <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                         }
-                     </p>
+             <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                  <div class="form-floating">
+                      <label asp-for="Input.Username"></label>
+                      <input asp-for="Input.Username" class="form-control" autocomplete="username" aria-required="true" />
+                      <span asp-validation-for="Input.Username" class="fas fa-user"></span>
                  </div>
-             </form>
-            }   
-            </section>
-            *@ 
+                 <div class="form-floating">
+                      <label asp-for="Input.Email"></label>
+                      <input asp-for="Input.Email" class="form-control" autocomplete="email" aria-required="true" />
+                      <span asp-validation-for="Input.Email" class="fas fa-envelope"></span>
+                  </div>
+                  <div class="form-floating">
+                     <label asp-for="Input.Password"></label>
+                     <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+                     <span asp-validation-for="Input.Password" class="fas fa-lock"></span>
+                  </div>
 
+                  <div class="input-group mb-3">
+                        <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+                        <label asp-for="Input.ConfirmPassword"></label>
+                        <div class="input-group-text">
+                          <span asp-validation-for="Input.ConfirmPassword" class="fas fa-lock"></span>
+                        </div>
+                      </div>
+                       <div class="row">
+                      @*<div class="col-8">
+                            <div class="icheck-primary">
+                            <input asp-for="Input.Checkbox" type="checkbox" id="agreeTerms" name="terms" value="agree"> 
+                            <label asp-for="Input.Checkbox" for="agreeTerms"> I agree to the <a href="#">terms</a> </label>
+                            </div>
+                      </div>
+                      *@
+                  
+                      <!-- /.col -->
+                      <div class="col-4">
+                        <button id="registerSubmit" type="submit" class="btn btn-lg btn-primary">Register</button>
+                      </div>
+                      <!-- /.col -->
+                    </div>
+               </form>
+                <div class="col-md-6 col-md-offset-2">
+                    <section>
+                     <h3>Use another service to register.</h3>
+                      if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                           {
+                              <div>
+                                  <p>
+                                      There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
+                                      about setting up this ASP.NET application to support logging in via external services</a>.
+                                  </p>
+                               </div>
+                            }
+                            else
+                            {
+                                  <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                                       <div>
+                                          <p>
+                                             @foreach (var provider in Model.ExternalLogins)
+                                             {
+                                                  <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                             }
+                                         </p>
+                                     </div>
+                                 </form>
+                            }   
+                    </section>
+                </div>
             </div>
             <!-- card-body -->     
       </div><!-- /.card -->

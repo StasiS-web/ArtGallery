@@ -25,7 +25,7 @@
     <!-- Other head element -->
     @Html.Partial("_Favicons")
 
-    @this.RenderSection("Styles", required: false)
+    @* @this.RenderSection("Styles", required: false) *@
 </head>
 <body class="hold-transition sidebar-mini" data-panel-auto-height-mode="height">
  <div class="wrapper">
@@ -90,7 +90,7 @@
       <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
-                @this.RenderBody()
+             @*   @this.RenderBody()  *@
            </div><!-- /.container-fluid -->
         </div>
         <!-- /.content -->
@@ -114,6 +114,6 @@
     <script src="~/plugins/toastr/toastr.min.js"></script> 
     <partial name="_UserMessages" />
 
-     await RenderSectionAsync("Scripts", required: false)
+     @*await this.RenderSectionAsync("Scripts", required: false)*@
 </body>
 </html>
