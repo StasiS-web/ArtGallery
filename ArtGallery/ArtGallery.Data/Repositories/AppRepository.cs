@@ -75,16 +75,15 @@
         }
 
         public async Task<T> GetByIdAsync<T>(object id)
-            where T : class
+           where T : class
         {
-            return await this.DbSet<T>().FirstAsync((CancellationToken)id);
+                return await this.DbSet<T>().FirstAsync((CancellationToken)id);
         }
 
         public void Update<T>(T entity)
             where T : class
         {
-            this.dbContext.Update(entity);
-            // this.dbContext.Entry(entity).State = EntityState.Modified;
+            this.DbSet<T>().Update(entity);
         }
 
         public IQueryable<T> AllWithDeleted<T>()

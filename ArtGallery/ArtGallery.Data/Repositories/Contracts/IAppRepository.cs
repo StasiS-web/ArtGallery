@@ -1,7 +1,7 @@
-﻿using System.Linq.Expressions;
-
-namespace ArtGallery.Data.Repositories.Contracts
+﻿namespace ArtGallery.Data.Repositories.Contracts
 {
+    using System.Linq.Expressions;
+
     public interface IAppRepository : IDisposable
     {
         IQueryable<T> All<T>()
@@ -10,7 +10,7 @@ namespace ArtGallery.Data.Repositories.Contracts
         IQueryable<T> AllReadonly<T>()
             where T : class;
 
-        Task<T> GetByIdAsync<T>(object id) 
+        Task<T> GetByIdAsync<T>(object id)
             where T : class;
 
         Task AddAsync<T>(T entity)

@@ -34,7 +34,7 @@
         [MaxLength(UsernameMaxLength)]
         public string UserName { get; set; }
 
-        public UserRole RoleName { get; set; }
+        public UserRole RoleName { get; set; }// Dispaly the RoleName for each user
 
         public Gender Gender { get; set; }
 
@@ -56,7 +56,7 @@
 
         public DateTime? DeletedOn { get; set; }
 
-        public ICollection<IdentityUserRole<string>> Roles { get; set; }
+        public ICollection<IdentityUserRole<string>> Roles { get; set; }// Collections of all RoleName in the app
 
         public ICollection<IdentityUserClaim<string>> Claims { get; set; }
 

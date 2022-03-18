@@ -11,6 +11,7 @@ global using Microsoft.AspNetCore.Identity;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.Extensions.DependencyInjection;
 global using static ArtGallery.Common.GlobalConstants;
+global using ArtGalleryUser = ArtGallery.Data.Models.ArtGalleryUser;
 
 #pragma warning disable SA1404 // Code analysis suppression should have justification
 [assembly: SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1200:Using directives should be placed correctly", Justification = "<Pending>")]
