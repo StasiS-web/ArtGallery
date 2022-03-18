@@ -18,8 +18,8 @@
 
         public static class ArtGalleryUser
         {
-            public const int FullNaneMinLenth = 90;
-            public const int FullNameMaxLenth = 500;
+            public const int FullNaneMinLenth = 50;
+            public const int FullNameMaxLenth = 100;
             public const int UsernameMinLength = 5;
             public const int UsernameMaxLength = 20;
             public const int PasswordMinLength = 8;
@@ -117,7 +117,8 @@
 
         public static class DisplayNames
         {
-            public const string FullNameDisplayName = "Full Name";
+            public const string FirstNameDisplayName = "First Name";
+            public const string LastNameDisplayName = "Last Name";
             public const string EmailDisplay = "Email";
             public const string UsernameDisplay = "Username";
             public const string PasswordDisplay = "Password";
