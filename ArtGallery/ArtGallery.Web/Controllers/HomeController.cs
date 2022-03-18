@@ -3,8 +3,9 @@
     using System.Diagnostics;
     using ArtGallery.Web.ViewModels;
     using Microsoft.AspNetCore.Mvc;
+    using static ArtGallery.Common.MessageConstants;
 
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
 
@@ -15,18 +16,14 @@
 
         public IActionResult Index()
         {
+            this.ViewData[MessageConstants.OperationalMessages] = SuccessfullyRunningToaster;
+
             return View();
         }
 
         public IActionResult Privacy()
         {
             return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
