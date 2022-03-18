@@ -1,7 +1,6 @@
 ﻿namespace ArtGallery.Data.Models
 {
     using System;
-    using ArtGallery.Data.Common.Models;
     using ArtGallery.Data.Common.Models.Contracts;
     using Microsoft.AspNetCore.Identity;
 

@@ -24,7 +24,17 @@
 
         [Required]
         [MaxLength(FullNameMaxLenth)]
-        public string FullName { get; set; }
+        public string FirstName { get; set; }
+
+        [Required]
+        [MaxLength(FullNameMaxLenth)]
+        public string LastName { get; set; }
+
+        [Required]
+        [MaxLength(UsernameMaxLength)]
+        public string UserName { get; set; }
+
+        public UserRole RoleName { get; set; }
 
         public Gender Gender { get; set; }
 
