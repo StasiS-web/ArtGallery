@@ -1,6 +1,4 @@
-﻿@page
-@using ArtGallery.Common
-@model ArtGallery.Web.Areas.Administration.Shared._AdminLayoutModel
+﻿@using ArtGallery.Common
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,10 +24,10 @@
     <!-- Other head element -->
     @Html.Partial("_Favicons")
 
-    @*@this.RenderSection("Styles", required: false)*@
+    @this.RenderSection("Styles", required: false)
 </head>
 <body class="hold-transition sidebar-mini" data-panel-auto-height-mode="height">
-   <div class="wrapper">
+ <div class="wrapper">
 
        <!-- Navbar -->
           <nav class="main-header navbar navbar-expand navbar-white">
@@ -60,7 +58,7 @@
               <span class="brand-text font-weight-light">ArtGallery</span>
             </a>
 
-             <partial name="_AdminLogin" />
+             <partial name="_LoginPartial" />
               <!-- Sidebar user panel (optional) -->
            </div>
 
@@ -68,8 +66,8 @@
            <!-- /.sidebar -->
         </aside>
 
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
          <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container-fluid">
@@ -91,14 +89,14 @@
       <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
-                @*@this.RenderBody()*@
-           </di><!-- /.container-fluid -->
+                @this.RenderBody()
+           </div><!-- /.container-fluid -->
         </div>
         <!-- /.content -->
-    </div>
+        </div>
      <!-- /.content-wrapper -->
 
-    <partial name="_AdminFooter" />
+    <partial name="_FooterPartial" />
 </div>
 <!-- ./wrapper -->
 
