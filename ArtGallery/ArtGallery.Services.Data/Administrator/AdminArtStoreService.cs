@@ -34,6 +34,27 @@
             await this.artRepo.SaveChangesAsync();
         }
 
+        public async Task<bool> UpdateArtStore(ArtStoreViewModel model)
+        {
+            bool result = false;
+            var artStore = this.artRepo
+                .All<ArtStore>()
+                .SingleOrDefault(x => x.Id == model.ArtId);
+
+            if (artStore != null)
+            {
+                artStore.Id = model.ArtId;
+                artStore.PaintingName = model.PaintingName;
+                artStore.Price = model.Price;
+                artStore.Description = model.Description;
+
+                this.artRepo.SaveChangesAsync();
+                result = true;
+            }
+
+            return result;
+        }
+
         public void Delete(int id)
         {
             var art = this.artRepo
