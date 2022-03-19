@@ -1,6 +1,9 @@
 ﻿namespace ArtGallery.Web.ViewModels.ArtStore
 {
-    public class ArtOrderViewModel
+    using ArtGallery.Data.Models;
+    using ArtGallery.Services.Mapping.Contracts;
+
+    public class ArtOrderViewModel : IMapFrom<ArtOrder>
     {
         public string OrderId { get; set; }
 

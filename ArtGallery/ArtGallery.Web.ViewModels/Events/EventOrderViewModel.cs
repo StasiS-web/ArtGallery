@@ -1,13 +1,11 @@
-﻿using ArtGallery.Data.Models.Enumeration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ArtGallery.Web.ViewModels.Events
+﻿namespace ArtGallery.Web.ViewModels.Events
 {
-    public class EventOrderViewModel
+    using System;
+    using ArtGallery.Data.Models;
+    using ArtGallery.Data.Models.Enumeration;
+    using ArtGallery.Services.Mapping.Contracts;
+
+    public class EventOrderViewModel : IMapFrom<EventOrder>
     {
         public string BookingId { get; set; }
 

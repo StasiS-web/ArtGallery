@@ -1,6 +1,9 @@
 ﻿namespace ArtGallery.Web.ViewModels.ShoppingCart
 {
-    public class ShoppingCartViewModel
+    using ArtGallery.Data.Models;
+    using ArtGallery.Services.Mapping.Contracts;
+
+    public class ShoppingCartViewModel : IMapFrom<ShoppingCart>
     {
         public string ShoppingCartId { get; set; }
 

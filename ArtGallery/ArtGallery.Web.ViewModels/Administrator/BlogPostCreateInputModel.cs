@@ -14,7 +14,6 @@
         [DataType(DataType.ImageUrl)]
         public IFormFile UrlImage { get; set; }
 
-
         [MinLength(ContentMinLength)]
         [MaxLength(ContentMaxLength)]
         public string Content { get; set; }
