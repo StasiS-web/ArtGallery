@@ -2,7 +2,9 @@
 {
     public class ArtOrderViewModel
     {
-        public string OrderDate { get; set; }
+        public string OrderId { get; set; }
+
+        public DateTime OrderDate { get; set; }
 
         public string UserId { get; set; }
 

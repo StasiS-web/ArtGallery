@@ -1,4 +1,4 @@
-﻿namespace ArtGallery.Web.ViewModels.ArtStore
+﻿namespace ArtGallery.Web.ViewModels.ShoppingCart
 {
     public class ShoppingCartViewModel
     {
