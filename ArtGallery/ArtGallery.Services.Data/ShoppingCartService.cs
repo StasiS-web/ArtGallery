@@ -12,29 +12,29 @@
 
     public class ShoppingCartService : IShoppingCartService
     {
-        private readonly IAppRepository entityRepo;
+        private readonly IAppRepository cartRepo;
 
-        public ShoppingCartService(IAppRepository entityRepo)
+        public ShoppingCartService(IAppRepository cartyRepo)
         {
-            this.entityRepo = entityRepo;
+            this.cartRepo = cartRepo;
         }
 
         public IEnumerable<ShoppingCartViewModel> AddArt(int artId, string userId, decimal price)
         {
-            var user = this.entityRepo.All<ArtGalleryUser>()
+            var user = this.cartRepo.All<ArtGalleryUser>()
                 .Where(u => u.Id == userId)
                 .Include(u => u.ShoppingCart)
                 .ThenInclude(a => a.Arts)
                 .FirstOrDefault();
 
-            var artInCart = this.entityRepo.All<ArtStore>()
+            var artInCart = this.cartRepo.All<ArtStore>()
                 .FirstOrDefault(u => u.Id == artId); ;
 
             user.ShoppingCart.Arts.Add(artInCart);
 
             try
             {
-                entityRepo.SaveChanges();
+                cartRepo.SaveChanges();
             }
             catch (Exception)
             { }
@@ -49,7 +49,7 @@
 
         public void BuyArts(string userId)
         {
-            var user = this.entityRepo.All<ArtGalleryUser>()
+            var user = this.cartRepo.All<ArtGalleryUser>()
                 .Where(u => u.Id == userId)
                 .Include(u => u.ShoppingCart)
                 .ThenInclude(a => a.Arts)
@@ -57,27 +57,27 @@
 
             user.ShoppingCart.Arts.Clear();
 
-            this.entityRepo.SaveChanges();
+            this.cartRepo.SaveChanges();
         }
 
         public async Task ClearCartAsync(string userId)
         {
-            var arts = this.entityRepo
+            var arts = this.cartRepo
                    .All<ArtGalleryUser>()
                    .Where(u => u.Id == userId)
                    .ToList();
 
             foreach (var art in arts)
             {
-                this.entityRepo.HardDelete(art);
+                this.cartRepo.HardDelete(art);
             }
 
-            await this.entityRepo.SaveChangesAsync();
+            await this.cartRepo.SaveChangesAsync();
         }
 
         public IEnumerable<ShoppingCartViewModel> GetArts(string userId)
         {
-            var user = this.entityRepo.All<ArtGalleryUser>()
+            var user = this.cartRepo.All<ArtGalleryUser>()
                 .Where(u => u.Id == userId)
                 .Include(u => u.ShoppingCart)
                 .ThenInclude(a => a.Arts)
@@ -93,7 +93,7 @@
 
         public void IncreaseQuatity(string artId, bool isIncreased)
         {
-            var artInTheCart = this.entityRepo.All<ShoppingCartViewModel>()
+            var artInTheCart = this.cartRepo.All<ShoppingCartViewModel>()
                 .SingleOrDefault(a => a.ShoppingCartId == artId);
 
             if (artInTheCart.Quantity <= 1)
@@ -102,7 +102,7 @@
             }
 
             artInTheCart.Quantity--;
-            int result = this.entityRepo.SaveChanges();
+            int result = this.cartRepo.SaveChanges();
 
             if (result > 0)
             {

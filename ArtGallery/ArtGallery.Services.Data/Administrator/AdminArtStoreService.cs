@@ -36,12 +36,12 @@
 
         public void Delete(int id)
         {
-            var blogPost = this.artRepo
+            var art = this.artRepo
                 .All<ArtStoreViewModel>()
                 .Where(x => x.ArtId == id)
                 .FirstOrDefault();
 
-            this.artRepo.Delete(blogPost);
+            this.artRepo.Delete(art);
             this.artRepo.SaveChanges();
         }
     }
