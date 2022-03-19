@@ -34,8 +34,6 @@
         [MaxLength(UsernameMaxLength)]
         public string UserName { get; set; }
 
-        public UserRole RoleName { get; set; }// Dispaly the RoleName for each user
-
         public Gender Gender { get; set; }
 
         public string UrlImage { get; set; }
