@@ -10,8 +10,10 @@
     using ArtGallery.Data.Models.Enumeration;
     using ArtGallery.Data.Repositories.Contracts;
     using ArtGallery.Services.Data.Contracts;
+    using ArtGallery.Services.Mapping;
     using ArtGallery.Web.ViewModels.Administrator;
     using ArtGallery.Web.ViewModels.Events;
+    using Microsoft.EntityFrameworkCore;
     using static ArtGallery.Common.GlobalConstants.Formating;
 
     public class EventService : IEventService
@@ -75,18 +77,16 @@
             return (IEnumerable<int>)events;
         }
 
-        public IEnumerable<int> GetUpcomingByIdAsync(int id)
+        public async Task<IEnumerable<T>> GetUpcomingByIdAsync<T>(int id)
         {
             var upcomingEvents = this.eventRepo
                                  .All<EventViewModel>()
                                  .Where(x => x.EventId == id &&
-                                  DateTime.ParseExact(
-                                  Convert.ToString(x.Date),
-                                  NormalDateFormat,
-                                  CultureInfo.InvariantCulture) == DateTime.UtcNow)
-                                  .FirstOrDefault();
+                                    x.Date.Date > DateTime.UtcNow.Date)
+                                 .OrderBy(x => x.Date)
+                                 .To<T>().ToListAsync();
 
-            return (IEnumerable<int>)upcomingEvents;
+            return await upcomingEvents;
         }
     }
 }
