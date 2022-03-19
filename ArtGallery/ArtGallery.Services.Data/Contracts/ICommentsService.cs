@@ -6,13 +6,9 @@
 
     public interface ICommentsService
     {
-        Task<IEnumerable<T>> GetAllAsync<T>();
+        Task<string> GetBlogIdByCommentsAsync(int commentId);
 
-        Task<IEnumerable<int>> CountAsync();
-
-        Task AddAsync(string blogPostId, string userId, string commentContent);
-
-        Task<IEnumerable<int>> IncreaseViewCountAsync(int blogId);
+        Task CreateAsync(int commentId, int blogPostId, string userId, string content);
 
         Task DeleteAsync(int id);
     }

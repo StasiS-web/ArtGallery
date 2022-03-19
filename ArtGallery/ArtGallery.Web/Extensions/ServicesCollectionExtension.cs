@@ -20,11 +20,12 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IShoppingCartService, ShoppingCartService>();
             services.AddScoped<IArtOrderService, ArtOrderService>();
             services.AddScoped<ISettingsService, SettingsService>();
+            services.AddScoped<ICommentsService, CommentsService>();
 
             // Application Admin services
             services.AddScoped<IAdminEventService, AdminEventService>();
+            services.AddScoped<IAdminArtStoreService, AdminArtStoreService>();
             services.AddScoped<IAdminBlogPostService, AdminBlogPostService>();
-            services.AddScoped<IAdminEventService, AdminEventService>();
             return services;
         }
     }
