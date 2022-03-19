@@ -10,7 +10,6 @@
     using ArtGallery.Data.Repositories.Contracts;
     using ArtGallery.Services.Data.Administrator.Contracts;
     using ArtGallery.Web.ViewModels.Administrator;
-    using ArtGallery.Web.ViewModels.Events;
     using static ArtGallery.Common.GlobalConstants.Formating;
 
     public class AdminEventService : IAdminEventService
@@ -40,14 +39,26 @@
             await this.eventRepo.SaveChangesAsync();
         }
 
-        public Task ConfirmAsync(int id)
+        public async Task ConfirmAsync(int id)
         {
-            var eventByType = this.eventRepo
-               .All<EventViewModel>()
-               .Where(e => e.EventId == id)
+            var eventToConfirm = this.eventRepo
+               .All<Event>()
+               .Where(e => e.Id == id)
                .FirstOrDefault();
 
-            throw new NotImplementedException();
+            eventToConfirm.Confirmed = true;
+            await this.eventRepo.SaveChangesAsync();
+        }
+
+        public async Task DeclineAsync(int id)
+        {
+            var eventToConfirm = this.eventRepo
+               .All<Event>()
+               .Where(e => e.Id == id)
+               .FirstOrDefault();
+
+            eventToConfirm.Confirmed = false;
+            await this.eventRepo.SaveChangesAsync();
         }
 
         public void Delete(int id)

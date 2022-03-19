@@ -8,6 +8,8 @@
 
         Task ConfirmAsync(int id);
 
+        Task DeclineAsync(int id);
+
         void Delete(int id);
     }
 }
