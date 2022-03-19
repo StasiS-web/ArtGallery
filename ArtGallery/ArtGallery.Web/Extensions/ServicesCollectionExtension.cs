@@ -1,5 +1,7 @@
 ﻿using ArtGallery.Data.Repositories;
 using ArtGallery.Data.Repositories.Contracts;
+using ArtGallery.Services.Data.Administrator;
+using ArtGallery.Services.Data.Administrator.Contracts;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -18,6 +20,11 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IShoppingCartService, ShoppingCartService>();
             services.AddScoped<IArtOrderService, ArtOrderService>();
             services.AddScoped<ISettingsService, SettingsService>();
+
+            // Application Admin services
+            services.AddScoped<IAdminEventService, AdminEventService>();
+            services.AddScoped<IAdminBlogPostService, AdminBlogPostService>();
+            services.AddScoped<IAdminEventService, AdminEventService>();
             return services;
         }
     }
