@@ -14,7 +14,7 @@
 
     public class ArtOrderService : IArtOrderService
     {
-        private IAppRepository orderRepo;
+        private readonly IAppRepository orderRepo;
 
         public ArtOrderService(IAppRepository order)
         {
@@ -23,6 +23,7 @@
 
         public async Task CreateOrder(ArtOrderViewModel model)
         {
+            model.OrderDate = DateTime.UtcNow;
             var order = orderRepo.All<ArtOrderViewModel>()
                          .Where(x => x.UserId == model.UserId)
                          .Where(x => x.ArtId == model.ArtId)

@@ -22,6 +22,7 @@
 
         public async Task CreateOrder(EventOrderViewModel model)
         {
+            model.BookingDate = DateTime.UtcNow;
             var booking = bookingRepo.All<EventOrder>()
                                      .Where(x => x.UserId == model.UserId)
                                      .Where(x => x.EventId == model.EventId)

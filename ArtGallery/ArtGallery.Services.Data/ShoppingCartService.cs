@@ -7,14 +7,14 @@
     using ArtGallery.Data.Models;
     using ArtGallery.Data.Repositories.Contracts;
     using ArtGallery.Services.Data.Contracts;
-    using ArtGallery.Web.ViewModels.ArtStore;
+    using ArtGallery.Web.ViewModels.ShoppingCart;
     using Microsoft.EntityFrameworkCore;
 
     public class ShoppingCartService : IShoppingCartService
     {
         private readonly IAppRepository cartRepo;
 
-        public ShoppingCartService(IAppRepository cartyRepo)
+        public ShoppingCartService(IAppRepository cartRepo)
         {
             this.cartRepo = cartRepo;
         }

@@ -1,6 +1,6 @@
 ﻿namespace ArtGallery.Services.Data.Contracts
 {
-    using ArtGallery.Web.ViewModels.ArtStore;
+    using ArtGallery.Web.ViewModels.ShoppingCart;
 
     public interface IShoppingCartService
     {
