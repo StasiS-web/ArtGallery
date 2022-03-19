@@ -17,12 +17,8 @@
 
         IEnumerable<int> GetById<T>(int id);
 
-        Task CreateBlogPostAsync(BlogPostCreateInputModel model);
-
         Task AddAsync(BlogPostViewModel model);
 
         Task<string> GetAuthorIdAsync(int postId);
-
-        void Delete(int id);
     }
 }

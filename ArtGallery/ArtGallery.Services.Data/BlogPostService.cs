@@ -7,69 +7,52 @@
     using System.Threading.Tasks;
     using ArtGallery.Data.Models;
     using ArtGallery.Data.Repositories.Contracts;
-    using ArtGallery.Services.Cloudinary.Contracts;
     using ArtGallery.Services.Data.Contracts;
     using ArtGallery.Services.Mapping;
     using ArtGallery.Web.ViewModels.Administrator;
     using ArtGallery.Web.ViewModels.BlogPosts;
-    using Microsoft.AspNetCore.Http;
 
     public class BlogPostService : IBlogPostService
     {
-        private readonly IAppRepository repo;
-        private readonly ICloudinaryService cloudinary;
+        private readonly IAppRepository blogRepo;
 
-        public BlogPostService(IAppRepository repo, ICloudinaryService cloudinary)
+        public BlogPostService(IAppRepository blogRepo)
         {
-            this.repo = repo;
-            this.cloudinary = cloudinary;
+            this.blogRepo = blogRepo;
         }
 
         public async Task AddAsync(BlogPostViewModel model)
         {
-            await this.repo.AddAsync(new BlogPost
+            await this.blogRepo.AddAsync(new BlogPost
             {
                 Title = model.Title,
                 Content = model.Content,
                 Author = model.Author,
-                UrlImage = model.UrlImage,
+                UrlImage = model.UrlImage.ToString(),
+                UserReaction = model.UserReaction,
             });
 
-            await this.repo.SaveChangesAsync();
+            await this.blogRepo.SaveChangesAsync();
         }
 
         public int AllBlogsCount()
         {
-            return this.repo
+            return this.blogRepo
                    .All<BlogPost>()
                    .Count();
         }
 
         public IEnumerable<BlogPostViewModel> GetAllBlogs()
         {
-            return this.repo
+            return this.blogRepo
                 .All<BlogPost>()
                 .To<BlogPostViewModel>()
                 .ToList();
         }
 
-        public async Task CreateBlogPostAsync(BlogPostCreateInputModel model)
-        {
-
-            await this.repo.AddAsync(new BlogPostViewModel
-            {
-                Title = model.Title,
-                UrlImage = this.cloudinary.UploadImageAsync(model.UrlImage, model.PostImage),
-                Content = model.Content,
-                Author = model.Author,
-            });
-
-            await this.repo.SaveChangesAsync();
-        }
-
         public IEnumerable<BlogPostViewModel> GetAll()
         {
-            var blogList = repo.All<BlogPostViewModel>()
+            var blogList = blogRepo.All<BlogPostViewModel>()
                  .OrderByDescending(b => b.CreatedOn)
                  .ToList();
 
@@ -78,9 +61,9 @@
 
         public IEnumerable<int> GetById<T>(int id)
         {
-            var blogPost = this.repo
+            var blogPost = this.blogRepo
                     .All<BlogPostViewModel>()
-                    .Where(x => x.BlogPostId == id)
+                    .Where(x => x.Id == id)
                     .FirstOrDefault();
 
             return (IEnumerable<int>)blogPost;
@@ -88,22 +71,11 @@
 
         public async Task<string> GetAuthorIdAsync(int postId)
         {
-            var posts = this.repo
+            var posts = this.blogRepo
                 .All<BlogPostViewModel>()
-                .SingleOrDefault(p => p.BlogPostId == postId);
+                .SingleOrDefault(p => p.Id == postId);
 
             return posts.Author;
-        }
-
-        public void Delete(int id)
-        {
-            var blogPost = this.repo
-                .All<BlogPostViewModel>()
-                .Where(x => x.BlogPostId == id)
-                .FirstOrDefault();
-
-            this.repo.Delete(blogPost);
-            this.repo.SaveChanges();
         }
     }
 }
