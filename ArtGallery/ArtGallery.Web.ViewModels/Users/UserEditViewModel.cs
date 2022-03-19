@@ -7,7 +7,7 @@
     using static ArtGallery.Common.GlobalConstants.ArtGalleryUser;
     using static ArtGallery.Common.GlobalConstants.DisplayNames;
 
-    public class UserEditModel
+    public class UserEditViewModel
     {
         public string Id { get; set; }
 
