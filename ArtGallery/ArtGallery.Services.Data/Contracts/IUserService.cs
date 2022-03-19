@@ -11,6 +11,8 @@
 
         string GetUserById(UserViewModel model);
 
+        Task<bool> UpdateUser(UserEditModel model);
+
         string GetIdByUsername(UserViewModel model);
 
         Task<string> DeleteAsync(string userId);

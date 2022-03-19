@@ -58,6 +58,25 @@
             return user.Id;
         }
 
+        public async Task<bool> UpdateUser(UserEditModel model)
+        {
+            bool result = false;
+            var user = this.userRepo
+                .All<ArtGalleryUser>()
+                .SingleOrDefault(x => x.Id == model.Id);
+
+            if (user != null)
+            {
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+
+                this.userRepo.SaveChangesAsync();
+                result = true;
+            }
+
+            return result; 
+        }
+
         public async Task<string> DeleteAsync(string userId)
         {
             var currentUser = await this.userRepo
