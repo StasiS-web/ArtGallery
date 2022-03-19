@@ -10,6 +10,7 @@
     using ArtGallery.Services.Data.Contracts;
     using ArtGallery.Web.ViewModels.Events;
     using Microsoft.EntityFrameworkCore;
+    using static ArtGallery.Common.MessageConstants;
 
     public class EventOrderService : IEventOrderService
     {
@@ -23,11 +24,19 @@
         public async Task CreateOrder(EventOrderViewModel model)
         {
             model.BookingDate = DateTime.UtcNow;
-            var booking = bookingRepo.All<EventOrder>()
-                                     .Where(x => x.UserId == model.UserId)
-                                     .Where(x => x.EventId == model.EventId)
-                                     .Include(b => b.Price == model.Price &&
-                                                  b.Quantity == model.Quantity);
+            var user = await bookingRepo.All<ArtGalleryUser>()
+                                      .FirstOrDefaultAsync(u => u.Id == model.UserId);
+
+            if (user == null)
+            {
+                throw new ArgumentException(UnknowUser);
+            }
+
+            var booking = bookingRepo.All<EventOrderViewModel>()
+                                 .Where(o => o.Price == model.Price &&
+                                          o.Quantity == model.Quantity)
+                                 .Include(u => u.UserId == model.UserId)
+                                 .FirstOrDefault();
 
             await this.bookingRepo.AddAsync(booking);
             await bookingRepo.SaveChangesAsync();

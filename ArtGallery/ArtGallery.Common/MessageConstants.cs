@@ -15,6 +15,7 @@
         public const string PasswordLength = "Password should be between 8 and 16 character long.";
         public const string EmptyField = "The field should not be empthy. It is required to have a content.";
         public const string PageContentLength = "Page content should be between 1000 and 15000 characters long.";
+        public const string UnknowUser = "Unknown user.";
 
         // Events
         public const string EventName = "Event Name should be between 8 and 60 characters long.";

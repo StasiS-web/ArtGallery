@@ -11,6 +11,7 @@
     using ArtGallery.Web.ViewModels.Users;
     using Microsoft.EntityFrameworkCore;
     using static ArtGallery.Common.GlobalConstants.Formating;
+    using static ArtGallery.Common.MessageConstants;
 
     public class ArtOrderService : IArtOrderService
     {
@@ -24,11 +25,18 @@
         public async Task CreateOrder(ArtOrderViewModel model)
         {
             model.OrderDate = DateTime.UtcNow;
+            var user = await orderRepo.All<ArtGalleryUser>()
+                                      .FirstOrDefaultAsync(u => u.Id == model.UserId);
+            if (user == null)
+            {
+                throw new ArgumentException(UnknowUser);
+            }
+
             var order = orderRepo.All<ArtOrderViewModel>()
-                         .Where(x => x.UserId == model.UserId)
-                         .Where(x => x.ArtId == model.ArtId)
-                         .Include(o => o.Price == model.Price &&
-                                  o.Quantity == model.Quantity);
+                                 .Where(o => o.Price == model.Price &&
+                                          o.Quantity == model.Quantity)
+                                 .Include(u => u.UserId == model.UserId)
+                                 .FirstOrDefault();
 
             await this.orderRepo.AddAsync(order);
             await this.orderRepo.SaveChangesAsync();
