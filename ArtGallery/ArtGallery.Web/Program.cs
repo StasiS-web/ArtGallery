@@ -7,8 +7,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddRoles<ApplicationRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+      .AddEntityFrameworkStores<ApplicationDbContext>()
+      .AddDefaultTokenProviders();
 
 builder.Services.AddControllersWithViews()
     .AddMvcOptions(options =>
@@ -17,6 +17,8 @@ builder.Services.AddControllersWithViews()
         options.ModelBinderProviders.Insert(1, new DateTimeModelBinderProvider(Formating.NormalDateFormat));
         options.ModelBinderProviders.Insert(2, new DoubleModelBinderProvider());
     });
+
+builder.Services.AddApplicationServices();
 
 builder.Services.Configure<CookiePolicyOptions>(
         options =>
@@ -32,8 +34,6 @@ Account account = new Account(
                 builder.Configuration["Cloudinary:ApiSecret"]);
 Cloudinary cloudinary = new Cloudinary(account);
 builder.Services.AddSingleton(cloudinary);
-
-builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 
@@ -64,12 +64,16 @@ app.Use(async (context, next) =>
         context.Request.Path = "/Error/Error404";
         await next();
     }
-}); 
+});
+
 app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
+// app.MapControllerRoute(
+   //        name: "Area",
+   //      pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapControllerRoute(
            name: "default",
            pattern: "{controller=Home}/{action=Index}/{id?}");
