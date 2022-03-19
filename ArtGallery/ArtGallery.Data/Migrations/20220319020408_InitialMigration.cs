@@ -202,6 +202,7 @@ namespace ArtGallery.Data.Migrations
                     ExhibitionHallId = table.Column<int>(type: "int", nullable: false),
                     TicketType = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(1500)", maxLength: 1500, nullable: false),
+                    Confirmed = table.Column<bool>(type: "bit", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),

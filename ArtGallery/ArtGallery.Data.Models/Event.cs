@@ -37,6 +37,13 @@
         [MaxLength(EventDescriptionMaxLenth)]
         public string Description { get; set; }
 
+        /// <summary>
+        /// Admin need to confirm or decline user booking.
+        /// It depends from the capacity of the ExhibitionHall.
+        /// </summary>
+
+        public bool? Confirmed { get; set; }
+
         public ICollection<EventOrder> EventTickets { get; set; }
     }
 }
