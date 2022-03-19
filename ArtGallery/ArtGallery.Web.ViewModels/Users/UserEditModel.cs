@@ -22,11 +22,5 @@
         [MinLength(FullNaneMinLenth)]
         [Display(Name = LastNameDisplayName)]
         public string LastName { get; set; }
-
-        [Required]
-        [MaxLength(UsernameMaxLength)]
-        [MinLength(UsernameMinLength)]
-        [Display(Name = UsernameDisplay)]
-        public string UserName { get; set; }
     }
 }

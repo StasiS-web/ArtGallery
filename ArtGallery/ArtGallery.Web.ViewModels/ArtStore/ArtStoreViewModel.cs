@@ -2,6 +2,7 @@
 {
     using ArtGallery.Data.Models;
     using ArtGallery.Services.Mapping.Contracts;
+    using Microsoft.AspNetCore.Http;
 
     public class ArtStoreViewModel : IMapFrom<ArtStore>
     {
@@ -11,7 +12,7 @@
 
         public string AuthorName { get; set; }
 
-        public string UrlImage { get; set; }
+        public IFormFile UrlImage { get; set; }
 
         public decimal Price { get; set; }
 

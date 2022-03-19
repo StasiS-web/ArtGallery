@@ -2,6 +2,7 @@
 {
     using System;
     using ArtGallery.Data.Models;
+    using ArtGallery.Data.Models.Enumeration;
     using ArtGallery.Services.Mapping.Contracts;
     using Microsoft.AspNetCore.Http;
 
@@ -11,7 +12,7 @@
 
         public string Title { get; set; }
 
-        public string UrlImage { get; set; }
+        public IFormFile UrlImage { get; set; }
 
         public string Content { get; set; }
 
@@ -19,5 +20,7 @@
         public string Author { get; set; }
 
         public DateTime CreatedOn { get; set; }
+
+        public ReactionType UserReaction { get; set; }
     }
 }

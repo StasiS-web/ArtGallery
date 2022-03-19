@@ -3,6 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using ArtGallery.Data.Models.Enumeration;
     using static ArtGallery.Common.GlobalConstants.Event;
 
     public class EventCreateInputViewModel
@@ -18,7 +19,7 @@
         [Column(TypeName = "date")]
         public string Date { get; set; }
 
-        public string Type { get; set; }
+        public EventType Type { get; set; }
 
         [ForeignKey(nameof(ExhibitionHall))]
         [Required]
@@ -26,7 +27,7 @@
 
         public string ExhibitionHall { get; set; }
 
-        public string TicketType { get; set; }
+        public TicketType TicketType { get; set; }
 
         [MaxLength(EventDescriptionMaxLenth)]
         public string Description { get; set; }
