@@ -1,4 +1,4 @@
-﻿namespace ArtGallery.Services.Data.Administration
+﻿namespace ArtGallery.Services.Data.Administrator
 {
     using System;
     using System.Collections.Generic;
@@ -8,7 +8,7 @@
     using System.Threading.Tasks;
     using ArtGallery.Data.Models;
     using ArtGallery.Data.Repositories.Contracts;
-    using ArtGallery.Services.Data.Administration.Contracts;
+    using ArtGallery.Services.Data.Administrator.Contracts;
     using ArtGallery.Web.ViewModels.Administrator;
     using ArtGallery.Web.ViewModels.Events;
     using static ArtGallery.Common.GlobalConstants.Formating;

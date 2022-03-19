@@ -1,4 +1,4 @@
-﻿namespace ArtGallery.Services.Data.Administration.Contracts
+﻿namespace ArtGallery.Services.Data.Administrator.Contracts
 {
     using ArtGallery.Web.ViewModels.Administrator;
 
