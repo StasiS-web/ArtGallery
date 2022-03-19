@@ -21,6 +21,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IArtOrderService, ArtOrderService>();
             services.AddScoped<ISettingsService, SettingsService>();
             services.AddScoped<ICommentsService, CommentsService>();
+            services.AddScoped<IArtOrderService, ArtOrderService>();
+            services.AddScoped<IEventOrderService, EventOrderService>();
 
             // Application Admin services
             services.AddScoped<IAdminEventService, AdminEventService>();
