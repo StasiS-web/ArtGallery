@@ -9,9 +9,11 @@
     {
         IEnumerable<UserViewModel> GetAllUser(string userId);
 
-        string GetUserById(UserViewModel model);
+        Task<string> GetUserById(UserViewModel model);
 
-        Task<bool> UpdateUser(UserEditModel model);
+        Task<UserEditViewModel> GetUserToEdit(string userId);
+
+        Task<bool> UpdateUser(UserEditViewModel model);
 
         string GetIdByUsername(UserViewModel model);
 

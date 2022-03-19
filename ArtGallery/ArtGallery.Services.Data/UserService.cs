@@ -30,11 +30,10 @@
                 .ToList();
         }
 
-        public string GetUserById(UserViewModel model)
+        public async Task<string> GetUserById(UserViewModel model)
         {
-            var user = this.userRepo
-                .All<ArtGalleryUser>()
-                .SingleOrDefault(x => x.Id == model.UserId);
+            var user = await this.userRepo
+                .GetByIdAsync<ArtGalleryUser>(model.UserId);
 
             if (user == null)
             {
@@ -58,12 +57,23 @@
             return user.Id;
         }
 
-        public async Task<bool> UpdateUser(UserEditModel model)
+        public async Task<UserEditViewModel> GetUserToEdit(string userId)
+        {
+            var user = await this.userRepo.GetByIdAsync<ArtGalleryUser>(userId);
+
+            return new UserEditViewModel()
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+            };
+        }
+
+        public async Task<bool> UpdateUser(UserEditViewModel model)
         {
             bool result = false;
-            var user = this.userRepo
-                .All<ArtGalleryUser>()
-                .SingleOrDefault(x => x.Id == model.Id);
+            var user = await this.userRepo
+                .GetByIdAsync<ArtGalleryUser>(model.Id);
 
             if (user != null)
             {
