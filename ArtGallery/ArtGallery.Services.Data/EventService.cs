@@ -56,17 +56,6 @@
             await this.eventRepo.SaveChangesAsync();
         }
 
-        public IEnumerable<EventType> GetAllByEventTypeAsync(int eventId, string eventType)
-        {
-            var eventByType = this.eventRepo
-                .All < EventViewModel>()
-                .Where(e => e.EventId == eventId)
-                .Where(e => e.Type == eventType)
-                .FirstOrDefault();
-
-            return (IEnumerable<EventType>)eventByType;
-        }
-
         public IEnumerable<int> GetByIdAsync(int eventId)
         {
             var events = this.eventRepo

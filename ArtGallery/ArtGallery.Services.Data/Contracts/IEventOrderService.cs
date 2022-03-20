@@ -4,6 +4,6 @@
 
     public interface IEventOrderService
     {
-        Task CreateOrder(EventOrderViewModel model);
+        Task CreateOrder(EventOrderViewModel model, bool approved);
     }
 }

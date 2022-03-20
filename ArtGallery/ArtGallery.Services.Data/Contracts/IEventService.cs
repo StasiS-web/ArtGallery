@@ -15,8 +15,6 @@
 
         IEnumerable<int> GetByIdAsync(int eventId);
 
-        IEnumerable<EventType> GetAllByEventTypeAsync(int eventId, string eventType);
-
         Task<IEnumerable<T>> GetUpcomingByIdAsync<T>(int eventId);
 
         Task AddAsync(EventViewModel model);
