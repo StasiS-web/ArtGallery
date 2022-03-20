@@ -10,6 +10,7 @@
     using ArtGallery.Data.Repositories.Contracts;
     using ArtGallery.Services.Data.Administrator.Contracts;
     using ArtGallery.Web.ViewModels.Administrator;
+    using ArtGallery.Web.ViewModels.Events;
     using static ArtGallery.Common.GlobalConstants.Formating;
 
     public class AdminEventService : IAdminEventService
@@ -36,6 +37,22 @@
                 Description = model.Description,
             });
 
+            await this.eventRepo.SaveChangesAsync();
+        }
+
+        public async Task UpdateEventAsync(EventViewModel model)
+        {
+            var updateEvent = this.eventRepo.All<Event>()
+                                   .FirstOrDefault(e => e.Id == model.EventId);
+
+            updateEvent.Name = model.Name;
+            updateEvent.Price = model.Price;
+            updateEvent.Date = model.Date;
+            updateEvent.Type = model.Type;
+            updateEvent.TicketType = model.TicketType;
+            updateEvent.Description = model.Description;
+
+            this.eventRepo.Update(updateEvent);
             await this.eventRepo.SaveChangesAsync();
         }
 
