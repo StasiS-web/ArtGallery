@@ -2,9 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using ArtGallery.Web.ViewModels.Administrator;
     using ArtGallery.Web.ViewModels.BlogPosts;
-    using Microsoft.AspNetCore.Http;
 
     public interface IBlogPostService
     {
@@ -15,10 +13,14 @@
 
         IEnumerable<BlogPostViewModel> GetAllBlogs();
 
-        IEnumerable<int> GetById<T>(int id);
+        IEnumerable<int> GetById<T>(int blogId);
 
         Task AddAsync(BlogPostViewModel model);
 
-        Task<string> GetAuthorIdAsync(int postId);
+        Task<string> GetAuthorIdAsync(int blogId);
+
+        Task<T> GetBlogPostDetailsByIdAsync<T>(int blogId);
+
+        Task<IEnumerable<BlogPostViewModel>> GetLatestBlogAsync(int blogId);
     }
 }

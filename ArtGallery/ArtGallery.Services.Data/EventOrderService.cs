@@ -8,7 +8,9 @@
     using ArtGallery.Data.Models;
     using ArtGallery.Data.Repositories.Contracts;
     using ArtGallery.Services.Data.Contracts;
+    using ArtGallery.Services.Mapping;
     using ArtGallery.Web.ViewModels.Events;
+    using AutoMapper.QueryableExtensions;
     using Microsoft.EntityFrameworkCore;
     using static ArtGallery.Common.MessageConstants;
 
@@ -21,7 +23,7 @@
             this.bookingRepo = bookingRepo;
         }
 
-        public async Task CreateOrder(EventOrderViewModel model)
+        public async Task CreateOrder(EventOrderViewModel model, bool approved)
         {
             model.BookingDate = DateTime.UtcNow;
             var user = await bookingRepo.All<ArtGalleryUser>()
@@ -32,11 +34,11 @@
                 throw new ArgumentException(UnknowUser);
             }
 
-            var booking = bookingRepo.All<EventOrderViewModel>()
-                                 .Where(o => o.Price == model.Price &&
-                                          o.Quantity == model.Quantity)
-                                 .Include(u => u.UserId == model.UserId)
-                                 .FirstOrDefault();
+            var booking = this.bookingRepo.All<EventOrderViewModel>()
+                .Where(b => b.Confirmed == approved && b.UserId == model.UserId && b.BookingDate > DateTime.UtcNow)
+                .OrderBy(b => b.BookingDate)
+                .To<Event>()
+                .ToList();
 
             await this.bookingRepo.AddAsync(booking);
             await bookingRepo.SaveChangesAsync();
