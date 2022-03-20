@@ -19,7 +19,7 @@ Art Gallery's main idea is to be an app for booking and sales. A place where reg
   
 <strong> Admin: </strong>
 * Can create or delete Blog Posts.
-* Can create or delete events and paintings available for sale.
+* Can create, update or delete events and paintings available for sale.
 * Have access to All Sales and Booking History.
   
 <strong> Manager: </strong>
