@@ -67,26 +67,46 @@
             return (IEnumerable<EventType>)eventByType;
         }
 
-        public IEnumerable<int> GetByIdAsync(int id)
+        public IEnumerable<int> GetByIdAsync(int eventId)
         {
             var events = this.eventRepo
                     .All<EventViewModel>()
-                    .Where(x => x.EventId == id)
+                    .Where(x => x.EventId == eventId)
                     .FirstOrDefault();
 
             return (IEnumerable<int>)events;
         }
 
-        public async Task<IEnumerable<T>> GetUpcomingByIdAsync<T>(int id)
+        public async Task<IEnumerable<T>> GetUpcomingByIdAsync<T>(int eventId)
         {
             var upcomingEvents = this.eventRepo
                                  .All<EventViewModel>()
-                                 .Where(x => x.EventId == id &&
+                                 .Where(x => x.EventId == eventId &&
                                     x.Date.Date > DateTime.UtcNow.Date)
                                  .OrderBy(x => x.Date)
                                  .To<T>().ToListAsync();
 
             return await upcomingEvents;
+        }
+
+        public async Task<T> GetEventDetailsByIdAsync<T>(int eventId)
+        {
+            var eventDetails = this.eventRepo
+                            .All<EventViewModel>()
+                            .Where(e => e.EventId == eventId)
+                            .To<T>()
+                            .FirstOrDefault();
+
+            return eventDetails;
+        }
+
+        public async Task<bool> CheckIfEventExists(int eventId)
+        {
+            var even = await this.eventRepo
+                        .All<EventViewModel>()
+                        .FirstOrDefaultAsync(x => x.EventId == eventId);
+
+            return even != null;
         }
     }
 }
