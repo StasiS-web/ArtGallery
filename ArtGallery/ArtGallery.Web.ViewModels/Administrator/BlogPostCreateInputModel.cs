@@ -7,20 +7,20 @@
     public class BlogPostCreateInputModel
     {
         [Required]
-        [MinLength(TitleMinLength)]
         [MaxLength(TitleMaxLength)]
+        [MinLength(TitleMinLength)]
         public string Title { get; set; }
 
         [DataType(DataType.ImageUrl)]
         public IFormFile UrlImage { get; set; }
 
-        [MinLength(ContentMinLength)]
         [MaxLength(ContentMaxLength)]
+        [MinLength(ContentMinLength)]
         public string Content { get; set; }
 
         [Required]
-        [MinLength(AdminAuthorMinLength)]
         [MaxLength(AdminAuthorMaxLength)]
+        [MinLength(AdminAuthorMinLength)]
         public string Author { get; set; }
     }
 }

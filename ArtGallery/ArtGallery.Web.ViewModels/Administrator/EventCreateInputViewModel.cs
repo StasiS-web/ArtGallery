@@ -9,6 +9,7 @@
     public class EventCreateInputViewModel
     {
         [MaxLength(EventNameMaxLenth)]
+        [MinLength(EventNameMinLenth)]
         public string Name { get; set; }
 
         [Required]
@@ -21,7 +22,6 @@
 
         public EventType Type { get; set; }
 
-        [ForeignKey(nameof(ExhibitionHall))]
         [Required]
         public int ExhibitionHallId { get; set; }
 
@@ -30,6 +30,7 @@
         public TicketType TicketType { get; set; }
 
         [MaxLength(EventDescriptionMaxLenth)]
+        [MinLength(EventDescriptionMinLength)]
         public string Description { get; set; }
     }
 }
