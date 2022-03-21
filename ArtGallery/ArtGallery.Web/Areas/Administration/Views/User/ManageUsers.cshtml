@@ -1,0 +1,53 @@
+﻿@using ArtGallery.Web.ViewModels.Users
+@model IEnumerable<UserListViewModel>
+@{
+}
+
+<div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Application Users</h3>
+              </div>
+
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>User</th>
+                      <th style="width: 40px">UserName</th>
+                      <th>Email</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      @foreach (var user in Model)
+                      {
+                          <tr>
+                            <td>@user.Name</td>
+                            <td><span class="badge bg-danger">@user.UserName</span></td>
+                            <td>@user.Email</td>
+                            <td>
+                                <div class="progress progress-xs">
+                                   <a asp-area="administration" asp-action="roles" asp-controller="user" asp-route-id="@user.Id"class="btn btn-app">
+                                        <i class="fas fa-edit"></i> Edit </a>
+                                   <a asp-area="administration" asp-action="roles" asp-controller="user" asp-route-id="@user.Id" class="btn btn-block btn-outline-success btn-sm">Roles</a>
+                                </div>
+                            </td>
+                          </tr>
+                     }                 
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+                <ul class="pagination pagination-sm m-0 float-right">
+                  <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                </ul>
+              </div>
+         </div>
+     </div>
+ </div>
