@@ -1,5 +1,4 @@
-﻿@page
-@using ArtGallery.Common
+﻿@using ArtGallery.Web.Areas.Administration
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +6,6 @@
     
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="keywords" content="ArtGallery" />
     <title>@ViewData["Title"] - @GlobalConstants.SystemName</title>
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -22,10 +20,7 @@
     <link rel="stylesheet" href="~/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
     <link rel="stylesheet" href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
 
-    <!-- Other head element -->
-    @Html.Partial("_Favicons")
-
-    @* @this.RenderSection("Styles", required: false) *@
+    @this.RenderSection("Styles", required: false) 
 </head>
 <body class="hold-transition sidebar-mini" data-panel-auto-height-mode="height">
  <div class="wrapper">
@@ -44,6 +39,8 @@
               <!-- Navbar Search -->
               <li class="nav-item">
                   <partial name="_AdminNavigation" />
+
+                  <partial name="_SearchBox" />
               </li>
               
               </ul>
@@ -90,12 +87,13 @@
       <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
-             @*   @this.RenderBody()  *@
+              @this.RenderBody() 
            </div><!-- /.container-fluid -->
         </div>
         <!-- /.content -->
         </div>
      <!-- /.content-wrapper -->
+
 
     <partial name="_FooterPartial" />
 </div>
