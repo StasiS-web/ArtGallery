@@ -3,10 +3,14 @@
     public static class GlobalConstants
     {
         public const string SystemName = "ArtGallery";
-        public const string AdministratorRoleName = "Admiinistrator";
-        public const string GalleryManagerRoleName = "Manager";
-        public const string UserRoleName = "Identity User";
         public const string CloudName = "dnvg6uuxl";
+
+        public static class Roles
+        {
+            public const string AdministratorRoleName = "Administrator";
+            public const string GalleryManagerRoleName = "Manager";
+            public const string UserRoleName = "Identity User";
+        }
 
         public static class AccountSeeding
         {

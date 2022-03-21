@@ -59,23 +59,45 @@
             return blogList;
         }
 
-        public IEnumerable<int> GetById<T>(int id)
+        public IEnumerable<int> GetById<T>(int blogId)
         {
             var blogPost = this.blogRepo
                     .All<BlogPostViewModel>()
-                    .Where(x => x.Id == id)
+                    .Where(x => x.BlogId == blogId)
                     .FirstOrDefault();
 
             return (IEnumerable<int>)blogPost;
         }
 
-        public async Task<string> GetAuthorIdAsync(int postId)
+        public async Task<string> GetAuthorIdAsync(int blogId)
         {
             var posts = this.blogRepo
                 .All<BlogPostViewModel>()
-                .SingleOrDefault(p => p.Id == postId);
+                .SingleOrDefault(p => p.BlogId == blogId);
 
             return posts.Author;
+        }
+
+        public async Task<T> GetBlogPostDetailsByIdAsync<T>(int blogId)
+        {
+            var blogPost = this.blogRepo
+                            .All<BlogPostViewModel>()
+                            .Where(b => b.BlogId == blogId)
+                            .To<T>()
+                            .FirstOrDefault();
+
+            return blogPost;
+        }
+
+        public async Task<IEnumerable<BlogPostViewModel>> GetLatestBlogAsync(int blogId)
+        {
+            /*var query = this.blogRepo.All<BlogPostViewModel>()
+                                     .Where(b => b.BlogId == blogId)
+                                     .OrderByDescending(b => b.CreatedOn)
+                                     .Take(5);
+            using var connection = ConnectionStrings();
+            return await connection.QueryAsync<BlogPostViewModel>(query, new { amount = 5 });*/
+            throw new NotImplementedException();
         }
     }
 }

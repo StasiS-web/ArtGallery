@@ -8,6 +8,7 @@
     using ArtGallery.Data.Seeding.Contracts;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
+    using static ArtGallery.Common.GlobalConstants;
 
     public class RoleSeeder : ISeeder
     {
@@ -15,8 +16,8 @@
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
 
-            await SeedRoleAsync(roleManager, GlobalConstants.AdministratorRoleName);
-            await SeedRoleAsync(roleManager, GlobalConstants.GalleryManagerRoleName);
+            await SeedRoleAsync(roleManager, Roles.AdministratorRoleName);
+            await SeedRoleAsync(roleManager, Roles.GalleryManagerRoleName);
         }
 
         private static async Task SeedRoleAsync(RoleManager<ApplicationRole> roleManager, string roleName)

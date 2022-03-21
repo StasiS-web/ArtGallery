@@ -8,6 +8,7 @@
     using ArtGallery.Data.Seeding.Contracts;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
+    using static ArtGallery.Common.GlobalConstants;
 
     public class AccountsSeeder : ISeeder
     {
@@ -21,14 +22,14 @@
                 userManager,
                 roleManager,
                 GlobalConstants.AccountSeeding.AdminEmail,
-                GlobalConstants.AdministratorRoleName);
+                Roles.AdministratorRoleName);
 
             // Create GallaryManager
             await CreateUser(
                 userManager,
                 roleManager,
                 GlobalConstants.AccountSeeding.GalleryManagerEmail,
-                GlobalConstants.GalleryManagerRoleName);
+                Roles.GalleryManagerRoleName);
 
             // Create User
             await CreateUser(

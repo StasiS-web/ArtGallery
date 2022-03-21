@@ -8,7 +8,7 @@
 
     public class BlogPostViewModel : IMapFrom<BlogPost>
     {
-        public int Id { get; set; }
+        public int BlogId { get; set; }
 
         public string Title { get; set; }
 

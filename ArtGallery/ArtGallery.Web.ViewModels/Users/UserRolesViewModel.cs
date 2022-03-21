@@ -6,7 +6,7 @@
     {
         public string UserId { get; set; }
 
-        public UserRole Name { get; set; }
+        public string Name { get; set; }
 
         public string[] RoleIds { get; set; }
     }

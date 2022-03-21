@@ -37,7 +37,7 @@
         {
             var blogPost = this.blogRepo
                 .All<BlogPostViewModel>()
-                .Where(x => x.Id == id)
+                .Where(x => x.BlogId == id)
                 .FirstOrDefault();
 
             this.blogRepo.Delete(blogPost);

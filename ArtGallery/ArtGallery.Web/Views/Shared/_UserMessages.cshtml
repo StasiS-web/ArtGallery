@@ -3,7 +3,7 @@
 @if (ViewData[MessageConstants.ErrorMessages] != null)
 {
     <script>
-        $(function(){
+        $(function() {
             toastr.error('@ViewData[MessageConstants.ErrorMessages]?.ToString()');
         });
     </script>
@@ -12,7 +12,7 @@
 @if (ViewData[MessageConstants.WarningMessage] != null)
 {
     <script>
-        $(function(){
+        $(function() {
             toastr.error('@ViewData[MessageConstants.WarningMessage]?.ToString()');
         });
     </script>
@@ -21,7 +21,7 @@
 @if (ViewData[MessageConstants.OperationalMessages] != null)
 {
     <script>
-        $(function(){
+        $(function() {
             toastr.error('@ViewData[MessageConstants.OperationalMessages]?.ToString()');
         });
     </script>
