@@ -30,17 +30,17 @@
                 .ToList();
         }
 
-        public async Task<string> GetUserById(UserViewModel model)
+        public async Task<ArtGalleryUser> GetUserById(string userId)
         {
             var user = await this.userRepo
-                .GetByIdAsync<ArtGalleryUser>(model.UserId);
+                .GetByIdAsync<ArtGalleryUser>(userId);
 
             if (user == null)
             {
-                throw new ArgumentNullException(string.Format(InvalidUserId, model.UserId));
+                throw new ArgumentNullException(string.Format(InvalidUserId, userId));
             }
 
-            return user.Id;
+            return user;
         }
 
         public string GetIdByUsername(UserViewModel model)
@@ -55,6 +55,19 @@
             }
 
             return user.Id;
+        }
+
+        public async Task<IEnumerable<UserListViewModel>> GetUsers()
+        {
+            return this.userRepo.All<ArtGalleryUser>()
+                                 .Select(u => new UserListViewModel()
+                                 {
+                                     Email = u.Email,
+                                     UserName = u.UserName,
+                                     Id = u.Id,
+                                     Name = $"{u.FirstName} {u.LastName}",
+                                 })
+                                 .ToList();
         }
 
         public async Task<UserEditViewModel> GetUserToEdit(string userId)
