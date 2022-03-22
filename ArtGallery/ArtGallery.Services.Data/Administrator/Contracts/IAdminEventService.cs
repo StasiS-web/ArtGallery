@@ -5,9 +5,9 @@
 
     public interface IAdminEventService
     {
-        Task CreateEventAsync(EventCreateInputViewModel model);
+        Task<bool> CreateEventAsync(EventCreateInputViewModel model);
 
-        Task UpdateEventAsync(EventViewModel model);
+        Task<bool> UpdateEventAsync(EventEditViewModel model);
 
         Task ConfirmAsync(int id);
 

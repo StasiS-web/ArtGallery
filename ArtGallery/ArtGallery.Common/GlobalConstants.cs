@@ -128,6 +128,7 @@
             public const string PasswordDisplay = "Password";
             public const string ConfirmPasswordDisplay = "Confirm Password";
             public const string PageContentDisplayName = "Page Content";
+            public const string EventNameDisplay = "Event Name";
         }
     }
 }

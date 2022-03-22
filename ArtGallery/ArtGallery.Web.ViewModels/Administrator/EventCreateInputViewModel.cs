@@ -22,11 +22,6 @@
 
         public EventType Type { get; set; }
 
-        [Required]
-        public int ExhibitionHallId { get; set; }
-
-        public string ExhibitionHall { get; set; }
-
         public TicketType TicketType { get; set; }
 
         [MaxLength(EventDescriptionMaxLenth)]
