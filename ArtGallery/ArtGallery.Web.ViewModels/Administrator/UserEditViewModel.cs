@@ -1,4 +1,4 @@
-﻿namespace ArtGallery.Web.ViewModels.Users
+﻿namespace ArtGallery.Web.ViewModels.Administrator
 {
     using System;
     using System.Collections.Generic;
