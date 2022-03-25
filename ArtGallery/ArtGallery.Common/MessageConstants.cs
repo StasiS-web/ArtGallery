@@ -26,10 +26,12 @@
         public const string Title = "Title must be between 5 and 70 characters long.";
         public const string Content = "Content must be between 600 and 3500 characters long.";
         public const string Comment = "Comment should be between 5 and 150 characters long.";
+        public const string LatestPost = "Your Blog Post should be the latest date published.";
 
         // Arts
         public const string PaintingName = "Painting Name should be between 10 and 35 characters long.";
         public const string ArtsDescription = "Description must be between 150 and 1000 chracters long.";
+        public const string InvalidArt = "This art does not exist";
 
         // Arts and Blog
         public const string AuthorsName = "Author name must be between 50 and 100 characters long.";

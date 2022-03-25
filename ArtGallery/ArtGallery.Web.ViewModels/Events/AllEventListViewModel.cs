@@ -12,6 +12,8 @@
 
         public EventType Type { get; set; }
 
+        public TicketType TicketSelection { get; set; }
+
         public string Description { get; set; }
     }
 }

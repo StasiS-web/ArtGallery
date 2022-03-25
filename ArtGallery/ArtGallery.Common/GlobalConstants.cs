@@ -130,5 +130,11 @@
             public const string PageContentDisplayName = "Page Content";
             public const string EventNameDisplay = "Event Name";
         }
+
+        public static class SeededDataCounts
+        {
+            public const int Events = 3;
+            public const int BlogPost = 6;
+        }
     }
 }

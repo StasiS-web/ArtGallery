@@ -6,6 +6,7 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
     using ArtGallery.Data.Models.Enumeration;
+    using Microsoft.AspNetCore.Mvc.Rendering;
     using static ArtGallery.Common.GlobalConstants.DisplayNames;
     using static ArtGallery.Common.GlobalConstants.Event;
 
@@ -26,9 +27,23 @@
         [Column(TypeName = "date")]
         public DateTime Date { get; set; }
 
+        // In the view need to use a list from enum class to display the event type
         public EventType Type { get; set; }
 
-        public TicketType TicketType { get; set; }
+        public List<SelectListItem> EventType { get; } = new List<SelectListItem>
+        {
+            new SelectListItem { Value = "1", Text = "InPerson" },
+            new SelectListItem { Value = "2", Text = "Online" },
+        };
+
+        // In the view need to use a list from enum class to display the ticket type
+        public TicketType TicketSelection { get; set; }
+
+        public List<SelectListItem> TicketType { get; } = new List<SelectListItem>
+        {
+            new SelectListItem { Value = "1", Text = "Free" },
+            new SelectListItem { Value = "2", Text = "Paid" },
+        };
 
         [MaxLength(EventDescriptionMaxLenth)]
         [MinLength(EventDescriptionMinLength)]
