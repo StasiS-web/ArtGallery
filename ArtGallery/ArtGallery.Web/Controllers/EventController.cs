@@ -1,4 +1,4 @@
-﻿using ArtGallery.Web.ViewModels.Events;
+using ArtGallery.Web.ViewModels.Events;
 using Microsoft.AspNetCore.Mvc;
 using Event = ArtGallery.Data.Models.Event;
 
