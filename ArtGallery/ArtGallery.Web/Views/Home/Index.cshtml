@@ -1,4 +1,6 @@
-﻿@{
+﻿@using ArtGallery.Web.ViewModels.Home
+@model IndexViewModel
+@{
     ViewData["Title"] = "Home";
 }
 
@@ -7,40 +9,33 @@
         <div class="container-fluid">
              <div class="row">
                       <div class="col-lg-6">
-                        <div class="card  card-primary card-outline">
-                          <div class="card-body">
-                            <h5 class="card-title">Upcoming Event</h5>
-
-                            <p class="card-text">
-                              Some quick example text to build on the card title and make up the bulk of the card's
-                              content.
-                            </p>
-
-                            <a href="#" class="card-link">Go Event Details</a>
-                          </div>
-                        </div>
-
-                        <div class="card">
-                          <div class="card-body">
-                            <h5 class="card-title">Upcoming Event</h5>
-
-                            <p class="card-text">
-                              Some quick example text to build on the card title and make up the bulk of the card's
-                              content.
-                            </p>
-                            <a href="#" class="card-link">Go Event Details</a>
-                          </div>
-                        </div><!-- /.card -->
+                         @foreach (var upcomingEvent in Model.AllUpcomingEvents)
+                         {
+                            <div class="card  card-primary card-outline">
+                              <div class="card-body">
+                                <h5 class="card-title">Upcoming Event: @upcomingEvent.Name</h5>
+                                <span class="start-date">@upcomingEvent.Date</span>
+                                <p calss="class-text">@upcomingEvent.Type</p>
+                                <p class="card-text">
+                                  @upcomingEvent.ShortDescription
+                                </p>
+                           
+                                <a href="#" class="card-link">Go Event Details</a>
+                              </div>
+                            </div>
+                         }
+                         <!-- /.card -->
                       </div>
                       <!-- /.col-md-6 -->
                       <div class="col-lg-6">
                         <div class="card  card-primary card-outline">
                           <div class="card-header">
+                              @*method GetLatestBlogAsync is implemented but it is not working*@
                             <h5 class="m-0">Latest Blog Posts</h5>
                           </div>
                           <div class="card-body">
                             <h6 class="card-title">Special title treatment</h6>
-
+                            <img src="" alt="" />
                             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                             <a href="#" class="btn btn-primary">Blog Post Details</a>
                           </div>

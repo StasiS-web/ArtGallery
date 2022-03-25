@@ -18,15 +18,25 @@
                        <div class="card-text text-white pb-2 pt-1" asp-controller="BlogPost"  asp-action="Details" asp-route-id="@blogPost.BlogId">by @blogPost.Author</div>
                         <a href="#" class="text-white" asp-controller="BlogPost"  asp-action="Details" asp-route-id="@blogPost.BlogId">@blogPost.CreatedOn.Date</a>
                        <div class="card-text text-white">
-                         @blogPost.Content
+                         @blogPost.ShortContect
                        </div>
                        <a href="#" class="text-white" asp-controller="BlogPost"  asp-action="Details" asp-route-id="@blogPost.BlogId">Read More</a>
                      </div>
                    </div>
                 </div>
             }
-
             </div>
+
+            <!-- Sidebar -->
+            <aside class="row">
+                <div class="col">
+                    <div>
+                        <div class="sidebar-dark">Latest Blog Posts</div>
+                        <div>@await Component.InvokeAsync("GetLatestBlogAsync", 5)</div>
+                    </div>
+                </div>
+            </aside>
+
           </div>
         </div>
 

@@ -1,4 +1,5 @@
-﻿using ArtGallery.Web.ViewModels.Users;
+﻿using ArtGallery.Web.ViewModels.Administrator;
+using ArtGallery.Web.ViewModels.Users;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -22,8 +23,7 @@ namespace ArtGallery.Web.Areas.Administration.Controllers
             return View();
         }
 
-        [HttpGet]
-        public async Task<IActionResult> ManageUsers()
+        public IActionResult ManageUsers()
         {
             var users = this.userService.GetUsers();
 

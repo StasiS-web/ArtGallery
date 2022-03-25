@@ -60,6 +60,45 @@
                     TicketSelection = TicketType.Paid,
                     Description = "Exhibiting Artists include:  Sasha Constable,  Paul Wright,  Alice Cescatti",
                 },
+                new Event()
+                {
+                    Name = "Brooklyn Virtual Street Art Experience",
+                    Price = 0.0M,
+                    Date =  DateTime.ParseExact(
+                                "13.03.2022 11:30",
+                                DateTimeFormat,
+                                CultureInfo.InvariantCulture),
+                    Type = EventType.Online,
+                    ExhibitionHallId = (int)ExhibitionHallType.Small,
+                    TicketSelection = TicketType.Free,
+                    Description = "Let’s visit Brooklyn and discover some of the finest street art in the world! WHAT WE'LL DO: Our experience will be broken up into five parts: 1: Transport to a coffee shop in Brooklyn filled with stunning artwork.There, we’ll chat about what street art means to each of us. 2: Take a guided tour through East Williamsburg and view dozens of commissioned murals, some over 40 feet in size! I’ll share amazing stories from a mix of local and international artists. 3.Hop on a virtual subway ride to the Wall of Justice– a new space devoted to a powerful art movement.Bonus: Get to see some ‘creatures’ on the train with unique artwork by Subway Doodle.",
+                },
+                new Event()
+                {
+                    Name = "ART TALES: Yuki Aruga",
+                    Price = 12.0M,
+                    Date =  DateTime.ParseExact(
+                                "14.03.2022 12:30",
+                                DateTimeFormat,
+                                CultureInfo.InvariantCulture),
+                    Type = EventType.InPerson,
+                    ExhibitionHallId = (int)ExhibitionHallType.Small,
+                    TicketSelection = TicketType.Paid,
+                    Description = "Yuki's sensitive and stunningly rendered still lifes are sumptuous in their detail and mastery of medium, with elements of Memento Mori and Vantias paintings undated with a darkly contemporary twist. We can't wait to have Yuki on the program to talk through her work and processes with us - this will be a rare treat so don't miss out!",
+                },
+                new Event()
+                {
+                    Name = "Gardens of the Arts and Crafts Movement",
+                    Price = 0.0M,
+                    Date =  DateTime.ParseExact(
+                                "15.03.2022 15:00",
+                                DateTimeFormat,
+                                CultureInfo.InvariantCulture),
+                    Type = EventType.Online,
+                    ExhibitionHallId = (int)ExhibitionHallType.Small,
+                    TicketSelection = TicketType.Free,
+                    Description = "Art historian and author of Gardens of the Arts and Crafts Movement, Judith B. Tankard surveys the inspirations, characteristics and development of garden design during the Arts and Crafts Movement. Tankard presents a selection of houses and gardens from the era, with an emphasis on the diversity of designers who forge a special approach to garden design – with illustrations and photographs of examples from Europe and North America.",
+                },
             };
 
             foreach (var eve in events)

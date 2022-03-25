@@ -37,5 +37,23 @@
 
             return (IEnumerable<int>)blogPost;
         }
+
+        public ArtDetailsViewModel Details(int artId)
+        {
+            var store = this.storeRepo.AllReadonly<ArtStoreViewModel>()
+                              .Where(s => s.ArtId == artId)
+                              .Select(s => new ArtDetailsViewModel
+                              {
+                                  ArtId = s.ArtId,
+                                  PaintingName = s.PaintingName,
+                                  Price = s.Price,
+                                  UrlImage = s.UrlImage,
+                                  AuthorName = s.AuthorName,
+                                  Description = s.Description,
+                              })
+                              .FirstOrDefault();
+
+            return store;
+        }
     }
 }

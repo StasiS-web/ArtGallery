@@ -13,5 +13,7 @@
         IEnumerable<int> GetById<T>(int id);
 
         IEnumerable<ArtStoreViewModel> GetAll();
+
+        ArtDetailsViewModel Details(int artId);
     }
 }

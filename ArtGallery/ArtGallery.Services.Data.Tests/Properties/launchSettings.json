@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ArtGallery.Services.Data.Tests": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
