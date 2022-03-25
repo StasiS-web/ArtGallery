@@ -1,4 +1,4 @@
-﻿using ArtGallery.Web.ViewModels.Users;
+using ArtGallery.Web.ViewModels.Users;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ArtGallery.Web.Controllers
