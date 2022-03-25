@@ -32,7 +32,7 @@
 
         public ExhibitionHall ExhibitionHall { get; set; }
 
-        public TicketType TicketType { get; set; }
+        public TicketType TicketSelection { get; set; }
 
         [MaxLength(EventDescriptionMaxLenth)]
         public string Description { get; set; }

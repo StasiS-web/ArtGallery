@@ -31,7 +31,7 @@
                                 CultureInfo.InvariantCulture),
                     Type = EventType.Online,
                     ExhibitionHallId = (int)ExhibitionHallType.Small,
-                    TicketType = TicketType.Free,
+                    TicketSelection = TicketType.Free,
                     Description = "The lively and colourful beasts painted onto ceramic dishes featured in this show have been conceived as partners to the adjoining Myths & Monsters exhibition.",
                 },
                 new Event()
@@ -44,7 +44,7 @@
                                 CultureInfo.InvariantCulture),
                     Type = EventType.Online,
                     ExhibitionHallId = (int)ExhibitionHallType.Small,
-                    TicketType = TicketType.Paid,
+                    TicketSelection = TicketType.Paid,
                     Description = "The National Gallery is marking International Women’s Day and Women’s History Month with various online events celebrating women in the arts. Highlights include a forum exploring the way women artists have interacted with the national collection, and a lecture examining the role played by art historian Anna Jameson in the reception of Raphael's work in the 19th century.",
                 },
                 new Event()
@@ -57,7 +57,7 @@
                                 CultureInfo.InvariantCulture),
                     Type = EventType.Online,
                     ExhibitionHallId = (int)ExhibitionHallType.Small,
-                    TicketType = TicketType.Paid,
+                    TicketSelection = TicketType.Paid,
                     Description = "Exhibiting Artists include:  Sasha Constable,  Paul Wright,  Alice Cescatti",
                 },
             };

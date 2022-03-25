@@ -14,13 +14,13 @@
 
         public DateTime Date { get; set; }
 
-        public EventType Type { get; set; }
+        public string Type { get; set; }
 
         public int ExhibitionHallId { get; set; }
 
         public string ExhibitionHall { get; set; }
 
-        public TicketType TicketType { get; set; }
+        public string TicketSelection { get; set; }
 
         public string Description { get; set; }
 

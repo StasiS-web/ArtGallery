@@ -22,7 +22,7 @@
 
         public EventType Type { get; set; }
 
-        public TicketType TicketType { get; set; }
+        public TicketType TicketSelection { get; set; }
 
         [MaxLength(EventDescriptionMaxLenth)]
         [MinLength(EventDescriptionMinLength)]

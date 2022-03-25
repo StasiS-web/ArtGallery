@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using static ArtGallery.Common.MessageConstants;
 
 namespace ArtGallery.Web.Areas.Identity.Pages.Account
 {
@@ -31,14 +32,13 @@ namespace ArtGallery.Web.Areas.Identity.Pages.Account
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             IUserStore<IdentityUser> userStore,
-            IUserEmailStore<IdentityUser> emailStore,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _userStore = userStore;
-            _emailStore = this.GetEmailStore();
+            _emailStore = GetEmailStore();
             _logger = logger;
             _emailSender = emailSender;
         }
@@ -52,12 +52,7 @@ namespace ArtGallery.Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [StringLength(20, ErrorMessage = "The {0} should not be null. It should be between {2} and {1} characters long.", MinimumLength = 5)]
-            [Display(Name = "Username")]
-            public string Username { get; set; }
-
-            [Required]
+            [Required(ErrorMessage = EmptyField)]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -88,7 +83,7 @@ namespace ArtGallery.Web.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
-                await this._userStore.SetUserNameAsync(user, Input.Username, CancellationToken.None);
+                await this._userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await this._emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
@@ -138,18 +133,18 @@ namespace ArtGallery.Web.Areas.Identity.Pages.Account
             {
                 throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. +" +
                     $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or " +
-                    $"override the register page in /Area/Identity/Pages/Account/Shared/Register.cshtml");
+                    $"override the register page in /Area/Identity/Pages/Account/Register.cshtml");
             }
         }
 
         private IUserEmailStore<IdentityUser> GetEmailStore()
         {
-            if (!this._userManager.SupportsUserEmail)
+            if (!_userManager.SupportsUserEmail)
             {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
 
-            return (IUserEmailStore<IdentityUser>)this._userStore;
+            return (IUserEmailStore<IdentityUser>)_userStore;
         }
     }
 }

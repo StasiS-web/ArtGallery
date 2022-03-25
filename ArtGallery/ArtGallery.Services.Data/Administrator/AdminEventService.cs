@@ -12,6 +12,7 @@
     using ArtGallery.Services.Data.Administrator.Contracts;
     using ArtGallery.Web.ViewModels.Administrator;
     using ArtGallery.Web.ViewModels.Events;
+    using Microsoft.AspNetCore.Mvc.Rendering;
     using static ArtGallery.Common.GlobalConstants.Formating;
 
     public class AdminEventService : IAdminEventService
@@ -36,7 +37,7 @@
                                  Convert.ToString(model.Date),
                                  CultureInfo.InvariantCulture);
                 createEvent.Type = model.Type;
-                createEvent.TicketType = model.TicketType;
+                createEvent.TicketSelection = model.TicketSelection;
                 createEvent.Description = model.Description;
 
                 this.eventRepo.AddAsync(createEvent);
@@ -61,7 +62,7 @@
                                     Convert.ToString(model.Date),
                                     CultureInfo.InvariantCulture);
                 updateEvent.Type = model.Type;
-                updateEvent.TicketType = model.TicketType;
+                updateEvent.TicketSelection = model.TicketSelection;
                 updateEvent.Description = model.Description;
 
                 this.eventRepo.Update(updateEvent);

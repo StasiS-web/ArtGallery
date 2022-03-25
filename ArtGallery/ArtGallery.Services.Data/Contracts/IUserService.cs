@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using ArtGallery.Data.Models;
+    using ArtGallery.Web.ViewModels.Administrator;
     using ArtGallery.Web.ViewModels.Users;
 
     public interface IUserService

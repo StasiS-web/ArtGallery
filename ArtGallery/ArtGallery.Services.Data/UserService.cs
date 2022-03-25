@@ -9,6 +9,7 @@
     using ArtGallery.Data.Models;
     using ArtGallery.Data.Repositories.Contracts;
     using ArtGallery.Services.Data.Contracts;
+    using ArtGallery.Web.ViewModels.Administrator;
     using ArtGallery.Web.ViewModels.Users;
     using Microsoft.EntityFrameworkCore;
     using static ArtGallery.Common.MessageConstants;
