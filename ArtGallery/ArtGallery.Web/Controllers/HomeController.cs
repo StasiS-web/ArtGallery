@@ -1,4 +1,4 @@
-﻿namespace ArtGallery.Web.Controllers
+namespace ArtGallery.Web.Controllers
 {
     using System.Collections.Generic;
     using System.Diagnostics;
