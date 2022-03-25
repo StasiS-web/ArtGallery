@@ -1,4 +1,4 @@
-﻿namespace ArtGallery.Web.Helper
+namespace ArtGallery.Web.Helper
 {
     using System;
     using System.Collections.Generic;
