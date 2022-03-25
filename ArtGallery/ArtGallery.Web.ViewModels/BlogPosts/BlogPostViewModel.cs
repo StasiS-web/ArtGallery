@@ -1,4 +1,4 @@
-﻿namespace ArtGallery.Web.ViewModels.BlogPosts
+namespace ArtGallery.Web.ViewModels.BlogPosts
 {
     using System;
     using ArtGallery.Data.Models;
