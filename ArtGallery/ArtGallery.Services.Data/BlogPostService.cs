@@ -11,10 +11,13 @@
     using ArtGallery.Services.Mapping;
     using ArtGallery.Web.ViewModels.Administrator;
     using ArtGallery.Web.ViewModels.BlogPosts;
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
 
     public class BlogPostService : IBlogPostService
     {
         private readonly IAppRepository blogRepo;
+        private readonly IConfigurationProvider mapper;
 
         public BlogPostService(IAppRepository blogRepo)
         {
@@ -91,13 +94,12 @@
 
         public async Task<IEnumerable<BlogPostViewModel>> GetLatestBlogAsync(int blogId)
         {
-            /*var query = this.blogRepo.All<BlogPostViewModel>()
+           return this.blogRepo.All<BlogPostViewModel>()
                                      .Where(b => b.BlogId == blogId)
                                      .OrderByDescending(b => b.CreatedOn)
-                                     .Take(5);
-            using var connection = ConnectionStrings();
-            return await connection.QueryAsync<BlogPostViewModel>(query, new { amount = 5 });*/
-            throw new NotImplementedException();
+                                     .ProjectTo<BlogPostViewModel>(this.mapper)
+                                     .Take(5)
+                                     .ToList();
         }
     }
 }
