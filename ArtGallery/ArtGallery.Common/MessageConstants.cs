@@ -1,4 +1,4 @@
-﻿namespace ArtGallery.Common
+namespace ArtGallery.Common
 {
     public static class MessageConstants
     {
