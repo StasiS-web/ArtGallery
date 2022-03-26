@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using ArtGallery.Data.Models.Enumeration;
 using ArtGallery.Services.Data.Administrator.Contracts;
 using ArtGallery.Web.Helper;
