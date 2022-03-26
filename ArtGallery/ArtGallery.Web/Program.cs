@@ -74,7 +74,6 @@ app.UseAuthorization();
 // app.MapControllerRoute(
 //        name: "Area",
 //      pattern: "{controller=Home}/{action=Index}/{id?}");
-
 app.MapControllerRoute(
            name: "default",
            pattern: "{controller=Home}/{action=Index}/{id?}");
