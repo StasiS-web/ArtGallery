@@ -62,6 +62,5 @@ namespace ArtGallery.Web.Areas.Administration.Controllers
             await this.adminArtStore.UpdateArtStore(model);
             return Redirect("/View/ArtStore");
         }
-
     }
 }
