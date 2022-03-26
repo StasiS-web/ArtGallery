@@ -1,7 +1,7 @@
-using NUnit.Framework;
-
 namespace ArtGallery.Services.Data.Tests
 {
+    using NUnit.Framework;
+    
     public class Tests
     {
         [SetUp]
