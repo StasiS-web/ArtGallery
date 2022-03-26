@@ -1,4 +1,4 @@
-﻿using System.Web.Mvc;
+using System.Web.Mvc;
 using ArtGallery.Services.Data.Administrator.Contracts;
 using ArtGallery.Web.ViewModels.Administrator;
 using ArtGallery.Web.ViewModels.ArtStore;
