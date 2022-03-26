@@ -55,5 +55,5 @@
     <Folder Include="Views\Event\" />
     <Folder Include="wwwroot\img\" />
   </ItemGroup>
-
+  
 </Project>
