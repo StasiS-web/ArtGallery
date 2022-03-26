@@ -1,4 +1,4 @@
-﻿using ArtGallery.Web.ViewModels.Administrator;
+using ArtGallery.Web.ViewModels.Administrator;
 using ArtGallery.Web.ViewModels.Users;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
