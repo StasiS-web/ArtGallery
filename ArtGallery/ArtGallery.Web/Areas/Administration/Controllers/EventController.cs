@@ -66,6 +66,7 @@ namespace ArtGallery.Web.Areas.Administration.Controllers
         public IActionResult ActionType()
         {
             var model = new EventEditViewModel();
+            
             return View(model);
         }
     }
