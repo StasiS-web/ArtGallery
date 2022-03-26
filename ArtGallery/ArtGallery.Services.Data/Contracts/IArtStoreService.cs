@@ -1,4 +1,4 @@
-﻿namespace ArtGallery.Services.Data.Contracts
+namespace ArtGallery.Services.Data.Contracts
 {
     using System;
     using System.Collections.Generic;
