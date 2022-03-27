@@ -1,11 +1,11 @@
 namespace ArtGallery.Web.Helper
 {
+    using Microsoft.AspNetCore.Mvc.Rendering;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Web.Mvc;
     using SelectListItem = Microsoft.AspNetCore.Mvc.Rendering.SelectListItem;
 
     public static class EnumHelper
