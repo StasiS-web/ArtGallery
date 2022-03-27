@@ -19,20 +19,20 @@
 
         public ArtGalleryUser User { get; set; }
 
-        [ForeignKey(nameof(ArtStore))]
+        [Required]
+        [ForeignKey(nameof(PaintingName))]
         public int ArtId { get; set; }
 
         [MaxLength(PaintingNameMaxLenth)]
         public ArtStore PaintingName { get; set; }
 
+        [Required]
         public int Quantity { get; set; }
 
         [Required]
         [Column(TypeName = "money")]
         [Range(PriceMin, PriceMax)]
         public decimal Price { get; set; }
-
-        public PaymentMethod PaymentMethod { get; set; }
 
         public bool IsDeleted { get; set; }
 

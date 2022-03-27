@@ -12,7 +12,8 @@
 
         public BlogPost BlogPost { get; set; }
 
-        [MaxLength(CommentContentMaxLength), Required]
+        [Required]
+        [MaxLength(CommentContentMaxLength)]
         public string CommentContent { get; set; }
 
         [Required]

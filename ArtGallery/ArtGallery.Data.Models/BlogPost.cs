@@ -18,7 +18,8 @@
         [MaxLength(ContentMaxLength)]
         public string Content { get; set; }
 
-        // Blog Post are only created by the admin
+        // Blog Post are only created in the Administration Dashboard
+        // so the Author is an Administrator
         [Required]
         [MaxLength(AdminAuthorMaxLength)]
         public string Author { get; set; }

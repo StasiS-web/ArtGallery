@@ -25,7 +25,7 @@
 
         public ArtGalleryUser User { get; set; }
 
-        [ForeignKey(nameof(ArtStore))]
+        [ForeignKey(nameof(PaintingName))]
         public int ArtId { get; set; }
 
         [MaxLength(PaintingNameMaxLenth)]

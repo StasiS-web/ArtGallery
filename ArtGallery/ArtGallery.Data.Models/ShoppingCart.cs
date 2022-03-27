@@ -30,6 +30,10 @@
         [Range(PriceMin, PriceMax)]
         public decimal Price { get; set; }
 
+        [Required]
+        [Column(TypeName = "money")]
+        public decimal TotalPrice { get; set; }
+
         public ICollection<ArtStore> Arts { get; set; }
     }
 }

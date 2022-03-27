@@ -10,7 +10,7 @@
     {
         public Event()
         {
-            this.EventTickets = new HashSet<EventOrder>();
+            this.BookingTransactions = new HashSet<BookingTransaction>();
         }
 
         [MaxLength(EventNameMaxLenth)]
@@ -26,8 +26,8 @@
 
         public EventType Type { get; set; }
 
-        [ForeignKey(nameof(ExhibitionHall))]
         [Required]
+        [ForeignKey(nameof(ExhibitionHall))]
         public int ExhibitionHallId { get; set; }
 
         public ExhibitionHall ExhibitionHall { get; set; }
@@ -44,6 +44,6 @@
 
         public bool? Confirmed { get; set; }
 
-        public ICollection<EventOrder> EventTickets { get; set; }
+        public ICollection<BookingTransaction> BookingTransactions { get; set; }
     }
 }

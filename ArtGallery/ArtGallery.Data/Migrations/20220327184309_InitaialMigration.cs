@@ -1,11 +1,11 @@
-﻿#nullable disable
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
 
 namespace ArtGallery.Data.Migrations
 {
-    using System;
-    using Microsoft.EntityFrameworkCore.Migrations;
-
-    public partial class InitialMigration : Migration
+    public partial class InitaialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -102,7 +102,7 @@ namespace ArtGallery.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Question = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Answer = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    Answer = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
@@ -195,12 +195,12 @@ namespace ArtGallery.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Price = table.Column<decimal>(type: "money", nullable: false),
                     Date = table.Column<DateTime>(type: "date", nullable: false),
                     Type = table.Column<int>(type: "int", nullable: false),
                     ExhibitionHallId = table.Column<int>(type: "int", nullable: false),
-                    TicketType = table.Column<int>(type: "int", nullable: false),
+                    TicketSelection = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(1500)", maxLength: 1500, nullable: false),
                     Confirmed = table.Column<bool>(type: "bit", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -227,7 +227,6 @@ namespace ArtGallery.Data.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    RoleName = table.Column<int>(type: "int", nullable: false),
                     Gender = table.Column<int>(type: "int", nullable: false),
                     UrlImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ShoppingCartId = table.Column<decimal>(type: "decimal", nullable: false),
@@ -440,6 +439,7 @@ namespace ArtGallery.Data.Migrations
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     PaintingName = table.Column<string>(type: "nvarchar(35)", maxLength: 35, nullable: false),
                     Price1 = table.Column<decimal>(type: "money", nullable: false),
+                    TotalPrice = table.Column<decimal>(type: "money", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
@@ -491,10 +491,8 @@ namespace ArtGallery.Data.Migrations
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ArtId = table.Column<int>(type: "int", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "date", nullable: false),
-                    PaintingNameId = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "money", nullable: false),
-                    PaymentMethod = table.Column<int>(type: "int", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -508,8 +506,8 @@ namespace ArtGallery.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ArtsOrders_Arts_PaintingNameId",
-                        column: x => x.PaintingNameId,
+                        name: "FK_ArtsOrders_Arts_ArtId",
+                        column: x => x.ArtId,
                         principalTable: "Arts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -523,7 +521,6 @@ namespace ArtGallery.Data.Migrations
                     ArtId = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "date", nullable: false),
                     SaleType = table.Column<int>(type: "int", nullable: false),
-                    PaintingNameId = table.Column<int>(type: "int", nullable: false),
                     PaymentMethod = table.Column<int>(type: "int", nullable: false),
                     Id = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -541,8 +538,8 @@ namespace ArtGallery.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_SaleTransactions_Arts_PaintingNameId",
-                        column: x => x.PaintingNameId,
+                        name: "FK_SaleTransactions_Arts_ArtId",
+                        column: x => x.ArtId,
                         principalTable: "Arts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -569,14 +566,14 @@ namespace ArtGallery.Data.Migrations
                 column: "ShoppingCartId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ArtsOrders_ArtId",
+                table: "ArtsOrders",
+                column: "ArtId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ArtsOrders_IsDeleted",
                 table: "ArtsOrders",
                 column: "IsDeleted");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ArtsOrders_PaintingNameId",
-                table: "ArtsOrders",
-                column: "PaintingNameId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -706,11 +703,6 @@ namespace ArtGallery.Data.Migrations
                 name: "IX_SaleTransactions_IsDeleted",
                 table: "SaleTransactions",
                 column: "IsDeleted");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SaleTransactions_PaintingNameId",
-                table: "SaleTransactions",
-                column: "PaintingNameId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SaleTransactions_UserId",

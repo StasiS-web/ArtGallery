@@ -38,8 +38,8 @@
 
         public string UrlImage { get; set; }
 
-        [ForeignKey(nameof(ShoppingCart))]
         [Required]
+        [ForeignKey(nameof(ShoppingCart))]
         public int ShoppingCartId { get; set; }
 
         public ShoppingCart ShoppingCart { get; set; }

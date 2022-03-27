@@ -249,12 +249,6 @@ namespace ArtGallery.Data.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("date");
 
-                    b.Property<int>("PaintingNameId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PaymentMethod")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("money");
 
@@ -263,9 +257,9 @@ namespace ArtGallery.Data.Migrations
 
                     b.HasKey("UserId", "ArtId");
 
-                    b.HasIndex("IsDeleted");
+                    b.HasIndex("ArtId");
 
-                    b.HasIndex("PaintingNameId");
+                    b.HasIndex("IsDeleted");
 
                     b.ToTable("ArtsOrders");
                 });
@@ -490,8 +484,8 @@ namespace ArtGallery.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("money");
@@ -592,8 +586,8 @@ namespace ArtGallery.Data.Migrations
 
                     b.Property<string>("Answer")
                         .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -677,9 +671,6 @@ namespace ArtGallery.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PaintingNameId")
-                        .HasColumnType("int");
-
                     b.Property<int>("PaymentMethod")
                         .HasColumnType("int");
 
@@ -689,8 +680,6 @@ namespace ArtGallery.Data.Migrations
                     b.HasKey("ArtId", "UserId");
 
                     b.HasIndex("IsDeleted");
-
-                    b.HasIndex("PaintingNameId");
 
                     b.HasIndex("UserId");
 
@@ -761,6 +750,9 @@ namespace ArtGallery.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("money")
                         .HasColumnName("Price1");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("money");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -910,8 +902,8 @@ namespace ArtGallery.Data.Migrations
             modelBuilder.Entity("ArtGallery.Data.Models.ArtOrder", b =>
                 {
                     b.HasOne("ArtGallery.Data.Models.ArtStore", "PaintingName")
-                        .WithMany("ArtOrders")
-                        .HasForeignKey("PaintingNameId")
+                        .WithMany()
+                        .HasForeignKey("ArtId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -959,7 +951,7 @@ namespace ArtGallery.Data.Migrations
             modelBuilder.Entity("ArtGallery.Data.Models.BookingTransaction", b =>
                 {
                     b.HasOne("ArtGallery.Data.Models.Event", "Event")
-                        .WithMany()
+                        .WithMany("BookingTransactions")
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -989,7 +981,7 @@ namespace ArtGallery.Data.Migrations
             modelBuilder.Entity("ArtGallery.Data.Models.EventOrder", b =>
                 {
                     b.HasOne("ArtGallery.Data.Models.Event", "Event")
-                        .WithMany("EventTickets")
+                        .WithMany()
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1008,8 +1000,8 @@ namespace ArtGallery.Data.Migrations
             modelBuilder.Entity("ArtGallery.Data.Models.SaleTransaction", b =>
                 {
                     b.HasOne("ArtGallery.Data.Models.ArtStore", "PaintingName")
-                        .WithMany()
-                        .HasForeignKey("PaintingNameId")
+                        .WithMany("SaleTransactions")
+                        .HasForeignKey("ArtId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -1124,12 +1116,12 @@ namespace ArtGallery.Data.Migrations
 
             modelBuilder.Entity("ArtGallery.Data.Models.ArtStore", b =>
                 {
-                    b.Navigation("ArtOrders");
+                    b.Navigation("SaleTransactions");
                 });
 
             modelBuilder.Entity("ArtGallery.Data.Models.Event", b =>
                 {
-                    b.Navigation("EventTickets");
+                    b.Navigation("BookingTransactions");
                 });
 
             modelBuilder.Entity("ArtGallery.Data.Models.ShoppingCart", b =>

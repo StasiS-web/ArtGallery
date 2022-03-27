@@ -97,7 +97,7 @@
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
 
-            // Needed for Entity with many-to-many relationship
+            // Entity Configuration
             builder.Entity<BlogComment>()
                 .HasKey(x => new { x.BlogPostId, x.UserId });
 
@@ -113,8 +113,10 @@
             builder.Entity<BookingTransaction>()
                 .HasKey(x => new { x.EventId, x.UserId });
 
+            // Proprerty Configuration
             builder.Entity<ShoppingCart>()
                 .Property(x => x.Id)
+                .HasColumnName("TotalPrice")
                 .HasColumnName("Price")
                 .HasColumnType("decimal");
         }
