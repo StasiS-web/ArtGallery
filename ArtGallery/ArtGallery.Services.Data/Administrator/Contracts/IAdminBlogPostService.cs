@@ -4,7 +4,7 @@
 
     public interface IAdminBlogPostService
     {
-        Task CreateBlogPostAsync(BlogPostCreateInputModel model);
+        Task CreateBlogPostAsync(string title, string image, string content, string author);
 
         void Delete(int id);
     }

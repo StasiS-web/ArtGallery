@@ -20,14 +20,14 @@
             this.blogRepo = blogRepo;
         }
 
-        public async Task CreateBlogPostAsync(BlogPostCreateInputModel model)
+        public async Task CreateBlogPostAsync(string title, string image, string content, string author)
         {
             await this.blogRepo.AddAsync(new BlogPostViewModel
             {
-                Title = model.Title,
-                UrlImage = model.UrlImage,
-                Content = model.Content,
-                Author = model.Author,
+                Title = title,
+                UrlImage = image,
+                Content = content,
+                Author = author,
             });
 
             await this.blogRepo.SaveChangesAsync();
