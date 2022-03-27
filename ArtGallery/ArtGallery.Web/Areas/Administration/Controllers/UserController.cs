@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ArtGallery.Web.Areas.Administration.Controllers
 {
-    public class UserController : BaseController
+    public class UserController : AdministrationController
     {
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<ArtGalleryUser> userManager;
@@ -30,7 +30,6 @@ namespace ArtGallery.Web.Areas.Administration.Controllers
             return View(users);
         }
 
-        [HttpGet("{userId}")]
         public async Task<IActionResult> Roles(string userId)
         {
             var user = await userService.GetUserById(userId);
@@ -55,10 +54,18 @@ namespace ArtGallery.Web.Areas.Administration.Controllers
         [HttpPost]
         public async Task<IActionResult> Roles(UserRolesViewModel model)
         {
-            return Ok(model);
+            var user = await userService.GetUserById(model.UserId);
+            var userRoles = await userManager.GetRolesAsync(user);
+            await userManager.RemoveFromRolesAsync(user, userRoles);
+
+            if (model.RoleNames?.Length > 0)
+            {
+                await userManager.AddToRolesAsync(user, userRoles);
+            }
+
+            return RedirectToAction(nameof(ManageUsers));
         }
 
-        [HttpGet("{id}")]
         public async Task<IActionResult> Edit(string id)
         {
             var model = await userService.GetUserToEdit(id);
