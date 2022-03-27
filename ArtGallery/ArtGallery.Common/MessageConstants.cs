@@ -20,14 +20,14 @@ namespace ArtGallery.Common
         public const string ArtExists = "Art does not exist.";
 
         // Events
-        public const string EventName = "Event Name should be between 8 and 60 characters long.";
+        public const string EventName = "Event Name should be between 8 and 30 characters long.";
         public const string EventDescription = "Description should be between 250 and 1500 characters long.";
         public const string EventCapacity = "Event Capacity depends from the Exhibition Hall Type. It should be between 5 and 100 people.";
 
         // Blog
         public const string Title = "Title must be between 5 and 70 characters long.";
         public const string Content = "Content must be between 600 and 3500 characters long.";
-        public const string Comment = "Comment should be between 5 and 150 characters long.";
+        public const string Comment = "Comment should be between 15 and 150 characters long.";
         public const string LatestPost = "Your Blog Post should be the latest date published.";
 
         // Arts
@@ -41,6 +41,6 @@ namespace ArtGallery.Common
         // OperationalMessages
         public const string SuccessfullyBookedEvent = "Your choosen event has been succefully booked!";
         public const string SuccessfullyCheckoutOrder = "Your order has been successfully checkout!";
-        public const string SuccessfullyRunningToaster = "Well done, you mnage to drive the tostr!";
+        public const string SuccessfullyRunningToaster = "Well done, you manage to drive the tostr!";
     }
 }

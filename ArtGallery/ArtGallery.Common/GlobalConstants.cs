@@ -33,7 +33,7 @@
         public static class Event
         {
             public const int EventNameMinLenth = 8;
-            public const int EventNameMaxLenth = 60;
+            public const int EventNameMaxLenth = 30;
             public const int EventDescriptionMinLength = 250;
             public const int EventDescriptionMaxLenth = 1500;
             public const double PriceMin = 0.0;
@@ -60,7 +60,7 @@
             public const int ContentMaxLength = 3500;
             public const int AdminAuthorMinLength = 50;
             public const int AdminAuthorMaxLength = 100;
-            public const int CommnetContentMinLength = 5;
+            public const int CommnetContentMinLength = 15;
             public const int CommentContentMaxLength = 150;
         }
 
@@ -107,10 +107,10 @@
 
         public static class FaqEntity
         {
-            public const int QuestionMinLength = 10;
+            public const int QuestionMinLength = 20;
             public const int QuestionMaxLength = 100;
             public const int AnswerMinLength = 20;
-            public const int AnswerMaxLength = 1000;
+            public const int AnswerMaxLength = 500;
         }
 
         public static class Formating
