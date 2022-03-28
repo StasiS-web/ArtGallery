@@ -1,0 +1,25 @@
+﻿@using ArtGallery.Web.ViewModels.BlogPosts
+@{
+    ViewBag.Title = "Events";
+}
+
+<div class="row">
+    <div class="col-8">
+        @foreach (var even in ViewBag.AllEventListViewModel)
+        {
+            <div class="card-img-overlay d-flex flex-column justify-content-end">
+                <h5 class="card-title text-primary text-white" asp-area="" asp-controller="Event"  asp-action="GetListEvents" asp-route-id="even.EventId">@even.Name</h5>
+                <div class="card-text text-white pb-2 pt-1" asp-area="" asp-controller="Event"  asp-action="GetListEvents" asp-route-id="ViewBag.AllEventListViewModel.EventId">@even.CreatedOn.Date</div>
+                <div href="#" class="text-white" asp-area="" asp-controller="Event"  asp-action="GetListEvents" asp-route-id="ViewBag.AllEventListViewModel.EventId">@even.Type</div>
+                <div class="card-text text-white">
+                       @even.ShortDescription
+                </div>
+           </div>
+        }
+       
+
+        <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
+              <i class="fas fa-chevron-up"></i>
+       </a>
+    </div>
+</div>
