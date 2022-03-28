@@ -25,6 +25,87 @@
             this.eventRepo = eventRepo;
         }
 
+        public async Task<bool> CreateEventAsync(EventCreateInputViewModel model)
+        {
+            bool isCreated = false;
+            var createEvent = new Event();
+
+            if (createEvent != null)
+            {
+                createEvent.Name = model.Name;
+                createEvent.Price = model.Price;
+                createEvent.Date = DateTime.Parse(
+                                 Convert.ToString(model.Date),
+                                 CultureInfo.InvariantCulture);
+                createEvent.Type = model.Type;
+                createEvent.TicketSelection = model.TicketSelection;
+                createEvent.Description = model.Description;
+
+                this.eventRepo.AddAsync(createEvent);
+                await this.eventRepo.SaveChangesAsync();
+                isCreated = true;
+            }
+
+            return isCreated;
+        }
+
+        public async Task<bool> UpdateEventAsync(EventEditViewModel model)
+        {
+            bool isUpdated = false;
+            var updateEvent = this.eventRepo.All<Event>()
+                                   .FirstOrDefault(e => e.Id == model.EventId);
+
+            if (updateEvent != null)
+            {
+                updateEvent.Name = model.Name;
+                updateEvent.Price = model.Price;
+                updateEvent.Date = DateTime.Parse(
+                                    Convert.ToString(model.Date),
+                                    CultureInfo.InvariantCulture);
+                updateEvent.Type = model.Type;
+                updateEvent.TicketSelection = model.TicketSelection;
+                updateEvent.Description = model.Description;
+
+                this.eventRepo.Update(updateEvent);
+                await this.eventRepo.SaveChangesAsync();
+                isUpdated = true;
+            }
+
+            return isUpdated;
+        }
+
+        public async Task ConfirmAsync(int id)
+        {
+            var eventToConfirm = this.eventRepo
+               .All<Event>()
+               .Where(e => e.Id == id)
+               .FirstOrDefault();
+
+            eventToConfirm.Confirmed = true;
+            await this.eventRepo.SaveChangesAsync();
+        }
+
+        public async Task DeclineAsync(int id)
+        {
+            var eventToConfirm = this.eventRepo
+               .All<Event>()
+               .Where(e => e.Id == id)
+               .FirstOrDefault();
+
+            eventToConfirm.Confirmed = false;
+            await this.eventRepo.SaveChangesAsync();
+        }
+
+        public void Delete(int id)
+        {
+            var eventToDelete = this.eventRepo
+                         .All<Event>()
+                         .Where(e => e.Id == id)
+                         .FirstOrDefault();
+            this.eventRepo.Delete(eventToDelete);
+            this.eventRepo.SaveChangesAsync();
+        }
+
         public int AllEventsCount()
         {
             return this.eventRepo
@@ -96,6 +177,11 @@
                         .FirstOrDefaultAsync(x => x.EventId == eventId);
 
             return even != null;
+        }
+
+        public async Task<bool> CheckAvailableEvents(int eventId, DateTime date)
+        {
+            return !await this.eventRepo.All<Event>().AnyAsync(e => e.Id == eventId && e.CreatedOn.Date == date.Date);
         }
     }
 }

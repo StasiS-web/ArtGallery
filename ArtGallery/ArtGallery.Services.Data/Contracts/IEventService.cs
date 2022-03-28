@@ -9,6 +9,16 @@
 
     public interface IEventService
     {
+        Task<bool> CreateEventAsync(EventCreateInputViewModel model);
+
+        Task<bool> UpdateEventAsync(EventEditViewModel model);
+
+        Task ConfirmAsync(int id);
+
+        Task DeclineAsync(int id);
+
+        void Delete(int id);
+
         int AllEventsCount();
 
         IEnumerable<EventViewModel> GetAllEvents(int eventId);
@@ -22,5 +32,7 @@
         Task<T> GetEventDetailsByIdAsync<T>(int eventId);
 
         Task<bool> CheckIfEventExists(int eventId);
+
+        Task<bool> CheckAvailableEvents(int eventId, DateTime date);
     }
 }

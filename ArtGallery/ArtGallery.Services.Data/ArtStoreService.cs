@@ -9,6 +9,7 @@ namespace ArtGallery.Services.Data
     using ArtGallery.Data.Repositories.Contracts;
     using ArtGallery.Services.Data.Contracts;
     using ArtGallery.Services.Mapping;
+    using ArtGallery.Web.ViewModels.Administrator;
     using ArtGallery.Web.ViewModels.ArtStore;
     using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +20,53 @@ namespace ArtGallery.Services.Data
         public ArtStoreService(IAppRepository storeRepo)
         {
             this.storeRepo = storeRepo;
+        }
+
+
+        public async Task CreateArtAsync(ArtStoreCreateInputModel model)
+        {
+            var art = new ArtStoreViewModel
+            {
+                PaintingName = model.PaintingName,
+                AuthorName = model.AuthorName,
+                UrlImage = model.UrlImage,
+                Price = model.Price,
+                Description = model.Description,
+            };
+
+            await this.storeRepo.SaveChangesAsync();
+        }
+
+        public async Task<bool> UpdateArtStore(ArtStoreViewModel model)
+        {
+            bool result = false;
+            var artStore = this.storeRepo
+                .All<ArtStore>()
+                .SingleOrDefault(x => x.Id == model.ArtId);
+
+            if (artStore != null)
+            {
+                artStore.Id = model.ArtId;
+                artStore.PaintingName = model.PaintingName;
+                artStore.Price = model.Price;
+                artStore.Description = model.Description;
+
+                await this.storeRepo.SaveChangesAsync();
+                result = true;
+            }
+
+            return result;
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var art = this.storeRepo
+                .All<ArtStoreViewModel>()
+                .Where(x => x.ArtId == id)
+                .FirstOrDefault();
+
+            this.storeRepo.Delete(art);
+            this.storeRepo.SaveChanges();
         }
 
         public IEnumerable<ArtStoreViewModel> GetAll()

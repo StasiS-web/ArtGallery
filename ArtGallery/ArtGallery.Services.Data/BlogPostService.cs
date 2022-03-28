@@ -14,6 +14,7 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
     using Microsoft.EntityFrameworkCore;
+    using static ArtGallery.Common.MessageConstants;
 
     public class BlogPostService : IBlogPostService
     {
@@ -23,6 +24,57 @@
         public BlogPostService(IAppRepository blogRepo)
         {
             this.blogRepo = blogRepo;
+        }
+
+        public async Task<int> CreateBlogPostAsync(BlogPostCreateInputModel model, string user)
+        {
+            var blog = new BlogPost
+            {
+                Title = model.Title,
+                UrlImage = model.UrlImage,
+                Content = model.Content,
+                Author = user, // only if user is an Administrator
+            };
+
+            await this.blogRepo.AddAsync(blog);
+            await this.blogRepo.SaveChangesAsync();
+            return blog.Id;
+        }
+
+        public async Task<int> EditBlog(BlogPostEditViewModel model, int blogId)
+        {
+            var blog = this.blogRepo.All<BlogPost>()
+                        .FirstOrDefault(b => b.Id == blogId);
+
+            if (blog == null)
+            {
+                throw new ArgumentNullException(string.Format(NonExistingPost, $"{blogId}"));
+            }
+
+            blog.Title = model.Title;
+            blog.Content = model.Content;
+            blog.UrlImage = model.UrlImage;
+
+            this.blogRepo.Update(blog);
+            await this.blogRepo.SaveChangesAsync();
+
+            return blog.Id;
+        }
+
+        public void Delete(int id)
+        {
+            var blogPost = this.blogRepo
+                .All<BlogPostViewModel>()
+                .Where(x => x.BlogId == id)
+                .FirstOrDefault();
+
+            if (blogPost == null)
+            {
+                throw new ArgumentNullException(string.Format(NonExistingPost, $"{id}"));
+            }
+
+            this.blogRepo.Delete(blogPost);
+            this.blogRepo.SaveChanges();
         }
 
         public async Task AddAsync(BlogPostViewModel model)
@@ -114,5 +166,9 @@
                                .Take(5)
                                .ToList();
         }
+
+        public async Task<bool> BlogPostExists(int blogId) => this.blogRepo
+                                .All<BlogPostViewModel>()
+                                .Any(b => b.BlogId == blogId);
     }
 }

@@ -2,10 +2,16 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using ArtGallery.Web.ViewModels.Administrator;
     using ArtGallery.Web.ViewModels.BlogPosts;
 
     public interface IBlogPostService
     {
+        Task<int> CreateBlogPostAsync(BlogPostCreateInputModel model, string user);
+
+        Task<int> EditBlog(BlogPostEditViewModel model, int blogId);
+
+        void Delete(int id);
 
         IEnumerable<BlogPostViewModel> GetAll();
 
@@ -24,5 +30,7 @@
         Task<T> GetBlogPostDetailsByIdAsync<T>(int blogId);
 
         Task<IEnumerable<BlogPostViewModel>> GetLatestBlogAsync(int blogId);
+
+        Task<bool> BlogPostExists(int blogId);
     }
 }

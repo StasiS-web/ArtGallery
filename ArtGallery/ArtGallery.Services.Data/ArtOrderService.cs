@@ -17,9 +17,9 @@
     {
         private readonly IAppRepository orderRepo;
 
-        public ArtOrderService(IAppRepository order)
+        public ArtOrderService(IAppRepository orderRepo)
         {
-             this.orderRepo = order;
+             this.orderRepo = orderRepo;
         }
 
         public async Task CreateOrder(ArtOrderViewModel model)
