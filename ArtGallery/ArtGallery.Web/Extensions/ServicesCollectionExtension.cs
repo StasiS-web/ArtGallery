@@ -1,7 +1,7 @@
 ﻿using ArtGallery.Data.Repositories;
 using ArtGallery.Data.Repositories.Contracts;
-using ArtGallery.Services.Data.Administrator;
-using ArtGallery.Services.Data.Administrator.Contracts;
+using ArtGallery.Services.Cloudinary;
+using ArtGallery.Services.Cloudinary.Contracts;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -23,11 +23,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<ICommentsService, CommentsService>();
             services.AddScoped<IArtStoreService, ArtStoreService>();
             services.AddScoped<IEventOrderService, EventOrderService>();
-
-            // Application Admin services
-            services.AddScoped<IAdminEventService, AdminEventService>();
-            services.AddScoped<IAdminArtStoreService, AdminArtStoreService>();
-            services.AddScoped<IAdminBlogPostService, AdminBlogPostService>();
+            services.AddScoped<ICloudinaryService, CloudinaryService>();
             return services;
         }
     }
