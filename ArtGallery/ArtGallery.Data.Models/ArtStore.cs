@@ -12,10 +12,12 @@
             this.SaleTransactions = new HashSet<SaleTransaction>();
         }
 
-        [MaxLength(PaintingNameMaxLenth), Required]
+        [Required]
+        [MaxLength(PaintingNameMaxLenth)]
         public string PaintingName { get; set; }
 
-        [MaxLength(AuthorNameMaxLenth), Required]
+        [Required]
+        [MaxLength(AuthorNameMaxLenth)]
         public string AuthorName { get; set; }
 
         [Required]
@@ -26,7 +28,8 @@
         [Range(PriceMin, PriceMax)]
         public decimal Price { get; set; }
 
-        [MaxLength(ArtsDescriptionMaxLenth), Required]
+        [Required]
+        [MaxLength(ArtsDescriptionMaxLenth)]
         public string Description { get; set; }
 
         [Required]
