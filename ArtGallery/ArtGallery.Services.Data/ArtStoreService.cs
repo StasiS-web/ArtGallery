@@ -10,6 +10,7 @@ namespace ArtGallery.Services.Data
     using ArtGallery.Services.Data.Contracts;
     using ArtGallery.Services.Mapping;
     using ArtGallery.Web.ViewModels.ArtStore;
+    using Microsoft.EntityFrameworkCore;
 
     public class ArtStoreService : IArtStoreService
     {
@@ -54,6 +55,15 @@ namespace ArtGallery.Services.Data
                               .FirstOrDefault();
 
             return store;
+        }
+
+        public async Task<bool> CheckIfArtExists(int artId)
+        {
+            var even = await this.storeRepo
+                        .All<ArtStoreViewModel>()
+                        .FirstOrDefaultAsync(x => x.ArtId == artId);
+
+            return even != null;
         }
     }
 }

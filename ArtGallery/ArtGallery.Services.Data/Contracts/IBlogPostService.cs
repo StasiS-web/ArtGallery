@@ -13,6 +13,8 @@
 
         IEnumerable<BlogPostViewModel> GetAllBlogs();
 
+        Task<IEnumerable<T>> GetAll<T>(int? sortId, int blogId);
+
         IEnumerable<int> GetById<T>(int blogId);
 
         Task AddAsync(BlogPostViewModel model);

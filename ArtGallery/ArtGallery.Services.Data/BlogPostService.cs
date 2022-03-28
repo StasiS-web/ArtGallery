@@ -13,6 +13,7 @@
     using ArtGallery.Web.ViewModels.BlogPosts;
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
+    using Microsoft.EntityFrameworkCore;
 
     public class BlogPostService : IBlogPostService
     {
@@ -62,6 +63,18 @@
             return blogList;
         }
 
+        public async Task<IEnumerable<T>> GetAll<T>(int? sortId, int blogId)
+        {
+            var blog = this.blogRepo.All<BlogPostViewModel>().OrderByDescending(x => x.CreatedOn);
+
+            if (sortId != null)
+            {
+                blog = (IOrderedQueryable<BlogPostViewModel>)blog.Where(x => x.BlogId == sortId);
+            }
+
+            return await blog.Skip(blogId - 1).To<T>().ToListAsync();
+        }
+
         public IEnumerable<int> GetById<T>(int blogId)
         {
             var blogPost = this.blogRepo
@@ -95,11 +108,11 @@
         public async Task<IEnumerable<BlogPostViewModel>> GetLatestBlogAsync(int blogId)
         {
            return this.blogRepo.All<BlogPostViewModel>()
-                                     .Where(b => b.BlogId == blogId)
-                                     .OrderByDescending(b => b.CreatedOn)
-                                     .ProjectTo<BlogPostViewModel>(this.mapper)
-                                     .Take(5)
-                                     .ToList();
+                               .Where(b => b.BlogId == blogId)
+                               .OrderByDescending(b => b.CreatedOn)
+                               .ProjectTo<BlogPostViewModel>(this.mapper)
+                               .Take(5)
+                               .ToList();
         }
     }
 }

@@ -15,5 +15,7 @@ namespace ArtGallery.Services.Data.Contracts
         IEnumerable<ArtStoreViewModel> GetAll();
 
         ArtDetailsViewModel Details(int artId);
+
+        Task<bool> CheckIfArtExists(int artId);
     }
 }
