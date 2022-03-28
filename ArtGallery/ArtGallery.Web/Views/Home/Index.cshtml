@@ -2,6 +2,8 @@
 @model IndexViewModel
 @{
     ViewData["Title"] = "Home";
+    List<UpcomingEventViewModel> events = ViewBag.AllUpcomingEvents;
+    List<LatestBlogPostViewModel> blogs = ViewBag.AllLatestBlogPost;
 }
 
 <div class="text-center">
@@ -9,7 +11,7 @@
         <div class="container-fluid">
              <div class="row">
                       <div class="col-lg-6">
-                         @foreach (var upcomingEvent in Model.AllUpcomingEvents)
+                         @foreach (var upcomingEvent in events)
                          {
                             <div class="card  card-primary card-outline">
                               <div class="card-body">
@@ -28,34 +30,28 @@
                       </div>
                       <!-- /.col-md-6 -->
                       <div class="col-lg-6">
-                        <div class="card  card-primary card-outline">
-                          <div class="card-header">
-                              @*method GetLatestBlogAsync is implemented but it is not working*@
-                            <h5 class="m-0">Latest Blog Posts</h5>
-                          </div>
-                          <div class="card-body">
-                            <h6 class="card-title">Special title treatment</h6>
-                            <img src="" alt="" />
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Blog Post Details</a>
-                          </div>
-                        </div>
-
-                        <div class="card">
-                          <div class="card-header">
-                            <h5 class="m-0">Latest Blog Posts</h5>
-                          </div>
-                          <div class="card-body">
-                            <h6 class="card-title">Special title treatment</h6>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Blog Post Details</a>
-                          </div>
-                        </div>
+                        @foreach (var latestBlog in blogs)
+                        {
+                            <div class="card  card-primary card-outline">
+                              <div class="card-header">
+                                   <h5 class="m-0">@latestBlog.Title</h5>
+                              </div>
+                               <div class="card-body">
+                                   <h6 class="card-title">@latestBlog.Author</h6>
+                                   <img src="" alt="" />
+                                   <p class="card-text">@latestBlog.ShortContect</p>
+                                   <a href="#" class="btn btn-primary">Blog Post Details</a>
+                              </div>
+                           </div>
+                        }
                       </div>
                       <!-- /.col-md-6 -->
               </div>
              <!-- /.row -->
        </div><!-- /.container-fluid -->
+       <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
+           <i class="fas fa-chevron-up"></i>
+       </a>
    </div>
    <!-- /.content -->      
 </div>

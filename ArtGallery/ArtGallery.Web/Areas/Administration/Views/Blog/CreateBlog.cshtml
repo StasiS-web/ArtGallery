@@ -12,22 +12,22 @@
         <form id="edit" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-floating">
-                 <label asp-for="Title" class="form-lable"></label>
+                 <label asp-for="Title" class="form-lable">@Model.Title</label>
                  <input asp-for="Title" class="form-control" aria-required="true" />
                  <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-floating">
-                 <label asp-for="UrlImage"  class="form-lable" ></label>
+                 <label asp-for="UrlImage"  class="form-lable">@Model.UrlImage</label>
                  <input asp-for="UrlImage" class="form-control" autocomplete="current-password" aria-required="true" />
                  <span asp-validation-for="UrlImage" class="text-danger"></span>
             </div>
             <div class="form-floating">
-                 <label asp-for="Author"  class="form-lable" ></label>
+                 <label asp-for="Author"  class="form-lable">@Model.Author</label>
                  <input asp-for="Author" class="form-control" autocomplete="current-password" aria-required="true" />
                  <span asp-validation-for="Author" class="text-danger"></span>
             </div>
              <div class="form-floating">
-                 <label asp-for="Content" class="form-lable"></label>
+                 <label asp-for="Content" class="form-lable">@Model.Content</label>
                  <input asp-for="Content" class="form-control" aria-required="true" />
                  <span asp-validation-for="Content" class="text-danger"></span>
             </div>
