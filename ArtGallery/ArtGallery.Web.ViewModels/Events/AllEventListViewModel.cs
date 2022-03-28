@@ -14,6 +14,19 @@
 
         public TicketType TicketSelection { get; set; }
 
+        public decimal Price { get; set; }
+
         public string Description { get; set; }
+
+        public string ShortDescription
+        {
+            get
+            {
+                var shortDescription = this.Description;
+                return shortDescription.Length > 20
+                    ? shortDescription.Substring(0, 20) + "..."
+                    : shortDescription;
+            }
+        }
     }
 }

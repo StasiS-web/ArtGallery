@@ -5,8 +5,8 @@
 
     public class IndexViewModel
     {
-        public IEnumerable<UpcomingEventViewModel> AllUpcomingEvents { get; set; }
+        public List<UpcomingEventViewModel> AllUpcomingEvents { get; set; }
 
-        public IEnumerable<LatestBlogPostViewModel> AllLatestBlogPost { get; set; }
+        public List<LatestBlogPostViewModel> AllLatestBlogPost { get; set; }
     }
 }
