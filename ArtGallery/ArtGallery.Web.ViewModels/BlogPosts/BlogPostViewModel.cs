@@ -6,13 +6,13 @@ namespace ArtGallery.Web.ViewModels.BlogPosts
     using ArtGallery.Services.Mapping.Contracts;
     using Microsoft.AspNetCore.Http;
 
-    public class BlogPostViewModel : IMapFrom<BlogPost>
+    public class BlogPostViewModel : IMapTo<BlogPost>, IMapFrom<BlogPost>
     {
         public int BlogId { get; set; }
 
         public string Title { get; set; }
 
-        public string UrlImage { get; set; }
+        public IFormFile UrlImage { get; set; }
 
         public string Content { get; set; }
 
