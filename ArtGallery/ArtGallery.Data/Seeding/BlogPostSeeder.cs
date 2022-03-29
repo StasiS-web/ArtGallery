@@ -64,6 +64,31 @@ Not only that, but Italy is also a popular holiday destination and a country peo
 To help beat the January blues and give you that nice summer holiday feeling, we have a large selection of Italian art on our site, so you can capture that holiday moment in your own home forever.",
                     Author = "Tara Paul",
                 },
+                new BlogPost
+                {
+                    Title = "Vincent Van Gogh Inspired Buttons And Earrings!",
+                    UrlImage = Buttons,
+                    Content = @"Hi! I scored this amazing sweater recently and while I absolutely loved it, I hated the obnoxious plastic white buttons that were on the sweater. They just stuck out like a sore thumb! So I picked up some polymer clay at the craft store with the idea to create my own. Normally, I buy the 'name brand' polymer clay but this time, I was feeling cheap and decided to give the house brand a try. It was half the price and I have to say...despite the fact that the yellow clay stained my hands a pinch, it worked great! I'm used to stained hands so, no big deal!",
+                    Author = "Cassie Stephens",
+                },
+                new BlogPost
+                {
+                    Title = "Best Art Blogs of 2022 – Artist Bloggers and Websites",
+                    UrlImage = BestArt,
+                    Content = @"We all love to enjoy art. If you are one of them, you should think about following the best art blogs that are available out there to consider. Then you can secure getting a perfect experience out of those art blogs. In fact, you can rediscover your love for art and take your imagination to the next level with the help of art blogs.
+                              Reviewing the Top Art Websites and Blogs
+                              Here is a list of 10 of the best art blogs available for anyone to follow in 2020. We believe that you will never end up with any regretful experience after following these art blogs. That’s because the art blogs cover a variety of interesting topics and you can get a perfect experience out of them.",
+                    Author = "Blog Ninja",
+                },
+                new BlogPost
+                {
+                    Title = "This will make your acrylic paintings look like oils!",
+                    UrlImage = AcrylicPainting,
+                    Content = @"If your acrylic paintings are looking too rough when you try to blend, try this tool to keep everything smooth! This tool will help keep your acrylic paints wet longer so that you have time to blend like you would in oil paints! I’m showing you this tool in action to blend clouds in wet over dry vs drybrushing and again in a more advanced raccoon painting!
+                              We’ve all seen the beginner painting books that teach you to dry brush. Now there is a place for dry brushing, the problem is when you use it on EVERYTHING and your painting ends up looking really rough. Fine if that’s the look you’re going for, but what if you want it to blend smoothly like an oil painting?
+                              I love oils, I love acrylics. If used right, you can’t tell a difference between my oils and acrylics. That is a personal preference, you paint how you want, but if you want yours to look like mine, let me show you this tool along with a few VERY important warnings to help you get the best results! ",
+                    Author = "Lachri",
+                },
             };
 
             foreach (var blogPost in blogPosts)

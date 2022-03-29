@@ -26,7 +26,7 @@
                     AuthorName = "Anke Gruss",
                     UrlImage = MrPeacock,
                     Price = 4970M,
-                    Description = "Majestically colored portrait of a peacock.",
+                    Description = @"Majestically colored portrait of a peacock.",
                 },
                 new ArtStore
                 {
@@ -34,7 +34,7 @@
                     AuthorName = "Van Gogh",
                     UrlImage = TheStaryNight,
                     Price = 3270M,
-                    Description = " ",
+                    Description = @"The Starry Night is an oil-on-canvas painting by the Dutch Post-Impressionist painter Vincent van Gogh. Painted in June 1889, it depicts the view from the east-facing window of his asylum room at Saint-Rémy-de-Provence, just before sunrise, with the addition of an imaginary village. ",
                 },
                 new ArtStore
                 {
@@ -42,7 +42,7 @@
                     AuthorName = "William Merritt",
                     UrlImage = TerraceProspect,
                     Price = 2100M,
-                    Description = "Original from The Smithsonian.",
+                    Description = @"Original from The Smithsonian.",
                 },
                 new ArtStore
                 {
@@ -50,7 +50,7 @@
                     AuthorName = "Van Gogh",
                     UrlImage = GreeanWheatFields,
                     Price = 1500M,
-                    Description = "Original from The National Gallery of Art",
+                    Description = @"Original from The National Gallery of Art",
                 },
                 new ArtStore
                 {
@@ -58,7 +58,7 @@
                     AuthorName = "Leonardo da Vinci",
                     UrlImage = MonaLisa,
                     Price = 840M,
-                    Description = "A portrait famous painting.",
+                    Description = @"A portrait famous painting.",
                 },
                 new ArtStore
                 {
@@ -66,7 +66,15 @@
                     AuthorName = " Michiel van Huysum ",
                     UrlImage = Landscape,
                     Price = 650M,
-                    Description = "The Rijksmuseum.",
+                    Description = @"The Rijksmuseum.",
+                },
+                new ArtStore
+                {
+                    PaintingName = "Birds",
+                    AuthorName = " Michiel van Huysum ",
+                    UrlImage = SingingBirds,
+                    Price = 450M,
+                    Description = @"Featured in Editorial",
                 },
             };
 
