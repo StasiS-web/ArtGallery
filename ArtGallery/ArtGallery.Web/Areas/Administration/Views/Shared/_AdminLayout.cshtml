@@ -1,5 +1,9 @@
 ﻿@using ArtGallery.Web.Areas.Administration
 
+@{
+    Layout = null;
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,23 +11,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - @GlobalConstants.SystemName</title>
-
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    
      <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel='icon' href="/favicon.ico" type="image/x-icon" />
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css" />
     <!-- Theme style -->
-    <link rel="stylesheet" href="~/css/adminlte.min.css" />
-    <link rel="reponsive" href="~/css/responsive.css" rel="stylesheet" asp-append-version="true" />
+    <link rel="stylesheet" href="/css/adminlte.min.css" />
     <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="~/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
+    <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
+    <link rel="stylesheet" href="/css/site.css" rel="stylesheet" asp-append-version="true" />
 
-    @this.RenderSection("Styles", required: false) 
+    @this.RenderSectionAsync("Styles", required: false) 
 </head>
 <body class="hold-transition sidebar-mini" data-panel-auto-height-mode="height">
- <div class="wrapper">
+    <div class="wrapper">
 
        <!-- Navbar -->
           <nav class="main-header navbar navbar-expand navbar-white">
@@ -33,19 +36,11 @@
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
               </li>
             </ul>
+               
+               <partial name="_AdminNavigation" />
 
-            <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
-              <!-- Navbar Search -->
-              <li class="nav-item">
-                  <partial name="_AdminNavigation" />
-
-                  <partial name="_SearchBox" />
-              </li>
-              
-              </ul>
-            </nav>
-            <!-- /.navbar -->
+          </nav>
+          <!-- /.navbar -->
 
             <!-- Main Sidebar Container -->
        <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -56,13 +51,13 @@
               <span class="brand-text font-weight-light">ArtGallery</span>
             </a>
 
-             <partial name="_LoginPartial" />
-              <!-- Sidebar user panel (optional) -->
+            <ul class="flex-row align-items-center justify-centre-start">
+                <partial name="_LoginPartial" />
+            </ul>
+            <!-- Sidebar user panel (optional) -->
            </div>
-
-           <partial name="_AdminSidebar" />
            <!-- /.sidebar -->
-        </aside>
+       </aside>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -102,16 +97,16 @@
      <!-- REQUIRED SCRIPTS -->
 
      <!-- jQuery -->
-    <script src="~/plugins/jquery/jquery.min.js"></script>
+    <script src="/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- overlayScrollbars -->
-    <script src="~/plugins/overlayScrollbars/css/OverlayScrollbars.min.css"></script>
+    <script src="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css"></script>
     <!-- AdminLTE App -->
-    <script src="~/js/adminlte.min.js"></script>
-    <script src="~/plugins/toastr/toastr.min.js"></script> 
+    <script src="/js/adminlte.min.js"></script>
+    <script src="/plugins/toastr/toastr.min.js"></script> 
     <partial name="_UserMessages" />
 
-     @*await this.RenderSectionAsync("Scripts", required: false)*@
+     @await this.RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

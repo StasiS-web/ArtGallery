@@ -1,11 +1,8 @@
 ﻿@page
-@using ArtGallery.Web.Areas.Identity.Pages.Account
 @model RegisterModel
 @{
     ViewData["Title"] = "Register";
 }
-
-<h1>@ViewData["Title"]</h1>
 
 <div class="card">
      <div class="card-body register-card-body">
@@ -22,13 +19,10 @@
                          <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
                          <span asp-validation-for="Input.Password" class="fas fa-lock"></span>
                       </div>
-
-                      <div class="input-group mb-3">
-                            <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
-                            <label asp-for="Input.ConfirmPassword"></label>
-                            <div class="input-group-text">
-                              <span asp-validation-for="Input.ConfirmPassword" class="fas fa-lock"></span>
-                            </div>
+                      <div class="form-floating">
+                          <label asp-for="Input.ConfirmPassword"></label>
+                          <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+                          <span asp-validation-for="Input.ConfirmPassword" class="fas fa-lock"></span>
                       </div>
                        <div class="col-4">
                             <button id="registerSubmit" type="submit" class="btn btn-lg btn-primary">Register</button>
@@ -67,6 +61,6 @@
      </div>
 </div>
 
-    @section Scrip{
+    @section Scripts {
         <partial name="_ValidationScriptsPartial" />
     }

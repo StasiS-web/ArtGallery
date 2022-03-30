@@ -1,4 +1,6 @@
-﻿<div class="navbar-primary navbar-light">
+﻿@using ArtGallery.Web.Areas.Administration
+
+<div class="navbar-primary navbar-light">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -8,7 +10,6 @@
             <ul class="navbar-nav flex-grow-1" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
                     <a class="nav-link text-dark" asp-area="Administration" asp-controller="Dashboard" asp-action="Index"> Administration Dashboard</a>
-                    <partial name="_Dashboard" />
                 </li>
 
                 <li class="nav-item">
@@ -22,8 +23,8 @@
                 </li>
             </ul>
 
+            <!-- Navbar Search -->
             <partial name="_SearchBox" />
-            
          </div>
      </div>   
 </div>
