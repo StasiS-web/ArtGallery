@@ -14,6 +14,8 @@
 
         public DateTime Date { get; set; }
 
+        public decimal Price { get; set; }
+
         public EventType Type { get; set; }
 
         public string Description { get; set; }

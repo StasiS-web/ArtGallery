@@ -9,6 +9,8 @@
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Http;
     using static ArtGallery.Common.GlobalConstants.ArtStore;
+    using static ArtGallery.Common.GlobalConstants.DisplayNames;
+    using static ArtGallery.Common.MessageConstants;
 
     public class ArtStoreCreateInputModel
     {
@@ -22,7 +24,13 @@
         public string AuthorName { get; set; }
 
         [Required]
-        public IFormFile UrlImage { get; set; }
+        [DataType(DataType.Url)]
+        public string UrlImage { get; set; }
+
+        [Required(ErrorMessage = EmptyField)]
+        [DataType(DataType.Upload)]
+        [Display(Name = ProductImageDisplayName)]
+        public IFormFile ArtImage { get; set; }
 
         [Required]
         [Column(TypeName = "money")]

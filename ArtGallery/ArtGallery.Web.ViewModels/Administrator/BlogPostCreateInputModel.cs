@@ -4,6 +4,8 @@
     using ArtGallery.Data.Models;
     using Microsoft.AspNetCore.Http;
     using static ArtGallery.Common.GlobalConstants.BlogPost;
+    using static ArtGallery.Common.GlobalConstants.DisplayNames;
+    using static ArtGallery.Common.MessageConstants;
 
     public class BlogPostCreateInputModel
     {
@@ -18,8 +20,13 @@
         public string Title { get; set; }
 
         [Required]
-        [DataType(DataType.ImageUrl)]
+        [DataType(DataType.Url)]
         public string UrlImage { get; set; }
+
+        [Required(ErrorMessage = EmptyField)]
+        [DataType(DataType.Upload)]
+        [Display(Name = CoverImageDisplayName)]
+        public IFormFile CoverImage { get; set; }
 
         [MaxLength(ContentMaxLength)]
         [MinLength(ContentMinLength)]
