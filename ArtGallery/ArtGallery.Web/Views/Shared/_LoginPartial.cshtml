@@ -1,16 +1,48 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
 
-@if (SignInManager.IsSignedIn(User))
-{
-   <!-- Sidebar user panel (optional) -->
-    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-      <div class="image">
-           <img src="~/img/avatar3.png" class="img-circle elevation-2" alt="User Image">
-      </div>
-      <div class="info">
-           <a class="d-block" asp-area="" asp-controller="Profile" asp-action="Index">@User.Identity?Name</a>
-      </div>
-    </div>
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul>
+    @if (SignInManager.IsSignedIn(User))
+    {
+   <li class="nav-item">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+           <div class="image">
+                <img src="~/img/avatar3.png" class="img-circle elevation-2" alt="User Image">
+           </div>
+            <div class="info">
+                 <a class="d-block" asp-area="" asp-controller="Profile" asp-action="Index">@User.Identity?Name</a>
+           </div>
+        </div>
+   </li>
+   <li class="nav-item dropdown">
+       <a class="nav-link dropdown-pushmenu" data-widget="pushmenu" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bars"></i></a>
+       <div class="dropdown-menu">
+           <form class="form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@this.Url.Action("Index", "Home", new {area = string.Empty})">
+                <button type="submit" class="nav-link btn btn-link text-dark"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</button>
+           </form>
+       </div>
+   </li>
+   <li class="nav-item dropdown">
+       <a class="nav-link dropdown-pushmenu" data-widget="pushmenu" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bars"></i></a>
+       <div class="dropdown-menu">
+           @if (this.User.IsInRole(GlobalConstants.Roles.AdministratorRoleName))
+           {
+                <a class="nav-link text-dark" asp-area="Administration" asp-controller="Dashboard" asp-action="Index"> Administration Dashboard</a>     
+           }
+       </div>
+   </li>
 }
+else
+{
+   <li class="nav-item">
+       <a class="nav-link text-dark" asp-area="" asp-area="Identity" asp-page="/Account/Register">Register</a>
+   </li>
+   <li class="nav-item">
+       <a class="nav-link text-dark"asp-area="" asp-area="Identity" asp-page="/Account/Login"><i class="fa-duotone fa-person-to-door"></i> Login</a>
+   </li>
+}
+</ul>
+

@@ -16,6 +16,12 @@
             this.Logins = new HashSet<IdentityUserLogin<string>>();
         }
 
+        [Required]
+        public string FirstName { get; set; }
+
+        [Required]
+        public string LastName { get; set; }
+
         // Audit info
         [Required]
         public DateTime CreatedOn { get; set; }

@@ -2,8 +2,8 @@
 @model IndexViewModel
 @{
     ViewData["Title"] = "Home";
-    List<UpcomingEventViewModel> events = ViewBag.AllUpcomingEvents;
-    List<LatestBlogPostViewModel> blogs = ViewBag.AllLatestBlogPost;
+    List<UpcomingEventViewModel> events = ViewBag.UpcomingEvent;
+   // List<LatestBlogPostViewModel> blogs = ViewBag.LatestBlogPost;
 }
 
 <div class="text-center">
@@ -22,29 +22,31 @@
                                   @upcomingEvent.ShortDescription
                                 </p>
                            
-                                <a href="#" class="card-link">Go Event Details</a>
+                                <a href="#" class="card-link" asp-controller="Event" asp-action="EventDetails">Go Event Details</a>
                               </div>
                             </div>
                          }
                          <!-- /.card -->
                       </div>
                       <!-- /.col-md-6 -->
-                      <div class="col-lg-6">
-                        @foreach (var latestBlog in blogs)
-                        {
-                            <div class="card  card-primary card-outline">
-                              <div class="card-header">
-                                   <h5 class="m-0">@latestBlog.Title</h5>
-                              </div>
-                               <div class="card-body">
-                                   <h6 class="card-title">@latestBlog.Author</h6>
-                                   <img src="" alt="" />
-                                   <p class="card-text">@latestBlog.ShortContect</p>
-                                   <a href="#" class="btn btn-primary">Blog Post Details</a>
-                              </div>
-                           </div>
-                        }
-                      </div>
+                  @*   <div class="col-lg-6">
+                            @foreach (var latestBlog in blogs)
+                            {
+                                <div class="card  card-primary card-outline">
+                                  <div class="card-header">
+                                       <h5 class="m-0">@latestBlog.Title</h5>
+                                  </div>
+                                  <div class="card-image">
+                                       <img src="@latestBlog.UrlImage" alt="" />
+                                  </div>
+                                  <div class="card-body">
+                                       <h6 class="card-title">@latestBlog.Author</h6>
+                                       <p class="card-text">@latestBlog.ShortContect</p>
+                                       <a href="#" class="btn btn-primary">Blog Post Details</a>
+                                  </div>
+                               </div>
+                            }
+                      </div> *@ 
                       <!-- /.col-md-6 -->
               </div>
              <!-- /.row -->

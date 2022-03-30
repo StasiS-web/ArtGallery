@@ -1,10 +1,10 @@
 ﻿@using ArtGallery.Common
     
-@if (ViewData[MessageConstants.ErrorMessages] != null)
+@if (ViewData[MessageConstants.ErrorMessage] != null)
 {
     <script>
         $(function() {
-            toastr.error('@ViewData[MessageConstants.ErrorMessages]?.ToString()');
+            toastr.error('@ViewData[MessageConstants.ErrorMessage]?.ToString()');
         });
     </script>
 }
@@ -18,11 +18,11 @@
     </script>
 }
 
-@if (ViewData[MessageConstants.OperationalMessages] != null)
+@if (ViewData[MessageConstants.OperationalMessage] != null)
 {
     <script>
         $(function() {
-            toastr.error('@ViewData[MessageConstants.OperationalMessages]?.ToString()');
+            toastr.error('@ViewData[MessageConstants.OperationalMessage]?.ToString()');
         });
     </script>
 }
