@@ -7,7 +7,6 @@
     using System.Text;
     using System.Threading.Tasks;
     using ArtGallery.Data.Models;
-    using ArtGallery.Data.Models.Enumeration;
     using ArtGallery.Data.Repositories.Contracts;
     using ArtGallery.Services.Data.Contracts;
     using ArtGallery.Services.Mapping;

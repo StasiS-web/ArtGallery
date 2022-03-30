@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using ArtGallery.Data.Models;
     using ArtGallery.Data.Repositories.Contracts;
+    using ArtGallery.Services.Cloudinary.Contracts;
     using ArtGallery.Services.Data.Contracts;
     using ArtGallery.Services.Mapping;
     using ArtGallery.Web.ViewModels.Administrator;
@@ -20,21 +21,33 @@
     {
         private readonly IAppRepository blogRepo;
         private readonly IConfigurationProvider mapper;
+        private readonly ICloudinaryService cloudinary;
 
-        public BlogPostService(IAppRepository blogRepo)
+        public BlogPostService(IAppRepository blogRepo, ICloudinaryService cloudinary, IConfigurationProvider mapper)
         {
             this.blogRepo = blogRepo;
+            this.cloudinary = cloudinary;
+            this.mapper = mapper;
         }
 
         public async Task<int> CreateBlogPostAsync(BlogPostCreateInputModel model, string user)
         {
+            var coverImage = this.cloudinary.UploadImageAsync(model.CoverImage, model.Title);
+
             var blog = new BlogPost
             {
                 Title = model.Title,
-                UrlImage = model.UrlImage,
+                UrlImage = coverImage,
                 Content = model.Content,
                 Author = user, // only if user is an Administrator
             };
+
+            bool isPostExist = this.blogRepo.All<BlogPost>().Any(x => x.Title == model.Title);
+
+            if (isPostExist)
+            {
+                throw new ArgumentException(string.Format(BlogPostAlredyExists, model.Title));
+            }
 
             await this.blogRepo.AddAsync(blog);
             await this.blogRepo.SaveChangesAsync();

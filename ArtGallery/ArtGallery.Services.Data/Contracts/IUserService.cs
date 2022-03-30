@@ -11,7 +11,7 @@
     {
         IEnumerable<UserViewModel> GetAllUser(string userId);
 
-        Task<ArtGalleryUser> GetUserById(string userId);
+        Task<ApplicationUser> GetUserById(string userId);
 
         Task<UserEditViewModel> GetUserToEdit(string userId);
 

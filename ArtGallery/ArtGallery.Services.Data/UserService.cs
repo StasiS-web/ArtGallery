@@ -31,17 +31,9 @@
                 .ToList();
         }
 
-        public async Task<ArtGalleryUser> GetUserById(string userId)
+        public async Task<ApplicationUser> GetUserById(string userId)
         {
-            var user = await this.userRepo
-                .GetByIdAsync<ArtGalleryUser>(userId);
-
-            if (user == null)
-            {
-                throw new ArgumentNullException(string.Format(InvalidUserId, userId));
-            }
-
-            return user;
+            return await this.userRepo.GetByIdAsync<ApplicationUser>(userId);
         }
 
         public string GetIdByUsername(UserViewModel model)

@@ -7,33 +7,40 @@ namespace ArtGallery.Services.Data
     using System.Threading.Tasks;
     using ArtGallery.Data.Models;
     using ArtGallery.Data.Repositories.Contracts;
+    using ArtGallery.Services.Cloudinary.Contracts;
     using ArtGallery.Services.Data.Contracts;
     using ArtGallery.Services.Mapping;
     using ArtGallery.Web.ViewModels.Administrator;
     using ArtGallery.Web.ViewModels.ArtStore;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.EntityFrameworkCore;
+    using static ArtGallery.Common.GlobalConstants;
 
     public class ArtStoreService : IArtStoreService
     {
         private IAppRepository storeRepo;
+        private readonly ICloudinaryService cloudinary;
 
-        public ArtStoreService(IAppRepository storeRepo)
+        public ArtStoreService(IAppRepository storeRepo, ICloudinaryService cloudinary)
         {
             this.storeRepo = storeRepo;
+            this.cloudinary = cloudinary;
         }
 
 
         public async Task CreateArtAsync(ArtStoreCreateInputModel model)
         {
-            var art = new ArtStoreViewModel
+            var artImage = this.cloudinary.UploadImageAsync(model.ArtImage, model.PaintingName);
+            var art = new ArtStoreCreateInputModel
             {
                 PaintingName = model.PaintingName,
                 AuthorName = model.AuthorName,
-                UrlImage = model.UrlImage,
+                UrlImage = artImage,
                 Price = model.Price,
                 Description = model.Description,
             };
 
+            this.storeRepo.AddAsync(art);
             await this.storeRepo.SaveChangesAsync();
         }
 
@@ -41,12 +48,12 @@ namespace ArtGallery.Services.Data
         {
             bool result = false;
             var artStore = this.storeRepo
-                .All<ArtStore>()
-                .SingleOrDefault(x => x.Id == model.ArtId);
+                .All<ArtStoreViewModel>()
+                .SingleOrDefault(x => x.ArtId == model.ArtId);
 
             if (artStore != null)
             {
-                artStore.Id = model.ArtId;
+                artStore.ArtId = model.ArtId;
                 artStore.PaintingName = model.PaintingName;
                 artStore.Price = model.Price;
                 artStore.Description = model.Description;
@@ -72,7 +79,7 @@ namespace ArtGallery.Services.Data
         public IEnumerable<ArtStoreViewModel> GetAll()
         {
             return this.storeRepo
-                .All<ArtStore>()
+                .All<ArtStoreViewModel>()
                 .To<ArtStoreViewModel>()
                 .ToList();
         }
