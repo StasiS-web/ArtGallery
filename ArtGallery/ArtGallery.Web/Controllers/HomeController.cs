@@ -1,40 +1,44 @@
 namespace ArtGallery.Web.Controllers
 {
     using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Dynamic;
-    using ArtGallery.Web.ViewModels;
-    using ArtGallery.Web.ViewModels.BlogPosts;
-    using ArtGallery.Web.ViewModels.Events;
     using ArtGallery.Web.ViewModels.Home;
     using Microsoft.AspNetCore.Mvc;
-    using static ArtGallery.Common.GlobalConstants;
-    using static ArtGallery.Common.MessageConstants;
+    using static ArtGallery.Common.GlobalConstants.SeededDataCounts;
 
     public class HomeController : BaseController
     {
+        private readonly ILogger<HomeController> _logger;
         private readonly IEventService eventService;
-        private readonly IBlogPostService blogPostService;
+        private readonly IBlogPostService blogService;
 
-        public HomeController(IEventService eventService, IBlogPostService blogPostService)
+        public HomeController(ILogger<HomeController> _logger, IEventService eventService, IBlogPostService blogService)
         {
+            this._logger = _logger;
             this.eventService = eventService;
-            this.blogPostService = blogPostService;
+            this.blogService = blogService;
         }
 
         [HttpGet("/")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            this.ViewData[MessageConstants.OperationalMessages] = SuccessfullyRunningToaster;
+            this.ViewData[MessageConstants.OperationalMessage] = "Well done, you manage to drive the tostr!";
 
-            dynamic model = new ExpandoObject();
+            var upcomingEvents = this.eventService.GetUpcomingByIdAsync<UpcomingEventViewModel>(UpcomingEventCount);
+            var latestBlog = this.blogService.GetLatestBlogAsync<LatestBlogPostViewModel>(LatestBlogCount);
+
             var modelView = new IndexViewModel
             {
-                AllUpcomingEvents = this.eventService.GetUpcomingByIdAsync<EventViewModel>(model.eventService.EventId),
-                AllLatestBlogPost = this.blogPostService.GetLatestBlogAsync(model.blogPostService.BlogId),
+                AllUpcomingEvents = (IEnumerable<UpcomingEventViewModel>)upcomingEvents, 
+                AllLatestBlogPost = (IEnumerable<LatestBlogPostViewModel>)latestBlog,
             };
 
             return View(modelView);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index([ModelBinder(typeof(DateTimeModelBinder))] IndexViewModel model)
+        {
+            return Ok(model);
         }
 
         public IActionResult Privacy()
