@@ -2,17 +2,21 @@ namespace ArtGallery.Web.ViewModels.BlogPosts
 {
     using System;
     using ArtGallery.Data.Models;
-    using ArtGallery.Data.Models.Enumeration;
     using ArtGallery.Services.Mapping.Contracts;
-    using Microsoft.AspNetCore.Http;
+    using AutoMapper;
 
-    public class BlogPostViewModel : IMapTo<BlogPost>, IMapFrom<BlogPost>
+    public class BlogPostViewModel : IMapFrom<BlogPost>, IHaveCustomMappings
     {
+        public BlogPostViewModel()
+        {
+            this.Comments = new HashSet<BlogCommentViewModel>();
+        }
+
         public int BlogId { get; set; }
 
         public string Title { get; set; }
 
-        public IFormFile UrlImage { get; set; }
+        public string UrlImage { get; set; }
 
         public string Content { get; set; }
 
@@ -32,6 +36,19 @@ namespace ArtGallery.Web.ViewModels.BlogPosts
 
         public DateTime CreatedOn { get; set; }
 
-        public ReactionType UserReaction { get; set; }
+        public string Date => this.CreatedOn.ToShortDateString();
+
+        public string UserReaction { get; set; }
+
+        public ICollection<BlogCommentViewModel> Comments { get; set; }
+
+        public void CreateMappings(IProfileExpression configuration)
+        {
+            configuration.CreateMap<BlogPost, BlogPostViewModel>()
+                .ForMember(b => b.Date, opt => opt.MapFrom(b => b.CreatedOn))
+                .ForMember(b => b.Author, opt => opt.MapFrom(b => b.Author))
+                .ForMember(b => b.UrlImage, opt => opt.MapFrom(b => b.UrlImage))
+                .ForMember(b => b.UserReaction, opt => opt.MapFrom(b => b.UserReaction));
+        }
     }
 }
