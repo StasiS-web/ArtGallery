@@ -2,21 +2,26 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Text;
     using ArtGallery.Data.Models;
     using ArtGallery.Data.Models.Enumeration;
     using ArtGallery.Services.Mapping.Contracts;
+    using AutoMapper;
+    using static ArtGallery.Common.GlobalConstants.Formating;
 
-    public class UpcomingEventViewModel : IMapFrom<Event>
+    public class UpcomingEventViewModel : IMapFrom<Event>, IHaveCustomMappings
     {
         public string Name { get; set; }
 
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
+
+       // public string OnlyDate => this.Date.ToShortDateString();
 
         public decimal Price { get; set; }
 
-        public EventType Type { get; set; }
+        public string Type { get; set; }
 
         public string Description { get; set; }
 
@@ -25,10 +30,15 @@
             get
             {
                 var shortDescription = this.Description;
-                return shortDescription.Length > 20
-                    ? shortDescription.Substring(0, 20) + "..."
+                return shortDescription.Length > 100
+                    ? shortDescription.Substring(0, 100) + "..."
                     : shortDescription;
             }
+        }
+
+        public void CreateMappings(IProfileExpression configuration)
+        {
+            configuration.CreateMap<Event, UpcomingEventViewModel>();
         }
     }
 }

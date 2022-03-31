@@ -7,9 +7,10 @@
     using System.Threading.Tasks;
     using ArtGallery.Data.Models;
     using ArtGallery.Services.Mapping.Contracts;
+    using AutoMapper;
     using Microsoft.AspNetCore.Http;
 
-    public class LatestBlogPostViewModel : IMapFrom<Event>
+    public class LatestBlogPostViewModel : IMapFrom<BlogPost>, IHaveCustomMappings
     {
         public string Title { get; set; }
 
@@ -31,8 +32,14 @@
         // Blog Post are only created by the admin
         public string Author { get; set; }
 
-        public DateTime CreatedOn { get; set; }
+        public string CreatedOn { get; set; }
 
-        public string OnlyDate => this.CreatedOn.ToShortDateString();
+        // public string OnlyDate => this.CreatedOn.ToShortDateString();
+
+        public void CreateMappings(IProfileExpression configuration)
+        {
+            configuration.CreateMap<BlogPost, LatestBlogPostViewModel>()
+                .ForMember(b => b.UrlImage, opt => { opt.MapFrom(b => b.UrlImage); });
+        }
     }
 }

@@ -25,7 +25,7 @@
         public decimal Price { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
 
         // In the view need to use a list from enum class to display the event type
         public EventType Type { get; set; }

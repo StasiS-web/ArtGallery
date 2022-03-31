@@ -13,8 +13,6 @@
 
         public string UserName { get; set; }
 
-        public UserRole RoleName { get; set; }
-
         public string Gender { get; set; }
 
         public IFormFile UrlImage { get; set; }

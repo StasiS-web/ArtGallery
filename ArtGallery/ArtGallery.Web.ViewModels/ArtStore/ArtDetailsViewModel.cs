@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace ArtGallery.Web.ViewModels.ArtStore
+﻿namespace ArtGallery.Web.ViewModels.ArtStore
 {
-    public class ArtDetailsViewModel
+    using ArtGallery.Services.Mapping.Contracts;
+    using Microsoft.AspNetCore.Http;
+
+    public class ArtDetailsViewModel : IMapFrom<ArtStoreViewModel>
     {
         public int ArtId { get; set; }
 
