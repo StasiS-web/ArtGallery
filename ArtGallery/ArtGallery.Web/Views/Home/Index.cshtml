@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Home";
     List<UpcomingEventViewModel> events = ViewBag.UpcomingEvent;
-   // List<LatestBlogPostViewModel> blogs = ViewBag.LatestBlogPost;
+    List<LatestBlogPostViewModel> blogs = ViewBag.LatestBlogPost;
 }
 
 <div class="text-center">
@@ -29,7 +29,7 @@
                          <!-- /.card -->
                       </div>
                       <!-- /.col-md-6 -->
-                  @*   <div class="col-lg-6">
+                      <div class="col-lg-6">
                             @foreach (var latestBlog in blogs)
                             {
                                 <div class="card  card-primary card-outline">
@@ -46,7 +46,7 @@
                                   </div>
                                </div>
                             }
-                      </div> *@ 
+                      </div> 
                       <!-- /.col-md-6 -->
               </div>
              <!-- /.row -->
