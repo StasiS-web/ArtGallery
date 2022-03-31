@@ -7,7 +7,6 @@ namespace ArtGallery.Services.Data
     using System.Threading.Tasks;
     using ArtGallery.Data.Models;
     using ArtGallery.Data.Repositories.Contracts;
-    using ArtGallery.Services.Cloudinary.Contracts;
     using ArtGallery.Services.Data.Contracts;
     using ArtGallery.Services.Mapping;
     using ArtGallery.Web.ViewModels.Administrator;
@@ -19,23 +18,20 @@ namespace ArtGallery.Services.Data
     public class ArtStoreService : IArtStoreService
     {
         private IAppRepository storeRepo;
-        private readonly ICloudinaryService cloudinary;
 
-        public ArtStoreService(IAppRepository storeRepo, ICloudinaryService cloudinary)
+        public ArtStoreService(IAppRepository storeRepo)
         {
             this.storeRepo = storeRepo;
-            this.cloudinary = cloudinary;
         }
 
 
         public async Task CreateArtAsync(ArtStoreCreateInputModel model)
         {
-            var artImage = this.cloudinary.UploadImageAsync(model.ArtImage, model.PaintingName);
             var art = new ArtStoreCreateInputModel
             {
                 PaintingName = model.PaintingName,
                 AuthorName = model.AuthorName,
-                UrlImage = artImage,
+                UrlImage = model.UrlImage,
                 Price = model.Price,
                 Description = model.Description,
             };

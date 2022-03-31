@@ -12,6 +12,7 @@
     using ArtGallery.Services.Mapping;
     using ArtGallery.Web.ViewModels.Administrator;
     using ArtGallery.Web.ViewModels.Events;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using static ArtGallery.Common.GlobalConstants.Formating;
 
@@ -148,14 +149,13 @@
 
         public async Task<IEnumerable<T>> GetUpcomingByIdAsync<T>(int eventId)
         {
-            var upcomingEvents = this.eventRepo
-                                 .All<EventViewModel>()
+            return await this.eventRepo.All<EventViewModel>()
                                  .Where(x => x.EventId == eventId &&
                                     x.Date.Date > DateTime.UtcNow.Date)
                                  .OrderBy(x => x.Date)
-                                 .To<T>().ToListAsync();
-
-            return await upcomingEvents;
+                                 .To<T>()
+                                 .Take(3)
+                                 .ToListAsync();
         }
 
         public async Task<T> GetEventDetailsByIdAsync<T>(int eventId)
