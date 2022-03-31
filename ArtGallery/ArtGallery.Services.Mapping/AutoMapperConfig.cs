@@ -6,7 +6,6 @@
     using System.Reflection;
     using ArtGallery.Services.Mapping.Contracts;
     using AutoMapper;
-    using AutoMapper.Configuration;
 
     public static class AutoMapperConfig
     {

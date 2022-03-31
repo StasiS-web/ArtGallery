@@ -6,6 +6,7 @@ global using ArtGallery.Data.Models;
 global using ArtGallery.Services.Data;
 global using ArtGallery.Services.Data.Contracts;
 global using ArtGallery.Web.ModelBinders;
+global using AutoMapper;
 global using CloudinaryDotNet;
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.EntityFrameworkCore;

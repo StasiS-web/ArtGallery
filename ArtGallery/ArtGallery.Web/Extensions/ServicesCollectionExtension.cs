@@ -2,6 +2,8 @@
 using ArtGallery.Data.Repositories.Contracts;
 using ArtGallery.Services.Cloudinary;
 using ArtGallery.Services.Cloudinary.Contracts;
+using ArtGallery.Services.Mapping;
+using IConfigurationProvider = Microsoft.Extensions.Configuration.IConfigurationProvider;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -24,6 +26,17 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IArtStoreService, ArtStoreService>();
             services.AddScoped<IEventOrderService, EventOrderService>();
             services.AddScoped<ICloudinaryService, CloudinaryService>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddApplicationDbContext(this IServiceCollection services, IConfiguration config)
+        {
+            var connectionString = config.GetConnectionString("DefaultConnection");
+            services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseSqlServer(connectionString));
+            services.AddDatabaseDeveloperPageExceptionFilter();
+
             return services;
         }
     }
