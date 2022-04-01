@@ -45,7 +45,7 @@ Art Gallery's main idea is to be an app for booking and sales. A place where reg
 * ASP.NET Core Areas
 * Entity Framework [CORE 6.0](https://docs.microsoft.com/en-us/ef/core/)
 * Newtonsoft.Json
-* Dependency Injection
+* Seeder
 * AutoMapper
 * Cloudinary
 * Docker Container (running Web)
