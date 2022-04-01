@@ -1,18 +1,19 @@
 ﻿@page
-@model ArtGallery.Web.Areas.Identity.Pages.ErrorModel
+@model ErrorModel
 @{
     ViewData["Title"] = "Error";
 }
 
-<h1 class="text-danger">Oops! Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+<h1 class="text-danger" style="color: ffea00">Oops, Error!</h1>
+<p class="text-danger">Something went wrong while processing your request.</p>
 
+<strong>Status code:</strong> <code>Model.StatusCode</code>
 @if (Model.ShowRequestId)
 {
     <p>
-        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+       <strong>Request ID:</strong> <code>@Model.RequestId</code>
     </p>
-}
+} 
 
 <h3>Development Mode</h3>
 <p>

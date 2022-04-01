@@ -1,8 +1,8 @@
-﻿@using ArtGallery.Web.ViewModels
-@model ErrorViewModel
+﻿@using ArtGallery.Common
+@model ArtGallery.Web.ViewModels.ErrorViewModel
 @{
-    ViewData["Title"] = "Error500";
-}
+    ViewData["Title"] = "500";
+ }
 
 <div class="container">
     <div class="error-page">
@@ -15,7 +15,7 @@
             <span>We will work on fixing that right away. Meanwhile, please go back to Home Page. Thank you for your undestanding!</span>
         </div>
         <div class="btn btn-primary">
-            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">GO HOME PAGE</a>
+            <a class="nav-link text-white" href="/">GO HOME PAGE</a>
         </div>
     </div>
 </div>
