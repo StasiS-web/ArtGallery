@@ -4,6 +4,8 @@
     {
         public const string SystemName = "ArtGallery";
         public const string CloudName = "dnvg6uuxl";
+        public const string CloudMainFolderForImage = "app_gallery";
+        public const string CloudSubFolderForErrorImages = "errors";
 
         public static class Roles
         {
@@ -27,7 +29,7 @@
             public const int UsernameMinLength = 5;
             public const int UsernameMaxLength = 20;
             public const int PasswordMinLength = 8;
-            public const int PasswordMaxLength = 16;
+            public const int PasswordMaxLength = 100;
         }
 
         public static class Event
@@ -83,11 +85,15 @@
             public const string GreeanWheatFields = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1645821441/app_gallery/Green_Wheat_Fields-jpeg_dzmndr.jpg";
             public const string MonaLisa = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1645821444/app_gallery/Portrait_of_Mona_Lisa-jpeg_jhvgpi.jpg";
             public const string Landscape = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1646154562/app_gallery/landscape-jpeg_odeze0.jpg";
-
+            public const string SingingBirds = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--18fSIQ9v--/c_fit,h_400,w_400/v1648592592/app_gallery/y4PqRPqSako-unsplash_gzmv2d.jpg"
+                ;
             // Blog (Images Resourse from rawpixel)
-            public const string ArtisticPainter = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1646156702/app_gallery/Artist_painting-jpeg_nn02fh.jpg";
-            public const string Art = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1646156777/app_gallery/image-from-id-405327-jpeg_njsywp.jpg";
-            public const string AnimalSpirits = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1646157537/app_gallery/image-from-id-556828-jpeg_pvzrkd.jpg";
+            public const string ArtisticPainter = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_400,w_400/v1646156702/app_gallery/Artist_painting-jpeg_nn02fh.jpg";
+            public const string Art = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--eMTBpUc4--/c_fit,h_400,w_400/v1646156777/app_gallery/image-from-id-405327-jpeg_njsywp.jpg";
+            public const string AnimalSpirits = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_400,w_400/v1646157537/app_gallery/image-from-id-556828-jpeg_pvzrkd.jpg";
+            public const string Buttons = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--GIhqN_we--/c_fit,h_400,w_400/v1648590618/app_gallery/arun-prakash-unsplash_tuluof.jpg";
+            public const string BestArt = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--7d9hBVji--/c_fit,h_400,w_400/v1648591070/app_gallery/annie-spratt-unsplash_e2hv3u.jpg";
+            public const string AcrylicPainting = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--43NHpf2_--/c_fit,h_400,w_400/v1648592182/app_gallery/russn_fckr-unsplash_alixhl.jpg";
 
             // User Reactiosn (Image Resourse from flaticon)
             public const string Like = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--yUbJIoLH--/c_fit,h_300,w_300/v1646622718/app_gallery/userReaction/like_n9eqy5.png";
@@ -129,12 +135,18 @@
             public const string ConfirmPasswordDisplay = "Confirm Password";
             public const string PageContentDisplayName = "Page Content";
             public const string EventNameDisplay = "Event Name";
+            public const string CoverImageDisplayName = "Cover Image";
+            public const string ProductImageDisplayName = "Art's Image";
         }
 
         public static class SeededDataCounts
         {
-            public const int Events = 3;
+            public const int Events = 9;
             public const int BlogPost = 6;
+            public const int ArtStore = 7;
+
+            public const int UpcomingEventCount = 3;
+            public const int LatestBlogCount = 2;
         }
     }
 }
