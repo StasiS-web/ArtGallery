@@ -42,8 +42,6 @@
         /// It depends from the capacity of the ExhibitionHall.
         /// </summary>
 
-        public bool? Confirmed { get; set; }
-
         public ICollection<BookingTransaction> BookingTransactions { get; set; }
     }
 }

@@ -9,6 +9,11 @@
 
     public class EventOrder : IDeletableEntity
     {
+        public EventOrder()
+        {
+            this.BookingDate = DateTime.Now;
+        }
+
         [Required]
         [Column(TypeName = "date")]
         public DateTime BookingDate { get; set; }

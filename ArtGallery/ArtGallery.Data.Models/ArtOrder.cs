@@ -9,6 +9,11 @@
 
     public class ArtOrder : IDeletableEntity
     {
+        public ArtOrder()
+        {
+            this.OrderDate = DateTime.UtcNow;
+        }
+
         [Required]
         [Column(TypeName = "date")]
         public DateTime OrderDate { get; set; }
@@ -33,6 +38,9 @@
         [Column(TypeName = "money")]
         [Range(PriceMin, PriceMax)]
         public decimal Price { get; set; }
+
+        [Required]
+        public OrderStatus Status { get; set; }
 
         public bool IsDeleted { get; set; }
 
