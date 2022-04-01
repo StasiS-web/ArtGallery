@@ -2,7 +2,7 @@
 {
     using ArtGallery.Data.Models.Enumeration;
 
-    public class AllEventListViewModel
+    public class AllEventListViewModel 
     {
         public int EventId { get; set; }
 
@@ -23,8 +23,8 @@
             get
             {
                 var shortDescription = this.Description;
-                return shortDescription.Length > 20
-                    ? shortDescription.Substring(0, 20) + "..."
+                return shortDescription.Length > 100
+                    ? shortDescription.Substring(0, 100) + "..."
                     : shortDescription;
             }
         }
