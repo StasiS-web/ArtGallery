@@ -16,9 +16,14 @@
         [MinLength(TitleMinLength)]
         public string Title { get; set; }
 
+        [Required]
+        [DataType(DataType.Url)]
+        public string UrlImage { get; set; }
+
         [Required(ErrorMessage = EmptyField)]
+        [DataType(DataType.Upload)]
         [Display(Name = CoverImageDisplayName)]
-        public IFormFile UrlImage { get; set; }
+        public IFormFile CoverImage { get; set; }
 
         [Required]
         [MaxLength(ContentMaxLength)]

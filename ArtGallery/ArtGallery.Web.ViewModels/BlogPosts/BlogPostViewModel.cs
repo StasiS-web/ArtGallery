@@ -12,7 +12,7 @@ namespace ArtGallery.Web.ViewModels.BlogPosts
 
         public string Title { get; set; }
 
-        public string UrlImage { get; set; }
+        public IFormFile UrlImage { get; set; }
 
         public string Content { get; set; }
 

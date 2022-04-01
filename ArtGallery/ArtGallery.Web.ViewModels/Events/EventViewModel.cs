@@ -1,9 +1,7 @@
 ﻿namespace ArtGallery.Web.ViewModels.Events
 {
     using ArtGallery.Data.Models;
-    using ArtGallery.Data.Models.Enumeration;
     using ArtGallery.Services.Mapping.Contracts;
-    using AutoMapper;
 
     public class EventViewModel : IMapTo<Event>, IMapFrom<Event>
     {
@@ -20,7 +18,5 @@
         public string TicketSelection { get; set; }
 
         public string Description { get; set; }
-
-        public bool? Confirmed { get; set; }
     }
 }
