@@ -2,8 +2,6 @@
 using ArtGallery.Data.Repositories.Contracts;
 using ArtGallery.Services.Cloudinary;
 using ArtGallery.Services.Cloudinary.Contracts;
-using ArtGallery.Services.Mapping;
-using IConfigurationProvider = Microsoft.Extensions.Configuration.IConfigurationProvider;
 
 namespace Microsoft.Extensions.DependencyInjection
 {

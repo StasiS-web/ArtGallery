@@ -137,6 +137,7 @@
             public const string EventNameDisplay = "Event Name";
             public const string CoverImageDisplayName = "Cover Image";
             public const string ProductImageDisplayName = "Art's Image";
+            public const string ImageDisplayName = "Photo";
         }
 
         public static class SeededDataCounts
