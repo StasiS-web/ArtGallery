@@ -1,8 +1,8 @@
 ﻿namespace ArtGallery.Web.ViewModels.Administrator
 {
+    using System.ComponentModel.DataAnnotations;
     using ArtGallery.Services.Mapping.Contracts;
     using ArtGallery.Web.ViewModels.Privacy;
-    using System.ComponentModel.DataAnnotations;
     using static ArtGallery.Common.GlobalConstants.DisplayNames;
     using static ArtGallery.Common.GlobalConstants.Privacy;
     using static ArtGallery.Common.MessageConstants;

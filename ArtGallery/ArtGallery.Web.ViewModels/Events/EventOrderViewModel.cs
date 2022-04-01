@@ -5,7 +5,7 @@
     using ArtGallery.Data.Models.Enumeration;
     using ArtGallery.Services.Mapping.Contracts;
 
-    public class EventOrderViewModel : IMapFrom<EventOrder>
+    public class EventOrderViewModel : IMapTo<EventOrder>, IMapFrom<EventOrder>
     {
         public string BookingId { get; set; }
 
