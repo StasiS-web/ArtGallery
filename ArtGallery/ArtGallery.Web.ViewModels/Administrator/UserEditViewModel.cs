@@ -4,10 +4,12 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
+    using ArtGallery.Services.Mapping.Contracts;
+    using ArtGallery.Web.ViewModels.Users;
     using static ArtGallery.Common.GlobalConstants.ArtGalleryUser;
     using static ArtGallery.Common.GlobalConstants.DisplayNames;
 
-    public class UserEditViewModel
+    public class UserEditViewModel : IMapTo<UserViewModel>, IMapFrom<UserViewModel>
     {
         public string Id { get; set; }
 

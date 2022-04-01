@@ -2,6 +2,8 @@
 {
     public class AllBlogPostsListViewModel
     {
+        public IEnumerable<BlogPostViewModel> AllBlogPosts { get; set; }
+
         public int BlogId { get; set; }
 
         public string Title { get; set; }

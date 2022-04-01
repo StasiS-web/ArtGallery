@@ -7,14 +7,10 @@
     using static ArtGallery.Common.MessageConstants;
     using Privacy = ArtGallery.Data.Models.Privacy;
 
-    public class PrivacyEditVewModel : IMapFrom<Privacy>
+    public class PrivacyVewModel : IMapTo<Privacy>, IMapFrom<Privacy>
     {
         public int Id { get; set; }
 
-        [Display(Name = PageContentDisplayName)]
-        [Required(ErrorMessage = EmptyField)]
-        [MaxLength(PageContentMaxLength)]
-        [MinLength(PageContentMinLength)]
         public string PageContent { get; set; }
     }
 }

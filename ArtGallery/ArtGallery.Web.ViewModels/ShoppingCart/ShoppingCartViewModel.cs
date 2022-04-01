@@ -3,7 +3,7 @@
     using ArtGallery.Data.Models;
     using ArtGallery.Services.Mapping.Contracts;
 
-    public class ShoppingCartViewModel : IMapFrom<ShoppingCart>
+    public class ShoppingCartViewModel : IMapTo<ShoppingCart>, IMapFrom<ShoppingCart>
     {
         public string ShoppingCartId { get; set; }
 

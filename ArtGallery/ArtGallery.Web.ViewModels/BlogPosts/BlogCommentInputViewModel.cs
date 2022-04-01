@@ -1,6 +1,8 @@
 ﻿namespace ArtGallery.Web.ViewModels.BlogPosts
 {
-    public class BlogCommentInputViewModel
+    using ArtGallery.Services.Mapping.Contracts;
+
+    public class BlogCommentInputViewModel : IMapTo<BlogCommentViewModel>, IMapFrom<BlogCommentViewModel>
     {
         public int BlogPostId { get; set; }
 

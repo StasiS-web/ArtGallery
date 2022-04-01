@@ -4,8 +4,9 @@ namespace ArtGallery.Web.ViewModels.BlogPosts
     using ArtGallery.Data.Models;
     using ArtGallery.Services.Mapping.Contracts;
     using AutoMapper;
+    using Microsoft.AspNetCore.Http;
 
-    public class BlogPostViewModel : IMapFrom<BlogPost>, IHaveCustomMappings
+    public class BlogPostViewModel : IMapTo<BlogPost>, IMapFrom<BlogPost>
     {
         public int BlogId { get; set; }
 
@@ -21,14 +22,5 @@ namespace ArtGallery.Web.ViewModels.BlogPosts
         public DateTime CreatedOn { get; set; }
 
         public string UserReaction { get; set; }
-
-        public void CreateMappings(IProfileExpression configuration)
-        {
-            configuration.CreateMap<BlogPost, BlogPostViewModel>()
-                .ForMember(b => b.CreatedOn, opt => opt.MapFrom(b => b.CreatedOn))
-                .ForMember(b => b.Author, opt => opt.MapFrom(b => b.Author))
-                .ForMember(b => b.UrlImage, opt => opt.MapFrom(b => b.UrlImage))
-                .ForMember(b => b.UserReaction, opt => opt.MapFrom(b => b.UserReaction));
-        }
     }
 }

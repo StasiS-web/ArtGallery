@@ -6,11 +6,14 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
     using ArtGallery.Data.Models.Enumeration;
+    using ArtGallery.Services.Mapping.Contracts;
+    using ArtGallery.Web.ViewModels.Events;
+    using AutoMapper;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using static ArtGallery.Common.GlobalConstants.DisplayNames;
     using static ArtGallery.Common.GlobalConstants.Event;
 
-    public class EventEditViewModel
+    public class EventEditViewModel : IMapTo<EventViewModel>, IMapFrom<EventViewModel>, IHaveCustomMappings
     {
         public int EventId { get; set; }
 
@@ -48,5 +51,10 @@
         [MaxLength(EventDescriptionMaxLenth)]
         [MinLength(EventDescriptionMinLength)]
         public string Description { get; set; }
+
+        public void CreateMappings(IProfileExpression configuration)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

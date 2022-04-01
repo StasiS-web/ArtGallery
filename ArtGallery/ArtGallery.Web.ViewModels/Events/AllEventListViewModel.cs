@@ -4,6 +4,8 @@
 
     public class AllEventListViewModel 
     {
+        public IEnumerable<EventViewModel> AllEvents { get; set; }
+
         public int EventId { get; set; }
 
         public string Name { get; set; }

@@ -4,9 +4,11 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ArtGallery.Data.Models.Enumeration;
+    using ArtGallery.Services.Mapping.Contracts;
+    using ArtGallery.Web.ViewModels.Events;
     using static ArtGallery.Common.GlobalConstants.Event;
 
-    public class EventCreateInputViewModel
+    public class EventCreateInputViewModel : IMapTo<EventViewModel>, IMapFrom<EventViewModel>
     {
         [MaxLength(EventNameMaxLenth)]
         [MinLength(EventNameMinLenth)]

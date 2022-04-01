@@ -4,7 +4,7 @@
     using ArtGallery.Services.Mapping.Contracts;
     using Microsoft.AspNetCore.Http;
 
-    public class ArtStoreViewModel : IMapFrom<ArtStore>
+    public class ArtStoreViewModel : IMapTo<ArtStore>, IMapFrom<ArtStore>
     {
         public int ArtId { get; set; }
 

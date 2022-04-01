@@ -3,7 +3,7 @@
     using ArtGallery.Data.Models;
     using ArtGallery.Services.Mapping.Contracts;
 
-    public class BlogCommentViewModel : IMapFrom<BlogPost>
+    public class BlogCommentViewModel : IMapTo<BlogComment>, IMapFrom<BlogComment>
     {
         public int CommentId { get; set; }
 

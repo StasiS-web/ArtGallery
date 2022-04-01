@@ -7,12 +7,14 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using ArtGallery.Services.Mapping.Contracts;
+    using ArtGallery.Web.ViewModels.ArtStore;
     using Microsoft.AspNetCore.Http;
     using static ArtGallery.Common.GlobalConstants.ArtStore;
     using static ArtGallery.Common.GlobalConstants.DisplayNames;
     using static ArtGallery.Common.MessageConstants;
 
-    public class ArtStoreCreateInputModel
+    public class ArtStoreCreateInputModel : IMapTo<ArtStoreViewModel>, IMapFrom<ArtStoreViewModel>
     {
         [Required]
         [MaxLength(PaintingNameMaxLenth)]

@@ -2,17 +2,15 @@
 {
     using System.ComponentModel.DataAnnotations;
     using ArtGallery.Data.Models;
+    using ArtGallery.Services.Mapping.Contracts;
+    using ArtGallery.Web.ViewModels.BlogPosts;
     using Microsoft.AspNetCore.Http;
     using static ArtGallery.Common.GlobalConstants.BlogPost;
     using static ArtGallery.Common.GlobalConstants.DisplayNames;
     using static ArtGallery.Common.MessageConstants;
 
-    public class BlogPostCreateInputModel
+    public class BlogPostCreateInputModel : IMapTo<BlogPostViewModel>, IMapFrom<BlogPostViewModel>
     {
-        public BlogPostCreateInputModel()
-        {
-            this.Comments = new HashSet<BlogComment>();
-        }
 
         [Required]
         [MaxLength(TitleMaxLength)]
@@ -38,7 +36,5 @@
         public string Author { get; set; }
 
         public string UserReaction { get; set; }
-
-        public ICollection<BlogComment> Comments { get; set; }
     }
 }

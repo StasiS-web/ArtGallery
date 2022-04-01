@@ -5,7 +5,7 @@
     using ArtGallery.Services.Mapping.Contracts;
     using AutoMapper;
 
-    public class EventViewModel : IMapFrom<Event>
+    public class EventViewModel : IMapTo<Event>, IMapFrom<Event>
     {
         public int EventId { get; set; }
 
