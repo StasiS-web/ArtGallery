@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
-using System.Linq;
 using System.Threading.Tasks;
 using ArtGallery.Data.Models;
+using ArtGallery.Web.Areas.Identity.Pages.Account.Manage.InputModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -40,22 +40,14 @@ namespace ArtGallery.Web.Areas.Identity.Pages.Account.Manage
         public string StatusMessage { get; set; }
 
         [BindProperty]
-        public InputModel Input { get; set; }
-
-        public class InputModel
-        {
-            [Required]
-            [EmailAddress]
-            [Display(Name = "New email")]
-            public string NewEmail { get; set; }
-        }
+        public EmailInputModel Input { get; set; }
 
         private async Task LoadAsync(ApplicationUser user)
         {
             var email = await _userManager.GetEmailAsync(user);
             Email = email;
 
-            Input = new InputModel
+            Input = new EmailInputModel
             {
                 NewEmail = email,
             };
