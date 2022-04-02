@@ -27,15 +27,5 @@ namespace Microsoft.Extensions.DependencyInjection
 
             return services;
         }
-
-        public static IServiceCollection AddApplicationDbContext(this IServiceCollection services, IConfiguration config)
-        {
-            var connectionString = config.GetConnectionString("DefaultConnection");
-            services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(connectionString));
-            services.AddDatabaseDeveloperPageExceptionFilter();
-
-            return services;
-        }
     }
 }

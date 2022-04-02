@@ -7,12 +7,9 @@
         public const string CloudMainFolderForImage = "app_gallery";
         public const string CloudSubFolderForErrorImages = "errors";
 
-        public static class Roles
-        {
-            public const string AdministratorRoleName = "Administrator";
-            public const string GalleryManagerRoleName = "Manager";
-            public const string UserRoleName = "Identity User";
-        }
+        public const string AdministratorRoleName = "Administrator";
+        public const string GalleryManagerRoleName = "Manager";
+        public const string UserRoleName = "Identity User";
 
         public static class AccountSeeding
         {
@@ -28,7 +25,7 @@
             public const int FullNameMaxLenth = 100;
             public const int UsernameMinLength = 5;
             public const int UsernameMaxLength = 20;
-            public const int PasswordMinLength = 8;
+            public const int PasswordMinLength = 6;
             public const int PasswordMaxLength = 100;
         }
 
@@ -127,6 +124,7 @@
 
         public static class DisplayNames
         {
+
             public const string FirstNameDisplayName = "First Name";
             public const string LastNameDisplayName = "Last Name";
             public const string EmailDisplay = "Email";

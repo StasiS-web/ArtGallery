@@ -1,5 +1,7 @@
 ﻿@using ArtGallery.Common
+@using ArtGallery.Data.Models
 @using Microsoft.AspNetCore.Identity
+@model ApplicationUser
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
@@ -22,7 +24,7 @@
        <a class="nav-link dropdown-pushmenu" data-widget="pushmenu" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bars"></i></a>
        <div class="dropdown-menu">
            <form class="form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@this.Url.Action("Index", "Home", new {area = string.Empty})">
-                <button type="submit" class="nav-link btn-outline-info"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</button>
+                <button type="submit" class="nav-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</button>
            </form>
        </div>
    </li>
@@ -39,10 +41,10 @@
 else
 {
    <li class="nav-item">
-       <a class="nav-link btn-outline-info" asp-area="Identity" asp-page="/Account/Register">Register</a>
+       <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
    </li>
    <li class="nav-item">
-       <a class="nav-link btn-outline-info"asp-area="Identity" asp-page="/Account/Login"><i class="fa-duotone fa-person-to-door"></i> Login</a>
+       <a class="nav-link"asp-area="Identity" asp-page="/Account/Login"><i class="fa-duotone fa-person-to-door"></i> Login</a>
    </li>
 }
 </ul>

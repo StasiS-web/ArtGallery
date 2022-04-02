@@ -1,7 +1,12 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddApplicationDbContext(builder.Configuration);
+var connectionString =builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseSqlServer(connectionString));
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+ 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
       .AddEntityFrameworkStores<ApplicationDbContext>()
       .AddDefaultTokenProviders();
@@ -25,9 +30,8 @@ builder.Services.AddControllersWithViews()
     });
 
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
-
+builder.Services.AddApplicationServices();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.Configure<CookiePolicyOptions>(
@@ -39,18 +43,15 @@ builder.Services.Configure<CookiePolicyOptions>(
 
 // Cloudinary Setup
 Account account = new Account(
-                builder.Configuration["Cloudinary: CloudName"],
-                builder.Configuration["Cloudinary:ApiKey"],
-                builder.Configuration["Cloudinary:ApiSecret"]);
+                GlobalConstants.CloudName,
+                builder.Configuration["Cloudinary: ApiKey"],
+                builder.Configuration["Cloudinary: ApiSecret"]);
 Cloudinary cloudinary = new Cloudinary(account);
-
 builder.Services.AddSingleton(cloudinary);
-builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 
-// Configure AutoMapper Registration
-AutoMapperConfig.RegisterMappings(
+/*AutoMapperConfig.RegisterMappings(
     typeof(ArtStoreCreateInputModel).GetTypeInfo().Assembly,
     typeof(BlogPostCreateInputModel).GetTypeInfo().Assembly,
     typeof(BlogPostEditViewModel).GetTypeInfo().Assembly,
@@ -70,7 +71,7 @@ AutoMapperConfig.RegisterMappings(
     typeof(PrivacyVewModel).GetTypeInfo().Assembly,
     typeof(ShoppingCartViewModel).GetTypeInfo().Assembly,
     typeof(SettingViewModel).GetTypeInfo().Assembly,
-    typeof(UserViewModel).GetTypeInfo().Assembly);
+    typeof(UserViewModel).GetTypeInfo().Assembly);   
 
 // Seed data on application startup
 using (var serviceScope = app.Services.CreateScope())
@@ -83,7 +84,7 @@ using (var serviceScope = app.Services.CreateScope())
     }
 
     new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
-}
+} */
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Docker"))
