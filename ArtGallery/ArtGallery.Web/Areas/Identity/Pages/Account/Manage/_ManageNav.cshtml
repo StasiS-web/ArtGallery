@@ -3,56 +3,29 @@
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
 
-<nav class="navbar-primary navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+<nav class="nav nav-pills flex-column">
     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-          <ul class="navbar-nav flex-grow-1" data-widget="treeview" role="menu" data-accordion="false">
-               <li class="nav-item">
-                    <a href="/" class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+          <ul class="navbar-nav flex-grow-1">
+              <li class="nav-item">
+                  <a class="nav-link btn-outline-info @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a>
+              </li>
+              <li class="nav-item">
+                   <a class="nav-link btn-outline-info  @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a>
                </li>
                <li class="nav-item">
-                   <a class="nav-link" asp-area="" asp-controller="Event" asp-action="Index">Events</a>
+                   <a class="nav-link btn-outline-info @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a>
+               </li>
+                   @if (hasExternalLogins)
+                   {
+                      <li id="external-logins" class="nav-link btn-outline-info"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a></li>
+                   }
+               <li class="nav-item">
+                   <a class="nav-link btn-outline-info @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a>
                </li>
                <li class="nav-item">
-                   <a class="nav-link" asp-area="" asp-controller="Blog" asp-action="Index">Blog</a>
+                   <a class="nav-link btn-outline-info @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a>
                </li>
-          </ul>
-
-          <ul class="nav nav-treeview">
-              <li class="dropdown-menu">
-                  <a href="#" class="nav-link">
-                      <p >
-                         Manage Account
-                      </p>
-                  </a>
-                  <ul class="nav nav-treeview">
-                      <li class="nav-item">
-                          <a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a>
-                      </li>
-                           @if (hasExternalLogins)
-                           {
-                               <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a></li>
-                           }
-                       <li class="nav-item">
-                            <a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a>
-                       </li>
-                       <li class="nav-item">
-                           <a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a>
-                       </li>
-                       <li class="nav-item">
-                           <i class="nav-icon far fa-calendar-alt"></i>
-                           <a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="calendar" asp-page="./Identity/Pages/Account/Calendar">Calendar  <span class="badge badge-info right">2</span></a>
-                       </li>
-                 </ul>
-               </li>
-            </ul> 
-            
-          <partial name="_SearchBox" />
+          </ul> 
    </div>
 </nav>
 
