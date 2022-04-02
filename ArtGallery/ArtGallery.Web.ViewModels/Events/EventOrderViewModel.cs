@@ -17,7 +17,7 @@
 
         public int EventId { get; set; }
 
-        public string Event { get; set; }
+        public EventType Event { get; set; }
 
         public int Quantity { get; set; }
 

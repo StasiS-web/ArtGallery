@@ -1,5 +1,7 @@
 ﻿namespace ArtGallery.Web.ViewModels.ArtStore
 {
+    using Microsoft.AspNetCore.Http;
+
     public class AllArtListViewModel
     {
         public IEnumerable<ArtStoreViewModel> AllArts { get; set; }
@@ -10,7 +12,7 @@
 
         public string AuthorName { get; set; }
 
-        public string UrlImage { get; set; }
+        public IFormFile UrlImage { get; set; }
 
         public decimal Price { get; set; }
 

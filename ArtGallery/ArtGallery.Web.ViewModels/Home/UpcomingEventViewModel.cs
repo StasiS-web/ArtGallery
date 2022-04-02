@@ -17,11 +17,9 @@
 
         public string Date { get; set; }
 
-       // public string OnlyDate => this.Date.ToShortDateString();
-
         public decimal Price { get; set; }
 
-        public string Type { get; set; }
+        public EventType Type { get; set; }
 
         public string Description { get; set; }
 
@@ -38,7 +36,8 @@
 
         public void CreateMappings(IProfileExpression configuration)
         {
-            configuration.CreateMap<Event, UpcomingEventViewModel>();
+            configuration.CreateMap<Event, UpcomingEventViewModel>()
+                 .ForMember(e => e.Date, opt => opt.MapFrom(src => src.CreatedOn.ToString(NormalDateFormat)));
         }
     }
 }

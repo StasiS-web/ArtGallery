@@ -13,7 +13,7 @@
     using static ArtGallery.Common.GlobalConstants.DisplayNames;
     using static ArtGallery.Common.GlobalConstants.Event;
 
-    public class EventEditViewModel : IMapTo<EventViewModel>, IMapFrom<EventViewModel>, IHaveCustomMappings
+    public class EventEditViewModel : IMapTo<EventViewModel>, IMapFrom<EventViewModel>
     {
         public int EventId { get; set; }
 
@@ -52,9 +52,5 @@
         [MinLength(EventDescriptionMinLength)]
         public string Description { get; set; }
 
-        public void CreateMappings(IProfileExpression configuration)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

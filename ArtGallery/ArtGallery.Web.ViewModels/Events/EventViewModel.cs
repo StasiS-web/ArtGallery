@@ -1,6 +1,7 @@
 ﻿namespace ArtGallery.Web.ViewModels.Events
 {
     using ArtGallery.Data.Models;
+    using ArtGallery.Data.Models.Enumeration;
     using ArtGallery.Services.Mapping.Contracts;
 
     public class EventViewModel : IMapTo<Event>, IMapFrom<Event>
@@ -13,9 +14,9 @@
 
         public DateTime Date { get; set; }
 
-        public string Type { get; set; }
+        public EventType Type { get; set; }
 
-        public string TicketSelection { get; set; }
+        public TicketType TicketSelection { get; set; }
 
         public string Description { get; set; }
     }

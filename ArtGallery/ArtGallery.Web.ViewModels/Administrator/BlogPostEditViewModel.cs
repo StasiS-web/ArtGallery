@@ -33,7 +33,7 @@
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<BlogPostViewModel, BlogPostEditViewModel>()
-                .ForMember(des => des.UrlImage, opt => opt.Ignore());
+                .ForMember(b => b.CoverImage, opt => opt.MapFrom(src => src.UrlImage));
         }
     }
 }

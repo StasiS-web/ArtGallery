@@ -2,6 +2,7 @@ namespace ArtGallery.Web.ViewModels.BlogPosts
 {
     using System;
     using ArtGallery.Data.Models;
+    using ArtGallery.Data.Models.Enumeration;
     using ArtGallery.Services.Mapping.Contracts;
     using AutoMapper;
     using Microsoft.AspNetCore.Http;
@@ -21,6 +22,6 @@ namespace ArtGallery.Web.ViewModels.BlogPosts
 
         public DateTime CreatedOn { get; set; }
 
-        public string UserReaction { get; set; }
+        public ReactionType UserReaction { get; set; }
     }
 }

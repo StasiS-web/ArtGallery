@@ -1,9 +1,9 @@
-﻿using ArtGallery.Data.Models;
-using ArtGallery.Data.Models.Enumeration;
-using ArtGallery.Services.Mapping.Contracts;
-
-namespace ArtGallery.Web.ViewModels.ArtStore
+﻿namespace ArtGallery.Web.ViewModels.ArtStore
 {
+    using ArtGallery.Data.Models;
+    using ArtGallery.Data.Models.Enumeration;
+    using ArtGallery.Services.Mapping.Contracts;
+
     public class ArtOrderViewModel : IMapTo<ArtOrder>, IMapFrom<ArtOrder>
     {
         public DateTime OrderDate { get; set; }

@@ -1,5 +1,8 @@
 ﻿namespace ArtGallery.Web.ViewModels.BlogPosts
 {
+    using ArtGallery.Data.Models.Enumeration;
+    using Microsoft.AspNetCore.Http;
+
     public class AllBlogPostsListViewModel
     {
         public IEnumerable<BlogPostViewModel> AllBlogPosts { get; set; }
@@ -8,7 +11,7 @@
 
         public string Title { get; set; }
 
-        public string UrlImage { get; set; }
+        public IFormFile UrlImage { get; set; }
 
         public string Content { get; set; }
 
@@ -30,6 +33,6 @@
 
         public string Date => this.CreatedOn.ToShortDateString();
 
-        public string UserReaction { get; set; }
+        public ReactionType UserReaction { get; set; }
     }
 }

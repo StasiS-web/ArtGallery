@@ -2,6 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using ArtGallery.Data.Models;
+    using ArtGallery.Data.Models.Enumeration;
     using ArtGallery.Services.Mapping.Contracts;
     using ArtGallery.Web.ViewModels.BlogPosts;
     using Microsoft.AspNetCore.Http;
@@ -35,6 +36,6 @@
         [MinLength(AdminAuthorMinLength)]
         public string Author { get; set; }
 
-        public string UserReaction { get; set; }
+        public ReactionType UserReaction { get; set; }
     }
 }
