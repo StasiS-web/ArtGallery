@@ -22,20 +22,21 @@
                 userManager,
                 roleManager,
                 GlobalConstants.AccountSeeding.AdminEmail,
-                Roles.AdministratorRoleName);
+                AdministratorRoleName);
 
             // Create GallaryManager
             await CreateUser(
                 userManager,
                 roleManager,
                 GlobalConstants.AccountSeeding.GalleryManagerEmail,
-                Roles.GalleryManagerRoleName);
+                GalleryManagerRoleName);
 
             // Create User
             await CreateUser(
                 userManager,
                 roleManager,
-                GlobalConstants.AccountSeeding.UserEmail);
+                GlobalConstants.AccountSeeding.UserEmail,
+                UserRoleName);
         }
 
         private static async Task CreateUser(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, string email, string roleName = null)
