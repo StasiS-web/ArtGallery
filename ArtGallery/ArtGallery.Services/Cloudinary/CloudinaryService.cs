@@ -16,8 +16,10 @@
            this.cloudinary = cloudinary;
         }
 
-        public string UploadImageAsync(IFormFile imageFile, string file)
+        public string UploadImageAsync(IFormFile imageFile, string file, Transformation transformation = null)
         {
+            imageFile = imageFile ?? throw new ArgumentNullException(nameof(imageFile));
+
             byte[] data;
             var stream = new MemoryStream();
 
@@ -35,7 +37,7 @@
                 {
                     Folder = "app_gallery",
                     File = new FileDescription(file, message),
-                    // Transformation = new Transformation().Height(300).Width(300).Crop("fit"),
+                    Transformation = transformation,
                     PublicId = file,
                 };
 
