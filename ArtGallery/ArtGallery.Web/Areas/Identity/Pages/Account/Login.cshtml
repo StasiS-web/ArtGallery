@@ -3,7 +3,7 @@
 
 @{
     ViewData["Title"] = "Log in";
-    Layout = null;
+    Layout = "null";
 }
 
 <!DOCTYPE html>
@@ -31,8 +31,8 @@
     @Html.Partial("_Favicons")
 </head>
 <body class="hold-transition login-page dark-mode" data-panel-auto-height-mode="height">
-   <div class="login-box">
-       <div class="card-header text-center">
+   <div class="card">
+      <div class="card-header text-center">
            <!-- Brand Logo -->
          <a href="index3.html" class="brand-link">
          <img src="~/img/logo (180 × 180px).png" alt="ArtGallery Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -40,40 +40,44 @@
           </a>
        </div>
        <!-- /.login-logo -->
-       <div class="card">
-           <div class="card-body login-card-body">
-               <div class="login-box-msg">Sign in here</div>
-
-           <form id="account" method="post">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <div class="login-box-msg">Sign in here</div>
+          <hr />
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <form id="account" method="post">
                 <div class="form-floating">
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
                     <label asp-for="Input.Email" class="form-label"></label>
-                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" class="fas fa-envelope"/>
-                    <span asp-validation-for="Input.Email" class="fas fa-envelope"></span>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
                 <div class="form-floating">
+                   <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
                     <label asp-for="Input.Password" class="form-label"></label>
-                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
-                    <span asp-validation-for="Input.Password" class="fas fa-lock"></span>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
-                <div class="row">
-                    <div class="col-8">
-                        <div class="icheck-primary">
-                                <label asp-for="Input.RememberMe" class="form-label">
-                                    <input type="checkbox" id="remember" class="form-check-input" asp-for="Input.RememberMe" />
-                                    @Html.DisplayNameFor(m => m.Input.RememberMe)
-                                </label>
-                        </div>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-4">
-                       <button type="submit" class="btn btn-primary btn-block">Log in</button>
-                    </div>
-                    <!-- /.col -->
+                <div class="icheck-primary">
+                      <label asp-for="Input.RememberMe" class="form-label">
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                     </label>
+                     <input class="form-check-input" asp-for="Input.RememberMe" />
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-4">
+                    <button id="login-submit" type="submit" class="btn btn-lg btn-primary">Log In</button>
                 </div>
-            </form>
-
-            @*<div class="social-auth-links text-center mb-3">
+                <div>
+                    <p>
+                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                    </p>
+                    <p>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                    </p>
+                    <p>
+                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                    </p>
+                </div>
+                  <!-- /.col -->
+         </form>
+         @*<div class="social-auth-links text-center mb-3">
             <p>- OR -</p>
             <a href="#" class="btn btn-block btn-primary">
               <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
@@ -124,20 +128,15 @@
              </p>
           </div>
 
-         </div>
-       <!-- /.card-body -->
-     </div>
-     <!-- card -->
-
-     <!-- Footer -->
+          <!-- Footer -->
        <footer class="card-body">
              <div class="copyright ">
                 <!-- Default to the left -->
                 <strong>Copyright &copy; 2018 - @DateTime.UtcNow.Year ArtGallery.</strong> All rights reserved.
             </div>
        </footer>
-   </div>
-   <!-- /.login-box -->
+     </div>
+     <!-- card -->
   
    <!-- REQUIRED SCRIPTS -->
 

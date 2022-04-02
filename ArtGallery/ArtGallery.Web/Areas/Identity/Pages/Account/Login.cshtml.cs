@@ -41,8 +41,8 @@ namespace ArtGallery.Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required(ErrorMessage = "The field should not be empthy. It is required to have a content.")]
-            [EmailAddress]
+            [Required]
+            [EmailAddress(ErrorMessage = EmptyField)]
             public string Email { get; set; }
 
             [Required]
