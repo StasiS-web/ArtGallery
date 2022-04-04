@@ -32,7 +32,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtGallery.Services.Mapping
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtGallery.Web.ViewModels", "ArtGallery.Web.ViewModels\ArtGallery.Web.ViewModels.csproj", "{C4AE554D-8EDC-4425-A78A-3D42298C5D66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtGallery.Services.Data.Tests", "ArtGallery.Services.Data.Tests\ArtGallery.Services.Data.Tests.csproj", "{6D46EFC0-05E8-4234-A66B-8A514548917F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtGallery.Services.Data.Tests", "ArtGallery.Services.Data.Tests\ArtGallery.Services.Data.Tests.csproj", "{6D46EFC0-05E8-4234-A66B-8A514548917F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
