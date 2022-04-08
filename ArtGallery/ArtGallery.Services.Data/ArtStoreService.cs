@@ -13,7 +13,6 @@ namespace ArtGallery.Services.Data
     using ArtGallery.Web.ViewModels.ArtStore;
     using Microsoft.AspNetCore.Http;
     using Microsoft.EntityFrameworkCore;
-    using static ArtGallery.Common.GlobalConstants;
 
     public class ArtStoreService : IArtStoreService
     {
@@ -23,7 +22,6 @@ namespace ArtGallery.Services.Data
         {
             this.storeRepo = storeRepo;
         }
-
 
         public async Task CreateArtAsync(ArtStoreCreateInputModel model)
         {

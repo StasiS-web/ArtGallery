@@ -2,6 +2,7 @@ namespace ArtGallery.Web.Controllers
 {
     using System.Collections.Generic;
     using ArtGallery.Web.ViewModels.Home;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using static ArtGallery.Common.GlobalConstants.SeededDataCounts;
 
@@ -19,18 +20,19 @@ namespace ArtGallery.Web.Controllers
         }
 
         [HttpGet("/")]
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             this.ViewData[MessageConstants.OperationalMessage] = "Well done, you manage to drive the tostr!";
 
-            var upcomingEvents = this.eventService.GetUpcomingByIdAsync<UpcomingEventViewModel>(UpcomingEventCount);
+            var upcomingEvents = (IEnumerable<IndexViewModel>)this.eventService.GetUpcomingByIdAsync<UpcomingEventViewModel>(UpcomingEventCount);
             var latestBlog = this.blogService.GetLatestBlogAsync<LatestBlogPostViewModel>(LatestBlogCount);
 
             var modelView = new IndexViewModel
-            {
-                AllUpcomingEvents = (IEnumerable<UpcomingEventViewModel>)upcomingEvents, 
-                AllLatestBlogPost = (IEnumerable<LatestBlogPostViewModel>)latestBlog,
-            };
+             {
+                 AllUpcomingEvents = (IEnumerable<UpcomingEventViewModel>)upcomingEvents,
+                 AllLatestBlogPost = (IEnumerable<LatestBlogPostViewModel>)latestBlog,
+             };
 
             return View(modelView);
         }
@@ -38,6 +40,7 @@ namespace ArtGallery.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Index([ModelBinder(typeof(DateTimeModelBinder))] IndexViewModel model)
         {
+
             return Ok(model);
         }
 
@@ -57,6 +60,5 @@ namespace ArtGallery.Web.Controllers
 
             return Redirect($"/Error/{StatusCodes.Status500InternalServerError}");
         }
-
     }
 }

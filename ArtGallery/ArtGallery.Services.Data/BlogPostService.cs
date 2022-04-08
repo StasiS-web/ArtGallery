@@ -12,28 +12,23 @@
     using ArtGallery.Services.Mapping;
     using ArtGallery.Web.ViewModels.Administrator;
     using ArtGallery.Web.ViewModels.BlogPosts;
-    using AutoMapper;
-    using AutoMapper.QueryableExtensions;
     using Microsoft.EntityFrameworkCore;
     using static ArtGallery.Common.MessageConstants;
 
     public class BlogPostService : IBlogPostService
     {
         private readonly IAppRepository blogRepo;
-        private readonly IConfigurationProvider mapper;
         private readonly ICloudinaryService cloudinary;
 
-        public BlogPostService(IAppRepository blogRepo, ICloudinaryService cloudinary, IConfigurationProvider mapper)
+        public BlogPostService(IAppRepository blogRepo, ICloudinaryService cloudinary)
         {
             this.blogRepo = blogRepo;
             this.cloudinary = cloudinary;
-            this.mapper = mapper;
         }
 
         public async Task<int> CreateBlogPostAsync(BlogPostCreateInputModel model, string user)
         {
             var coverImage = this.cloudinary.UploadImageAsync(model.CoverImage, model.Title);
-
             var blog = new BlogPost
             {
                 Title = model.Title,
@@ -88,20 +83,6 @@
 
             this.blogRepo.Delete(blogPost);
             this.blogRepo.SaveChanges();
-        }
-
-        public async Task AddAsync(BlogPostViewModel model)
-        {
-            await this.blogRepo.AddAsync(new BlogPost
-            {
-                Title = model.Title,
-                Content = model.Content,
-                Author = model.Author,
-                UrlImage = model.UrlImage.ToString(),
-                UserReaction = model.UserReaction,
-            });
-
-            await this.blogRepo.SaveChangesAsync();
         }
 
         public int AllBlogsCount()
@@ -159,6 +140,17 @@
             return posts.Author;
         }
 
+        public async Task<IEnumerable<BlogPostViewModel>> GetLatestBlogAsync<T>(int blogId)
+        {
+                return await this.blogRepo.All<BlogPost>()
+                               .Where(b => b.Id == blogId &&
+                                    b.CreatedOn > DateTime.UtcNow.Date)
+                               .OrderByDescending(b => b.CreatedOn)
+                               .To<BlogPostViewModel>()
+                               .Take(2)
+                               .ToListAsync();
+        }
+
         public async Task<T> GetBlogPostDetailsByIdAsync<T>(int blogId)
         {
             var blogPost = this.blogRepo
@@ -170,18 +162,9 @@
             return blogPost;
         }
 
-        public async Task<IEnumerable<BlogPostViewModel>> GetLatestBlogAsync(int blogId)
-        {
-           return this.blogRepo.All<BlogPostViewModel>()
-                               .Where(b => b.BlogId == blogId)
-                               .OrderByDescending(b => b.CreatedOn)
-                               .ProjectTo<BlogPostViewModel>(this.mapper)
-                               .Take(5)
-                               .ToList();
-        }
-
         public async Task<bool> BlogPostExists(int blogId) => this.blogRepo
                                 .All<BlogPostViewModel>()
                                 .Any(b => b.BlogId == blogId);
+
     }
 }

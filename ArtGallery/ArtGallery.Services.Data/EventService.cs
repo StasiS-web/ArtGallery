@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
     using ArtGallery.Data.Models;
     using ArtGallery.Data.Repositories.Contracts;
@@ -12,7 +11,6 @@
     using ArtGallery.Services.Mapping;
     using ArtGallery.Web.ViewModels.Administrator;
     using ArtGallery.Web.ViewModels.Events;
-    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using static ArtGallery.Common.GlobalConstants.Formating;
 
@@ -74,28 +72,6 @@
             return isUpdated;
         }
 
-        public async Task ConfirmAsync(int id)
-        {
-            var eventToConfirm = this.eventRepo
-               .All<Event>()
-               .Where(e => e.Id == id)
-               .FirstOrDefault();
-
-            eventToConfirm.Confirmed = true;
-            await this.eventRepo.SaveChangesAsync();
-        }
-
-        public async Task DeclineAsync(int id)
-        {
-            var eventToConfirm = this.eventRepo
-               .All<Event>()
-               .Where(e => e.Id == id)
-               .FirstOrDefault();
-
-            eventToConfirm.Confirmed = false;
-            await this.eventRepo.SaveChangesAsync();
-        }
-
         public void Delete(int id)
         {
             var eventToDelete = this.eventRepo
@@ -116,8 +92,9 @@
         public IEnumerable<EventViewModel> GetAllEvents(int eventId)
         {
             return this.eventRepo
-                .All<EventViewModel>()
-                .Where(u => u.EventId == eventId)
+                .All<Event>()
+                .To<EventViewModel>()
+                .OrderByDescending(p => p.EventId == eventId)
                 .ToList();
         }
 
@@ -147,7 +124,7 @@
             return (IEnumerable<int>)events;
         }
 
-        public async Task<IEnumerable<T>> GetUpcomingByIdAsync<T>(int eventId)
+        public async Task<List<T>> GetUpcomingByIdAsync<T>(int eventId)
         {
             return await this.eventRepo.All<EventViewModel>()
                                  .Where(x => x.EventId == eventId &&

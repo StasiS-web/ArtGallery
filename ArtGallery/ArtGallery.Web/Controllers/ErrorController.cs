@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using ArtGallery.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.Protocol.Plugins;
 
 namespace ArtGallery.Web.Controllers
 {

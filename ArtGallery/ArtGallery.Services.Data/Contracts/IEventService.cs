@@ -13,10 +13,6 @@
 
         Task<bool> UpdateEventAsync(EventEditViewModel model);
 
-        Task ConfirmAsync(int id);
-
-        Task DeclineAsync(int id);
-
         void Delete(int id);
 
         int AllEventsCount();
@@ -25,7 +21,7 @@
 
         IEnumerable<int> GetByIdAsync(int eventId);
 
-        Task<IEnumerable<T>> GetUpcomingByIdAsync<T>(int eventId);
+        Task<List<T>> GetUpcomingByIdAsync<T>(int eventId);
 
         Task AddAsync(EventViewModel model);
 

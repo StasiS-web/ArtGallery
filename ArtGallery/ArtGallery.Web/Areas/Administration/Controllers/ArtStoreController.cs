@@ -1,4 +1,4 @@
-﻿using ArtGallery.Services.Data.Administrator.Contracts;
+﻿using ArtGallery.Services.Data.Contracts;
 using ArtGallery.Web.ViewModels.Administrator;
 using ArtGallery.Web.ViewModels.ArtStore;
 using Microsoft.AspNetCore.Mvc;
@@ -6,61 +6,57 @@ using static ArtGallery.Common.MessageConstants;
 
 namespace ArtGallery.Web.Areas.Administration.Controllers
 {
-    public class ArtStoreController : BaseController
+    public class ArtStoreController : AdministrationController
     {
-        private readonly IArtStoreService artStoreService;
-        private readonly IAdminArtStoreService adminArtStore;
+        private readonly IArtStoreService adminService;
 
-        public ArtStoreController(IArtStoreService artStoreService, IAdminArtStoreService adminArtStore)
+        public ArtStoreController(IArtStoreService artService)
         {
-            this.artStoreService = artStoreService;
-            this.adminArtStore = adminArtStore;
+            this.adminService = adminService;
         }
 
-        public IActionResult Create()
+        public IActionResult Index()
         {
             return View();
         }
 
-        [HttpPost]
-        private async Task<IActionResult> CreateAsync(ArtStoreCreateInputModel model)
+        private async Task<IActionResult> CreateArt([ModelBinder(typeof(DecimalModelBinder))] ArtStoreCreateInputModel model)
         {
-            var arts = adminArtStore.CreateArtAsync(model);
+            var arts = this.adminService.CreateArtAsync(model);
 
             if (arts == null)
             {
-                throw new ArgumentException(nameof(model), ArtExists);
+                throw new ArgumentException(nameof(model), NonExistsArt);
             }
 
-            await this.adminArtStore.CreateArtAsync(model);
-            return Redirect("/Views/ArtStore");
+            await this.adminService.CreateArtAsync(model);
+            return Redirect("/ArtStore/CreateArt");
         }
 
-        [HttpGet]
-        public IActionResult EditAsync(int id)
+
+        public IActionResult EditArtModelBinder(int id)
         {
-            var arts = this.artStoreService.Details(id);
+            var arts = this.adminService.Details(id);
 
             return View(new ArtStoreCreateInputModel
             {
                 PaintingName = arts.PaintingName,
                 AuthorName = arts.AuthorName,
-                UrlImage = arts.UrlImage,
-                Price = (decimal)arts.Price,
+                Price = Convert.ToDecimal(arts.Price),
                 Description = arts.Description,
             });
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditAsync(ArtStoreViewModel model)
+        public async Task<IActionResult> EditArt([ModelBinder(typeof(DecimalModelBinder))] ArtStoreViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View(model);
             }
 
-            await this.adminArtStore.UpdateArtStore(model);
-            return Redirect("/View/ArtStore");
+            await this.adminService.UpdateArtStore(model);
+            return Redirect("/ArtStore/EditArt");
         }
     }
 }

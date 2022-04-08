@@ -43,5 +43,27 @@
             await this.bookingRepo.AddAsync(booking);
             await bookingRepo.SaveChangesAsync();
         }
+
+        public async Task ConfirmAsync(int id) // Manager Functionality
+        {
+            var eventToConfirm = this.bookingRepo
+               .All<EventOrder>()
+               .Where(e => e.EventId == id)
+               .FirstOrDefault();
+
+            eventToConfirm.Confirmed = true;
+            await this.bookingRepo.SaveChangesAsync();
+        }
+
+        public async Task DeclineAsync(int id) // Manager Functionality
+        {
+            var eventToConfirm = this.bookingRepo
+               .All<EventOrder>()
+               .Where(e => e.EventId == id)
+               .FirstOrDefault();
+
+            eventToConfirm.Confirmed = false;
+            await this.bookingRepo.SaveChangesAsync();
+        }
     }
 }

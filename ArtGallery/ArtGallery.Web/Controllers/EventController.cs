@@ -1,6 +1,11 @@
+using System.Globalization;
+using System.Runtime.Serialization;
+using ArtGallery.Data.Models.Enumeration;
+using ArtGallery.Web.ViewModels.BlogPosts;
 using ArtGallery.Web.ViewModels.Events;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Event = ArtGallery.Data.Models.Event;
+using static ArtGallery.Common.GlobalConstants.Formating;
 
 namespace ArtGallery.Web.Controllers
 {
@@ -13,29 +18,33 @@ namespace ArtGallery.Web.Controllers
             this.events = eventservice;
         }
 
-        public IActionResult Index()
+        [Route("/Event/AllEvents")]
+        [AllowAnonymous]
+        public IActionResult AllEvents(AllEventListViewModel model)
         {
-            return View();
+            var modelView = this.events.GetAllEvents(model.EventId)
+                .Select(e => new AllEventListViewModel
+                {
+                    Name = model.Name,
+                    Date = model.Date,
+                    Type = model.Type,
+                    Description = model.ShortDescription,
+                }).ToList();
+
+            return View(modelView);
         }
 
-        [HttpGet("{eventId}/Event")]
-        public IActionResult GetListAllEvents(int eventId)
+        [Route("/Event/EventDetails/{eventId}")]
+        public IActionResult EventDetails([ModelBinder(typeof(DateTimeModelBinder))] int eventId)
         {
-            var allEvents = this.events.GetAllEvents(eventId);
+            if (eventId == null)
+            {
+                return new StatusCodeResult(404);
+            }
 
-            return View(allEvents);
-        }
+            var eventDetails = this.events.GetEventDetailsByIdAsync<EventViewModel>(eventId);
 
-        [HttpPost]
-        public IActionResult GetListAllEvents(AllEventListViewModel model)
-        {
-            return Ok(model);
-        }
-
-        [HttpGet("{eventId}")]
-        public IActionResult GetOnce([FromRoute] int eventId)
-        {
-            return this.Redirect($"/Event/Index/{eventId}");
+            return this.View(eventDetails);
         }
     }
 }

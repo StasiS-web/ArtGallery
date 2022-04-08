@@ -3,7 +3,9 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.Threading.Tasks;
+    using ArtGallery.Data;
     using ArtGallery.Data.Models;
+    using ArtGallery.Data.Models.Enumeration;
     using ArtGallery.Data.Repositories.Contracts;
     using ArtGallery.Services.Data.Contracts;
     using ArtGallery.Web.ViewModels.ArtStore;
@@ -13,11 +15,13 @@
 
     public class ArtOrderService : IArtOrderService
     {
+        private readonly ApplicationDbContext dbContext;
         private readonly IAppRepository orderRepo;
 
-        public ArtOrderService(IAppRepository orderRepo)
+        public ArtOrderService(IAppRepository orderRepo, ApplicationDbContext dbContext)
         {
-             this.orderRepo = orderRepo;
+            this.dbContext = dbContext;
+            this.orderRepo = orderRepo;
         }
 
         public async Task CreateOrder(ArtOrderViewModel model)
@@ -38,6 +42,38 @@
 
             await this.orderRepo.AddAsync(order);
             await this.orderRepo.SaveChangesAsync();
+        }
+
+        public async Task<bool> ReceivedOrder(string artId)
+        {
+            var orders = this.dbContext.ArtsOrders.Find(artId);
+
+            if (orders == null)
+            {
+                return false;
+            }
+
+            orders.Status = OrderStatus.Received;
+
+            await this.orderRepo.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> CancleOrder(string artId) // Manager Functionality
+        {
+            var orders = this.dbContext.ArtsOrders.Find(artId);
+
+            if (orders == null)
+            {
+                return false;
+            }
+
+            orders.Status = OrderStatus.Cancled;
+
+            await this.orderRepo.SaveChangesAsync();
+
+            return true;
         }
     }
 }

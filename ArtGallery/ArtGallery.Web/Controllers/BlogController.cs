@@ -1,4 +1,9 @@
+using System.Linq;
+using ArtGallery.Web.ViewModels.BlogPosts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using static ArtGallery.Common.GlobalConstants;
+using static ArtGallery.Common.MessageConstants;
 
 namespace ArtGallery.Web.Controllers
 {
@@ -11,21 +16,40 @@ namespace ArtGallery.Web.Controllers
             this.blogPost = blog;
         }
 
-        public IActionResult Index()
+        [Route("/Blog")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Index(int? sortId, int blogId)
         {
+            if (sortId != null)
+            {
+                var blogPost = this.blogPost.GetById<BlogPostViewModel>(sortId.Value);
+
+                if (blogPost == null)
+                {
+                    return new StatusCodeResult(404);
+                }
+            }
+
+            this.ViewData["CurrentSort"] = sortId;
+
+            var blogPosts = await this.blogPost.GetAll<BlogPostViewModel>(sortId, blogId);
+            var blogList = blogPosts.ToList();
+            ViewBag.AllBlog = blogList;
+
             return View();
         }
 
-        [HttpGet]
-        public IActionResult GetList()
+        [Route("/Event/PostDetails/{blogId}")]
+        public IActionResult PostDetails(int blogId)
         {
-            return Ok();
-        }
+            if (blogId == null)
+            {
+                return new StatusCodeResult(404);
+            }
 
-        [HttpGet("{blogId}")]
-        public IActionResult GetOnce([FromRoute] int blogId)
-        {
-            return Ok();
+            var blogPost = this.blogPost.GetBlogPostDetailsByIdAsync<BlogPostViewModel>(blogId);
+
+            return View(blogPost);
         }
     }
 }

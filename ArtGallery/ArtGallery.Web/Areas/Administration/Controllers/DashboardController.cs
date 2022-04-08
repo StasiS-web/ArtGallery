@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ArtGallery.Web.ViewModels.Users;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ArtGallery.Web.Areas.Administration.Controllers
 {
@@ -6,7 +7,7 @@ namespace ArtGallery.Web.Areas.Administration.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+                return View();
         }
     }
 }

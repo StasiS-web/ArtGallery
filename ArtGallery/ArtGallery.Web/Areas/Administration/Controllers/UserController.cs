@@ -8,10 +8,10 @@ namespace ArtGallery.Web.Areas.Administration.Controllers
     public class UserController : AdministrationController
     {
         private readonly RoleManager<IdentityRole> roleManager;
-        private readonly UserManager<ArtGalleryUser> userManager;
+        private readonly UserManager<ApplicationUser> userManager;
         private readonly IUserService userService;
 
-        public UserController(RoleManager<IdentityRole> roleManager, UserManager<ArtGalleryUser> userManager, IUserService userService)
+        public UserController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, IUserService userService)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
@@ -23,6 +23,7 @@ namespace ArtGallery.Web.Areas.Administration.Controllers
             return View();
         }
 
+        [Route("/User/ManageUsers")]
         public IActionResult ManageUsers()
         {
             var users = this.userService.GetUsers();
@@ -45,13 +46,13 @@ namespace ArtGallery.Web.Areas.Administration.Controllers
                 {
                     Text = r.Name,
                     Value = r.Id,
-                    Selected = userManager.IsInRoleAsync(user, r.Name).Result
+                    Selected = userManager.IsInRoleAsync(user, r.Name).Result,
                 }).ToList();
 
             return View(model);
         }
 
-        [HttpPost]
+        [HttpPost("/User/Roles")]
         public async Task<IActionResult> Roles(UserRolesViewModel model)
         {
             var user = await userService.GetUserById(model.UserId);
@@ -73,7 +74,7 @@ namespace ArtGallery.Web.Areas.Administration.Controllers
             return View(model);
         }
 
-        [HttpPost]
+        [HttpPost("/User/Edit")]
         public async Task<IActionResult> Edit(UserEditViewModel model)
         {
             if (!ModelState.IsValid)
@@ -83,11 +84,11 @@ namespace ArtGallery.Web.Areas.Administration.Controllers
 
             if (await userService.UpdateUser(model))
             {
-                ViewData[MessageConstants.OperationalMessages] = "Succefully Written Down";
+                ViewData[MessageConstants.OperationalMessage] = "Succefully Written Down";
             }
             else
             {
-                ViewData[MessageConstants.OperationalMessages] = "Oops! An error occurred.";
+                ViewData[MessageConstants.OperationalMessage] = "Oops! An error occurred.";
             }
 
             return View(model);

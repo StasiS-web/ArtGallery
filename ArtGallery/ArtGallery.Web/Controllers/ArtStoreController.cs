@@ -1,7 +1,6 @@
-using System.Web.Mvc;
-using ArtGallery.Services.Data.Administrator.Contracts;
 using ArtGallery.Web.ViewModels.Administrator;
 using ArtGallery.Web.ViewModels.ArtStore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using static ArtGallery.Common.MessageConstants;
 
@@ -17,7 +16,8 @@ namespace ArtGallery.Web.Controllers
         }
 
         [Authorize]
-        public IActionResult Deatails(int artId)
+        [Route("/ArtStore/ArtDetails/{artId}")]
+        public IActionResult ArtDeatails(int artId)
         {
             var artStore = this.artStoreService.Details(artId);
 
