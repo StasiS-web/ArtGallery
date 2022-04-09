@@ -44,7 +44,6 @@ Art Gallery's main idea is to be an app for booking and sales. A place where reg
 * ASP.NET CORE 6.0 MVC
 * ASP.NET Core Areas
 * Entity Framework [CORE 6.0](https://docs.microsoft.com/en-us/ef/core/)
-* Newtonsoft.Json
 * Seeder
 * AutoMapper
 * Cloudinary
@@ -72,7 +71,7 @@ Stanislava Stoeva
 This project is licensed with the [MIT license](LICENSE).
 
 ## Acknowledgments
-Using [ASP.NET-MVC-Template](https://github.com/NikolayIT/ASP.NET-MVC-Template) developed by:
+Created different structure but still Using some file from [ASP.NET-MVC-Template](https://github.com/NikolayIT/ASP.NET-MVC-Template) developed by:
 - [Nikolay Kostov](https://github.com/NikolayIT)
 - [Vladislav Karamfilov](https://github.com/vladislav-karamfilov)
 - [Stoyan Shopov](https://github.com/StoyanShopov)
