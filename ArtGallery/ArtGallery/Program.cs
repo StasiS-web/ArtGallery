@@ -73,13 +73,13 @@ var app = builder.Build();
 /*using (var serviceScope = app.Services.CreateScope())
 {
     var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Docker"))
+    if (app.Environment.IsDevelopment())
     {
         dbContext.Database.Migrate();
     }
     new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
-}
-*/
+}*/
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

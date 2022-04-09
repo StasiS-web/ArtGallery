@@ -1,8 +1,57 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div class="content">
+        <h1 class="display-4">Welcome To Art Gallery</h1>
+        <div class="container-fluid">
+             <div class="row">
+                      <div class="col-lg-6">
+                   @*     @foreach (var upcomingEvent in events) *@
+                         {
+                            <div class="card  card-primary card-outline">
+                              <div class="card-body">
+                                <h5 class="card-title">Upcoming Event: </h5>
+                                <span class="start-date">Date</span>
+                                <p calss="class-text">Type</p>
+                                <p class="card-text">
+                                  ShortDescription
+                                </p>
+                           
+                               @* <a href="#" class="card-link" asp-controller="Event" asp-action="EventDetails">Go Event Details</a> *@
+                              </div>
+                            </div>
+                         }
+                         <!-- /.card -->
+                      </div>
+                      <!-- /.col-md-6 -->
+                     <div class="col-lg-6">
+                           @* @foreach (var latestBlog in blogs) *@
+                            {
+                                <div class="card  card-primary card-outline">
+                                  <div class="card-header">
+                                       <h5 class="m-0">Title</h5>
+                                  </div>
+                                  <div class="card-image">
+                                       <img src="UrlImage" alt="" />
+                                  </div>
+                                  <div class="card-body">
+                                       <h6 class="card-title">Author</h6>
+                                       <p class="card-text">ShortContect</p>
+                                   @*  <a href="#" class="btn btn-primary">Blog Post Details</a> *@
+                                  </div>
+                               </div>
+                            }
+                      </div> 
+                      <!-- /.col-md-6 -->
+              </div>
+             <!-- /.row -->
+       </div><!-- /.container-fluid -->
+       <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
+           <i class="fas fa-chevron-up"></i>
+       </a>
+   </div>
+   <!-- /.content -->      
 </div>
+

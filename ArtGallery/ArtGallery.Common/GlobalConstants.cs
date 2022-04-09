@@ -13,7 +13,7 @@
 
         public static class AccountSeeding
         {
-            public const string Password = "123455";
+            public const string Password = "Dev-123455";
             public const string AdminEmail = "admin@admin.com";
             public const string GalleryManagerEmail = "manager@manager.com";
             public const string UserEmail = "user@user.com";

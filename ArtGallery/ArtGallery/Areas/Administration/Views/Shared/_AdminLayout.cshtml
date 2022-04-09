@@ -1,7 +1,14 @@
 ﻿@using ArtGallery.Common
-
+@using ArtGallery.Core.Models.Home
+@model IndexViewModel
 @{
     Layout = null;
+}
+
+@{
+    
+    var events = ViewBag.UpcomingEvent;
+   @* var blogs = ViewBag.LatestBlogPost; *@
 }
 
 <!DOCTYPE html>
@@ -21,7 +28,7 @@
     <link rel="stylesheet" href="/css/adminlte.min.css" />
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
-    <link rel="stylesheet" href="/css/site.css" rel="stylesheet" asp-append-version="true" />
+    <link rel="stylesheet" href="/css/site.css" asp-append-version="true" />
 
     @this.RenderSectionAsync("Styles", required: false) 
 </head>
