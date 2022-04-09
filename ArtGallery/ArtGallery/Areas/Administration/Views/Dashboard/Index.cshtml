@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="mt-2">
+    <div class="nav-header">Admin Access</div>
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <a href="/"class="nav-link btn-outline-info"> <i class="fas fa-house-user"></i> Home </a>
+          </li>
+          <li class="nav-item">
+              <a asp-area="Administration" asp-controller="User" class="nav-link btn-outline-info">
+                <i class="far fa-circle nav-icon"></i> Manage Users
+              </a>
+          </li>
+          <li class="nav-item">
+              <a asp-area="Administration" asp-controller="User" asp-action="Roles" class="nav-link btn-outline-info">
+                 <i class="far fa-circle nav-icon"></i> Roles
+              </a>
+          </li>
+          <li class="nav-item">
+               <a asp-area="Administration" asp-controller="Event" asp-action="CreateEvents" class="nav-link btn-outline-info">
+                   <i class="far fa-circle nav-icon"></i> Add Event
+               </a>
+           </li>
+          <li class="nav-item">
+              <a asp-area="Administration" asp-controller="Event" asp-action="EditEvent" class="nav-link btn-outline-info">
+                 <i class="far fa-circle nav-icon"></i> Edit Events
+              </a>
+          </li>
+          <li class="nav-item">
+               <a asp-area="Administration" asp-controller="Blog" asp-action="CreateBlog" class="nav-link btn-outline-info">
+                 <i class="far fa-circle nav-icon"></i> Add Blog Post
+              </a>
+          </li>
+   </ul>
+   </div>
+
