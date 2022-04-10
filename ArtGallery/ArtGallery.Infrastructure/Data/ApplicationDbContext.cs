@@ -10,6 +10,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using static ArtGallery.Common.GlobalConstants.ArtStore;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
     {

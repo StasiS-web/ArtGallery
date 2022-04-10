@@ -13,8 +13,6 @@
 
         Task<ApplicationUser> GetUserById(string userId);
 
-        Task<T> GetUser<T>(string userId);
-
         Task<UserEditViewModel> GetUserToEdit(string userId);
 
         Task<IEnumerable<UserListViewModel>> GetUsers();
@@ -22,10 +20,6 @@
         Task<bool> UpdateUser(UserEditViewModel model);
 
         string GetIdByUsername(UserViewModel model);
-
-        Task<string> UpdateProfile(string userId, ProfileViewModel model);
-
-        string GetUrl(string userId);
 
         Task<string> DeleteAsync(string userId);
     }

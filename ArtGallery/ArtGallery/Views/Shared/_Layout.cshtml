@@ -23,10 +23,10 @@
 
     @RenderSectionAsync("Head", false)
 </head>
-<body class="hold-transition sidebar-mini layout-fixed dark-mode">
+<body class="hold-transition sidebar-mini layout-fixed dark-mode" data-panel-auto-height-mode="height">
    <div class="wrapper">
          <!-- Navbar -->
-         <nav class="navbar-primary navbar-light navbar-toggleable-sm navbar-expand navbar-white">
+         <nav class="navbar-primary navbar-light navbar-toggleable-sm navbar-expand navbar-white border-bottom">
             <partial name="_Navigation" />
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
@@ -49,7 +49,7 @@
             <!-- Main Sidebar Container -->
        <aside class="main-sidebar sidebar-dark-primary elevation-4">
            <!-- Brand Logo -->
-           <a asp-controller="Profile" class="brand-link">
+           <a href="index3.html" class="brand-link">
               <img src="/img/ArtGalleryLogo.png" alt="ArtGallery Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
               <span class="brand-text font-weight-light">ArtGallery</span>
            </a>

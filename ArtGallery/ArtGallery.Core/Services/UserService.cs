@@ -7,7 +7,6 @@
     using System.Text;
     using System.Threading.Tasks;
     using ArtGallery.Core.Contracts;
-    using ArtGallery.Core.Mapping;
     using ArtGallery.Core.Models.Administrator;
     using ArtGallery.Core.Models.Users;
     using ArtGallery.Infrastructure.Data.Models;
@@ -35,23 +34,6 @@
         public async Task<ApplicationUser> GetUserById(string userId)
         {
             return await this.userRepo.GetByIdAsync<ApplicationUser>(userId);
-        }
-
-        public async Task<T> GetUser<T>(string userId)
-        {
-            var user = this.userRepo.All<ArtGalleryUser>()
-                .Where(u => u.Id == userId)
-                .To<ProfileViewModel>()
-                .FirstOrDefault();
-
-            if (user == null)
-            {
-                throw new ArgumentNullException(string.Format(nameof(user)));
-            }
-
-            var userModel = AutoMapperConfig.MapperInstance.Map<T>(user);
-
-            return userModel;
         }
 
         public string GetIdByUsername(UserViewModel model)
@@ -104,37 +86,11 @@
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
 
-                await this.userRepo.SaveChangesAsync();
+                this.userRepo.SaveChangesAsync();
                 result = true;
             }
 
             return result; 
-        }
-
-        public async Task<string> UpdateProfile(string userId, ProfileViewModel model)
-        {
-            var user = this.userRepo.AllReadonly<ArtGalleryUser>().FirstOrDefault(u => u.Id == userId);
-
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-            user.FirstName = model.FirstName;
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-            user.LastName = model.LastName;
-            user.UserName = model.UserName;
-            user.Gender = model.Gender;
-            user.UrlImage = model.UrlImage;
-            user.Email = model.Email;
-
-            this.userRepo.Update(user);
-            await this.userRepo.SaveChangesAsync();
-
-            return user.Id;
-        }
-
-        public string GetUrl(string userId)
-        {
-            var user = this.userRepo.All<ArtGalleryUser>().FirstOrDefault(u => u.Id == userId);
-            var url = user.UrlImage;
-            return url;
         }
 
         public async Task<string> DeleteAsync(string userId)

@@ -44,10 +44,6 @@ namespace ArtGallery.Common
         // OperationalMessages
         public const string SuccessfullyBookedEvent = "Your choosen event has been succefully booked!";
         public const string SuccessfullyCheckoutOrder = "Your order has been successfully checkout!";
-        public const string SuccessfullyRunningToaster = "Well done, you manage to drive the tostr!";
-        public const string UpdateSuccessMessage = "Profile was updated succefully!";
-
-        // ErrorMessage 
-        public const string UpdateError = "You will need to fill the required input fields!";
+       // public const string SuccessfullyRunningToaster = "Well done, you manage to drive the tostr!";
     }
 }
