@@ -1,15 +1,17 @@
-﻿using ArtGallery.Common;
-using ArtGallery.Controllers;
-using ArtGallery.Core.Contracts;
-using ArtGallery.Core.Models.Administrator;
-using ArtGallery.Core.Models.Users;
-using ArtGallery.Infrastructure.Data.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-
-namespace ArtGallery.Areas.Administration.Controllers
+﻿namespace ArtGallery.Areas.Administration.Controllers
 {
+    using ArtGallery.Common;
+    using ArtGallery.Controllers;
+    using ArtGallery.Core.Contracts;
+    using ArtGallery.Core.Mapping;
+    using ArtGallery.Core.Models.Administrator;
+    using ArtGallery.Core.Models.Users;
+    using ArtGallery.Infrastructure.Data.Models;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Rendering;
+    using System.Security.Claims;
+
     public class UserController : BaseController
     {
         private readonly RoleManager<IdentityRole> roleManager;

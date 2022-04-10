@@ -1,5 +1,7 @@
 ﻿namespace ArtGallery.Controllers
 {
+    using ArtGallery.Core.Contracts;
+    using ArtGallery.Core.Models.Home;
     using ArtGallery.Models;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -7,14 +9,23 @@
 
     public class HomeController : BaseController
     {
-
+       // private readonly IEventService eventService;
+       // private readonly IBlogPostService blogPostService;
         public HomeController()
         {
+          //  this.eventService = eventService;
+           // this.blogPostService = blogPostService;
         }
 
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
+           // var upcomingEvents = eventService.GetUpcomingByIdAsync<UpcomingEventViewModel>(eventId);
+           // var latestBlog = blogPostService.GetLatestBlogAsync<LatestBlogPostViewModel>(blogId);
+
+           // ViewBag.AllUpcomingEvents = (IEnumerable<UpcomingEventViewModel>)upcomingEvents;
+          //  ViewBag.AllLatestBlogPost = (IEnumerable<LatestBlogPostViewModel>)latestBlog;
+
             return View();
         }
 
