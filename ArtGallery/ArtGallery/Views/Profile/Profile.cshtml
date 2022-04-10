@@ -1,0 +1,44 @@
+﻿@using ArtGallery.Core.Models.Users
+@model ProfileViewModel
+@{
+    ViewData["Title"] = "User Profile";
+}
+
+@if (this.TempData["MessageConstants"] != null)
+{
+    <div class="alert-default-success">
+        @this.TempData["MessageConstants"]
+    </div>
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4">
+            <img src="@Model.Photo" alt="" style="width:300px; height:300px;" />
+        </div>
+        <div class="col-4"">
+           <div class="text-danger" style="color:darkblue">
+               <h4>@ViewData["Title"]</h4>
+           </div>
+           <div class="text-danger">
+               @Model.FirstName
+           </div>
+           <div class="text-danger">
+               @Model.LastName
+           </div>
+           <div class="text-danger">
+               Username: @Model.UserName
+           </div>
+           <div class="text-danger">
+               Gender: @Model.Gender
+           </div>
+           <div class="text-danger">
+               Email: @Model.Email
+           </div>
+           <div>
+               <a class="btn btn-info" asp-area="" asp-action="UpdateProfile" asp-route-id="@Model.UserId">UpdateProfile</a>
+           </div>
+        </div>
+    </div>
+</div>
+
