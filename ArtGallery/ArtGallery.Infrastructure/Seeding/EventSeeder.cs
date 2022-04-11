@@ -8,11 +8,13 @@
     using ArtGallery.Infrastructure.Data.Models;
     using ArtGallery.Infrastructure.Data.Models.Enumeration;
     using ArtGallery.Infrastructure.Seeding.Contracts;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.DependencyInjection;
     using static ArtGallery.Common.GlobalConstants.Formating;
 
     public class EventSeeder : ISeeder
     {
-
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
             if (dbContext.Events.Any())

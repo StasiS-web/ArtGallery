@@ -9,12 +9,12 @@
     using ArtGallery.Infrastructure.Data;
     using ArtGallery.Core.Contracts;
 
-    public class ArtOrderService : IArtOrderService
+    public class ArtOrder : IArtOrderService
     {
         private readonly ApplicationDbContext dbContext;
         private readonly IAppRepository orderRepo;
 
-        public ArtOrderService(IAppRepository orderRepo, ApplicationDbContext dbContext)
+        public ArtOrder(IAppRepository orderRepo, ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
             this.orderRepo = orderRepo;
