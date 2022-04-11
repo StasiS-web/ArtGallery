@@ -1,17 +1,3 @@
-using ArtGallery.Common;
-using ArtGallery.Core.Contracts;
-using ArtGallery.Core.Services;
-using ArtGallery.Infrastructure.Data;
-using ArtGallery.Infrastructure.Data.Common;
-using ArtGallery.Infrastructure.Data.Models;
-using ArtGallery.Infrastructure.Data.Repositories;
-using ArtGallery.Infrastructure.Seeding;
-using ArtGallery.ModelBinders;
-using CloudinaryDotNet;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using static ArtGallery.Common.GlobalConstants;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
