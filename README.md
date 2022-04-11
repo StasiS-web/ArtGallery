@@ -54,8 +54,6 @@ Art Gallery's main idea is to be an app for booking and sales. A place where reg
   
 </details>
 
-## :floppy_disk: Database Diagram
-
 ## Resources
 
 * All images are comming from (https://www.rawpixel.com/) & (https://unsplash.com/)
