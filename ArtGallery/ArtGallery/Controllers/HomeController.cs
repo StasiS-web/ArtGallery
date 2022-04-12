@@ -4,6 +4,7 @@
     using ArtGallery.Core.Models.Home;
     using ArtGallery.Models;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Localization;
     using Microsoft.AspNetCore.Mvc;
     using System.Diagnostics;
 
@@ -50,6 +51,20 @@
             }
 
             return Redirect($"/Error/{StatusCodes.Status500InternalServerError}");
+        }
+
+        public IActionResult SetCultureCookie(string cltr, string returnUrl)
+        {
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(cltr)),
+                new CookieOptions
+                {
+                    Expires = DateTime.UtcNow.AddYears(1),
+                    SameSite = SameSiteMode.Strict
+                });
+
+            return LocalRedirect(returnUrl);
         }
     }
 }
