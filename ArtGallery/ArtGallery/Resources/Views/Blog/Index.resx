@@ -117,28 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="GenderPlaceholder" xml:space="preserve">
-    <value>Por favor seleccione</value>
-  </data>
-  <data name="lblEmail" xml:space="preserve">
-    <value>Correo Electrónico</value>
-  </data>
-  <data name="lblFirstName" xml:space="preserve">
-    <value>Primer Nombre</value>
-  </data>
-  <data name="lblGender" xml:space="preserve">
-    <value>Género</value>
-  </data>
-  <data name="lblLastName" xml:space="preserve">
-    <value>Apellido</value>
-  </data>
-  <data name="lblPhoto" xml:space="preserve">
-    <value>Foto</value>
-  </data>
-  <data name="lblUserName" xml:space="preserve">
-    <value>Usuario</value>
-  </data>
   <data name="PageTitle" xml:space="preserve">
-    <value>Actualización del Perfil</value>
+    <value>Блог</value>
+  </data>
+  <data name="SidebarHeader" xml:space="preserve">
+    <value>Последни Публикаций</value>
   </data>
 </root>
