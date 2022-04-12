@@ -20,18 +20,19 @@ Art Gallery's main idea is to be an app for booking and sales. A place where reg
 <strong> Admin: </strong>
 * Can create or delete Blog Posts.
 * Can create, update or delete events and paintings available for sale.
-* Can Manage Users and Edit User.
+* Can Manage Users.
   
 <strong> Manager: </strong>
 * Can approve the requested cancellation of an order.
-* Can Confirm or decline the user's booked event. It depends on Max Capacity for an event.
+* Can Confirm or Decline the user's booked event. It depends on Max Capacity for the event.
 * Can control what events are available for booking.
   
 <strong> :pushpin: Restrictions: </strong>
-* Guest Vistors (a user who is not Logged-in) are restricted to browsing through exhibition events and painting in the App Store, also through the Blog Posts, which are available for them to read. Guest Visitors cannot create comments, make orders or book events.
-* Users are not allowed to create Blog Posts and Events only if they are Administrators.
-* Any user can create Comments as long as it is a Logged-in user. Guest users are not allowed to create comments.
-* Only admin is allowed to create Blog Posts and Events.
+* Guest Vistors (a user who is not Logged-in) are restricted to browsing through exhibition events and painting in the App Store, also through the Blog Posts, which are available for them to read.
+* Users are not allowed to create Blog Posts, Events or new Arts for purchases only if they are Administrators.
+* Any user can create Comments as long as it is a Logged-in user. 
+* Only Guest visitors are not allowed to create comments, make orders or book events.
+* Only admin is allowed to create Blog Posts, Events or Arts.
   
 </details>
 
