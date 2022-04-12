@@ -52,6 +52,15 @@ namespace ArtGallery.Areas.Identity.Pages.Account.Manage
         /// </summary>
         public class InputModel
         {
+            public string FirstName { get; set; }
+
+            public string LastName { get; set; }
+
+
+            [EmailAddress]
+            [Display(Name = "Email")]
+            public string Email { get; set; }
+
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -65,12 +74,14 @@ namespace ArtGallery.Areas.Identity.Pages.Account.Manage
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var email = await _userManager.GetEmailAsync(user);
 
             Username = userName;
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                Email = email
             };
         }
 

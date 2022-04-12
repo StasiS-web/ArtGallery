@@ -1,7 +1,9 @@
 ﻿@using ArtGallery.Core.Models.BlogPosts
+@using Microsoft.AspNetCore.Mvc.Localization
 @model AllBlogPostsListViewModel
+@inject IViewLocalizer localizer
 @{
-    ViewBag.Title = "Blog";
+    ViewBag.Title = localizer["PageTitle"];
 }
 
 <div class="card card-success">
@@ -30,7 +32,7 @@
             <aside class="row">
                 <div class="col">
                     <div>
-                        <div class="sidebar-dark">Latest Blog Posts</div>
+                        <h4 class="sidebar-dark">localizer["SidebarHeader"]</h4>
                         <div>@await Component.InvokeAsync("GetLatestBlogAsync", 2)</div>
                     </div>
                 </div>

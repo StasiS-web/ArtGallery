@@ -14,11 +14,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+   
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - @GlobalConstants.SystemName</title>
-    
+
+    <link rel="icon" href="/favicon.ico" type="x-icon" />
      <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel='icon' href="/favicon.ico" type="image/x-icon" />
@@ -36,7 +37,7 @@
     <div class="wrapper">
 
        <!-- Navbar -->
-          <nav class="main-header navbar navbar-light navbar-expand">
+          <nav class="main-header navbar navbar-expand navbar-light">
             <!-- Left navbar links -->
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
@@ -57,9 +58,8 @@
        <aside class="main-sidebar sidebar-dark-primary elevation-4">
           <div class="sidebar">
              <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
-              <img src="~/img/ArtGalleryLogo.png" alt="ArtGallery Logo" class="brand-image img-circle elevation-3" style="opacity: .8" />
-              <span class="brand-text font-weight-light">ArtGallery</span>
+            <<a asp-area="Administration" asp-controller="User" asp-action="Profile" class="nav-link">
+              <img src="~/img/user5-128x128.jpg" alt="user image" class="brand-image img-circle elevation-3" style="opacity: .8" />
             </a>
 
             <ul class="flex-row align-items-center justify-centre-start">
@@ -112,7 +112,8 @@
     <!-- Bootstrap 4 -->
     <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- overlayScrollbars -->
-    <script src="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css"></script>
+    <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
+
     <!-- AdminLTE App -->
     <script src="/js/adminlte.min.js"></script>
     <script src="/plugins/toastr/toastr.min.js"></script> 
