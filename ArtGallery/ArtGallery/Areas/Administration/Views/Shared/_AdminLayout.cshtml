@@ -5,12 +5,6 @@
     Layout = null;
 }
 
-@{
-    
-    var events = ViewBag.UpcomingEvent;
-   @* var blogs = ViewBag.LatestBlogPost; *@
-}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +40,7 @@
                <partial name="_AdminNavigation" />
               <li class="nav-item">
                  <form class="form-inline" asp-area="Identity" asp-action="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                     <button type="submit" class="nav-link text-dark-lightblue"><i class="fas fa-door-closed"> Logout</i></button>
+                     <button type="submit" class="nav-link text-lightblue"><i class="fas fa-door-closed"> Logout</i></button>
                  </form>
               </li>
             </ul>
@@ -71,7 +65,7 @@
        </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper iframe-mode">
          <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container-fluid">
@@ -99,7 +93,6 @@
         <!-- /.content -->
         </div>
      <!-- /.content-wrapper -->
-
 
     <partial name="_FooterPartial" />
 </div>
