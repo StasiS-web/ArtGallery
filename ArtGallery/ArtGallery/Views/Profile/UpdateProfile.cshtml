@@ -1,10 +1,12 @@
 ﻿@using ArtGallery.Core.Models.Users
 @using ArtGallery.Infrastructure.Data.Models.Enumeration
 @using ArtGallery.Extensions
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer localizer
 
 @model ProfileViewModel
 @{
-    ViewData["Title"] = "UpdateProfile";
+    ViewData["Title"] = localizer["PageTitle"];
 }
 
 @if (this.TempData["MessageConstants"] != null)
@@ -15,7 +17,6 @@
 }
 
 <div class="container-fluid">
-    <h2 class="text-center text">UpdateProfile</h2>
     <div class="row">
         <div calss="col-4">
             <form asp-area="" aps-comntroller="User" asp-action="UpdateProfile" method="post">
@@ -23,21 +24,21 @@
                 
                 <div class="form-floating">
                     <div class="form-group">
-                       <label asp-for="FirstName"></label>
+                       <label asp-for="FirstName">@localizer["lblFirstName"]</label>
                        <input type="text" class="form-control" placeholder="First Name..." asp-for="FirstName">
                        <span asp-validation-for="FirstName" class="text-danger"></span>
                    </div>
                 </div>
                 <div class="form-floating">
                     <div class="form-group">
-                       <label asp-for="LastName"></label>
+                       <label asp-for="LastName">@localizer["lblLastName"]</label>
                        <input type="text" class="form-control" placeholder="Last Name..." asp-for="LastName">
                        <span asp-validation-for="LastName" class="text-danger"></span>
                    </div>
                 </div>
                 <div class="form-floating">
                     <div class="form-group">
-                       <label asp-for="UserName"></label>
+                       <label asp-for="UserName">@localizer["lblUserName"]</label>
                        <input type="text" class="form-control" placeholder="Username..." asp-for="UserName">
                        <span asp-validation-for="UserName" class="text-danger"></span>
                    </div>
@@ -46,21 +47,21 @@
                     <div class="form-group">
                        <label asp-for="Gender"></label>
                        <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Gender>()" class="form-control">
-                           <option selected="selected" value="">Please select...</option>
+                           <option selected="selected" value="">@localizer["GenderPlaceholder"]...</option>
                         </select>
                        <span asp-validation-for="Gender" class="text-danger"></span>
                    </div>
                 </div>
                 <div class="form-floating">
                     <div class="form-group">
-                       <label asp-for="Photo"></label>
+                       <label asp-for="Photo">@localizer["lblPhoto"]</label>
                        <input type="file" class="form-control" placeholder="Photo..." asp-for="Photo">
                        <span asp-validation-for="UrlImage" class="text-danger"></span>
                    </div>
                 </div>
                 <div class="form-floating">
                     <div class="form-group">
-                       <label asp-for="Email"></label>
+                       <label asp-for="Email">@localizer["lblEmail"]</label>
                        <input type="text" class="form-control" placeholder="Email..." asp-for="Email">
                        <span asp-validation-for="Email" class="text-danger"></span>
                    </div>

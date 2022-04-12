@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var routeData = ViewContext.RouteData.Values;
+    routeData["culture"] = "{0}";
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     
@@ -11,7 +16,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel='icon' href="/favicon.ico" type="image/x-icon" />
     <!-- Font Awesome Icons -->
-
     <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css" />
     <!-- Theme style -->
     <link rel="stylesheet" href="/css/adminlte.min.css" />
@@ -23,25 +27,26 @@
 
     @RenderSectionAsync("Head", false)
 </head>
-<body class="hold-transition sidebar-mini layout-fixed dark-mode">
+<body class="hold-transition sidebar-mini dark-mode" >
    <div class="wrapper">
          <!-- Navbar -->
-         <nav class="navbar-primary navbar-light navbar-toggleable-sm navbar-expand navbar-white">
-            <partial name="_Navigation" />
+         <nav class="main-header navbar-primary navbar-light navbar-toggleable-sm navbar-expand">
+            
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fab fa-bars"></i></a>
+                </li>
               <!-- Navbar Search -->
+               <partial name="_Navigation" />
                  <li class="nav-item">
                       <form class="form-inline" asp-area="Identity" asp-action="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                            <i class="fas fa-door-open"></i>
-                            <button type="submit" class="nav-link btn-outline-info">Logout</button>
+                         <button type="submit" class="nav-link text-dark-lightblue"><i class="fas fa-door-closed"> Logout</i></button>
                       </form>
                  </li>
                  <li class="nav-item">
-                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                        <i class="fas fa-expand-arrows-alt"></i>
-                     </a>
-                 </li>
+                     <language-nav flags="true" redirect-to-url="@(Url.RouteUrl(routeData))" cookie-handler-url="@Url.Action("SetCultureCookie", "Home", new { area="", cltr="{0}", returnUrl="{1}" })"></language-nav>
+                </li>
             </ul>
          </nav>
             <!-- /.navbar -->
@@ -53,7 +58,7 @@
               <img src="/img/ArtGalleryLogo.png" alt="ArtGallery Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
               <span class="brand-text font-weight-light">ArtGallery</span>
            </a>
-
+          
           <div class="sidebar">
               <!-- Sidebar user panel (optional) -->
               <ul class="flex-row align-items-center justify-centre-start">

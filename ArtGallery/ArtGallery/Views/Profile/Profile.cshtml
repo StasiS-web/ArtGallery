@@ -1,7 +1,9 @@
 ﻿@using ArtGallery.Core.Models.Users
+@using Microsoft.AspNetCore.Mvc.Localization
 @model ProfileViewModel
+@inject IViewLocalizer localizer
 @{
-    ViewData["Title"] = "User Profile";
+    ViewData["Title"] = localizer["PageTitle"];
 }
 
 @if (this.TempData["MessageConstants"] != null)
@@ -20,23 +22,25 @@
            <div class="text-danger" style="color:darkblue">
                <h4>@ViewData["Title"]</h4>
            </div>
+           <lable>@localizer["lblFirstName"]</lable>
            <div class="text-danger">
                @Model.FirstName
            </div>
+           <lable>@localizer["lblLastName"]</lable>
            <div class="text-danger">
                @Model.LastName
            </div>
            <div class="text-danger">
-               Username: @Model.UserName
+               @localizer["lblUserName"]: @Model.UserName
            </div>
            <div class="text-danger">
-               Gender: @Model.Gender
+               @localizer["lblGender"]: @Model.Gender
            </div>
            <div class="text-danger">
-               Email: @Model.Email
+               @localizer["lblEmail"]: @Model.Email
            </div>
            <div>
-               <a class="btn btn-info" asp-area="" asp-action="UpdateProfile" asp-route-id="@Model.UserId">UpdateProfile</a>
+               <a class="btn btn-info" asp-area="" asp-action="UpdateProfile" asp-route-id="@Model.UserId">Update Profile</a>
            </div>
         </div>
     </div>

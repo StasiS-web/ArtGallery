@@ -1,6 +1,8 @@
-﻿@model ArtGallery.Core.Models.Home.IndexViewModel
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model ArtGallery.Core.Models.Home.IndexViewModel
+@inject IViewLocalizer localizer
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = localizer["PageTitle"];
 
    // var events = ViewBag.AllUpcomingEvents;
   //  var blogs = ViewBag.AllLatestBlogPost;
@@ -8,15 +10,18 @@
 
 <div class="text-center">
     <div class="content">
-        <h1 class="display-4">Welcome To Art Gallery</h1>
+        <h1 class="display-4">@localizer["PageHeader"]</h1>
         <div class="container-fluid">
              <div class="row">
                       <div class="col-lg-6">
+                          <h5 class="m-0">@localizer["EventHeader"]</h5>
                     @*     @foreach (var upcomingEvent in events) *@
                          {
                             <div class="card card-primary card-outline">
+                              <div class="card-header">
+                                  <h5 class="card-title">upcomingEvent.Name</h5>
+                              </div>
                               <div class="card-body">
-                                <h5 class="card-title">Upcoming Event: upcomingEvent.Name</h5>
                                 <span class="start-date">upcomingEvent.Date</span>
                                 <p calss="class-text">upcomingEvent.Type</p>
                                 <p class="card-text">
@@ -31,17 +36,18 @@
                       </div>
                       <!-- /.col-md-6 -->
                      <div class="col-lg-6">
+                         <h5 class="m-0">@localizer["BlogHeader"]</h5>
                        @*  @foreach (var latestBlog in blogs) *@
                            {
                                 <div class="card  card-primary card-outline">
                                   <div class="card-header">
-                                       <h5 class="m-0">latestBlog.Title</h5>
-                                  </div>
-                                  <div class="card-image">
-                                        <img src="latestBlog.UrlImage" alt="" /> 
+                                      <h6 class="card-title">latestBlog.Title</h6>
+                                      <div class="card-image">
+                                          <img src="latestBlog.UrlImage" alt="" /> 
+                                       </div>
                                   </div>
                                   <div class="card-body">
-                                       <h6 class="card-title">latestBlog.Author</h6>
+                                       <p class="card-text">latestBlog.Author</p>
                                        <p class="card-text">latestBlog.ShortContect</p>
                                    @*  <a href="#" class="btn btn-primary">Blog Post Details</a> *@
                                   </div>

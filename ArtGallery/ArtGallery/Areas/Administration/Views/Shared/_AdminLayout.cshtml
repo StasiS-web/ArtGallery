@@ -32,26 +32,24 @@
 
     @this.RenderSectionAsync("Styles", required: false) 
 </head>
-<body class="hold-transition sidebar-mini" data-panel-auto-height-mode="height">
+<body class="hold-transition sidebar-mini">
     <div class="wrapper">
 
        <!-- Navbar -->
-          <nav class="main-header navbar navbar-expand navbar-white">
+          <nav class="main-header navbar navbar-light navbar-expand">
             <!-- Left navbar links -->
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ml-auto">
               <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
               </li>
+               <partial name="_AdminNavigation" />
               <li class="nav-item">
                  <form class="form-inline" asp-area="Identity" asp-action="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                     <i class="fas fa-door-open"></i>
-                     <button type="submit" class="nav-link">Logout</button>
+                     <button type="submit" class="nav-link text-dark-lightblue"><i class="fas fa-door-closed"> Logout</i></button>
                  </form>
               </li>
             </ul>
                
-               <partial name="_AdminNavigation" />
-
           </nav>
           <!-- /.navbar -->
 
