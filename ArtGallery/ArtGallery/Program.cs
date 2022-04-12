@@ -1,3 +1,4 @@
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -20,13 +21,29 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
     options.MinimumSameSitePolicy = SameSiteMode.None;
 });
 
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCulture = new CultureInfo[]
+    {
+        new CultureInfo("bg"),
+        new CultureInfo("en"),
+        new CultureInfo("es")
+    };
+
+    options.DefaultRequestCulture = new RequestCulture("bg");
+    options.SupportedCultures = supportedCulture;
+    options.SupportedUICultures = supportedCulture;
+});
+
 builder.Services.AddControllersWithViews()
     .AddMvcOptions(options =>
     { // Add Model Binding helps to work with model types
         options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
         options.ModelBinderProviders.Insert(1, new DateTimeModelBinderProvider(Formating.NormalDateFormat));
         options.ModelBinderProviders.Insert(2, new DoubleModelBinderProvider());
-    });
+    })
+    .AddMvcLocalization(LanguageViewLocationExpanderFormat.Suffix);
 
 // Data Repositories
 builder.Services.AddScoped<IDbQueryRunner, DbQueryRunner>();
@@ -38,12 +55,6 @@ builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<ISettingsService, SettingsService>();
 builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
 
-builder.Services.Configure<CookiePolicyOptions>(
-        options =>
-        {
-            options.CheckConsentNeeded = context => true;
-            options.MinimumSameSitePolicy = SameSiteMode.None;
-        });
 
 // Cloudinary Setup
 Account account = new Account(
@@ -56,15 +67,7 @@ builder.Services.AddSingleton(cloudinary);
 var app = builder.Build();
 
 // Seed data on application startup
-/*using (var serviceScope = app.Services.CreateScope())
-{
-    var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    if (app.Environment.IsDevelopment())
-    {
-        dbContext.Database.Migrate();
-    }
-    new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
-}*/
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -83,6 +86,7 @@ app.UseStaticFiles();
 app.UseCookiePolicy();
 
 app.UseRouting();
+app.UseRequestLocalization();
 
 app.UseAuthentication();
 app.UseAuthorization();

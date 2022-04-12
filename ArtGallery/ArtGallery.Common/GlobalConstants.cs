@@ -16,6 +16,7 @@
             public const string Password = "Dev-123455";
             public const string AdminEmail = "admin@admin.com";
             public const string GalleryManagerEmail = "manager@manager.com";
+            public const string GeneralInfoEmail = "info@artgallery.com";
             public const string UserEmail = "user@user.com";
         }
 
@@ -141,7 +142,7 @@
 
         public static class SeededDataCounts
         {
-            public const int Events = 9;
+            public const int Events = 8;
             public const int BlogPost = 6;
             public const int ArtStore = 7;
 

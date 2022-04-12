@@ -1,4 +1,7 @@
-﻿global using ArtGallery.Common;
+﻿global using Microsoft.AspNetCore.Localization;
+global using Microsoft.AspNetCore.Mvc.Razor;
+global using System.Globalization;
+global using ArtGallery.Common;
 global using ArtGallery.Core.Contracts;
 global using ArtGallery.Core.Services;
 global using ArtGallery.Infrastructure.Data;

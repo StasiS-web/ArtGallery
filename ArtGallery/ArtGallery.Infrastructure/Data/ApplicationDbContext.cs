@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using ArtGallery.Infrastructure.Data.Common.Models.Contracts;
     using ArtGallery.Infrastructure.Data.Models;
+    using ArtGallery.Infrastructure.Seeding;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
@@ -119,6 +120,12 @@
                 .HasColumnName("TotalPrice")
                 .HasColumnName("Price")
                 .HasColumnType("decimal");
+
+            // Initial Data Seed
+            builder.ApplyConfiguration(new InitialDataSeed<ExhibitionHall>(@"DataSeed/halls.json"));
+            builder.ApplyConfiguration(new InitialDataSeed<ArtStore>(@"DataSeed/arts.json"));
+            builder.ApplyConfiguration(new InitialDataSeed<BlogPost>(@"DataSeed/blog.json"));
+            builder.ApplyConfiguration(new InitialDataSeed<Event>(@"DataSeed/events.json"));
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)
