@@ -10,8 +10,13 @@
             <a href="/"class="nav-link btn-outline-info"> <i class="fas fa-house-user"></i> Home </a>
           </li>
           <li class="nav-item">
-              <a asp-area="Administration" asp-controller="User" class="nav-link btn-outline-info">
+              <a asp-area="Administration" asp-controller="User" asp-action="ManageUsers" class="nav-link btn-outline-info">
                 <i class="far fa-circle nav-icon"></i> Manage Users
+              </a>
+          </li>
+          <li class="nav-item">
+              <a asp-area="Administration" asp-controller="User" asp-action="Edit" class="nav-link btn-outline-info">
+                 <i class="far fa-circle nav-icon"></i> Edit
               </a>
           </li>
           <li class="nav-item">
