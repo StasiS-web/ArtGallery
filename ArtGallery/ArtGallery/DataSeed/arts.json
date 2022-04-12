@@ -1,0 +1,72 @@
+[
+  {
+    "Id": "SAUk2oNdQUGKNCbN3gZ7dA",
+    "PaintingName": "Mr. Peacock",
+    "AuthorName": "Anke Gruss",
+    "UrlImage": "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1645821443/app_gallery/peacock-jpeg_d9gei3.jpg",
+    "Price": 4970,
+    "Description": "Mr Peacock - an expressive take on the vibrancy and pride of our Peacock friends around the world. A print of a hand-painted piece created from acrylic paint completed with a metallic gold crescent. This vibrant Peacock would look fantastic in any room, particularly an entrance, bedroom or living room. This print would also make a great gift for any animal lover.",
+    "ShoppingCartId": null,
+    "ShoppingCart": null
+  },
+  {
+    "Id": "kWDg22Zd6EC-Tbuu0skMpA",
+    "PaintingName": "The Starry Night",
+    "AuthorName": "Van Gogh",
+    "UrlImage": "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1645821452/app_gallery/The_Starry_Night-jpeg_ph9mxf.jpg",
+    "Price": 3270,
+    "Description": "The Starry Night is an oil-on-canvas painting by the Dutch Post-Impressionist painter Vincent van Gogh. Painted in June 1889, it depicts the view from the east-facing window of his asylum room at Saint-Rémy-de-Provence, just before sunrise, with the addition of an imaginary village.",
+    "ShoppingCartId": null,
+    "ShoppingCart": null
+  },
+  {
+    "Id": "8Kwbofn7G0KJgR4lFgKg1A",
+    "PaintingName": "Terrace, Prospect Park (1887)",
+    "AuthorName": "William Merritt",
+    "UrlImage": "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1645821445/app_gallery/Terrace_Prospect_Park_1887_-jpeg_uesqef.jpg",
+    "Price": 2100,
+    "Description": "We produce flawless giclee prints, thanks to the premium quality paper we use and our top-of-the-range 12 cartridge ink-jet printer. We use premium 270gsm luster/satin paper. This paper gives you the best of both worlds, as it is a hybrid of glossy and matte paper, you get the vibrancy of a gloss finish and the robustness of a matte paper. The paper we use is very durable and not vulnerable to fingerprints.",
+    "ShoppingCartId": null,
+    "ShoppingCart": null
+  },
+  {
+    "Id": "HkPAwIQ6bEapcxUbesBdow",
+    "PaintingName": "Green Wheat Fields",
+    "AuthorName": "Van Gogh",
+    "UrlImage": "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1645821441/app_gallery/Green_Wheat_Fields-jpeg_dzmndr.jpg",
+    "Price": 1500,
+    "Description": "Vincent Van Gogh Wheat Field with Cypresses (1889) Art Print, Cypresses (1889) Art Print, Make a statement in any room with, this fine art poster, printed on thick, durable, matte paper. Add a wonderful, accent to your room and office with, these posters that are sure to brighten, any environment.",
+    "ShoppingCartId": null,
+    "ShoppingCart": null
+  },
+  {
+    "Id": "kEGPLiKXGkOWzVgRvcVE4Q",
+    "PaintingName": "Portrait of Mona Lisa",
+    "AuthorName": "Leonardo da Vinci",
+    "UrlImage": "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1645821444/app_gallery/Portrait_of_Mona_Lisa-jpeg_jhvgpi.jpg",
+    "Price": 84,
+    "Description": "Quality art reproductions, printed in our French Workshop since 2015. Our Art Reproductions are hangings in so many walls around the world.",
+    "ShoppingCartId": null,
+    "ShoppingCart": null
+  },
+  {
+    "Id": "YPYfmEZNO0O3_OCYIPtUfQ",
+    "PaintingName": "Italian landscape",
+    "AuthorName": "Michiel van Huysum",
+    "UrlImage": "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1646154562/app_gallery/landscape-jpeg_odeze0.jpg",
+    "Price": 60,
+    "Description": "Vintage Italian coastal landscape oil painting. Muted tonal wall decor. Original c. 1800's",
+    "ShoppingCartId": null,
+    "ShoppingCart": null
+  },
+  {
+    "Id": "K8S8Q2t9e0-INvwpOEp7hA",
+    "PaintingName": "Birds",
+    "AuthorName": "Michiel van Huysum",
+    "UrlImage": "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--18fSIQ9v--/c_fit,h_400,w_400/v1648592592/app_gallery/y4PqRPqSako-unsplash_gzmv2d.jpg",
+    "Price": 30,
+    "Description": "Beautiful print based on antique illustrations from 1780. Wonderful details, colors and natural history feel.",
+    "ShoppingCartId": null,
+    "ShoppingCart": null
+  }
+]

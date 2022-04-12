@@ -30,9 +30,6 @@
                         {
                             new RoleSeeder(),
                             new AccountsSeeder(),
-                            new BlogPostSeeder(),
-                            new EventSeeder(),
-                            new ArtStoreSeeder(),
                             new SettingsSeeder(),
                         };
 

@@ -1,0 +1,17 @@
+[
+  {
+    "Id": 120,
+    "ExhibitionHallType": "Small",
+    "Capacity": 10
+  },
+  {
+    "Id": 121,
+    "ExhibitionHallType": "Medium",
+    "Capacity": 50
+  },
+  {
+    "Id": 122,
+    "ExhibitionHallType": "Large",
+    "Capacity": 100
+  }
+]
