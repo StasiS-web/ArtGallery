@@ -1,4 +1,5 @@
-﻿using ArtGallery.Core.Contracts;
+﻿using ArtGallery.Areas.Administration.Controllers;
+using ArtGallery.Core.Contracts;
 using ArtGallery.Core.Services;
 using ArtGallery.Infrastructure.Data;
 using ArtGallery.Infrastructure.Data.Models;
@@ -17,7 +18,8 @@ namespace ArtGallery.Tests
 {
     public class UserServiceTests
     {
-        public Mock<IUserService> _userServiceMock;
+        public Mock<IUserService> userMock = new Mock<IUserService>();
+        
         [Fact]
         public async Task GetAllUserShouldReturnUsersInDb()
         {
@@ -52,12 +54,6 @@ namespace ArtGallery.Tests
           //  var result = userService.GetIdByUsername().Select(x => x.UserName).ToList();
 
           //  Assert.Equal(expected, result);
-        }
-
-        [Fact]
-        public async Task GetUserByIdShouldWork()
-        {
-
         }
 
         public static Mock<UserManager<TUser>> MockUserManager<TUser>() where TUser : class

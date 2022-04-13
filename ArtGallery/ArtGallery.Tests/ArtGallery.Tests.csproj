@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ArtGallery.Core\ArtGallery.Core.csproj" />
+    <ProjectReference Include="..\ArtGallery\ArtGallery.csproj" />
   </ItemGroup>
 
 </Project>

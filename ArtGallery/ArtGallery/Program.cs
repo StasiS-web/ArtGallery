@@ -1,4 +1,3 @@
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,6 +13,13 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddAuthentication()
+    .AddFacebook(options =>
+    {
+        options.AppId = builder.Configuration.GetValue<string>("Facebook:AppId");
+        options.AppSecret = builder.Configuration.GetValue<string>("Facebook:AppSecret");
+    });
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
@@ -44,6 +50,11 @@ builder.Services.AddControllersWithViews()
         options.ModelBinderProviders.Insert(2, new DoubleModelBinderProvider());
     })
     .AddMvcLocalization(LanguageViewLocationExpanderFormat.Suffix);
+
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("Redis");
+});
 
 // Data Repositories
 builder.Services.AddScoped<IDbQueryRunner, DbQueryRunner>();
