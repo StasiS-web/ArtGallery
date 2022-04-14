@@ -4,8 +4,8 @@
 @{
     ViewData["Title"] = localizer["PageTitle"];
 
-   // var events = ViewBag.AllUpcomingEvents;
-  //  var blogs = ViewBag.AllLatestBlogPost;
+   //var events = ViewBag.AllUpcomingEvents;
+   // var blogs = ViewBag.AllLatestBlogPost;
 }
 
 <div class="text-center">
@@ -15,7 +15,7 @@
              <div class="row">
                       <div class="col-lg-6">
                           <h5 class="m-0">@localizer["EventHeader"]</h5>
-                    @*     @foreach (var upcomingEvent in events) *@
+                    @* @foreach (var upcomingEvent in events) *@
                          {
                             <div class="card card-primary card-outline">
                               <div class="card-header">
@@ -41,15 +41,15 @@
                            {
                                 <div class="card  card-primary card-outline">
                                   <div class="card-header">
-                                      <h6 class="card-title">latestBlog.Title</h6>
+                                 @*     <h6 class="card-title">@await Component.InvokeAsync("Index", latestBlog.Title)</h6> @**@
                                       <div class="card-image">
                                           <img src="latestBlog.UrlImage" alt="" /> 
                                        </div>
                                   </div>
                                   <div class="card-body">
-                                       <p class="card-text">latestBlog.Author</p>
-                                       <p class="card-text">latestBlog.ShortContect</p>
-                                   @*  <a href="#" class="btn btn-primary">Blog Post Details</a> *@
+                                   @*  <p class="card-text">@await Component.InvokeAsync("Index", latestBlog.Author)</p>
+                                       <p class="card-text">@await Component.InvokeAsync("Index", latestBlog.ShortContect)</p>
+                                       <a href="#" class="btn btn-primary">Blog Post Details</a> *@
                                   </div>
                                </div>
                            } 
