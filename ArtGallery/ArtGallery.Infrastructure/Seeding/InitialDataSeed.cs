@@ -15,7 +15,7 @@
         public void Configure(EntityTypeBuilder<T> builder)
         {
             string? jsonData = GetFromFile();
-
+            
             if (jsonData != null)
             {
                 List<T> data = JsonConvert.DeserializeObject<List<T>>(jsonData);

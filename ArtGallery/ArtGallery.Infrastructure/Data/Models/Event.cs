@@ -22,15 +22,9 @@
         public decimal Price { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.Today;
 
         public EventType Type { get; set; }
-
-        [Required]
-        [ForeignKey(nameof(ExhibitionHall))]
-        public int ExhibitionHallId { get; set; }
-
-        public ExhibitionHall ExhibitionHall { get; set; }
 
         public TicketType TicketSelection { get; set; }
 
@@ -41,6 +35,7 @@
         /// Admin need to confirm or decline user booking.
         /// It depends from the capacity of the ExhibitionHall.
         /// </summary>
+        public bool? Confirmed { get; set; }
 
         public ICollection<BookingTransaction> BookingTransactions { get; set; }
     }
