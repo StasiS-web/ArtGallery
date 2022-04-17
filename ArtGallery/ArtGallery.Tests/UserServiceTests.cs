@@ -1,59 +1,60 @@
-﻿using ArtGallery.Areas.Administration.Controllers;
-using ArtGallery.Core.Contracts;
+﻿using ArtGallery.Core.Contracts;
 using ArtGallery.Core.Services;
 using ArtGallery.Infrastructure.Data;
 using ArtGallery.Infrastructure.Data.Models;
+using ArtGallery.Infrastructure.Data.Repositories;
 using ArtGallery.Test.Common;
+using ArtGallery.Core.Models.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using AutoMapper;
+using System.Linq;
 
 namespace ArtGallery.Tests
 {
     public class UserServiceTests
     {
-        public Mock<IUserService> userMock = new Mock<IUserService>();
-        
-        [Fact]
-        public async Task GetAllUserShouldReturnUsersInDb()
+        [Theory]
+        [InlineData("testId")]
+        public async Task GetAllUserShouldReturnUsersInDb(string userId)
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(databaseName: "GetAllUsers")
-                .Options;
-            var dbContext = new ApplicationDbContext(options);
+                 .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()).Options;
 
-            var user1 = new ApplicationUser()
-            {
-                Id = Guid.NewGuid().ToString(),
-                UserName = "admin123",
-                FirstName = "Admin",
-                LastName = "LastAdmin"
-            };
+           var context = new ApplicationDbContext(options);
+           //var services = serviceProvider.GetService<IUserService>();
 
-            var user2 = new ApplicationUser()
-            {
-                Id = Guid.NewGuid().ToString(),
-                UserName = "admin223",
-                FirstName = "Admin2",
-                LastName = "LastAdmin2"
-            };
+            context.Add( new List<ArtGalleryUser>()
+                    {
+                       new ArtGalleryUser
+                       {
+                            Id = Guid.NewGuid().ToString(),
+                            UserName = "admin123",
+                            FirstName = "Admin",
+                            LastName = "LastAdmin"
+                        },
+                       new ArtGalleryUser
+                       {
+                            Id = Guid.NewGuid().ToString(),
+                            UserName = "admin223",
+                            FirstName = "Admin2",
+                            LastName = "LastAdmin2"
+                       }
+                    });
+            var repo = new AppRepository(context);
+            var services = new UserService(repo);
 
-            dbContext.Users.Add(user1);
-            dbContext.Users.Add(user2);
-            dbContext.SaveChanges();
-
-            var userManager = MockUserManager<ApplicationUser>();
-           // var userService = new UserService(userManager.Object, dbContext);
-            var expected = new List<string> { user1.UserName, user2.UserName };
-          //  var result = userService.GetIdByUsername().Select(x => x.UserName).ToList();
-
-          //  Assert.Equal(expected, result);
+            var users = new List<ArtGalleryUser>();
+            users.Add(new ArtGalleryUser { FirstName = "test", LastName = "lastTest", UserName = "userTest" });
+            var actual = services.GetAllUser(userId);
+          
+            Assert.True(actual.Count() == users.Count);
         }
 
         public static Mock<UserManager<TUser>> MockUserManager<TUser>() where TUser : class

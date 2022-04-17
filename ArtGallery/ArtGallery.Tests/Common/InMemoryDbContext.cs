@@ -34,5 +34,10 @@
         }
 
         public void Dispose() => connection.Dispose();
+
+        public static implicit operator InMemoryDbContext(ApplicationDbContext v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
