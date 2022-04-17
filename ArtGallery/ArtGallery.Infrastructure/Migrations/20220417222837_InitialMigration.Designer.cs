@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtGallery.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220409013910_InitialMigration")]
+    [Migration("20220417222837_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,47 +23,6 @@ namespace ArtGallery.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.ApplicationRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("AspNetRoles", (string)null);
-                });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.ApplicationUser", b =>
                 {
@@ -318,7 +277,7 @@ namespace ArtGallery.Infrastructure.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("money");
 
-                    b.Property<decimal>("ShoppingCartId")
+                    b.Property<decimal?>("ShoppingCartId")
                         .HasColumnType("decimal");
 
                     b.Property<string>("UrlImage")
@@ -472,6 +431,9 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<bool?>("Confirmed")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -486,9 +448,6 @@ namespace ArtGallery.Infrastructure.Migrations
                         .HasMaxLength(1500)
                         .HasColumnType("nvarchar(1500)");
 
-                    b.Property<int>("ExhibitionHallId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -497,8 +456,8 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasMaxLength(45)
+                        .HasColumnType("nvarchar(45)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("money");
@@ -510,8 +469,6 @@ namespace ArtGallery.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ExhibitionHallId");
 
                     b.HasIndex("IsDeleted");
 
@@ -576,6 +533,9 @@ namespace ArtGallery.Infrastructure.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("EventId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ExhibitionHallType")
                         .HasColumnType("int");
 
@@ -586,6 +546,8 @@ namespace ArtGallery.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EventId");
 
                     b.HasIndex("IsDeleted");
 
@@ -783,6 +745,33 @@ namespace ArtGallery.Infrastructure.Migrations
                     b.ToTable("ShoppingCarts");
                 });
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
@@ -936,13 +925,9 @@ namespace ArtGallery.Infrastructure.Migrations
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.ArtStore", b =>
                 {
-                    b.HasOne("ArtGallery.Infrastructure.Data.Models.ShoppingCart", "ShoppingCart")
+                    b.HasOne("ArtGallery.Infrastructure.Data.Models.ShoppingCart", null)
                         .WithMany("Arts")
-                        .HasForeignKey("ShoppingCartId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("ShoppingCart");
+                        .HasForeignKey("ShoppingCartId");
                 });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.BlogComment", b =>
@@ -983,17 +968,6 @@ namespace ArtGallery.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.Event", b =>
-                {
-                    b.HasOne("ArtGallery.Infrastructure.Data.Models.ExhibitionHall", "ExhibitionHall")
-                        .WithMany()
-                        .HasForeignKey("ExhibitionHallId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("ExhibitionHall");
-                });
-
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.EventOrder", b =>
                 {
                     b.HasOne("ArtGallery.Infrastructure.Data.Models.Event", "Event")
@@ -1011,6 +985,17 @@ namespace ArtGallery.Infrastructure.Migrations
                     b.Navigation("Event");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.ExhibitionHall", b =>
+                {
+                    b.HasOne("ArtGallery.Infrastructure.Data.Models.Event", "EventName")
+                        .WithMany()
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("EventName");
                 });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.SaleTransaction", b =>
@@ -1045,7 +1030,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("ArtGallery.Infrastructure.Data.Models.ApplicationRole", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -1084,7 +1069,7 @@ namespace ArtGallery.Infrastructure.Migrations
                         .WithMany("Roles")
                         .HasForeignKey("ArtGalleryUserId");
 
-                    b.HasOne("ArtGallery.Infrastructure.Data.Models.ApplicationRole", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Restrict)

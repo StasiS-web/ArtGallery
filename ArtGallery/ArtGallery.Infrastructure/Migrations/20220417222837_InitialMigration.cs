@@ -14,10 +14,6 @@ namespace ArtGallery.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -80,13 +76,18 @@ namespace ArtGallery.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ExhibitionHalls",
+                name: "Events",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ExhibitionHallType = table.Column<int>(type: "int", nullable: false),
-                    Capacity = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: false),
+                    Price = table.Column<decimal>(type: "money", nullable: false),
+                    Date = table.Column<DateTime>(type: "date", nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false),
+                    TicketSelection = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1500)", maxLength: 1500, nullable: false),
+                    Confirmed = table.Column<bool>(type: "bit", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
@@ -94,7 +95,7 @@ namespace ArtGallery.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ExhibitionHalls", x => x.Id);
+                    table.PrimaryKey("PK_Events", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -192,18 +193,14 @@ namespace ArtGallery.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Events",
+                name: "ExhibitionHalls",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Price = table.Column<decimal>(type: "money", nullable: false),
-                    Date = table.Column<DateTime>(type: "date", nullable: false),
-                    Type = table.Column<int>(type: "int", nullable: false),
-                    ExhibitionHallId = table.Column<int>(type: "int", nullable: false),
-                    TicketSelection = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1500)", maxLength: 1500, nullable: false),
+                    ExhibitionHallType = table.Column<int>(type: "int", nullable: false),
+                    Capacity = table.Column<int>(type: "int", nullable: false),
+                    EventId = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
@@ -211,11 +208,11 @@ namespace ArtGallery.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Events", x => x.Id);
+                    table.PrimaryKey("PK_ExhibitionHalls", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Events_ExhibitionHalls_ExhibitionHallId",
-                        column: x => x.ExhibitionHallId,
-                        principalTable: "ExhibitionHalls",
+                        name: "FK_ExhibitionHalls_Events_EventId",
+                        column: x => x.EventId,
+                        principalTable: "Events",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -469,7 +466,7 @@ namespace ArtGallery.Infrastructure.Migrations
                     UrlImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "money", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    ShoppingCartId = table.Column<decimal>(type: "decimal", nullable: false),
+                    ShoppingCartId = table.Column<decimal>(type: "decimal", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
@@ -482,8 +479,7 @@ namespace ArtGallery.Infrastructure.Migrations
                         name: "FK_Arts_ShoppingCarts_ShoppingCartId",
                         column: x => x.ShoppingCartId,
                         principalTable: "ShoppingCarts",
-                        principalColumn: "Price",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Price");
                 });
 
             migrationBuilder.CreateTable(
@@ -585,11 +581,6 @@ namespace ArtGallery.Infrastructure.Migrations
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetRoles_IsDeleted",
-                table: "AspNetRoles",
-                column: "IsDeleted");
-
-            migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
                 table: "AspNetRoles",
                 column: "NormalizedName",
@@ -669,11 +660,6 @@ namespace ArtGallery.Infrastructure.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Events_ExhibitionHallId",
-                table: "Events",
-                column: "ExhibitionHallId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Events_IsDeleted",
                 table: "Events",
                 column: "IsDeleted");
@@ -687,6 +673,11 @@ namespace ArtGallery.Infrastructure.Migrations
                 name: "IX_EventsOrders_UserId",
                 table: "EventsOrders",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ExhibitionHalls_EventId",
+                table: "ExhibitionHalls",
+                column: "EventId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ExhibitionHalls_IsDeleted",
@@ -771,6 +762,9 @@ namespace ArtGallery.Infrastructure.Migrations
                 name: "EventsOrders");
 
             migrationBuilder.DropTable(
+                name: "ExhibitionHalls");
+
+            migrationBuilder.DropTable(
                 name: "Faqs");
 
             migrationBuilder.DropTable(
@@ -796,9 +790,6 @@ namespace ArtGallery.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Arts");
-
-            migrationBuilder.DropTable(
-                name: "ExhibitionHalls");
 
             migrationBuilder.DropTable(
                 name: "ShoppingCarts");
