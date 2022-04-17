@@ -1,16 +1,18 @@
 {
   "dependencies": {
-    "mssql1": {
-      "type": "mssql1.local",
-      "connectionId": "ConnectionStrings:DefaultConnection"
+    "mssql2": {
+      "ignored": "true",
+      "suggestion": "true",
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:DefaultConnectiion:Redis"
     },
     "secrets1": {
       "type": "secrets.user"
     },
-    "mssql2": {
+    "mssql1": {
       "secretStore": "LocalSecretsFile",
       "type": "mssql.local",
-      "connectionId": "ConnectionStrings:DefaultConnectiion:Redis"
+      "connectionId": "ConnectionStrings:DefaultConnection"
     }
   }
 }
