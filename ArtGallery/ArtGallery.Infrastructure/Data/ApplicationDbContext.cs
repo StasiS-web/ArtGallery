@@ -31,9 +31,9 @@
 
         public DbSet<ArtStore> Arts { get; set; }
 
-        public DbSet<Event> Events { get; set; }
-
         public DbSet<ExhibitionHall> ExhibitionHalls { get; set; }
+
+        public DbSet<Event> Events { get; set; }
 
         public DbSet<ArtOrder> ArtsOrders { get; set; }
 
@@ -44,6 +44,8 @@
         public DbSet<BookingTransaction> BookingTransactions { get; set; }
 
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+
+        public DbSet<ContactForm> Contacts { get; set; }
 
         public DbSet<Setting> Settings { get; set; } // Default from template
 
@@ -122,10 +124,10 @@
                 .HasColumnType("decimal");
 
             // Initial Data Seed
-            builder.ApplyConfiguration(new InitialDataSeed<ExhibitionHall>(@"DataSeed/halls.json"));
-            builder.ApplyConfiguration(new InitialDataSeed<ArtStore>(@"DataSeed/arts.json"));
             builder.ApplyConfiguration(new InitialDataSeed<BlogPost>(@"DataSeed/blog.json"));
+            builder.ApplyConfiguration(new InitialDataSeed<ArtStore>(@"DataSeed/arts.json"));
             builder.ApplyConfiguration(new InitialDataSeed<Event>(@"DataSeed/events.json"));
+            builder.ApplyConfiguration(new InitialDataSeed<FaqEntity>(@"DataSeed/faqs.json"));
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)
