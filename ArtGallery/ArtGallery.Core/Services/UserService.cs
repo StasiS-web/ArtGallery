@@ -132,7 +132,8 @@
 
         public string GetUrl(string userId)
         {
-            var user = this.userRepo.All<ArtGalleryUser>().FirstOrDefault(u => u.Id == userId);
+            var user = this.userRepo.All<ArtGalleryUser>()
+                .FirstOrDefault(u => u.Id == userId);
             var url = user.UrlImage;
             return url;
         }
