@@ -41,6 +41,12 @@ namespace ArtGallery.Common
         public const string UserFullname = "Fullname is invalid. It should be between 90 and 500 characters long.";
         public const string UsernameLength = "Username should not be null. It should be between 5 and 20 characters long.";
 
+        // Contact Form
+        public const string FirstNameError = "First name must be between 3 and 35 characters long.";
+        public const string LastNameError = "Author name must be between 3 and 35 characters long.";
+        public const string SubjectLength = "Subject length must be between 10 and 100 characters long.";
+        public const string MessageLength = "Message length must be between 20 and 10000 characters long.";
+
         // OperationalMessages
         public const string SuccessfullyBookedEvent = "Your choosen event has been succefully booked!";
         public const string SuccessfullyCheckoutOrder = "Your order has been successfully checkout!";

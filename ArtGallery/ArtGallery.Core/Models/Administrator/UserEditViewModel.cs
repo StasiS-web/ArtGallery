@@ -13,13 +13,13 @@
 
         [Required]
         [MaxLength(FullNameMaxLenth)]
-        [MinLength(FullNaneMinLenth)]
+        [MinLength(FullNameMinLenth)]
         [Display(Name = FirstNameDisplayName)]
         public string FirstName { get; set; }
 
         [Required]
         [MaxLength(FullNameMaxLenth)]
-        [MinLength(FullNaneMinLenth)]
+        [MinLength(FullNameMinLenth)]
         [Display(Name = LastNameDisplayName)]
         public string LastName { get; set; }
     }

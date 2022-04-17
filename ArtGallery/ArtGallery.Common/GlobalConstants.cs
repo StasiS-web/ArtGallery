@@ -22,7 +22,7 @@
 
         public static class ArtGalleryUser
         {
-            public const int FullNaneMinLenth = 50;
+            public const int FullNameMinLenth = 50;
             public const int FullNameMaxLenth = 100;
             public const int UsernameMinLength = 5;
             public const int UsernameMaxLength = 20;
@@ -33,7 +33,7 @@
         public static class Event
         {
             public const int EventNameMinLenth = 8;
-            public const int EventNameMaxLenth = 30;
+            public const int EventNameMaxLenth = 45;
             public const int EventDescriptionMinLength = 250;
             public const int EventDescriptionMaxLenth = 1500;
             public const double PriceMin = 0.0;
@@ -116,6 +116,18 @@
             public const int QuestionMaxLength = 100;
             public const int AnswerMinLength = 20;
             public const int AnswerMaxLength = 500;
+        }
+
+        public static class ContactForm
+        {
+            public const int FirstNameMinLenth = 3;
+            public const int FirstNameMaxLenth = 35;
+            public const int LastNameMinLenth = 3;
+            public const int LastNameMaxLenth = 35;
+            public const int SubjectMinLength = 10;
+            public const int SubjectMaxLength = 100;
+            public const int MessageMinLength = 20;
+            public const int MessageMaxLength = 10000;
         }
 
         public static class Formating
