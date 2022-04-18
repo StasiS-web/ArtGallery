@@ -11,14 +11,11 @@
         public const string GalleryManagerRoleName = "Manager";
         public const string UserRoleName = "Identity User";
 
-        public static class AccountSeeding
-        {
-            public const string Password = "Art-123455";
-            public const string AdminEmail = "admin@artgallery.com";
-            public const string GalleryManagerEmail = "manager@artgallery.com";
-            public const string GeneralInfoEmail = "info@artgallery.com";
-            public const string UserEmail = "user@user.com";
-        }
+        public const string Password = "Art-123455";
+        public const string AdminEmail = "admin@artgallery.com";
+        public const string GalleryManagerEmail = "manager@artgallery.com";
+        public const string GeneralInfoEmail = "info@artgallery.com";
+        public const string UserEmail = "user@user.com";
 
         public static class ArtGalleryUser
         {
@@ -124,7 +121,7 @@
             public const int FirstNameMaxLenth = 35;
             public const int LastNameMinLenth = 3;
             public const int LastNameMaxLenth = 35;
-            public const int FullNameMinLength = 10;
+            public const int FullNameMinLength = 3;
             public const int FullNameMaxLength = 60;
             public const int SubjectMinLength = 10;
             public const int SubjectMaxLength = 100;
