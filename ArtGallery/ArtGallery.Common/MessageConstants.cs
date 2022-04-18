@@ -36,6 +36,7 @@ namespace ArtGallery.Common
         public const string InvalidArt = "This art does not exist";
 
         // Names 
+        public const string FullNameLength = "Full name must be between 10 and 60 characters long.";
         public const string AuthorsName = "Author name must be between 50 and 100 characters long.";
         public const string InvalidUsername = "User with Username: {0} does not exist.";
         public const string UserFullname = "Fullname is invalid. It should be between 90 and 500 characters long.";

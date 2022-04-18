@@ -14,8 +14,8 @@
         public static class AccountSeeding
         {
             public const string Password = "Art-123455";
-            public const string AdminEmail = "admin@admin.com";
-            public const string GalleryManagerEmail = "manager@manager.com";
+            public const string AdminEmail = "admin@artgallery.com";
+            public const string GalleryManagerEmail = "manager@artgallery.com";
             public const string GeneralInfoEmail = "info@artgallery.com";
             public const string UserEmail = "user@user.com";
         }
@@ -124,6 +124,8 @@
             public const int FirstNameMaxLenth = 35;
             public const int LastNameMinLenth = 3;
             public const int LastNameMaxLenth = 35;
+            public const int FullNameMinLength = 10;
+            public const int FullNameMaxLength = 60;
             public const int SubjectMinLength = 10;
             public const int SubjectMaxLength = 100;
             public const int MessageMinLength = 20;
@@ -150,6 +152,8 @@
             public const string CoverImageDisplayName = "Cover Image";
             public const string ProductImageDisplayName = "Art's Image";
             public const string ImageDisplayName = "Photo";
+            public const string FullNameDisplay = "Full Name";
+            public const string MessageDisplay = "Content Message";
         }
 
         public static class SeededDataCounts
