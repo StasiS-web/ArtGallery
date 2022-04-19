@@ -46,6 +46,7 @@ namespace ArtGallery.Common
         public const string LastNameError = "Author name must be between 3 and 35 characters long.";
         public const string SubjectLength = "Subject length must be between 10 and 100 characters long.";
         public const string MessageLength = "Message length must be between 20 and 10000 characters long.";
+        public const string FullNameLength = "Full name must be betweeb 3 and 60 characters long.";
 
         // OperationalMessages
         public const string SuccessfullyBookedEvent = "Your choosen event has been succefully booked!";
@@ -55,5 +56,7 @@ namespace ArtGallery.Common
 
         // ErrorMessage 
         public const string UpdateError = "You will need to fill the required input fields!";
+        public const string FaqAlreadyExist = "Faq with question{0} and answer {1} already exists.";
+        public const string FaqNotFound = "Faq wiith id {0} is not found.";
     }
 }

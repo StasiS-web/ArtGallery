@@ -124,7 +124,7 @@
             return (IEnumerable<int>)events;
         }
 
-        public async Task<List<T>> GetUpcomingByIdAsync<T>(int eventId)
+        public async Task<IEnumerable<T>> GetUpcomingByIdAsync<T>(int eventId)
         {
             return await this.eventRepo.All<EventViewModel>()
                                  .Where(x => x.EventId == eventId &&
