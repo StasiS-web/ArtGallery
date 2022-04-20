@@ -4,7 +4,7 @@
 @{
     ViewData["Title"] = localizer["PageTitle"];
 
-   //var events = ViewBag.AllUpcomingEvents;
+   // var events = ViewBag.AllUpcomingEvents;
    // var blogs = ViewBag.AllLatestBlogPost;
 }
 
@@ -15,17 +15,17 @@
              <div class="row">
                       <div class="col-lg-6">
                           <h5 class="m-0">@localizer["EventHeader"]</h5>
-                    @* @foreach (var upcomingEvent in events) *@
+                      @*   @foreach (var upcomingEvent in events)  *@
                          {
                             <div class="card card-primary card-outline">
                               <div class="card-header">
-                                  <h5 class="card-title">upcomingEvent.Name</h5>
+                           @*    <h5 class="card-title">@await Component.InvokeAsync("Index", upcomingEvent.Name)</h5>
                               </div>
                               <div class="card-body">
-                                <span class="start-date">upcomingEvent.Date</span>
-                                <p calss="class-text">upcomingEvent.Type</p>
+                                <span class="start-date">@await Component.InvokeAsync("Index", upcomingEvent.Date)</span>
+                                <p calss="class-text">@await Component.InvokeAsync("Index", upcomingEvent.Type)</p>
                                 <p class="card-text">
-                                  upcomingEvent.ShortDescription
+                                  @await Component.InvokeAsync("Index", upcomingEvent.ShortDescription)
                                 </p>
                            
                                @* <a href="#" class="card-link" asp-controller="Event" asp-action="EventDetails">Go Event Details</a> *@
