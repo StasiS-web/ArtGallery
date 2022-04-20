@@ -1,0 +1,29 @@
+﻿@using ArtGallery.Core.Models.FaqEntity
+@model IEnumerable<FaqViewModel>
+@{
+    ViewData["Title"] = "About";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="text-danger">
+            Art Gallery is where you will be able to book exhibitions events thta present arts to modern artist.
+            You will be able to buy uniques paintings and visits our Gallery to see arts from different genres like:
+            Portrait, Wildlife and Life Drawiing.
+        </div>
+        <div class="col-8">
+            @foreach(var faq in Model)
+            {
+                <div class="content">
+                    <div class="text-black">
+                        @faq.Question
+                    </div>
+                    <div class="text-body">
+                        @faq.Answer
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
