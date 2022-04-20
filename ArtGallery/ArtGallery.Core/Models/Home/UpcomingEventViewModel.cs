@@ -1,12 +1,6 @@
 ﻿namespace ArtGallery.Core.Models.Home
 {
     using ArtGallery.Infrastructure.Data.Models.Enumeration;
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Linq;
-    using System.Text;
-    using static ArtGallery.Common.GlobalConstants.Formating;
 
     public class UpcomingEventViewModel 
     {

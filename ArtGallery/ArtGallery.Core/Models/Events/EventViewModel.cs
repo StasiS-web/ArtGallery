@@ -1,9 +1,11 @@
 ﻿
 namespace ArtGallery.Core.Models.Events
 {
+    using ArtGallery.Core.Mapping.Contracts;
+    using ArtGallery.Infrastructure.Data.Models;
     using ArtGallery.Infrastructure.Data.Models.Enumeration;
 
-    public class EventViewModel 
+    public class EventViewModel : IMapFrom<Event>
     {
         public int EventId { get; set; }
 

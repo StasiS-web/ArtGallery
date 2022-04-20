@@ -1,6 +1,7 @@
 ﻿namespace ArtGallery.Controllers
 {
     using ArtGallery.Core.Contracts;
+    using ArtGallery.Core.Models.Contacts;
     using ArtGallery.Core.Models.Home;
     using ArtGallery.Models;
     using Microsoft.AspNetCore.Authorization;
@@ -10,22 +11,28 @@
 
     public class HomeController : BaseController
     {
-       // private readonly IEventService eventService;
-       // private readonly IBlogPostService blogPostService;
-        public HomeController()
+        private readonly ILogger<HomeController> logger;
+        private readonly IEventService eventService;
+        private readonly IBlogPostService blogPostService;
+       // private readonly IContactsService contactsService;
+     
+        public HomeController(ILogger<HomeController> logger, IEventService eventService, 
+            IBlogPostService blogPostService)
         {
-          //  this.eventService = eventService;
-           // this.blogPostService = blogPostService;
+            this.logger = logger;
+            this.eventService = eventService;
+            this.blogPostService = blogPostService;
+          //  this.contactsService = contactsService;
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int eventId, int blogId)
         {
-           // var upcomingEvents = eventService.GetUpcomingByIdAsync<UpcomingEventViewModel>(eventId);
-           // var latestBlog = blogPostService.GetLatestBlogAsync<LatestBlogPostViewModel>(blogId);
+           var upcomingEvents = await eventService.GetUpcomingByIdAsync<UpcomingEventViewModel>(eventId);
+           var latestBlog = await blogPostService.GetLatestBlogAsync<LatestBlogPostViewModel>(blogId);
 
-           // ViewBag.AllUpcomingEvents = (IEnumerable<UpcomingEventViewModel>)upcomingEvents;
-          //  ViewBag.AllLatestBlogPost = (IEnumerable<LatestBlogPostViewModel>)latestBlog;
+           ViewBag.AllUpcomingEvents = (IEnumerable<UpcomingEventViewModel>)upcomingEvents;
+           ViewBag.AllLatestBlogPost = (IEnumerable<LatestBlogPostViewModel>)latestBlog;
 
             return View();
         }
@@ -65,6 +72,28 @@
                 });
 
             return LocalRedirect(returnUrl);
+        }
+
+        public IActionResult Contacts()
+        {
+            return View();
+        }
+
+        [HttpPost("Home/Contacts")]
+        public async Task<IActionResult> Contacts(ContactFormViewModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+          //  await this.contactsService.ConatctAdmin(model);
+            return this.RedirectToAction("ThankYou");
+        }
+
+        public IActionResult ThankYou()
+        {
+            return View();
         }
     }
 }

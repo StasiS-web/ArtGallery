@@ -1,10 +1,5 @@
 ﻿namespace ArtGallery.Core.Models.Home
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Http;
     
     public class LatestBlogPostViewModel
@@ -28,8 +23,6 @@
 
         // Blog Post are only created by the admin
         public string Author { get; set; }
-
-        public string CreatedOn { get; set; }
 
     }
 }
