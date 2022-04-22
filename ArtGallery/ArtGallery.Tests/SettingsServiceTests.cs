@@ -38,14 +38,15 @@
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseInMemoryDatabase(databaseName: "SettingsTestDb").Options;
             using var context = new ApplicationDbContext(options);
-            context.Settings.Add(new Setting());
-            context.Settings.Add(new Setting());
-            context.Settings.Add(new Setting());
-            await context.SaveChangesAsync();
+            context.Settings.Add(new Setting() {Name = "t", Value = "v"});
+            context.Settings.Add(new Setting() {Name = "t1", Value = "v1"});
+            context.Settings.Add(new Setting() {Name = "t2", Value = "v2"});
+            context.SaveChangesAsync();
 
             var repo = new AppRepository(context);
             var service = new SettingsService(repo);
-            Assert.Equal(3, service.GetCount());
+            var count = service.GetCount();
+            Assert.Equal(3, count);
         }
     }
 }

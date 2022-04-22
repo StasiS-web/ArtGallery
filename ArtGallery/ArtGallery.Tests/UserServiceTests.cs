@@ -28,18 +28,18 @@ namespace ArtGallery.Tests
                  .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()).Options;
 
            var context = new ApplicationDbContext(options);
-           //var services = serviceProvider.GetService<IUserService>();
+          // var services = serviceProvider.GetService<IUserService>();
 
-            context.Add( new List<ArtGalleryUser>()
+            context.Add( new List<ApplicationUser>()
                     {
-                       new ArtGalleryUser
+                       new ApplicationUser
                        {
                             Id = Guid.NewGuid().ToString(),
                             UserName = "admin123",
                             FirstName = "Admin",
                             LastName = "LastAdmin"
                         },
-                       new ArtGalleryUser
+                       new ApplicationUser
                        {
                             Id = Guid.NewGuid().ToString(),
                             UserName = "admin223",
@@ -50,8 +50,8 @@ namespace ArtGallery.Tests
             var repo = new AppRepository(context);
             var services = new UserService(repo);
 
-            var users = new List<ArtGalleryUser>();
-            users.Add(new ArtGalleryUser { FirstName = "test", LastName = "lastTest", UserName = "userTest" });
+            var users = new List<ApplicationUser>();
+            users.Add(new ApplicationUser { FirstName = "test", LastName = "lastTest", UserName = "userTest" });
             var actual = services.GetAllUser(userId);
           
             Assert.True(actual.Count() == users.Count);
