@@ -12,27 +12,26 @@
     public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> logger;
-        private readonly IEventService eventService;
-        private readonly IBlogPostService blogPostService;
+       // private readonly IEventService eventService;
+       // private readonly IBlogPostService blogPostService;
        // private readonly IContactsService contactsService;
      
-        public HomeController(ILogger<HomeController> logger, IEventService eventService, 
-            IBlogPostService blogPostService)
+        public HomeController(ILogger<HomeController> logger)
         {
             this.logger = logger;
-            this.eventService = eventService;
-            this.blogPostService = blogPostService;
-          //  this.contactsService = contactsService;
+            //this.eventService = eventService;
+           // this.blogPostService = blogPostService;
+           // this.contactsService = contactsService;
         }
 
         [AllowAnonymous]
         public async Task<IActionResult> Index(int eventId, int blogId)
         {
-           var upcomingEvents = await eventService.GetUpcomingByIdAsync<UpcomingEventViewModel>(eventId);
-           var latestBlog = await blogPostService.GetLatestBlogAsync<LatestBlogPostViewModel>(blogId);
+          // var upcomingEvents = await eventService.GetUpcomingByIdAsync<UpcomingEventViewModel>(eventId);
+         //  var latestBlog = await blogPostService.GetLatestBlogAsync<LatestBlogPostViewModel>(blogId);
 
-           ViewBag.AllUpcomingEvents = (IEnumerable<UpcomingEventViewModel>)upcomingEvents;
-           ViewBag.AllLatestBlogPost = (IEnumerable<LatestBlogPostViewModel>)latestBlog;
+          // ViewBag.AllUpcomingEvents = upcomingEvents;
+          // ViewBag.AllLatestBlogPost = latestBlog;
 
             return View();
         }
@@ -87,7 +86,7 @@
                 return View(model);
             }
 
-          //  await this.contactsService.ConatctAdmin(model);
+         //   await this.contactsService.ConatctAdmin(model);
             return this.RedirectToAction("ThankYou");
         }
 

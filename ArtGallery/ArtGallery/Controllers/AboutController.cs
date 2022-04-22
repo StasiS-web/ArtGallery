@@ -14,7 +14,7 @@ namespace ArtGallery.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var faq = aboutService.GetAllFaqsAsync<FaqViewModel>();
+            var faq = await aboutService.GetAllFaqsAsync<FaqViewModel>();
 
             return View(faq);
         }

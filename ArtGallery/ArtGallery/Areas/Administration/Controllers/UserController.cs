@@ -12,7 +12,7 @@
     using Microsoft.AspNetCore.Mvc.Rendering;
     using System.Security.Claims;
 
-    public class UserController : BaseController
+    public class UserController : AdministrationController
     {
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<ApplicationUser> userManager;
