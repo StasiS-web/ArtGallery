@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using ArtGallery.Infrastructure.Data.Common.Models.Contracts;
     using Microsoft.AspNetCore.Identity;
 
@@ -15,6 +16,10 @@
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
         }
+
+
+        [Required]
+        public string UserName { get; set; }
 
         [Required]
         public string FirstName { get; set; }

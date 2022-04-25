@@ -1,3 +1,7 @@
+using ArtGallery.Core.Messaging;
+using ArtGallery.Core.Messaging.Contracts;
+using System.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,12 +18,12 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddAuthentication()
-    .AddFacebook(options =>
-    {
-        options.AppId = builder.Configuration.GetValue<string>("Facebook:AppId");
-        options.AppSecret = builder.Configuration.GetValue<string>("Facebook:AppSecret");
-    });
+// builder.Services.AddAuthentication()
+  //  .AddFacebook(options =>
+  //  {
+  //      options.AppId = builder.Configuration.GetValue<string>("Facebook:AppId");
+  //     options.AppSecret = builder.Configuration.GetValue<string>("Facebook:AppSecret");
+  //  }); 
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
@@ -57,15 +61,19 @@ builder.Services.AddStackExchangeRedisCache(options =>
 });
 
 // Data Repositories
-builder.Services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 builder.Services.AddScoped<IAppRepository, AppRepository>();
+builder.Services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
 // Application services
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IEmailSender>(
+    x => new SendGridEmailSender(builder.Configuration["SendGrid:SendGridApiKey"]));
+builder.Services.AddScoped<IAboutService, AboutService>();
+builder.Services.AddScoped<IBlogPostService, BlogPostService>();
+builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
+builder.Services.AddScoped<IContactsService, ContactsService>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<ISettingsService, SettingsService>();
-builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
-
+builder.Services.AddScoped<IUserService, UserService>();
 
 // Cloudinary Setup
 Account account = new Account(
@@ -76,9 +84,6 @@ Cloudinary cloudinary = new Cloudinary(account);
 builder.Services.AddSingleton(cloudinary);
 
 var app = builder.Build();
-
-// Seed data on application startup
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

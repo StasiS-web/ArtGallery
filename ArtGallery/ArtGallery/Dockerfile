@@ -8,6 +8,9 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["ArtGallery/ArtGallery.csproj", "ArtGallery/"]
+COPY ["ArtGallery.Core/ArtGallery.Core.csproj", "ArtGallery.Core/"]
+COPY ["ArtGallery.Infrastructure/ArtGallery.Infrastructure.csproj", "ArtGallery.Infrastructure/"]
+COPY ["ArtGallery.Common/ArtGallery.Common.csproj", "ArtGallery.Common/"]
 RUN dotnet restore "ArtGallery/ArtGallery.csproj"
 COPY . .
 WORKDIR "/src/ArtGallery"

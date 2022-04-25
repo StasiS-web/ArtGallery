@@ -1,35 +1,51 @@
-﻿using ArtGallery.Core.Models.Administrator;
-using ArtGallery.Core.Models.Events;
-using ArtGallery.Infrastructure.Data.Models.Enumeration;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Event = ArtGallery.Infrastructure.Data.Models.Event;
-
-namespace ArtGallery.Areas.Administration.Controllers
+﻿namespace ArtGallery.Areas.Administration.Controllers
 {
+    using ArtGallery.Core.Models.Administrator;
+    using ArtGallery.Core.Models.Events;
+    using Microsoft.AspNetCore.Mvc;
+
     public class EventController : AdministrationController
     {
         private readonly IEventService eventService;
+
         public EventController(IEventService eventService)
         {
             this.eventService = eventService;
         }
 
-        public IActionResult Index()
+        public IActionResult All(int eventId)
         {
-            return View();
+            var allEvents = this.eventService.GetAllEvents(eventId);
+
+            return View(allEvents);
         }
 
-        public IActionResult Create()
+        public IActionResult Edit(int eventId)
         {
-            return View();
+            var model = this.eventService.GetEventDetailsByIdAsync<EventEditViewModel>(eventId);
+
+            return View(model);
         }
 
-        public async Task<IActionResult> AllEvent(int id)
+        [HttpPost("/Event/Edit")]
+        public IActionResult Edit(EventEditViewModel model)
         {
-            var events = eventService.GetEventDetailsByIdAsync<EventViewModel>(id);
-        
-            return View(events);
+            if(!ModelState.IsValid)
+            {
+                return new StatusCodeResult(404);
+            }
+
+            this.eventService.UpdateEventAsync(model);
+
+            return RedirectToAction(nameof(All));
         }
+
+        public IActionResult Delete(int eventId)
+        {
+            this.eventService.Delete(eventId);
+
+            return RedirectToAction(nameof(All));
+        }
+
     }
 }
