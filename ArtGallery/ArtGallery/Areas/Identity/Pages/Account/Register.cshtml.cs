@@ -19,6 +19,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using static ArtGallery.Common.GlobalConstants.ArtGalleryUser;
+using static ArtGallery.Common.GlobalConstants.DisplayNames;
+using ArtGalleryUser = ArtGallery.Infrastructure.Data.Models.ArtGalleryUser;
 
 namespace ArtGallery.Areas.Identity.Pages.Account
 {
@@ -71,6 +74,22 @@ namespace ArtGallery.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+
+            [Required]
+            [StringLength(35, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+            [Display(Name = FirstNameDisplayName)]
+            public string FirstName { get; set; }
+
+            [Required]
+            [StringLength(35, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+            [Display(Name = LastNameDisplayName)]
+            public string LastName { get; set; }
+
+            [Required]
+            [Display(Name = UsernameDisplay)]
+            public string UserName { get; set; }
+
+
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -113,11 +132,15 @@ namespace ArtGallery.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = CreateUser();
+                var user = new ApplicationUser()
+                {
+                    FirstName = this.Input.FirstName,
+                    LastName = this.Input.LastName,
+                    Email = this.Input.Email,
+                };
 
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                var result = await _userManager.CreateAsync(user, Input.Password);
+                
+                var result = await _userManager.CreateAsync(user, this.Input.Password);
 
                 if (result.Succeeded)
                 {

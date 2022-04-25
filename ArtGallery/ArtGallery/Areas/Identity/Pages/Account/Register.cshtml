@@ -7,8 +7,23 @@
 <div class="row">
   <div class="col-md-4">
     <h2 class="login-box-msg">Register a new membership </h2>
-     <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+      <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-floating">
+          <label asp-for="Input.FirstName"></label>
+          <input asp-for="Input.FirstName" autocomplete="email" class="form-control" aria-required="true">
+          <span asp-validation-for="Input.FirstName" class="fas fa-envelope"></span>
+        </div>
+        <div class="form-floating">
+          <label asp-for="Input.LastName"></label>
+          <input asp-for="Input.LastName" autocomplete="email" class="form-control" aria-required="true">
+          <span asp-validation-for="Input.LastName" class="fas fa-envelope"></span>
+        </div>
+        <div class="form-floating">
+          <label asp-for="Input.UserName"></label>
+          <input asp-for="Input.UserName" autocomplete="email" class="form-control" aria-required="true">
+          <span asp-validation-for="Input.UserName" class="fas fa-envelope"></span>
+        </div>
         <div class="form-floating">
           <label asp-for="Input.Email"></label>
           <input asp-for="Input.Email" autocomplete="email" class="form-control" aria-required="true">
