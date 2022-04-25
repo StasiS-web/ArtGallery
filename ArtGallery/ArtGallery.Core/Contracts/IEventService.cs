@@ -7,7 +7,8 @@
     using System.Threading.Tasks;
     public interface IEventService
     {
-        Task<bool> CreateEventAsync(EventCreateInputViewModel model);
+        Task<bool> CreateEventAsync(string name, decimal price, string date,
+            string type, string ticketSelection, string description);
 
         Task<bool> UpdateEventAsync(EventEditViewModel model);
 
@@ -21,7 +22,7 @@
 
         Task<IEnumerable<T>> GetUpcomingByIdAsync<T>(int eventId);
 
-        Task AddAsync(EventViewModel model);
+        Task AddAsync(EventCreateInputViewModel model);
 
         Task<T> GetEventDetailsByIdAsync<T>(int eventId);
 

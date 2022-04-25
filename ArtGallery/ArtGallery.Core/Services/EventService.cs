@@ -5,6 +5,7 @@
     using ArtGallery.Core.Models.Administrator;
     using ArtGallery.Core.Models.Events;
     using ArtGallery.Infrastructure.Data.Models;
+    using ArtGallery.Infrastructure.Data.Models.Enumeration;
     using ArtGallery.Infrastructure.Data.Repositories;
     using Microsoft.EntityFrameworkCore;
     using System;
@@ -23,21 +24,20 @@
             this.eventRepo = eventRepo;
         }
 
-        public async Task<bool> CreateEventAsync(EventCreateInputViewModel model)
+        public async Task<bool> CreateEventAsync(string name, decimal price, string date, 
+            string type, string ticketSelection, string description)
         {
             bool isCreated = false;
-            var createEvent = new Event();
+            var createEvent = new EventCreateInputViewModel();
 
             if (createEvent != null)
             {
-                createEvent.Name = model.Name;
-                createEvent.Price = model.Price;
-                createEvent.Date = DateTime.Parse(
-                                 Convert.ToString(model.Date),
-                                 CultureInfo.InvariantCulture);
-                createEvent.Type = model.Type;
-                createEvent.TicketSelection = model.TicketSelection;
-                createEvent.Description = model.Description;
+                createEvent.Name = name;
+                createEvent.Price = price;
+                createEvent.Date = date;
+                createEvent.Type = Enum.Parse<EventType>(type);
+                createEvent.TicketSelection = Enum.Parse<TicketType>(ticketSelection);
+                createEvent.Description = description;
 
                 this.eventRepo.AddAsync(createEvent);
                 await this.eventRepo.SaveChangesAsync();
@@ -57,9 +57,8 @@
             {
                 updateEvent.Name = model.Name;
                 updateEvent.Price = model.Price;
-                updateEvent.Date = DateTime.Parse(
-                                    Convert.ToString(model.Date),
-                                    CultureInfo.InvariantCulture);
+                updateEvent.Date = DateTime.ParseExact(Convert.ToString(model.Date),
+                                            NormalDateFormat, CultureInfo.InvariantCulture);
                 updateEvent.Type = model.Type;
                 updateEvent.TicketSelection = model.TicketSelection;
                 updateEvent.Description = model.Description;
@@ -98,16 +97,14 @@
                 .ToList();
         }
 
-        public async Task AddAsync(EventViewModel model)
+        public async Task AddAsync(EventCreateInputViewModel model)
         {
-            await this.eventRepo.AddAsync(new Event
+            await this.eventRepo.AddAsync(new EventViewModel
             {
                 Name = model.Name,
                 Price = model.Price,
-                Date = DateTime.ParseExact(
-                            Convert.ToString(model.Date),
-                            NormalDateFormat,
-                            CultureInfo.InvariantCulture),
+                Date = DateTime.ParseExact(model.Date,
+                       DateTimeFormat, CultureInfo.InvariantCulture),
                 Description = model.Description,
             });
 
@@ -126,8 +123,8 @@
 
         public async Task<IEnumerable<T>> GetUpcomingByIdAsync<T>(int eventId)
         {
-            return await this.eventRepo.All<EventViewModel>()
-                                 .Where(x => x.EventId == eventId &&
+            return await this.eventRepo.All<Event>()
+                                 .Where(x => x.Id == eventId &&
                                     x.Date.Date > DateTime.UtcNow.Date)
                                  .OrderBy(x => x.Date)
                                  .To<T>()

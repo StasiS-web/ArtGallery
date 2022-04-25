@@ -20,6 +20,9 @@ namespace ArtGallery.Common
         public const string EventName = "Event Name should be between 8 and 30 characters long.";
         public const string EventDescription = "Description should be between 250 and 1500 characters long.";
         public const string EventCapacity = "Event Capacity depends from the Exhibition Hall Type. It should be between 5 and 100 people.";
+        public const string EventCreateSuccess = "Event with Name: {0} was created successfully.";
+        public const string EventEditSuccess = "Event with Name: {0} was edit successfully!";
+        public const string EventCreateError = "Oops! An error occured while trying to create an event. Try again.";
 
         // Blog
         public const string Title = "Title must be between 5 and 70 characters long.";
@@ -33,7 +36,7 @@ namespace ArtGallery.Common
         // Arts
         public const string PaintingName = "Painting Name should be between 10 and 35 characters long.";
         public const string ArtsDescription = "Description must be between 150 and 1000 chracters long.";
-        public const string InvalidArt = "This art does not exist";
+        public const string InvalidArt = "This art does not exist.";
 
         // Names 
         public const string AuthorsName = "Author name must be between 50 and 100 characters long.";
