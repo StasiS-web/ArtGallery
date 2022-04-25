@@ -1,0 +1,50 @@
+﻿@using ArtGallery.Core.Models.Events
+@model IEnumerable<AllEventListViewModel>
+@{
+    ViewData["Title"] = "All Event";
+}
+
+<div class="container">
+   <div class=row>
+       <div class="col-8">
+           <table class="table table-bordered">
+               <thead>
+                  <tr>
+                    <th>EventId</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>TicketSelection</th>
+                    <th>Price</th>
+                    <th>ShortDescription</th>
+                   </tr>
+                </thead>
+                <tbody>
+                   @foreach (var even in Model)
+                   {
+                       <tr>
+                         <td>@even.EventId</td>
+                         <td>@even.Name</td>
+                         <td>@even.Date</td>
+                         <td>@even.Type</td>
+                         <td>@even.TicketSelection</td>
+                          <td>@even.Price</td>
+                         <td>@even.ShortDescription</td>
+                         <td>
+                           <div class="progress progress-xs">
+                                <a asp-area="Administration" asp-controller="Event" asp-action="Edit"  asp-route-id="@even.EventId" class="btn btn-block btn-outline-success btn-sm"><i class="fas fa-edit"></i> Edit</a>
+                                <a asp-area="Administration" asp-controller="Event" asp-action="Delete" asp-route-id="@even.EventId"class="btn btn-block btn-outline-success btn-sm"> Delete </a>
+                           </div>
+                         </td>
+                       </tr>
+                   }                 
+               </tbody>
+           </table>
+       </div>
+   </div>
+</div>
+
+@section Scripts{
+    <partial name="__ValidationScriptsPartial" />
+}
+
