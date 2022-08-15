@@ -12,6 +12,8 @@ namespace ArtGallery.Core.Models.BlogPosts
 
         public IFormFile UrlImage { get; set; }
 
+        public string UrlImageStr { get; set; }
+
         public string Content { get; set; }
 
         // Blog Post are only created by the admin
