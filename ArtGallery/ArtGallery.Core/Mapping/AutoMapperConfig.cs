@@ -7,7 +7,7 @@
     using ArtGallery.Core.Mapping.Contracts;
     using AutoMapper;
 
-    public static class AutoMapperConfig
+    public class AutoMapperConfig : Profile
     {
         private static bool initialized;
 

@@ -1,7 +1,3 @@
-using ArtGallery.Core.Messaging;
-using ArtGallery.Core.Messaging.Contracts;
-using System.Configuration;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -45,6 +41,13 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.SupportedCultures = supportedCulture;
     options.SupportedUICultures = supportedCulture;
 });
+
+var config = new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile(new AutoMapperConfig());
+});
+var mapper = config.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 builder.Services.AddControllersWithViews()
     .AddMvcOptions(options =>
@@ -106,6 +109,7 @@ app.UseRequestLocalization();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.UseEndpoints(endpoints =>
 {
