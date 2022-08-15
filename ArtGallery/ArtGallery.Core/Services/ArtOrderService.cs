@@ -11,38 +11,38 @@
 
     public class ArtOrder : IArtOrderService
     {
-        private readonly ApplicationDbContext dbContext;
-        private readonly IAppRepository orderRepo;
+        private readonly ApplicationDbContext _dbContext;
+        private readonly IAppRepository _orderRepo;
 
         public ArtOrder(IAppRepository orderRepo, ApplicationDbContext dbContext)
         {
-            this.dbContext = dbContext;
-            this.orderRepo = orderRepo;
+            this._dbContext = dbContext;
+            this._orderRepo = orderRepo;
         }
 
         public async Task CreateOrder(ArtOrderViewModel model)
         {
             model.OrderDate = DateTime.UtcNow;
-            var user = await orderRepo.All<ArtGalleryUser>()
+            var user = await _orderRepo.All<ArtGalleryUser>()
                                       .FirstOrDefaultAsync(u => u.Id == model.UserId);
             if (user == null)
             {
                 throw new ArgumentException(UnknowUser);
             }
 
-            var order = orderRepo.All<ArtOrderViewModel>()
+            var order = _orderRepo.All<ArtOrderViewModel>()
                                  .Where(o => o.Price == model.Price &&
                                           o.Quantity == model.Quantity)
                                  .Include(u => u.UserId == model.UserId)
                                  .FirstOrDefault();
 
-            await this.orderRepo.AddAsync(order);
-            await this.orderRepo.SaveChangesAsync();
+            await this._orderRepo.AddAsync(order);
+            await this._orderRepo.SaveChangesAsync();
         }
 
         public async Task<bool> ReceivedOrder(string artId)
         {
-            var orders = this.dbContext.ArtsOrders.Find(artId);
+            var orders = this._dbContext.ArtsOrders.Find(artId);
 
             if (orders == null)
             {
@@ -51,14 +51,14 @@
 
             orders.Status = OrderStatus.Received;
 
-            await this.orderRepo.SaveChangesAsync();
+            await this._orderRepo.SaveChangesAsync();
 
             return true;
         }
 
         public async Task<bool> CancleOrder(string artId) // Manager Functionality
         {
-            var orders = this.dbContext.ArtsOrders.Find(artId);
+            var orders = this._dbContext.ArtsOrders.Find(artId);
 
             if (orders == null)
             {
@@ -67,7 +67,7 @@
 
             orders.Status = OrderStatus.Cancled;
 
-            await this.orderRepo.SaveChangesAsync();
+            await this._orderRepo.SaveChangesAsync();
 
             return true;
         }

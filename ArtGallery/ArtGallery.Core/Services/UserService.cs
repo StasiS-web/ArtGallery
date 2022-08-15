@@ -17,16 +17,16 @@
 
     public class UserService : IUserService
     {
-        private readonly IAppRepository userRepo;
+        private readonly IAppRepository _userRepo;
 
         public UserService(IAppRepository userRepo)
         {
-            this.userRepo = userRepo;
+            this._userRepo = userRepo;
          }
 
         public IEnumerable<UserViewModel> GetAllUser(string userId)
         {
-            return this.userRepo
+            return this._userRepo
                 .All<UserViewModel>()
                 .Where(u => u.UserId == userId)
                 .ToList();
@@ -34,12 +34,12 @@
 
         public async Task<ApplicationUser> GetUserById(string userId)
         {
-            return await this.userRepo.GetByIdAsync<ApplicationUser>(userId);
+            return await this._userRepo.GetByIdAsync<ApplicationUser>(userId);
         }
 
         public async Task<T> GetUser<T>(string userId)
         {
-            var user = this.userRepo.All<ArtGalleryUser>()
+            var user = this._userRepo.All<ArtGalleryUser>()
                 .Where(u => u.Id == userId)
                 .To<ProfileViewModel>()
                 .FirstOrDefault();
@@ -56,7 +56,7 @@
 
         public string GetIdByUsername(UserViewModel model)
         {
-            var user = this.userRepo
+            var user = this._userRepo
                 .All<ArtGalleryUser>()
                 .SingleOrDefault(x => x.UserName == model.UserName);
 
@@ -70,7 +70,7 @@
 
         public async Task<IEnumerable<UserListViewModel>> GetUsers()
         {
-            return this.userRepo.All<ArtGalleryUser>()
+            return this._userRepo.All<ArtGalleryUser>()
                                  .Select(u => new UserListViewModel()
                                  {
                                      Email = u.Email,
@@ -83,7 +83,7 @@
 
         public async Task<UserEditViewModel> GetUserToEdit(string userId)
         {
-            var user = await this.userRepo.GetByIdAsync<ArtGalleryUser>(userId);
+            var user = await this._userRepo.GetByIdAsync<ArtGalleryUser>(userId);
 
             return new UserEditViewModel()
             {
@@ -96,7 +96,7 @@
         public async Task<bool> UpdateUser(UserEditViewModel model)
         {
             bool result = false;
-            var user = await this.userRepo
+            var user = await this._userRepo
                 .GetByIdAsync<ArtGalleryUser>(model.Id);
 
             if (user != null)
@@ -104,7 +104,7 @@
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
 
-                await this.userRepo.SaveChangesAsync();
+                await this._userRepo.SaveChangesAsync();
                 result = true;
             }
 
@@ -113,7 +113,7 @@
 
         public async Task<string> UpdateProfile(string userId, ProfileViewModel model)
         {
-            var user = this.userRepo.AllReadonly<ArtGalleryUser>().FirstOrDefault(u => u.Id == userId);
+            var user = this._userRepo.AllReadonly<ArtGalleryUser>().FirstOrDefault(u => u.Id == userId);
 
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
             user.FirstName = model.FirstName;
@@ -124,15 +124,15 @@
             user.UrlImage = model.UrlImage;
             user.Email = model.Email;
 
-            this.userRepo.Update(user);
-            await this.userRepo.SaveChangesAsync();
+            this._userRepo.Update(user);
+            await this._userRepo.SaveChangesAsync();
 
             return user.Id;
         }
 
         public string GetUrl(string userId)
         {
-            var user = this.userRepo.All<ArtGalleryUser>()
+            var user = this._userRepo.All<ArtGalleryUser>()
                 .FirstOrDefault(u => u.Id == userId);
             var url = user.UrlImage;
             return url;
@@ -140,7 +140,7 @@
 
         public async Task<string> DeleteAsync(string userId)
         {
-            var currentUser = await this.userRepo
+            var currentUser = await this._userRepo
                 .AllWithDeleted<ArtGalleryUser>()
                 .Where(u => u.Id == userId)
                 .Include(u => u.UrlImage)

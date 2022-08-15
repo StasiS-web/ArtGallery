@@ -14,13 +14,13 @@
 
     public class ContactsService : IContactsService
     {
-        private readonly IAppRepository contactRepo;
-        private readonly IEmailSender emailSender;
+        private readonly IAppRepository _contactRepo;
+        private readonly IEmailSender _emailSender;
 
         public ContactsService(IAppRepository contactRepo, IEmailSender emailSender)
         {
-            this.contactRepo = contactRepo;
-            this.emailSender = emailSender;
+            this._contactRepo = contactRepo;
+            this._emailSender = emailSender;
         }
 
         public async Task ConatctAdmin(ContactFormViewModel model)
@@ -34,10 +34,10 @@
                 Message = model.Message,
             };
 
-            await this.contactRepo.AddAsync(contactForm);
-            await this.contactRepo.SaveChangesAsync();
+            await this._contactRepo.AddAsync(contactForm);
+            await this._contactRepo.SaveChangesAsync();
 
-            await this.emailSender.SendEmailAsync(
+            await this._emailSender.SendEmailAsync(
                 model.Email,
                 string.Concat($"{model.FirstName} {model.LastName}"),
                 GlobalConstants.GeneralInfoEmail,
@@ -55,10 +55,10 @@
                 Message = model.Message,
             };
 
-            await this.contactRepo.AddAsync(adminContactForm);
-            await this.contactRepo.SaveChangesAsync();
+            await this._contactRepo.AddAsync(adminContactForm);
+            await this._contactRepo.SaveChangesAsync();
 
-            await this.emailSender.SendEmailAsync(
+            await this._emailSender.SendEmailAsync(
                 GlobalConstants.GeneralInfoEmail,
                 model.FullName,
                 model.Email,
@@ -68,7 +68,7 @@
 
         public async Task<IEnumerable<T>> GetAllUserEmailsAsync<T>()
         {
-            var userEmail = await this.contactRepo
+            var userEmail = await this._contactRepo
                 .All<UserEmailViewModel>()
                 .To<T>()
                 .ToListAsync();

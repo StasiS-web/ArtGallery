@@ -9,11 +9,11 @@
 
     public class CloudinaryService : ICloudinaryService
     {
-        private readonly Cloudinary cloudinary;
+        private readonly Cloudinary _cloudinary;
 
         public CloudinaryService(Cloudinary cloudinary)
         {
-           this.cloudinary = cloudinary;
+           this._cloudinary = cloudinary;
         }
 
         public string UploadImageAsync(IFormFile imageFile, string file, Transformation transformation = null)
@@ -41,7 +41,7 @@
                     PublicId = file,
                 };
 
-                uploadResult = this.cloudinary.Upload(uploadParams);
+                uploadResult = this._cloudinary.Upload(uploadParams);
            }
 
             return uploadResult?.SecureUri.AbsoluteUri;
