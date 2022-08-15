@@ -1,0 +1,37 @@
+[
+  {
+    "Id": 1,
+    "Question": "What payment menthods we are offering?",
+    "Answer": "We got three payment methods Debit/Credit card, Apple Pay or Google Pay."
+  },
+  {
+    "Id": 2,
+    "Question": "What is the best time to visit us?",
+    "Answer": "The best time to visit our Gallery is our openning time or during our events. In regards of visiting any of our exhibition events you are required to purchase a ticket."
+  },
+  {
+    "Id": 3,
+    "Question": "Do we charge for delivery?",
+    "Answer": "It depends on the type of delivery. For Fast delivery we charge 3.95lev, but the Standart delivery for up to 5 day is free."
+  },
+  {
+    "Id": 4,
+    "Question": "Do we made an international delivery?",
+    "Answer": "No, we don't deliver outside Bulgarian."
+  },
+  {
+    "Id": 5,
+    "Question": "Is photography permitted?",
+    "Answer": "Gallery visitors may take non-flash photography for personal enjoymnet. Photos made for commercial use, wedding photos and formal distribution or sharing are not allowed."
+  },
+  {
+    "Id": 6,
+    "Question": "Is the Gallery available for private event rentals?",
+    "Answer": "Unfornatunately, we do not rent for private events to the general public. We only rent the Gallery to artist for exhibition purpose only where they can present their art."
+  },
+  {
+    "Id": 7,
+    "Question": "Are pets permitted in the GallerY?",
+    "Answer": "No we are not allowing dogs or any kind of pets inside the Art Gallery."
+  }
+]
