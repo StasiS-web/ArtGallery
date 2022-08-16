@@ -5,6 +5,7 @@
     using ArtGallery.Core.Mapping;
     using ArtGallery.Core.Models.Administrator;
     using ArtGallery.Core.Models.FaqEntity;
+    using ArtGallery.Infrastructure.Data;
     using ArtGallery.Infrastructure.Data.Models;
     using ArtGallery.Infrastructure.Data.Repositories;
     using Microsoft.EntityFrameworkCore;
@@ -17,11 +18,13 @@
 
     public class AboutService : IAboutService
     {
-        private readonly IAppRepository faqRepo;
+        private readonly IAppRepository _faqRepo;
+        private readonly ApplicationDbContext _applicationDbContext;
 
-        public AboutService(IAppRepository faqRepo)
+        public AboutService(IAppRepository faqRepo, ApplicationDbContext _applicationDbContext)
         {
-            this.faqRepo = faqRepo;
+            this._faqRepo = faqRepo;
+            this._applicationDbContext = _applicationDbContext;
         }
 
         public async Task<FaqViewModel> CreateAsync(FaqCreateInputViewModel model)
@@ -32,25 +35,40 @@
                 Answer = model.Answer,
             };
 
-            bool isExist = await faqRepo.All<FaqViewModel>()
-                .AnyAsync(x => x.Question == model.Question && x.Answer == model.Answer);
+            // Code change by behaviour
+           // bool isExist = await _faqRepo.All<FaqViewModel>()
+            //    .AnyAsync(x => x.Question == model.Question && x.Answer == model.Answer);
+
+            bool isExist = await _applicationDbContext.Faqs
+                .Where(x => x.Question == model.Question && x.Answer == model.Answer).AnyAsync();
 
            if(isExist)
            {
                 throw new ArgumentException(string.Format(MessageConstants.FaqAlreadyExist, model.Question, model.Answer));
            }
 
-           await faqRepo.AddAsync(faq);
-           await faqRepo.SaveChangesAsync();
+            // await _faqRepo.AddAsync(faq);
+            // await _faqRepo.SaveChangesAsync();
 
-           var viewModel = await this.GetByIdAsync<FaqViewModel>(faq.FaqId);
+            var faq1 = await _applicationDbContext.Faqs.AddAsync(new FaqEntity()
+            {
+                Answer = model.Answer,
+                Question = model.Question,
+                CreatedOn = DateTime.Now,
+                IsDeleted = false
+            });
 
-           return viewModel;
+            this._applicationDbContext.SaveChanges();
+
+            // var viewModel = await this.GetByIdAsync<FaqViewModel>(faq.FaqId);
+
+            return new FaqViewModel();
         }
 
         public async Task DeleteById(int faqId)
         {
-            var faq = faqRepo.All<FaqEntity>().FirstOrDefault(x => x.Id == faqId);
+            // var faq = faqRepo.All<FaqEntity>().FirstOrDefault(x => x.Id == faqId);
+            var faq = _applicationDbContext.Faqs.FirstOrDefault(x => x.Id == faqId);
 
             if (faq == null)
             {
@@ -59,13 +77,17 @@
 
             faq.IsDeleted = true;
             faq.DeletedOn = DateTime.UtcNow;
-            faqRepo.Update(faq);
-            faqRepo.SaveChanges();
+            //_faqRepo.Update(faq);
+            //_faqRepo.SaveChanges();
+
+            _applicationDbContext.Faqs.Update(faq);
+            _applicationDbContext.SaveChanges();
         }
 
         public async Task EditAsync(FaqEditViewModel model)
         {
-            var faq = faqRepo.All<FaqEntity>().FirstOrDefault(x => x.Id == model.FaqId);
+           // var faq = _faqRepo.All<FaqEntity>().FirstOrDefault(x => x.Id == model.FaqId);
+           var faq = _applicationDbContext.Faqs.FirstOrDefault(x => x.Id == model.FaqId);
 
             if (faq == null)
             {
@@ -76,25 +98,42 @@
             faq.Question = model.Question;
             faq.ModifiedOn = DateTime.UtcNow;
 
-            faqRepo.Update(faq);
-            faqRepo.SaveChanges();
+            //_faqRepo.Update(faq);
+            //_faqRepo.SaveChanges();
+
+            _applicationDbContext.Faqs.Update(faq);
+            _applicationDbContext.SaveChanges();
         }
 
-        public async Task<IEnumerable<T>> GetAllFaqsAsync<T>()
+        public async Task<IEnumerable<FaqViewModel>> GetAllFaqsAsync<T>()
         {
-            var allFaq = this.faqRepo.All<FaqViewModel>()
-                .To<T>()
-                .ToList();
+            var result = await _applicationDbContext.Faqs.Select(x => new FaqViewModel
+            {
+                FaqId = x.Id,
+                Answer = x.Answer,
+                Question = x.Question,
+            }).ToListAsync();
 
-            return allFaq;
+            return result;
         }
 
-        public async Task<T> GetByIdAsync<T>(int faqId)
+        public async Task<FaqViewModel> GetByIdAsync<T>(int faqId)
         {
-            var faqModel = faqRepo
-                .All<FaqViewModel>()
-                .Where(f => f.FaqId == faqId)
-                .To<T>()
+            // var faqModel = _faqRepo
+            //     .All<FaqViewModel>()
+            //    .Where(f => f.FaqId == faqId)
+            //    .To<T>()
+            //   .FirstOrDefault();
+
+            var faqModel = _applicationDbContext
+                .Faqs
+                .Where(f => f.Id == faqId)
+                .Select(x => new FaqViewModel()
+                {
+                    FaqId = x.Id,
+                    Answer = x.Answer,
+                    Question = x.Question
+                })
                 .FirstOrDefault();
 
             return faqModel;

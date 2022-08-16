@@ -1,16 +1,16 @@
 ﻿@using ArtGallery.Core.Models.FaqEntity
+@using Microsoft.AspNetCore.Mvc.Localization
 @model IEnumerable<FaqViewModel>
+@inject IViewLocalizer localizer
 @{
-    ViewData["Title"] = "About";
+    ViewData["Title"] = localizer["PageTitle"];
 }
 
 
 <div class="container">
     <div class="row">
         <div class="text-danger">
-            Art Gallery is where you will be able to book exhibitions events thta present arts to modern artist.
-            You will be able to buy uniques paintings and visits our Gallery to see arts from different genres like:
-            Portrait, Wildlife and Life Drawiing.
+            @localizer["Content"]
         </div>
         <div class="col-8">
             @foreach(var faq in Model)

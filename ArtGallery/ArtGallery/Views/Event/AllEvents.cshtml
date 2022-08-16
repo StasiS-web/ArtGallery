@@ -7,13 +7,13 @@
 
 <div class="row">
     <div class="col-8">
-        @foreach (var even in ViewBag.AllEventListViewModel)
+        @foreach (var even in Model)
         {
-            <div class="card-img-overlay d-flex flex-column justify-content-end">
+            <div class="card-primary card-outline">
                 <h5 class="card-title text-primary text-white" asp-area="" asp-controller="Event"  asp-action="AllEvents" asp-route-id="even.EventId">@even.Name</h5>
-                <div class="card-text text-white pb-2 pt-1" asp-area="" asp-controller="Event"  asp-action="AllEvents" asp-route-id="ViewBag.AllEventListViewModel.EventId">@even.Date</div>
-                <div class="text-white" asp-area="" asp-controller="Event"  asp-action="AllEvents" asp-route-id="ViewBag.AllEventListViewModel.EventId">@even.Type</div>
-                <div class="card-text text-white">
+                <div class="card-text text-black pb-2 pt-1" asp-area="" asp-controller="Event"  asp-action="AllEvents" asp-route-id="ViewBag.AllEventListViewModel.EventId">@even.Date</div>
+                <div class="text-black" asp-area="" asp-controller="Event"  asp-action="AllEvents" asp-route-id="ViewBag.AllEventListViewModel.EventId">@even.Type</div>
+                <div class="card-text text-black">
                        @even.ShortDescription
                 </div>
            </div>

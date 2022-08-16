@@ -19,16 +19,17 @@
         [AllowAnonymous]
         public IActionResult AllEvents(AllEventListViewModel model)
         {
-            var modelView = this.events.GetAllEvents(model.EventId)
+            var modelView = this.events.GetAllEvents(model.EventId);
+            var allEvents = modelView
                 .Select(e => new AllEventListViewModel
                 {
-                    Name = model.Name,
-                    Date = model.Date,
-                    Type = model.Type,
-                    Description = model.ShortDescription,
+                    Name = e.Name,
+                    Date = e.Date.ToString(),
+                    Type = e.Type,
+                    Description = e.Description,
                 }).ToList();
 
-            return View(modelView);
+            return View(allEvents);
         }
 
         [Route("/Event/EventDetails/{eventId}")]

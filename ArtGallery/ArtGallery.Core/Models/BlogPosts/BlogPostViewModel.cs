@@ -16,6 +16,17 @@ namespace ArtGallery.Core.Models.BlogPosts
 
         public string Content { get; set; }
 
+        public string ShortContect
+        {
+            get
+            {
+                var shortContent = this.Content;
+                return shortContent.Length > 100
+                    ? shortContent.Substring(0, 100) + "..."
+                    : shortContent;
+            }
+        }
+
         // Blog Post are only created by the admin
         public string Author { get; set; }
 

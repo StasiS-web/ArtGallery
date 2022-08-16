@@ -10,6 +10,7 @@
     using ArtGallery.Core.Mapping;
     using ArtGallery.Core.Models.Administrator;
     using ArtGallery.Core.Models.Users;
+    using ArtGallery.Infrastructure.Data;
     using ArtGallery.Infrastructure.Data.Models;
     using ArtGallery.Infrastructure.Data.Repositories;
     using Microsoft.EntityFrameworkCore;
@@ -18,11 +19,14 @@
     public class UserService : IUserService
     {
         private readonly IAppRepository _userRepo;
+        private readonly ApplicationDbContext _applicationDbContext;
 
-        public UserService(IAppRepository userRepo)
+
+        public UserService(IAppRepository userRepo, ApplicationDbContext applicationDbContext)
         {
             this._userRepo = userRepo;
-         }
+            this._applicationDbContext = applicationDbContext;
+        }
 
         public IEnumerable<UserViewModel> GetAllUser(string userId)
         {
@@ -34,7 +38,23 @@
 
         public async Task<ApplicationUser> GetUserById(string userId)
         {
-            return await this._userRepo.GetByIdAsync<ApplicationUser>(userId);
+            //  return await this._userRepo.GetByIdAsync<ApplicationUser>(userId);
+            return await _applicationDbContext.ArtGalleryUser
+                .Where(x => x.Id == userId)
+                .Select(x => new ApplicationUser()
+                {
+                    Id = x.Id,
+                    AccessFailedCount = x.AccessFailedCount,
+                    CreatedOn = x.CreatedOn,
+                    Email = x.Email,
+                    EmailConfirmed = x.EmailConfirmed,
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    LockoutEnabled = x.LockoutEnabled,
+                    Roles = x.Roles,
+                    UserName = x.UserName,
+                })
+                .FirstOrDefaultAsync();
         }
 
         public async Task<T> GetUser<T>(string userId)
@@ -70,15 +90,24 @@
 
         public async Task<IEnumerable<UserListViewModel>> GetUsers()
         {
-            return this._userRepo.All<ArtGalleryUser>()
-                                 .Select(u => new UserListViewModel()
-                                 {
-                                     Email = u.Email,
-                                     UserName = u.UserName,
-                                     Id = u.Id,
-                                     Name = $"{u.FirstName} {u.LastName}",
-                                 })
-                                 .ToList();
+            return await _applicationDbContext.ArtGalleryUser.Select(u => new UserListViewModel()
+            {
+                Email = u.Email,
+                UserName = u.UserName,
+                Id = u.Id,
+                Name = $"{u.FirstName} {u.LastName}",
+            })
+            .ToListAsync();
+
+            //return this._userRepo.All<ArtGalleryUser>()
+            //                     .Select(u => new UserListViewModel()
+            //                     {
+            //                         Email = u.Email,
+            //                         UserName = u.UserName,
+            //                         Id = u.Id,
+            //                         Name = $"{u.FirstName} {u.LastName}",
+            //                     })
+            //                     .ToList();
         }
 
         public async Task<UserEditViewModel> GetUserToEdit(string userId)
@@ -108,7 +137,7 @@
                 result = true;
             }
 
-            return result; 
+            return result;
         }
 
         public async Task<string> UpdateProfile(string userId, ProfileViewModel model)

@@ -16,9 +16,9 @@ namespace ArtGallery.Core.Contracts
 
         Task DeleteById(int faqId);
 
-        Task<IEnumerable<T>> GetAllFaqsAsync<T>();
+        Task<IEnumerable<FaqViewModel>> GetAllFaqsAsync<T>();
 
-        Task<T> GetByIdAsync<T>(int faqId);
+        Task<FaqViewModel> GetByIdAsync<T>(int faqId);
 
     }
 }

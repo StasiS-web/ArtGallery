@@ -17,7 +17,7 @@
 
         IEnumerable<BlogPostViewModel> GetAllBlogs();
 
-        Task<IEnumerable<T>> GetAll<T>(int? sortId, int blogId);
+        Task<IEnumerable<BlogPostViewModel>> GetAll<T>(int? sortId, int blogId);
 
         IEnumerable<int> GetById<T>(int blogId);
 
@@ -25,7 +25,7 @@
 
         Task<T> GetBlogPostDetailsByIdAsync<T>(int blogId);
 
-        Task<IEnumerable<BlogPostViewModel>> GetLatestBlogAsync<T>(int blogId);
+        Task<List<BlogPostViewModel>> GetLatestBlogAsync<T>(int blogId);
 
         Task<bool> BlogPostExists(int blogId);
     }
