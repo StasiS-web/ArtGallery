@@ -1,32 +1,33 @@
-﻿using ArtGallery.Core.Models.Administrator;
-using ArtGallery.Core.Models.ArtStore;
-using ArtGallery.Core.Models.BlogPosts;
-using ArtGallery.Core.Models.Contacts;
-using ArtGallery.Core.Models.Events;
-using ArtGallery.Core.Models.FaqEntity;
-using ArtGallery.Core.Models.ShoppingCart;
-using ArtGallery.Core.Models.Users;
-using ArtGallery.Infrastructure.Data.Models;
-using ArtGallery.Infrastructure.Data.Models.Enumeration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using constants = ArtGallery.Common.GlobalConstants;
-
-namespace ArtGallery.Tests.Common
+﻿namespace ArtGallery.Tests.Common
 {
+    using ArtGallery.Core.Models.Administrator;
+    using ArtGallery.Core.Models.ArtStore;
+    using ArtGallery.Core.Models.BlogPosts;
+    using ArtGallery.Core.Models.Contacts;
+    using ArtGallery.Core.Models.Events;
+    using ArtGallery.Core.Models.FaqEntity;
+    using ArtGallery.Core.Models.ShoppingCart;
+    using ArtGallery.Core.Models.Users;
+    using ArtGallery.Infrastructure.Data.Models;
+    using ArtGallery.Infrastructure.Data.Models.Enumeration;
+    using Microsoft.AspNetCore.Identity;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using constants = ArtGallery.Common.GlobalConstants;
+
     public static class ObjectGenerator
     {
         public static Event GetEventObject()
         {
             return new Event
             {
-                  Id = 1,
-                 Name = "New Event"
+                Id = 1,
+                Name = "New Event"
             };
         }
 
-        public static EventCreateInputViewModel GetCreateInputViewModelObject()
+        public static EventCreateInputViewModel GetEventCreateInputViewModelObject()
         {
             return new EventCreateInputViewModel
             {
@@ -38,6 +39,7 @@ namespace ArtGallery.Tests.Common
                 Type = EventType.Online
             };
         }
+
 
         public static EventEditViewModel GetEventEditViewModelObject()
         {
@@ -53,46 +55,47 @@ namespace ArtGallery.Tests.Common
             };
         }
 
-        public static List<ApplicationUser> GetApplicationUsersListObject()
+
+        public static List<ApplicationUser> GetApplicationUserListObject()
         {
             return new List<ApplicationUser>()
-            {
-                new ApplicationUser()
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    UserName = "admin123",
-                    FirstName = "Admin",
-                    LastName = "LastAdmin"
-                },
-                new ApplicationUser()
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    UserName = "admin223",
-                    FirstName = "Admin2",
-                    LastName = "LastAdmin2"
-                },
-            };
+                    {
+                       new ApplicationUser
+                       {
+                            Id = Guid.NewGuid().ToString(),
+                            UserName = "admin123",
+                            FirstName = "Admin",
+                            LastName = "LastAdmin"
+                        },
+                       new ApplicationUser
+                       {
+                            Id = Guid.NewGuid().ToString(),
+                            UserName = "admin223",
+                            FirstName = "Admin2",
+                            LastName = "LastAdmin2"
+                       }
+                    };
         }
-         
-        public static List<UserViewModel> GetUserViewModelsObject()
+
+        public static List<UserViewModel> GetUserViewModelListObject()
         {
             return new List<UserViewModel>()
-            {
-                new UserViewModel
-                {
-                    UserId = Guid.NewGuid().ToString(),
-                    UserName = "admin123",
-                    FirstName = "Admin",
-                    LastName = "LastAdmin"
-                },
-                new UserViewModel
-                {
-                    UserId = Guid.NewGuid().ToString(),
-                    UserName = "admin223",
-                    FirstName = "Admin2",
-                    LastName = "LastAdmin2"
-                },
-            };
+                    {
+                       new UserViewModel
+                       {
+                            UserId = Guid.NewGuid().ToString(),
+                            UserName = "admin123",
+                            FirstName = "Admin",
+                            LastName = "LastAdmin"
+                        },
+                       new UserViewModel
+                       {
+                            UserId = Guid.NewGuid().ToString(),
+                            UserName = "admin223",
+                            FirstName = "Admin2",
+                            LastName = "LastAdmin2"
+                       }
+                    };
         }
 
         public static FaqCreateInputViewModel GetFaqCreateInputViewModelObject()
