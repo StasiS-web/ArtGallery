@@ -55,6 +55,12 @@ Art Gallery's main idea is to be an app for booking and sales. A place where reg
   
 </details>
 
+## Test Coverage
+<img src="https://res.cloudinary.com/dnvg6uuxl/image/upload/v1660657910/app_gallery/test%20coverage/Test_Coverage_Part_1_ipflgg.png" alt="Part1">
+<img src="https://res.cloudinary.com/dnvg6uuxl/image/upload/v1660657911/app_gallery/test%20coverage/Test_Coverage_Part_2_wgliji.png" alt="Part2">
+<img src="https://res.cloudinary.com/dnvg6uuxl/image/upload/v1660657910/app_gallery/test%20coverage/Test_Coverage_Part_3_pozllh.png" alt="Part3">
+<img src="https://res.cloudinary.com/dnvg6uuxl/image/upload/v1660657911/app_gallery/test%20coverage/Test_Coverage_Part_4_se9zim.png" alt="Part4">
+
 ## Resources
 
 * All images are comming from (https://www.rawpixel.com/) & (https://unsplash.com/)
