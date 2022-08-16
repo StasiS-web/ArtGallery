@@ -12,13 +12,10 @@
 
         public InMemoryDbContext()
         {
-            connection = new SqliteConnection("Filename=:memory");
-            connection.Open();
-
-            contextOptions = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseSqlServer(connection)
+           var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase(databaseName: "database")
                 .Options;
-            using var context = new ApplicationDbContext(contextOptions);
+            using var context = new ApplicationDbContext(options);
             context.Database.EnsureCreated();
         }
 
