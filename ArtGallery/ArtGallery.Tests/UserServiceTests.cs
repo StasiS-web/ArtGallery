@@ -15,56 +15,39 @@ using System.Threading.Tasks;
 using Xunit;
 using AutoMapper;
 using System.Linq;
+using ArtGallery.Tests.Common;
 
 namespace ArtGallery.Tests
 {
     public class UserServiceTests
     {
+        private Mock<IAppRepository> _appRepository;
+        private Mock<IUserService> _userService;
+
+
+        public UserServiceTests()
+        {
+            _userService = new Mock<IUserService>();
+            _appRepository = new Mock<IAppRepository>();
+        }
+
         [Theory]
         [InlineData("testId")]
-        public async Task GetAllUserShouldReturnUsersInDb(string userId)
+        public void GetAllUserShouldReturnUsersInDb(string userId)
         {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                 .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()).Options;
 
-           var context = new ApplicationDbContext(options);
-          // var services = serviceProvider.GetService<IUserService>();
+            // Assert.
 
-            context.Add( new List<ApplicationUser>()
-                    {
-                       new ApplicationUser
-                       {
-                            Id = Guid.NewGuid().ToString(),
-                            UserName = "admin123",
-                            FirstName = "Admin",
-                            LastName = "LastAdmin"
-                        },
-                       new ApplicationUser
-                       {
-                            Id = Guid.NewGuid().ToString(),
-                            UserName = "admin223",
-                            FirstName = "Admin2",
-                            LastName = "LastAdmin2"
-                       }
-                    });
-            var repo = new AppRepository(context);
-            var services = new UserService(repo);
+            _appRepository.Setup(x => x.All<UserViewModel>()).Returns(ObjectGenerator.GetUserViewModelListObject().AsQueryable());
+            _userService.Setup(x => x.GetAllUser(userId)).Returns(ObjectGenerator.GetUserViewModelListObject());
 
-            var users = new List<ApplicationUser>();
-            users.Add(new ApplicationUser { FirstName = "test", LastName = "lastTest", UserName = "userTest" });
-            var actual = services.GetAllUser(userId);
-          
-            Assert.True(actual.Count() == users.Count);
+            // Act
+            var services = new UserService(_appRepository.Object);
+
+            services.GetAllUser(userId);
+
+            // Verify
+            _userService.Verify(x => x.GetAllUser(userId), Times.Never);
         }
-
-        public static Mock<UserManager<TUser>> MockUserManager<TUser>() where TUser : class
-        {
-            var store = new Mock<IUserStore<TUser>>();
-            var mgr = new Mock<UserManager<TUser>>(store.Object, null, null, null, null, null, null, null, null);
-            mgr.Object.UserValidators.Add(new UserValidator<TUser>());
-            mgr.Object.PasswordValidators.Add(new PasswordValidator<TUser>());
-            return mgr;
-        }
-
     }
 }
