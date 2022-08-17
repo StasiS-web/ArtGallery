@@ -1,18 +1,15 @@
 ﻿using ArtGallery.Core.Contracts;
 using ArtGallery.Core.Models.BlogPosts;
 using ArtGallery.Core.Services;
-using ArtGallery.Infrastructure.Data.Repositories;
 using ArtGallery.Infrastructure.Data;
+using ArtGallery.Infrastructure.Data.Models;
+using ArtGallery.Infrastructure.Data.Repositories;
 using ArtGallery.Tests.Common;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
-using ArtGallery.Infrastructure.Data.Models;
 
 namespace ArtGallery.Tests
 {
@@ -35,7 +32,7 @@ namespace ArtGallery.Tests
         {
             // Assert
             _repo.Setup(x => x.AddAsync(ObjectGenerator.GetBlogCommentObject()));
-            _commentsService.Setup(x => x.CreateAsync(1, 1, "1", "1"));
+            _commentsService.Setup(x => x.CreateAsync(1,1,"1","1"));
 
             // Act
             var service = new CommentsService(_repo.Object);

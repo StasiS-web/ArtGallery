@@ -196,7 +196,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("ShoppingCartId");
 
-                    b.ToTable("ArtGalleryUser");
+                    b.ToTable("ArtGalleryUser", (string)null);
                 });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.ArtOrder", b =>
@@ -234,7 +234,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("ArtsOrders");
+                    b.ToTable("ArtsOrders", (string)null);
                 });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.ArtStore", b =>
@@ -288,7 +288,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("ShoppingCartId");
 
-                    b.ToTable("Arts");
+                    b.ToTable("Arts", (string)null);
 
                     b.HasData(
                         new
@@ -404,7 +404,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.BlogPost", b =>
@@ -453,7 +453,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("BlogPosts");
+                    b.ToTable("BlogPosts", (string)null);
 
                     b.HasData(
                         new
@@ -565,7 +565,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("BookingTransactions");
+                    b.ToTable("BookingTransactions", (string)null);
                 });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.ContactForm", b =>
@@ -616,7 +616,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("Contacts");
+                    b.ToTable("Contacts", (string)null);
                 });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.Event", b =>
@@ -668,14 +668,14 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("Events");
+                    b.ToTable("Events", (string)null);
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 8, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2022, 4, 18, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "The lively and colourful beasts painted onto ceramic dishes featured in this show have been conceived as partners to the adjoining Myths & Monsters exhibition.",
                             IsDeleted = false,
                             Name = "Mythical Beasts Past and Present",
@@ -687,7 +687,7 @@ namespace ArtGallery.Infrastructure.Migrations
                         {
                             Id = 2,
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 8, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2022, 4, 18, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "The National Gallery is marking International Women's Day and Women's History Month with various online events celebrating women in the arts. Highlights include a forum exploring the way women artists have interacted with the national collection, and a lecture examining the role played by art historian Anna Jameson in the reception of Raphael's work in the 19th century.",
                             IsDeleted = false,
                             Name = "Women in Art",
@@ -699,7 +699,7 @@ namespace ArtGallery.Infrastructure.Migrations
                         {
                             Id = 3,
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 8, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2022, 4, 18, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Exhibiting Artists include:  Sasha Constable,  Paul Wright,  Alice Cescatti",
                             IsDeleted = false,
                             Name = "Contemporary Paintings",
@@ -711,7 +711,7 @@ namespace ArtGallery.Infrastructure.Migrations
                         {
                             Id = 4,
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 8, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2022, 4, 18, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Let's visit Brooklyn and discover some of the finest street art in the world! WHAT WE'LL DO: Our experience will be broken up into five parts: 1: Transport to a coffee shop in Brooklyn filled with stunning artwork. There, we'll chat about what street art means to each of us. 2: Take a guided tour through East Williamsburg and view dozens of commissioned murals, some over 40 feet in size! I will share amazing stories from a mix of local and international artists. 3.Hop on a virtual subway ride to the Wall of Justice a new space devoted to a powerful art movement. Bonus: Get to see some 'creatures' on the train with unique artwork by Subway Doodle.",
                             IsDeleted = false,
                             Name = "Brooklyn Virtual Street Art Experience",
@@ -723,7 +723,7 @@ namespace ArtGallery.Infrastructure.Migrations
                         {
                             Id = 5,
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 8, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2022, 4, 18, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Art historian and author of Gardens of the Arts and Crafts Movement, Judith B. Tankard surveys the inspirations, characteristics and development of garden design during the Arts and Crafts Movement. Tankard presents a selection of houses and gardens from the era, with an emphasis on the diversity of designers who forge a special approach to garden design with illustrations and photographs of examples from Europe and North America.",
                             IsDeleted = false,
                             Name = "ART TALES: Yuki Aruga",
@@ -735,7 +735,7 @@ namespace ArtGallery.Infrastructure.Migrations
                         {
                             Id = 6,
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 8, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2022, 4, 18, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "Discover an array of engaging installations, topical talks, hundreds of programmed events across amazing venues at Clerkenwell Design Week. This amazing independent design festival returns for its 11th edition. During this event, you'll have the chance to discover more than 200 exhibitors showcasing their captivating installations, talks and hundreds of programmed events. Whilst you're there feast upon the area's delicious array of food and drink choices.",
                             IsDeleted = false,
                             Name = "Art Fair",
@@ -747,7 +747,7 @@ namespace ArtGallery.Infrastructure.Migrations
                         {
                             Id = 7,
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 8, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2022, 4, 18, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "The island of Puerto Rico, or 'La Isla del Encanto', and its people are products of a fusion of 3 distinct cultures: Indigenous Taino, Spanish, and African, resulting in cultural traditions that Puerto Ricans rightfully take pride in preserving.  The Contemporary Art Modern Project is pleased to present Views From El Barrio, an exhibition featuring works by NYC Puerto Rican, or Nuyorican, artists Elsie Deliz and Albert Justiniano.",
                             IsDeleted = false,
                             Name = "The Contemporary Art Modern Project Gallery",
@@ -759,7 +759,7 @@ namespace ArtGallery.Infrastructure.Migrations
                         {
                             Id = 8,
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 8, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2022, 4, 18, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "The exhibition 'Art et Programmation', bringing together historical artists from the Denise Rene gallery and others from a younger generation, proposes a look at geometric abstraction through the notion of programming. Although it only officially appeared in the artistic landscape in 1962, with the exhibition 'Arte Programmata' in Italy, this notion covers aesthetic concerns whose sources are much earlier. It is present in filigree at the artists of the constructive avant-gardes who, aspiring to a form of universal art, depersonalize their creations, call for a connection between art and sciences.",
                             IsDeleted = false,
                             Name = "GALERIE DENISE RENE",
@@ -807,7 +807,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("EventsOrders");
+                    b.ToTable("EventsOrders", (string)null);
                 });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.ExhibitionHall", b =>
@@ -845,7 +845,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("ExhibitionHalls");
+                    b.ToTable("ExhibitionHalls", (string)null);
                 });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.FaqEntity", b =>
@@ -882,7 +882,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("Faqs");
+                    b.ToTable("Faqs", (string)null);
 
                     b.HasData(
                         new
@@ -972,7 +972,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("Privacies");
+                    b.ToTable("Privacies", (string)null);
                 });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.SaleTransaction", b =>
@@ -1013,7 +1013,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("SaleTransactions");
+                    b.ToTable("SaleTransactions", (string)null);
                 });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.Setting", b =>
@@ -1048,7 +1048,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("Settings");
+                    b.ToTable("Settings", (string)null);
                 });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.ShoppingCart", b =>
@@ -1094,7 +1094,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ShoppingCarts");
+                    b.ToTable("ShoppingCarts", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

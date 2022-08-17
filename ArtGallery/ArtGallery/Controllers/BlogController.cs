@@ -32,7 +32,7 @@
 
             var blogPosts = await this.blogPost.GetAll<BlogPostViewModel>(sortId, blogId);
             var blogList = blogPosts.ToList();
-
+           
 
             // Code changes by bhavin.   
             var allBlogs = blogList.Select(e => new AllBlogPostsListViewModel
@@ -43,7 +43,7 @@
                 CreatedOn = e.CreatedOn,
                 Title = e.Title,
                 UserReaction = e.UserReaction,
-                UrlImageStr = e.UrlImageStr,
+                UrlImage=e.UrlImage,
 
             }).ToList();
             ViewBag.AllBlog = allBlogs;

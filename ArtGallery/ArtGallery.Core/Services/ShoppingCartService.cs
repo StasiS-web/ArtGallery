@@ -8,29 +8,29 @@
 
     public class ShoppingCartService : IShoppingCartService
     {
-        private readonly IAppRepository _cartRepo;
+        private readonly IAppRepository cartRepo;
 
         public ShoppingCartService(IAppRepository cartRepo)
         {
-            this._cartRepo = cartRepo;
+            this.cartRepo = cartRepo;
         }
 
         public IEnumerable<ShoppingCartViewModel> AddArt(int artId, string userId, decimal price)
         {
-            var user = this._cartRepo.All<ArtGalleryUser>()
+            var user = this.cartRepo.All<ArtGalleryUser>()
                 .Where(u => u.Id == userId)
                 .Include(u => u.ShoppingCart)
                 .ThenInclude(a => a.Arts)
                 .FirstOrDefault();
 
-            var artInCart = this._cartRepo.All<ArtStore>()
+            var artInCart = this.cartRepo.All<ArtStore>()
                 .FirstOrDefault(u => u.Id == artId); ;
 
             user.ShoppingCart.Arts.Add(artInCart);
 
             try
             {
-                _cartRepo.SaveChanges();
+                cartRepo.SaveChanges();
             }
             catch (Exception)
             { }
@@ -45,7 +45,7 @@
 
         public void BuyArts(string userId)
         {
-            var user = this._cartRepo.All<ArtGalleryUser>()
+            var user = this.cartRepo.All<ArtGalleryUser>()
                 .Where(u => u.Id == userId)
                 .Include(u => u.ShoppingCart)
                 .ThenInclude(a => a.Arts)
@@ -53,27 +53,27 @@
 
             user.ShoppingCart.Arts.Clear();
 
-            this._cartRepo.SaveChanges();
+            this.cartRepo.SaveChanges();
         }
 
         public async Task ClearCartAsync(string userId)
         {
-            var arts = this._cartRepo
+            var arts = this.cartRepo
                    .All<ArtGalleryUser>()
                    .Where(u => u.Id == userId)
                    .ToList();
 
             foreach (var art in arts)
             {
-                this._cartRepo.HardDelete(art);
+                this.cartRepo.HardDelete(art);
             }
 
-            await this._cartRepo.SaveChangesAsync();
+            await this.cartRepo.SaveChangesAsync();
         }
 
         public IEnumerable<ShoppingCartViewModel> GetArts(string userId)
         {
-            var user = this._cartRepo.All<ArtGalleryUser>()
+            var user = this.cartRepo.All<ArtGalleryUser>()
                 .Where(u => u.Id == userId)
                 .Include(u => u.ShoppingCart)
                 .ThenInclude(a => a.Arts)
@@ -89,7 +89,7 @@
 
         public void IncreaseQuatity(string artId, bool isIncreased)
         {
-            var artInTheCart = this._cartRepo.All<ShoppingCartViewModel>()
+            var artInTheCart = this.cartRepo.All<ShoppingCartViewModel>()
                 .SingleOrDefault(a => a.ShoppingCartId == artId);
 
             if (artInTheCart.Quantity <= 1)
@@ -98,7 +98,7 @@
             }
 
             artInTheCart.Quantity--;
-            int result = this._cartRepo.SaveChanges();
+            int result = this.cartRepo.SaveChanges();
 
             if (result > 0)
             {

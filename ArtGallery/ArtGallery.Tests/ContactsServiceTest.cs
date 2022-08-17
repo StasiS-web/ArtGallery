@@ -1,16 +1,16 @@
 ﻿using ArtGallery.Core.Contracts;
+using ArtGallery.Core.Messaging.Contracts;
 using ArtGallery.Core.Models.Contacts;
 using ArtGallery.Core.Services;
-using ArtGallery.Infrastructure.Data.Repositories;
 using ArtGallery.Infrastructure.Data;
+using ArtGallery.Infrastructure.Data.Repositories;
+using ArtGallery.Tests.Common;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using System.Collections.Generic;
+using Xunit;
 using System.Linq;
 using System.Threading.Tasks;
-using Xunit;
-using ArtGallery.Core.Messaging.Contracts;
-using ArtGallery.Tests.Common;
 
 namespace ArtGallery.Tests
 {

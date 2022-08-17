@@ -17,7 +17,7 @@
     {
         private static readonly MethodInfo SetIsDeletedQueryFilterMethod =
             typeof(ApplicationDbContext).GetMethod(
-                nameof(SetIsDeletedQueryFilter),
+                nameof(SetIsDeletedQueryFilter), 
                 BindingFlags.NonPublic | BindingFlags.Static);
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -125,19 +125,19 @@
                 .HasColumnType("decimal");
 
             // Initial Data Seed
-            //  builder.ApplyConfiguration(new InitialDataSeed<BlogPost>(@"DataSeed/blog.json"));
-            //  builder.ApplyConfiguration(new InitialDataSeed<ArtStore>(@"DataSeed/arts.json"));
-            //  builder.ApplyConfiguration(new InitialDataSeed<Event>(@"DataSeed/events.json"));
-            //  builder.ApplyConfiguration(new InitialDataSeed<FaqEntity>(@"DataSeed/faqs.json"));
+          //  builder.ApplyConfiguration(new InitialDataSeed<BlogPost>(@"DataSeed/blog.json"));
+          //  builder.ApplyConfiguration(new InitialDataSeed<ArtStore>(@"DataSeed/arts.json"));
+          //  builder.ApplyConfiguration(new InitialDataSeed<Event>(@"DataSeed/events.json"));
+          //  builder.ApplyConfiguration(new InitialDataSeed<FaqEntity>(@"DataSeed/faqs.json"));
 
             // Code change by bhavin.
-            builder.Entity<BlogPost>().HasData(SeedUserData<BlogPost>(@"DataSeed/blog.json"));
-            builder.Entity<ArtStore>().HasData(SeedUserData<ArtStore>(@"DataSeed/arts.json"));
-            builder.Entity<Event>().HasData(SeedUserData<Event>(@"DataSeed/events.json"));
-            builder.Entity<FaqEntity>().HasData(SeedUserData<FaqEntity>(@"DataSeed/faqs.json"));
+            //builder.Entity<FaqEntity>().HasData(SeedUserData<BlogPost>(@"DataSeed/blog.json"));
+            //builder.Entity<FaqEntity>().HasData(SeedUserData<FaqEntity>(@"DataSeed/arts.json"));
+            //builder.Entity<FaqEntity>().HasData(SeedUserData<FaqEntity>(@"DataSeed/events.json"));
+            //builder.Entity<FaqEntity>().HasData(SeedUserData<FaqEntity>(@"DataSeed/faqs.json"));
         }
 
-        public List<T> SeedUserData<T>(string filePath) where T : class
+        public List<T> SeedUserData<T>(string filePath)  where T :class
         {
             var model = new List<T>();
             using (StreamReader r = new StreamReader(filePath))

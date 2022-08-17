@@ -25,7 +25,7 @@
 
         Task AddAsync(EventCreateInputViewModel model);
 
-        Task<EventViewModel> GetEventDetailsByIdAsync<T>(int eventId);
+        Task<T> GetEventDetailsByIdAsync<T>(int eventId);
 
         Task<bool> CheckIfEventExists(int eventId);
 

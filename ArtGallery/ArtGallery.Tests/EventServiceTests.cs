@@ -45,6 +45,7 @@ namespace ArtGallery.Tests
             // Act
             var service = new EventService(_appRepository.Object, _context);
             var eventToDelete = ObjectGenerator.GetEventObject();
+            service.Delete(2);
 
             // Verify
             _eventService.Verify(x => x.Delete(It.IsAny<int>()), Times.Never());
@@ -80,7 +81,7 @@ namespace ArtGallery.Tests
 
             // Act
             var service = new EventService(_appRepository.Object, _context);
-
+            var result = service.GetByIdAsync(1);
             // Verify
             _eventService.Verify(x => x.GetByIdAsync(1), Times.Never());
             Assert.Equal(new List<int>(), _eventService.Object.GetByIdAsync(1));
@@ -133,6 +134,7 @@ namespace ArtGallery.Tests
             // Act
             var service = new EventService(_appRepository.Object, _context);
 
+            await service.UpdateEventAsync(ObjectGenerator.GetEventEditViewModelObject());
 
             // Verify
             _eventService.Verify(x => x.UpdateEventAsync(ObjectGenerator.GetEventEditViewModelObject()), Times.Never());
@@ -159,7 +161,7 @@ namespace ArtGallery.Tests
             _appRepository.Setup(x => x.All<EventViewModel>()).Returns(new List<EventViewModel>().AsQueryable());
 
             _eventService.Setup(x => x.CheckIfEventExists(1)).Returns(Task.Run(() => true));
-
+            
             // Verify
             _eventService.Verify(x => x.GetEventDetailsByIdAsync<EventViewModel>(1), Times.Never());
         }
@@ -171,10 +173,10 @@ namespace ArtGallery.Tests
             //Assert
             _appRepository.Setup(x => x.All<EventViewModel>()).Returns(new List<EventViewModel>().AsQueryable());
 
-            _eventService.Setup(x => x.CheckAvailableEvents(1, DateTime.Now)).Returns(Task.Run(() => true));
+            _eventService.Setup(x => x.CheckAvailableEvents(1,DateTime.Now)).Returns(Task.Run(() => true));
 
             // Verify
-            _eventService.Verify(x => x.CheckAvailableEvents(1, DateTime.Now), Times.Never());
+            _eventService.Verify(x => x.CheckAvailableEvents(1,DateTime.Now), Times.Never());
         }
 
         private async Task SeedDbAsync(IAppRepository repo)

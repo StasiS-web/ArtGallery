@@ -2,12 +2,7 @@
 using ArtGallery.Infrastructure.Data.Repositories;
 using Microsoft.AspNetCore.Http;
 using Moq;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace ArtGallery.Tests
@@ -36,7 +31,7 @@ namespace ArtGallery.Tests
 
             //create FormFile with desired data
             IFormFile file = new FormFile(stream, 0, stream.Length, "id_from_form", fileName);
-
+            
             _cloudinaryService.Setup(x => x.UploadImageAsync(file, fileName, null)).Returns("Test");
 
             // Verify

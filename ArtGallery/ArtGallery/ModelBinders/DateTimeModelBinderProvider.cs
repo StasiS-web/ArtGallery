@@ -4,11 +4,11 @@
 
     public class DateTimeModelBinderProvider : IModelBinderProvider
     {
-        private readonly string _customDateFormat;
+        private readonly string customDateFormat;
 
         public DateTimeModelBinderProvider(string _customDateFormat)
         {
-            this._customDateFormat = _customDateFormat;
+            this.customDateFormat = _customDateFormat;
         }
 
         public IModelBinder? GetBinder(ModelBinderProviderContext context)
@@ -20,7 +20,7 @@
 
             if (context.Metadata.ModelType == typeof(DateTime) || context.Metadata.ModelType == typeof(DateTime?))
             {
-                return new DateTimeModelBinder(_customDateFormat);
+                return new DateTimeModelBinder(customDateFormat);
             }
 
             return null;

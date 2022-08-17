@@ -1,16 +1,13 @@
 ﻿using ArtGallery.Core.Contracts;
 using ArtGallery.Core.Models.ArtStore;
 using ArtGallery.Core.Services;
-using ArtGallery.Infrastructure.Data.Repositories;
 using ArtGallery.Infrastructure.Data;
+using ArtGallery.Infrastructure.Data.Repositories;
 using ArtGallery.Tests.Common;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace ArtGallery.Tests
@@ -80,7 +77,7 @@ namespace ArtGallery.Tests
             _repo.Setup(x => x.All<ArtStoreViewModel>()).Returns(new List<ArtStoreViewModel> {
              ObjectGenerator.GetArtStoreViewModelObject()
             }.AsQueryable());
-
+            
             _artStoreService.Setup(x => x.GetAll());
 
             // Act

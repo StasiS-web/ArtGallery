@@ -1,17 +1,14 @@
 ﻿using ArtGallery.Core.Contracts;
 using ArtGallery.Core.Services;
+using ArtGallery.Infrastructure.Data;
 using ArtGallery.Infrastructure.Data.Models;
 using ArtGallery.Infrastructure.Data.Repositories;
-using ArtGallery.Infrastructure.Data;
 using ArtGallery.Tests.Common;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
+using System.Linq;
 
 namespace ArtGallery.Tests
 {
@@ -34,7 +31,7 @@ namespace ArtGallery.Tests
         {
             // Assert
             _repo.Setup(x => x.AddAsync(ObjectGenerator.GetEventOrderViewModelObject()));
-            _eventOrderService.Setup(x => x.CreateOrder(ObjectGenerator.GetEventOrderViewModelObject(), true));
+            _eventOrderService.Setup(x => x.CreateOrder(ObjectGenerator.GetEventOrderViewModelObject(),true));
 
             // Act
             var service = new EventOrderService(_repo.Object);
@@ -47,7 +44,7 @@ namespace ArtGallery.Tests
         public void ConfirmAsync_Test()
         {
             // Assert
-            _repo.Setup(x => x.All<EventOrder>()).Returns(new List<EventOrder> { ObjectGenerator.GetEventOrderObject() }.AsQueryable());
+            _repo.Setup(x => x.All<EventOrder>()).Returns(new List<EventOrder> { ObjectGenerator.GetEventOrderObject()}.AsQueryable());
             _eventOrderService.Setup(x => x.ConfirmAsync(1));
 
             // Act

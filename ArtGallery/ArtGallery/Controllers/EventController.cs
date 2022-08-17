@@ -20,14 +20,14 @@
         public IActionResult AllEvents(AllEventListViewModel model)
         {
             var modelView = this.events.GetAllEvents(model.EventId);
-            var allEvents = modelView
-                .Select(e => new AllEventListViewModel
-                {
-                    Name = e.Name,
-                    Date = e.Date.ToString(),
-                    Type = e.Type,
-                    Description = e.Description,
-                }).ToList();
+            // changes done by bhavin.
+            var allEvents=modelView.Select(e => new AllEventListViewModel
+             {
+                 Name = e.Name,
+                 Date = e.Date.ToString(),
+                 Type = e.Type,
+                 Description = e.Description,
+             }).ToList();
 
             return View(allEvents);
         }

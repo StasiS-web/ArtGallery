@@ -25,9 +25,14 @@
             get
             {
                 var shortDescription = this.Description;
-                return shortDescription.Length > 100
-                    ? shortDescription.Substring(0, 100) + "..."
-                    : shortDescription;
+                if (this.Description != null)
+                {
+                    return shortDescription
+                        .Length > 100
+                        ? shortDescription.Substring(0, 100) + "..."
+                        : shortDescription;
+                }
+                return shortDescription;
             }
         }
     }

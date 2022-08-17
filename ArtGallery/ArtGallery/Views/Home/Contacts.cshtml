@@ -7,63 +7,61 @@
 
 
 <div class="contacts-list-info">
-<div class="text-body">
-    <div class="card">
+    <div class="text-body">
+        <div class="card">
         <div class="card-body row">
-            <div class="col-5 text-center d-flex align-items-center justify-content-center">
-                <div class="">
-                    <h2>Art Gallery</h2>
-                    <p class="lead mb-5">st. Alexander Nevski, 
-                        1000 Sofia, Bulgaria<br>
-                        Phones: +359 2 956 3876;
-                        General: info@artgallery.com;
-                        Admin: admin@artgallery.com
-                    </p>
+          <div class="col-5 text-center d-flex align-items-center justify-content-center">
+            <div class="">
+              <h2>Art Gallery</h2>
+              <p class="lead mb-5">st. Alexander Nevski, 
+                1000 Sofia, Bulgaria<br>
+                Phones: +359 2 956 3876;
+                General: info@artgallery.com;
+                Admin: admin@artgallery.com
+              </p>
+            </div>
+          </div>
+          <div class="col-7">
+            <form asp-controller="Home" asp-action= "Contacts" method= "post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                  <label asp-for="FirstName" class="form-lable">First Name</label>
+                  <input asp-for="FirstName" placeholder="First Name" class="form-control" />
+                  <span asp-validation-for="FirstName" class="text-danger"></span>
                 </div>
-            </div>
-            <div class="col-7">
-                <form asp-controller="Home" asp-action= "Contacts" method= "post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="FirstName" class="form-lable">First Name</label>
-                        <input asp-for="FirstName" placeholder="First Name" class="form-control" />
-                        <span asp-validation-for="FirstName" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="LastName" class="form-lable">Last Name</label>
-                        <input asp-for="LastName" placeholder="Last Name" class="form-control" />
-                        <span asp-validation-for="LastName" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Email" class="form-lable"></label>
-                        <input asp-for="Email" placeholder="Email" class="form-control" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Subject" class="form-lable"></label>
-                        <select asp-for="Subject">
-                            <option selected="selected">Please select...</option>
-                            <option selected="selected">General Enquiry</option>
-                            <option selected="selected">Question</option>
-                            <option selected="selected">Booked Exhibition</option>
-                            <option selected="selected">Art Purchace</option>
-                            <option selected="selected">Feedback</option>
-                            <option selected="selected">Other</option>
-                        </select>
-                        <span asp-validation-for="Subject" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Message" class="form-lable"></label>
-                        <textarea asp-for="Message" placeholder="Message" class="forn-control" style="width: 100%; height: 150px"></textarea> 
-                        <span asp-validation-for="Message" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block">Send</button>
-                    </div>
-                </form>
-            </div>
+                 <div class="form-group">
+                  <label asp-for="LastName" class="form-lable">Last Name</label>
+                   <input asp-for="LastName" placeholder="Last Name" class="form-control" />
+                   <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                   <label asp-for="Email" class="form-lable"></label>
+                   <input asp-for="Email" placeholder="Email" class="form-control" />
+                   <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                  <label asp-for="Subject" class="form-lable"></label>
+                   <select asp-for="Subject">
+                       <option selected="selected">Please select...</option>
+                       <option selected="selected">General Enquiry</option>
+                       <option selected="selected">Question</option>
+                       <option selected="selected">Booked Exhibition</option>
+                       <option selected="selected">Art Purchace</option>
+                       <option selected="selected">Feedback</option>
+                       <option selected="selected">Other</option>
+                   </select>
+                   <span asp-validation-for="Subject" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                  <label asp-for="Message" class="form-lable"></label>
+                  <textarea asp-for="Message" placeholder="Message" class="forn-control" style="width: 100%; height: 150px"></textarea> 
+                  <span asp-validation-for="Message" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Send</button>
+                </div>
+            </form>
+          </div>
         </div>
-    </div>
-</div>
-</div>
+      </div>
 

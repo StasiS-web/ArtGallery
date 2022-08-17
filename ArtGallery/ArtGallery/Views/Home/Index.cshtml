@@ -4,63 +4,64 @@
 @{
     ViewData["Title"] = localizer["PageTitle"];
 
-    var events = ViewBag.AllUpcomingEvents;
-    var blogs = ViewBag.AllLatestBlogPost;
+   var events = ViewBag.AllUpcomingEvents;
+   var blogs = ViewBag.AllLatestBlogPost;
 }
 
 <div class="text-center">
     <div class="content">
         <h1 class="display-4">@localizer["PageHeader"]</h1>
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h5 class="m-0">@localizer["EventHeader"]</h5>
-                    @foreach (var upcomingEvent in events)
-                    {
-                        <div class="card card-primary card-outline">
-                            <div class="card-header">
-                                <h5 class="card-title">@upcomingEvent.Name</h5>
-                            </div>
-                            <div class="card-body">
-                                <span class="start-date"> @upcomingEvent.Date</span>
-                                <p calss="class-text">@upcomingEvent.Type</p>
+             <div class="row">
+                      <div class="col-lg-6">
+                         <h5 class="m-0">@localizer["EventHeader"]</h5>
+                   @*   @foreach (var upcomingEvent in events)  
+                         {
+                            <div class="card card-primary card-outline">
+                              <div class="card-header">
+                              <h5 class="card-title">upcomingEvent.Name</h5>
+                              </div>
+                              <div class="card-body">
+                                <span class="start-date"> upcomingEvent.Date</span>
+                                <p calss="class-text">upcomingEvent.Type</p>
                                 <p class="card-text">
-                                    @upcomingEvent.ShortDescription
+                                  upcomingEvent.ShortDescription
                                 </p>
-
-                                <a class="btn btn-primary" asp-controller="Event" asp-action="EventDetails">Go Event Details</a>
+                           
+                               @* <a href="#" class="card-link" asp-controller="Event" asp-action="EventDetails">Go Event Details</a> *@
+                         @*     </div>
                             </div>
-                        </div>
-                    }
-                    <!-- /.card -->
-                </div>
-                <!-- /.col-md-6 -->
-                <div class="col-lg-6">
-                    <h5 class="m-0">@localizer["BlogHeader"]</h5>
-                    @foreach (var latestBlog in blogs)
-                    {
-                        <div class="card  card-primary card-outline">
-                            <div class="card-header">
-                                <h6 class="card-title">@latestBlog.Title</h6>
-                                <div class="card-image">
-                                    <img src="@latestBlog.UrlImage" alt="" />
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">@latestBlog.Author</p>
-                                <p class="card-text">@latestBlog.ShortContect</p>
-                                <a href="#" class="btn btn-primary">Post Details</a>
-                            </div>
-                        </div>
-                    }
-                </div>
-                <!-- /.col-md-6 -->
-            </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
-        <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
-            <i class="fas fa-chevron-up"></i>
-        </a>
-    </div>
-    <!-- /.content -->
+                         }*@
+                         <!-- /.card -->
+                      </div>
+                      <!-- /.col-md-6 -->
+                     <div class="col-lg-6">
+                         <h5 class="m-0">@localizer["BlogHeader"]</h5>
+            @*       @foreach (var latestBlog in blogs) 
+                         {
+                                <div class="card  card-primary card-outline">
+                                  <div class="card-header">
+                                      <h6 class="card-title">latestBlog.Title</h6> 
+                                      <div class="card-image">
+                                          <img src="latestBlog.UrlImage" alt="" /> 
+                                       </div>
+                                  </div>
+                                  <div class="card-body">
+                                      <p class="card-text">latestBlog.Author</p>
+                                      <p class="card-text">latestBlog.ShortContect</p>
+                                      @* <a href="#" class="btn btn-primary">Blog Post Details</a>
+                                  </div>
+                               </div>
+                         }  *@
+                      </div> 
+                      <!-- /.col-md-6 -->
+              </div>
+             <!-- /.row -->
+       </div><!-- /.container-fluid -->
+       <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
+           <i class="fas fa-chevron-up"></i>
+       </a>
+   </div>
+   <!-- /.content -->      
 </div>
+

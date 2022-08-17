@@ -11,14 +11,15 @@
 
     public class HomeController : BaseController
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<HomeController> logger;
         private readonly IEventService _eventService;
         private readonly IBlogPostService _blogPostService;
-       // private readonly IContactsService contactsService;
-     
-        public HomeController(ILogger<HomeController> logger, IEventService eventService, IBlogPostService blogPostService)
+        // private readonly IContactsService contactsService;
+
+        public HomeController(ILogger<HomeController> logger, IEventService eventService,
+           IBlogPostService blogPostService)
         {
-            this._logger = logger;
+            this.logger = logger;
             this._eventService = eventService;
             this._blogPostService = blogPostService;
             // this.contactsService = contactsService;
@@ -27,19 +28,11 @@
         [AllowAnonymous]
         public async Task<IActionResult> Index(int eventId, int blogId)
         {
-          var upcomingEvents = await _eventService.GetUpcomingByIdAsync<UpcomingEventViewModel>(eventId);
-          var latestBlog = await _blogPostService.GetLatestBlogAsync<LatestBlogPostViewModel>(blogId);
+            var upcomingEvents = await _eventService.GetUpcomingByIdAsync<UpcomingEventViewModel>(eventId);
+            var latestBlog = await _blogPostService.GetLatestBlogAsync<LatestBlogPostViewModel>(blogId);
 
-          var latestBlogs = latestBlog.Select(x => new LatestBlogPostViewModel()
-          {
-              Author = x.Author,
-              Content = x.Content,
-              Title = x.Title,
-              UrlImage = x.UrlImage
-          }).ToList();
-
-          ViewBag.AllUpcomingEvents = upcomingEvents;
-          ViewBag.AllLatestBlogPost = latestBlog;
+            ViewBag.AllUpcomingEvents = upcomingEvents;
+            ViewBag.AllLatestBlogPost = latestBlog;
 
             return View();
         }
@@ -94,7 +87,7 @@
                 return View(model);
             }
 
-         // await this.contactsService.ContactAdmin(model);
+         //   await this.contactsService.ConatctAdmin(model);
             return this.RedirectToAction("ThankYou");
         }
 

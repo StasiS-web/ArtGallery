@@ -1,3 +1,9 @@
+﻿using ArtGallery.Core.Mapping;
+using ArtGallery.Core.Messaging;
+using ArtGallery.Core.Messaging.Contracts;
+using AutoMapper;
+using System.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -70,7 +76,7 @@ builder.Services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 // Application services
 builder.Services.AddScoped<IEmailSender>(
     x => new SendGridEmailSender(builder.Configuration["SendGrid:SendGridApiKey"]));
-builder.Services.AddScoped<IAboutService, AboutService>();
+builder.Services.AddTransient<IAboutService, AboutService>();
 builder.Services.AddScoped<IBlogPostService, BlogPostService>();
 builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
 builder.Services.AddScoped<IContactsService, ContactsService>();
@@ -109,7 +115,6 @@ app.UseRequestLocalization();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
 
 app.UseEndpoints(endpoints =>
 {

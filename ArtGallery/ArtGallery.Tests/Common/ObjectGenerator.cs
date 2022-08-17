@@ -384,9 +384,9 @@
                 ArtPrice = 1,
                 PaintingName = "test",
                 Quantity = 1,
-                ShoppingCartId = "1",
-                User = null,
-                UserId = "1"
+                ShoppingCartId="1",
+                User= null,
+                UserId="1"
             };
         }
 

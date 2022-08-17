@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="/plugins/toastr/toastr.min.js" />
     <link rel="stylesheet" href="/css/site.css" asp-append-version="true" />
 
-    @this.RenderSectionAsync("Styles", required: false) 
+      @await this.RenderSectionAsync("Styles", required: false)
 </head>
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -65,7 +65,7 @@
        </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper iframe-mode">
+    <div class="content-wrapper iframe-mode" data-widget="iframe">
          <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container-fluid">
@@ -102,7 +102,7 @@
   <!-- jQuery -->
     <script src="/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
 

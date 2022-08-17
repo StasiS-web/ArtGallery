@@ -1,5 +1,6 @@
 ﻿using ArtGallery.Core.Models.Administrator;
 using ArtGallery.Core.Models.FaqEntity;
+using ArtGallery.Infrastructure.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace ArtGallery.Core.Contracts
 
         Task<IEnumerable<FaqViewModel>> GetAllFaqsAsync<T>();
 
-        Task<FaqViewModel> GetByIdAsync<T>(int faqId);
+        Task<T> GetByIdAsync<T>(int faqId);
 
     }
 }

@@ -14,7 +14,7 @@
                 <div class="card card-primary card-outline">
 
                     <h5 class="card-title text-primary text-black" asp-area="" asp-controller="BlogPost" asp-action="Index" asp-route-id="@blogPost.BlogId">@blogPost.Title</h5>
-                    <img class="card-img-top" src="@blogPost.UrlImageStr" alt="">
+                    <img class="card-img-top" src="" alt="">
                     <div class="card-text text-black pb-2 pt-1" asp-controller="BlogPost" asp-action="Index" asp-route-id="@blogPost.BlogId">by @blogPost.Author</div>
                     <a href="#" class="text-black">@blogPost.CreatedOn</a>
                     <div class="card-text text-black">
@@ -42,4 +42,3 @@
     </a>
 
 </div>
-

@@ -7,16 +7,16 @@
 
     public class CommentsService : ICommentsService
     {
-        private readonly IAppRepository _commentsRepo;
+        private readonly IAppRepository commentsRepo;
 
         public CommentsService(IAppRepository commentsRepo)
         {
-            this._commentsRepo = commentsRepo;
+            this.commentsRepo = commentsRepo;
         }
 
         public async Task CreateAsync(int commentId, int blogPostId, string userId, string content)
         {
-            await this._commentsRepo.AddAsync(new BlogComment
+            await this.commentsRepo.AddAsync(new BlogComment
             {
                 Id = commentId,
                 BlogPostId = blogPostId,
@@ -25,23 +25,23 @@
                 UserId = userId,
             });
 
-            await this._commentsRepo.SaveChangesAsync();
+            await this.commentsRepo.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)
         {
-            var commnets = this._commentsRepo
+            var commnets = this.commentsRepo
                               .All<BlogComment>()
                               .Where(x => x.Id == id)
                               .FirstOrDefault();
 
-            this._commentsRepo.Delete(commnets);
-            await this._commentsRepo.SaveChangesAsync();
+            this.commentsRepo.Delete(commnets);
+            await this.commentsRepo.SaveChangesAsync();
         }
 
         public async Task<string> GetBlogIdByCommentsAsync(int commentId)
         {
-            return this._commentsRepo
+            return this.commentsRepo
                 .All<BlogCommentViewModel>()
                 .FirstOrDefault(c => c.CommentId == commentId)
                 .BlogPostId;

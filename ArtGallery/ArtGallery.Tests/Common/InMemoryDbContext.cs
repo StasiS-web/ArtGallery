@@ -12,9 +12,9 @@
 
         public InMemoryDbContext()
         {
-           var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(databaseName: "database")
-                .Options;
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+             .UseInMemoryDatabase(databaseName: "database")
+             .Options;
             using var context = new ApplicationDbContext(options);
             context.Database.EnsureCreated();
         }

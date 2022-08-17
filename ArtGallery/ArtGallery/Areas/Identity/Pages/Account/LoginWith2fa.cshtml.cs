@@ -2,37 +2,35 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using ArtGallery.Core.Messaging.Contracts;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.ComponentModel.DataAnnotations;
-using System.Net;
-using System.Net.Mail;
+using Microsoft.Extensions.Logging;
+using ArtGallery.Infrastructure.Data.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 
 namespace ArtGallery.Areas.Identity.Pages.Account
 {
-    // Code change by bhavin.
     public class LoginWith2faModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<LoginWith2faModel> _logger;
-        private readonly ApplicationDbContext _context;
-        private readonly IEmailSender _emailSender;
-        private readonly IConfiguration _configuration;
 
         public LoginWith2faModel(
             SignInManager<ApplicationUser> signInManager,
             UserManager<ApplicationUser> userManager,
-            ILogger<LoginWith2faModel> logger,
-            ApplicationDbContext dbContext,
-            IConfiguration configuration)
+            ILogger<LoginWith2faModel> logger)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _logger = logger;
-            _context = dbContext;
-            _configuration = configuration;
         }
 
         /// <summary>
@@ -60,8 +58,6 @@ namespace ArtGallery.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
-            public string AuthenticatorCode { get; set; }
-
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -92,10 +88,7 @@ namespace ArtGallery.Areas.Identity.Pages.Account
 
             ReturnUrl = returnUrl;
             RememberMe = rememberMe;
-            var token = await _userManager.GenerateTwoFactorTokenAsync(user, "Email");
-            var model = new InputModel();
-            model.AuthenticatorCode = token;
-            ViewData["AuthenticatorCode"] = token;
+
             return Page();
         }
 
@@ -116,15 +109,9 @@ namespace ArtGallery.Areas.Identity.Pages.Account
 
             var authenticatorCode = Input.TwoFactorCode.Replace(" ", string.Empty).Replace("-", string.Empty);
 
-            //var result = await _signInManager.TwoFactorAuthenticatorSignInAsync(authenticatorCode, rememberMe, Input.RememberMachine);
-            var result = await _signInManager.TwoFactorSignInAsync("Email", authenticatorCode, rememberMe, Input.RememberMachine);
+            var result = await _signInManager.TwoFactorAuthenticatorSignInAsync(authenticatorCode, rememberMe, Input.RememberMachine);
 
-
-            var roles = await _userManager.GetRolesAsync(user);
-            if (roles.Any(x => x.Contains(GlobalConstants.AdministratorRoleName)))
-            {
-                returnUrl = "/Administration/Home";
-            }
+            var userId = await _userManager.GetUserIdAsync(user);
 
             if (result.Succeeded)
             {
@@ -140,9 +127,6 @@ namespace ArtGallery.Areas.Identity.Pages.Account
             {
                 _logger.LogWarning("Invalid authenticator code entered for user with ID '{UserId}'.", user.Id);
                 ModelState.AddModelError(string.Empty, "Invalid authenticator code.");
-                var token = await _userManager.GenerateTwoFactorTokenAsync(user, "Email");
-                Input.AuthenticatorCode = token;
-                ViewData["AuthenticatorCode"] = token;
                 return Page();
             }
         }

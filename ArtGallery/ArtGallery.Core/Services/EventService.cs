@@ -19,17 +19,16 @@
     using static ArtGallery.Common.GlobalConstants.Formating;
     public class EventService : IEventService
     {
-        private readonly IAppRepository _eventRepo;
+        private readonly IAppRepository eventRepo;
         private readonly ApplicationDbContext _applicationDbContext;
-
         public EventService(IAppRepository eventRepo, ApplicationDbContext applicationDbContext)
         {
-            this._eventRepo = eventRepo;
+            this.eventRepo = eventRepo;
             this._applicationDbContext = applicationDbContext;
         }
 
         public async Task<bool> CreateEventAsync(string name, decimal price, string date,
-     string type, string ticketSelection, string description)
+            string type, string ticketSelection, string description)
         {
             bool isCreated = false;
             var createEvent = new EventCreateInputViewModel();
@@ -43,23 +42,9 @@
                 createEvent.TicketSelection = Enum.Parse<TicketType>(ticketSelection);
                 createEvent.Description = description;
 
-                //this.eventRepo.AddAsync(createEvent);
-                //await this.eventRepo.SaveChangesAsync();
-
-                _applicationDbContext.Events.Add(new Event()
-                {
-                    Name = name,
-                    Price = price,
-                    Date = Convert.ToDateTime(date),
-                    Type = Enum.Parse<EventType>(type),
-                    TicketSelection = Enum.Parse<TicketType>(ticketSelection),
-                    Description = description,
-                    CreatedOn = DateTime.UtcNow,
-
-                });
-
-                _applicationDbContext.SaveChanges();
-
+                this.eventRepo.AddAsync(createEvent);
+                await this.eventRepo.SaveChangesAsync();
+                isCreated = true;
             }
 
             return isCreated;
@@ -68,26 +53,21 @@
         public async Task<bool> UpdateEventAsync(EventEditViewModel model)
         {
             bool isUpdated = false;
-            //var updateEvent = this.eventRepo.All<Event>()
-            //                       .FirstOrDefault(e => e.Id == model.EventId);
-            var updateEvent = _applicationDbContext.Events
-                             .FirstOrDefault(e => e.Id == model.EventId);
+            var updateEvent = this.eventRepo.All<Event>()
+                                   .FirstOrDefault(e => e.Id == model.EventId);
 
             if (updateEvent != null)
             {
                 updateEvent.Name = model.Name;
                 updateEvent.Price = model.Price;
-                //updateEvent.Date = DateTime.ParseExact(Convert.ToString(model.Date),
-                //                            NormalDateFormat, CultureInfo.InvariantCulture);
-                updateEvent.Date = DateTime.Parse(model.Date);
+                updateEvent.Date = DateTime.ParseExact(Convert.ToString(model.Date),
+                                            NormalDateFormat, CultureInfo.InvariantCulture);
                 updateEvent.Type = model.Type;
                 updateEvent.TicketSelection = model.TicketSelection;
                 updateEvent.Description = model.Description;
 
-                //this.eventRepo.Update(updateEvent);
-                //await this.eventRepo.SaveChangesAsync();
-                _applicationDbContext.Events.Update(updateEvent);
-                _applicationDbContext.SaveChanges();
+                this.eventRepo.Update(updateEvent);
+                await this.eventRepo.SaveChangesAsync();
                 isUpdated = true;
             }
 
@@ -96,28 +76,19 @@
 
         public void Delete(int id)
         {
-            //var eventToDelete = this.eventRepo
-            //             .All<Event>()
-            //             .Where(e => e.Id == id)
-            //             .FirstOrDefault();
-
-            var eventToDelete = _applicationDbContext.Events
-                        .FirstOrDefault(e => e.Id == id);
-
-            //this.eventRepo.Delete(eventToDelete);
-            //this.eventRepo.SaveChangesAsync();
-            _applicationDbContext.Events.Remove(eventToDelete);
-            _applicationDbContext.SaveChanges();
+            var eventToDelete = this.eventRepo
+                         .All<Event>()
+                         .Where(e => e.Id == id)
+                         .FirstOrDefault();
+            this.eventRepo.Delete(eventToDelete);
+            this.eventRepo.SaveChangesAsync();
         }
 
         public int AllEventsCount()
         {
-            //return this.eventRepo
-            //       .All<Event>()
-            //       .Count();
-
-            return _applicationDbContext.Events
-                  .Count();
+            return this.eventRepo
+                   .All<Event>()
+                   .Count();
         }
 
         public IEnumerable<EventViewModel> GetAllEvents(int eventId)
@@ -131,7 +102,7 @@
             // Code changes by bhavin.   
             return _applicationDbContext.Events.Select(x => new EventViewModel
             {
-                EventId = x.Id,
+                EventId = eventId,
                 Name = x.Name,
                 Date = x.Date,
                 Price = x.Price,
@@ -143,37 +114,24 @@
 
         public async Task AddAsync(EventCreateInputViewModel model)
         {
-            //await this.eventRepo.AddAsync(new EventViewModel
-            //{
-            //    Name = model.Name,
-            //    Price = model.Price,
-            //    Date = DateTime.ParseExact(model.Date,
-            //           DateTimeFormat, CultureInfo.InvariantCulture),
-            //    Description = model.Description,
-            //});
-
-            await _applicationDbContext.Events.AddAsync(new Event
+            await this.eventRepo.AddAsync(new EventViewModel
             {
                 Name = model.Name,
                 Price = model.Price,
                 Date = DateTime.ParseExact(model.Date,
-                      DateTimeFormat, CultureInfo.InvariantCulture),
+                       DateTimeFormat, CultureInfo.InvariantCulture),
                 Description = model.Description,
             });
 
-            // await this.eventRepo.SaveChangesAsync();
-            await _applicationDbContext.SaveChangesAsync();
+            await this.eventRepo.SaveChangesAsync();
         }
 
         public IEnumerable<int> GetByIdAsync(int eventId)
         {
-            //var events = this.eventRepo
-            //        .All<EventViewModel>()
-            //        .Where(x => x.EventId == eventId)
-            //        .FirstOrDefault();
-
-            var events = _applicationDbContext.Events
-                   .FirstOrDefault(x => x.Id == eventId);
+            var events = this.eventRepo
+                    .All<EventViewModel>()
+                    .Where(x => x.EventId == eventId)
+                    .FirstOrDefault();
 
             return (IEnumerable<int>)events;
         }
@@ -190,8 +148,7 @@
             //                     .ToListAsync();
 
             return await _applicationDbContext.Events
-                // .Where(x => x.Id == eventId && x.Date.Date > DateTime.UtcNow.Date)
-                .Where(x => x.Date.Date > DateTime.UtcNow.Date)
+                .Where(x => x.Id == eventId && x.Date.Date > DateTime.UtcNow.Date)
                 .Select(x => new UpcomingEventViewModel
                 {
                     Date = x.Date.ToString(),
@@ -200,53 +157,35 @@
                     Price = x.Price,
                     Type = x.Type,
                 })
-                .OrderByDescending(x => x.Date)
+                .OrderBy(x => x.Date)
                 .Take(3)
                 .ToListAsync();
 
         }
 
-        public async Task<EventViewModel> GetEventDetailsByIdAsync<T>(int eventId)
+        public async Task<T> GetEventDetailsByIdAsync<T>(int eventId)
         {
-            //var eventDetails = this.eventRepo
-            //                .All<EventViewModel>()
-            //                .Where(e => e.EventId == eventId)
-            //                .To<T>()
-            //                .FirstOrDefault();
-
-            var eventDetails = _applicationDbContext.Events
-                            .Where(x => x.Id == eventId)
-                            .Select(x => new EventViewModel()
-                            {
-                                EventId = eventId,
-                                Name = x.Name,
-                                Date = x.Date,
-                                Price = x.Price,
-                                Description = x.Description,
-                                TicketSelection = x.TicketSelection,
-                                Type = x.Type
-                            }).FirstOrDefault();
-
+            var eventDetails = this.eventRepo
+                            .All<EventViewModel>()
+                            .Where(e => e.EventId == eventId)
+                            .To<T>()
+                            .FirstOrDefault();
 
             return eventDetails;
         }
 
         public async Task<bool> CheckIfEventExists(int eventId)
         {
-            //var even = await this.eventRepo
-            //            .All<EventViewModel>()
-            //            .FirstOrDefaultAsync(x => x.EventId == eventId);
-
-            var even = await _applicationDbContext.Events
-                       .FirstOrDefaultAsync(x => x.Id == eventId);
+            var even = await this.eventRepo
+                        .All<EventViewModel>()
+                        .FirstOrDefaultAsync(x => x.EventId == eventId);
 
             return even != null;
         }
 
         public async Task<bool> CheckAvailableEvents(int eventId, DateTime date)
         {
-            // return !await this.eventRepo.All<Event>().AnyAsync(e => e.Id == eventId && e.CreatedOn.Date == date.Date);
-            return !await _applicationDbContext.Events.Where(e => e.Id == eventId && e.CreatedOn.Date == date.Date).AnyAsync();
+            return !await this.eventRepo.All<Event>().AnyAsync(e => e.Id == eventId && e.CreatedOn.Date == date.Date);
         }
     }
 }

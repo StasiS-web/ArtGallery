@@ -1,12 +1,12 @@
 ﻿using ArtGallery.Core.Contracts;
-using ArtGallery.Infrastructure.Data.Repositories;
+using ArtGallery.Core.Services;
 using ArtGallery.Infrastructure.Data;
+using ArtGallery.Infrastructure.Data.Repositories;
+using ArtGallery.Tests.Common;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using System.Threading.Tasks;
 using Xunit;
-using ArtGallery.Tests.Common;
-using ArtGallery.Core.Services;
 
 namespace ArtGallery.Tests
 {
@@ -60,7 +60,7 @@ namespace ArtGallery.Tests
 
             // Act
             var service = new ArtOrder(_repo.Object, _context);
-
+            
             // Verify
             _artOrderService.Verify(x => x.CancleOrder("1"), Times.Never);
         }

@@ -1,15 +1,11 @@
 ﻿using ArtGallery.Core.Contracts;
 using ArtGallery.Core.Models.FaqEntity;
 using ArtGallery.Core.Services;
-using ArtGallery.Infrastructure.Data.Repositories;
 using ArtGallery.Infrastructure.Data;
+using ArtGallery.Infrastructure.Data.Repositories;
 using ArtGallery.Tests.Common;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -53,7 +49,7 @@ namespace ArtGallery.Tests
 
             // Act
             var service = new AboutService(_repo.Object, _context);
-
+         
             // Verify
             _abouteService.Verify(x => x.EditAsync(ObjectGenerator.GetFaqEditViewModelObject()), Times.Never);
         }

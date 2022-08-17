@@ -6,11 +6,11 @@
 
     public class DateTimeModelBinder : IModelBinder
     {
-        private readonly string _customDateFormat;
+        private readonly string customDateFormat;
 
         public DateTimeModelBinder(string _customDateFormat)
         {
-            this._customDateFormat = _customDateFormat;
+            this.customDateFormat = _customDateFormat;
         }
 
         public Task BindModelAsync(ModelBindingContext bindingContext)
@@ -27,7 +27,7 @@
 
                 try
                 {
-                    actualValue = DateTime.ParseExact(dateValue, _customDateFormat, CultureInfo.InvariantCulture);
+                    actualValue = DateTime.ParseExact(dateValue, customDateFormat, CultureInfo.InvariantCulture);
                     success = true;
                 }
                 catch (FormatException)

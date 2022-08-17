@@ -1,18 +1,16 @@
 ﻿using ArtGallery.Core.Contracts;
 using ArtGallery.Core.Models.BlogPosts;
 using ArtGallery.Core.Services;
-using ArtGallery.Infrastructure.Data.Repositories;
 using ArtGallery.Infrastructure.Data;
+using ArtGallery.Infrastructure.Data.Models;
+using ArtGallery.Infrastructure.Data.Repositories;
 using ArtGallery.Tests.Common;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
-using ArtGallery.Infrastructure.Data.Models;
 
 namespace ArtGallery.Tests
 {
@@ -37,10 +35,10 @@ namespace ArtGallery.Tests
         {
             // Assert
             _repo.Setup(x => x.AddAsync(ObjectGenerator.GetBlogPostCreateInputModelObject()));
-            _blogPostService.Setup(x => x.CreateBlogPostAsync(ObjectGenerator.GetBlogPostCreateInputModelObject(), "user")).Returns(Task.Run(() => 1));
+            _blogPostService.Setup(x => x.CreateBlogPostAsync(ObjectGenerator.GetBlogPostCreateInputModelObject(),"user")).Returns(Task.Run(()=>1));
 
             // Act
-            var service = new BlogPostService(_repo.Object, _cloudinaryService.Object, _context);
+            var service = new BlogPostService(_repo.Object,_cloudinaryService.Object,_context);
 
             // Verify
             _blogPostService.Verify(x => x.CreateBlogPostAsync(ObjectGenerator.GetBlogPostCreateInputModelObject(), "user"), Times.Never);
@@ -57,7 +55,7 @@ namespace ArtGallery.Tests
             var service = new BlogPostService(_repo.Object, _cloudinaryService.Object, _context);
 
             // Verify
-            _blogPostService.Verify(x => x.EditBlog(ObjectGenerator.GetBlogPostEditViewModelObject(), 1), Times.Never);
+            _blogPostService.Verify(x => x.EditBlog(ObjectGenerator.GetBlogPostEditViewModelObject(),1), Times.Never);
         }
 
         [Fact]
@@ -99,13 +97,13 @@ namespace ArtGallery.Tests
              ObjectGenerator.GetBlogPostViewModelObject()
             }.AsQueryable());
 
-            _blogPostService.Setup(x => x.GetAll<BlogPostViewModel>(1, 1));
+            _blogPostService.Setup(x => x.GetAll<BlogPostViewModel>(1,1));
 
             // Act
             var service = new BlogPostService(_repo.Object, _cloudinaryService.Object, _context);
 
             // Verify
-            _blogPostService.Verify(x => x.GetAll<BlogPostViewModel>(1, 1), Times.Never);
+            _blogPostService.Verify(x => x.GetAll<BlogPostViewModel>(1,1), Times.Never);
         }
 
         [Fact]

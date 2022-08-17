@@ -6,11 +6,11 @@
 
     internal class InitialDataSeed<T> : IEntityTypeConfiguration<T> where T : class
     {
-        private readonly string _filePath;
+        private readonly string filePath;
 
         public InitialDataSeed(string filePath)
         {
-            this._filePath = filePath;
+            this.filePath = filePath;
         }
         public void Configure(EntityTypeBuilder<T> builder)
         {
@@ -28,9 +28,9 @@
         {
             string? result = null;
 
-            if(File.Exists(_filePath))
+            if(File.Exists(filePath))
             {
-                result = File.ReadAllText(_filePath);
+                result = File.ReadAllText(filePath);
             }
 
             return result;
