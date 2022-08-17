@@ -1,0 +1,140 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="ArtGallery" />
+    <title>@ViewData["Title"]</title>
+
+     <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel='icon' href="/favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome Icons -->
+
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/css/adminlte.min.css" />
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
+    <link rel="stylesheet" href="/plugins/toastr/toastr.min.js" />
+    
+    <link rel="stylesheet" href="/css/site.css" asp-append-version="true" />
+
+</head>
+<body class="hold-transition login-page" data-panel-auto-height-mode="height">
+   <div class="card">
+      <div class="card-header text-center">
+           <!-- Brand Logo -->
+         <a href="index3.html" class="brand-link">
+         <img src="~/img/ArtGalleryLogo.png" alt="ArtGallery Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+          <span class="brand-text font-weight-light">ArtGallery</span>
+          </a>
+       </div>
+       <!-- /.login-logo -->
+       <div class="card-body login-card-body">
+           <div class="login-box-msg">Sign in here</div>
+          <section>
+          <form id="account" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-floating">
+                    <label asp-for="Input.Email" class="form-label"></label>
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                   <label asp-for="Input.Password" class="form-label"></label>
+                   <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="icheck-primary">
+                      <label asp-for="Input.RememberMe" class="form-label">
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                     </label> 
+                     <input class="check-input" asp-for="Input.RememberMe" />
+                 </div>
+                  <!-- /.col -->
+                  <div class="col-4">
+                    <button id="login-submit" type="submit" class="btn btn-lg btn-primary">Log In</button>
+                </div>
+                  <!-- /.col -->
+                <div>
+                     <p class="mb-1">
+                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                     </p>
+                     <p class="mb-0">
+                        <a class="text-center" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                     </p>
+               </div>
+            </form>
+             @*<div class="social-auth-links text-center mb-3">
+                <p>- OR -</p>
+                <a href="#" class="btn btn-block btn-primary">
+                  <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                </a>
+                <a href="#" class="btn btn-block btn-danger">
+                  <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                </a>
+              </div>
+              <!-- /.social-auth-links -->*@
+          </section>
+          <section>
+                <h3>or use another service to log in.</h3>
+                <hr/>
+                @{
+                    if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                     {
+                        <div>
+                            <p>
+                                There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
+                                about setting up this ASP.NET application to support logging in via external services</a>.
+                            </p>
+                        </div>
+                     }
+                    else
+                     {
+                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                            <div>
+                                <p>
+                                    @foreach (var provider in Model.ExternalLogins)
+                                    {
+                                        <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    }
+                                </p>
+                            </div>
+                        </form>
+                     }
+                }
+            </section>  
+       </div>
+
+          <!-- Footer -->
+       <footer class="card-body">
+             <div class="copyright ">
+                <!-- Default to the left -->
+                <strong>Copyright &copy; 2018 - @DateTime.UtcNow.Year ArtGallery.</strong> All rights reserved.
+            </div>
+       </footer>
+  </div>
+  <!-- card -->
+
+   <!-- REQUIRED SCRIPTS -->
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.js"></script>
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <partial name="_UserMessages" />
+    <partial name="_ValidationScriptsPartial" />
+</body>
+</html>

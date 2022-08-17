@@ -1,0 +1,60 @@
+﻿@using ArtGallery.Core.Models.Administrator
+@model EventEditViewModel
+@{
+    ViewData["Title"] = "Edit Event";
+    var evenOne = (List<SelectListItem>)ViewBag.EventType;
+    var evenTwo = (List<SelectListItem>)ViewBag.TicketType;
+}
+
+<div class="row">
+   <div class="col-8">
+      <form asp-area="Administration" asp-controller="Event" asp-actions="Edit" method="post">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <h4>Edit Event with id: @Model.EventId</h4>
+          <div class="form-floating">
+             <label asp-for="Name" class="form-lable"></label>
+             <input asp-for="Name" class="form-control" />
+             <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+             <label asp-for="Price" class="form-lable"></label>
+             <input asp-for="Price" class="form-control" />
+             <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+             <label asp-for="Date" class="form-lable"></label>
+             <input asp-for="Date" class="form-control" />
+             <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+             <label asp-for="Type" class="form-lable"></label>
+             <select asp-for="Type" asp-items="@evenOne" class="form-control">
+                   <option selected="selected" value="">Please select...</option>
+                   <option selected="selected" value="1">InPerson</option>
+                   <option selected="selected" value="2">Online</option>
+             </select>
+             <span asp-validation-for="Type" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+             <label asp-for="TicketSelection" class="form-lable"></label>
+             <select asp-for="TicketSelection" asp-items="@evenTwo" class="form-control">
+                   <option selected="selected" value="">Please select...</option>
+                   <option selected="selected" value="1">Free</option>
+                   <option selected="selected" value="2">Paid</option>
+             </select>
+             <span asp-validation-for="TicketSelection" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+             <label asp-for="Description" class="form-lable"></label>
+             <input asp-for="Description" class="form-control" />
+             <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <button type="button" class="btn btn-block btn-success btn-sm">Edit</button>
+        <button asp-area="Administration" asp-controller="Event" asp-actions="All" class="btn btn-block btn-primary btn-sm">All</button>
+      </form>
+   </div>
+</div>
+
+@section Scripts{
+    <partial name="__ValidationScriptsPartial" />
+}

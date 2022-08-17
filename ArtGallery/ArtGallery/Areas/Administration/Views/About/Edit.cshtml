@@ -1,0 +1,30 @@
+﻿@using ArtGallery.Core.Models.Administrator
+@model FaqEditViewModel
+@{
+     ViewData["Title"] = "Edit FAQ";
+}
+
+<div class="row">
+   <div class="col-8">
+      <form asp-area="Administration" asp-controller="About" asp-actions="Edit" method="post">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <h4>Edit FAQ with id: @Model.FaqId</h4>
+          <div class="form-floating">
+             <label asp-for="Question" class="form-lable"></label>
+             <input asp-for="Question" class="form-control" />
+             <span asp-validation-for="Question" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+             <label asp-for="Answer" class="form-lable"></label>
+             <textarea asp-for="Answer" class="form-control"></textarea> />
+             <span asp-validation-for="Question" class="text-danger"></span>
+        </div>
+        <button type="button" class="btn btn-block btn-success btn-sm">Edit</button>
+        <button asp-area="Administration" asp-controller="About" asp-actions="All" class="btn btn-block btn-primary btn-sm">All</button>
+      </form>
+   </div>
+</div>
+
+@section Scripts{
+    <partial name="__ValidationScriptsPartial" />
+}

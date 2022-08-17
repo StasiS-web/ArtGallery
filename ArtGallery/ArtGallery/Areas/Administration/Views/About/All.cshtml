@@ -1,0 +1,41 @@
+﻿@using ArtGallery.Core.Models.FaqEntity
+@model IEnumerable<FaqViewModel>
+@{
+    ViewData["Title"] = "All FAQ";
+}
+
+<div class="container">
+   <div class=row>
+       <div class="col-8">
+           <table class="table table-bordered">
+               <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Question</th>
+                    <th>Answer</th>
+                   </tr>
+                </thead>
+                <tbody>
+                   @foreach (var faq in Model)
+                   {
+                       <tr>
+                         <td>@faq.FaqId</td>
+                         <td>@faq.Question</td>
+                         <td>@faq.Answer</td>
+                         <td>
+                           <div class="progress progress-xs">
+                                <a asp-area="Administration" asp-controller="About" asp-action="Create" asp-route-id="@faq.FaqId"class="btn btn-block btn-outline-success btn-sm">Create</a>
+                                <a asp-area="Administration" asp-controller="About" asp-action="Edit"  asp-route-id="@faq.FaqId" class="btn btn-block btn-outline-success btn-sm"><i class="fas fa-edit"></i>Edit</a>
+                           </div>
+                         </td>
+                       </tr>
+                   }                 
+               </tbody>
+           </table>
+       </div>
+   </div>
+</div>
+
+@section Scripts{
+    <partial name="__ValidationScriptsPartial" />
+}

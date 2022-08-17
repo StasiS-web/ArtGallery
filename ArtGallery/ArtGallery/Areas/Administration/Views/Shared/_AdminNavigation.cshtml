@@ -1,0 +1,32 @@
+﻿@using ArtGallery.Areas.Administration
+
+<div class="navbar-primary navbar-expand navbar-dark">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="Administration" asp-controller="Dashboard" asp-action="Index"><i class="fab fa-chart-network"></i> Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="Administration" asp-controller="Home" asp-action="Index"><i class="fas fa-house-user"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="Administration" asp-controller="About" asp-action="Index"><i class="fas fa-info-circle"></i> About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="Administration" asp-controller="Event" asp-action="AllEvents"><i class="fas fa-calendar-star"></i> Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="Administration" asp-controller="Blog" asp-action="Index"><i class="fab fa-microblog"></i> Blog</a>
+                </li>
+            </ul>
+
+            <!-- Navbar Search -->
+            <partial name="_SearchBox" />
+         </div>
+     </div>   
+</div>

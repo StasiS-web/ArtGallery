@@ -1,0 +1,28 @@
+﻿@using ArtGallery.Core.Models.Events
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer localizer
+@{
+    ViewBag.Title = localizer["PageTitle"];
+}
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            @foreach (var even in Model)
+            {
+                <div class="card card-primary card-outline">
+                    <h5 class="card-title text-primary text-black" asp-area="" asp-controller="Event" asp-action="AllEvents" asp-route-id="even.EventId">@even.Name</h5>
+                    <div class="card-text text-black pb-2 pt-1" asp-area="" asp-controller="Event" asp-action="AllEvents" asp-route-id="ViewBag.AllEventListViewModel.EventId">@even.Date</div>
+                    <div class="text-black" asp-area="" asp-controller="Event" asp-action="AllEvents" asp-route-id="ViewBag.AllEventListViewModel.EventId">@even.Type</div>
+                    <div class="card-text text-black">
+                        @even.ShortDescription
+                    </div>
+
+                </div>
+            }
+
+            <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
+                <i class="fas fa-chevron-up"></i>
+            </a>
+        </div>
+    </div>
+</div>

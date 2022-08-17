@@ -1,0 +1,44 @@
+﻿@using ArtGallery.Core.Models.BlogPosts
+@using Microsoft.AspNetCore.Mvc.Localization
+@model AllBlogPostsListViewModel
+@inject IViewLocalizer localizer
+@{
+    ViewBag.Title = localizer["PageTitle"];
+}
+<div class="container">
+
+    <div class="row">
+        <div class="col-8">
+            @foreach (var blogPost in ViewBag.AllBlog)
+            {
+                <div class="card card-primary card-outline">
+
+                    <h5 class="card-title text-primary text-black" asp-area="" asp-controller="BlogPost" asp-action="Index" asp-route-id="@blogPost.BlogId">@blogPost.Title</h5>
+                    <img class="card-img-top" src="@blogPost.UrlImageStr" alt="">
+                    <div class="card-text text-black pb-2 pt-1" asp-controller="BlogPost" asp-action="Index" asp-route-id="@blogPost.BlogId">by @blogPost.Author</div>
+                    <a href="#" class="text-black">@blogPost.CreatedOn</a>
+                    <div class="card-text text-black">
+                        @blogPost.ShortContect
+                    </div>
+                    <a href="#" class="text-black">Read More</a>
+
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="row">
+        <div class="col">
+            <div>
+                @*<h4 class="sidebar-dark">localizer["SidebarHeader"]</h4>*@
+                @*<div>@await Component.InvokeAsync("GetLatestBlogAsync", 2)</div>*@
+            </div>
+        </div>
+    </aside>
+
+    <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+</div>
