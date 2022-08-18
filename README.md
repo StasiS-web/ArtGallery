@@ -52,19 +52,25 @@ Art Gallery's main idea is to be an app for booking and sales. A place where reg
 * FontAwesome (font icons)
 * HTML5
 * CSS
+* Two-Factor Authentication
   
 </details>
 
 ## Test Coverage
+<details>
+<summary> 
+    Click here for more info. 
+ </summary>
 <img src="https://res.cloudinary.com/dnvg6uuxl/image/upload/v1660657910/app_gallery/test%20coverage/Test_Coverage_Part_1_ipflgg.png" alt="Part1">
 <img src="https://res.cloudinary.com/dnvg6uuxl/image/upload/v1660657911/app_gallery/test%20coverage/Test_Coverage_Part_2_wgliji.png" alt="Part2">
 <img src="https://res.cloudinary.com/dnvg6uuxl/image/upload/v1660657910/app_gallery/test%20coverage/Test_Coverage_Part_3_pozllh.png" alt="Part3">
 <img src="https://res.cloudinary.com/dnvg6uuxl/image/upload/v1660657911/app_gallery/test%20coverage/Test_Coverage_Part_4_se9zim.png" alt="Part4">
+</details>
 
 ## Resources
 
 * All images are comming from (https://www.rawpixel.com/) & (https://unsplash.com/)
-* All Blog Post were taken from various resources:
+* All Blog Post text were taken from various resources:
    (https://lachri.com/),
    (https://artgallery.co.uk/),
    (https://cassiestephens.blogspot.com/)
