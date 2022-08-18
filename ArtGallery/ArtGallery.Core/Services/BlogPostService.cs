@@ -15,21 +15,21 @@
 
     public class BlogPostService : IBlogPostService
     {
-        private readonly IAppRepository blogRepo;
-        private readonly ICloudinaryService cloudinary;
+        private readonly IAppRepository _blogRepo;
+        private readonly ICloudinaryService _cloudinary;
         private readonly ApplicationDbContext _applicationDbContext;
 
         public BlogPostService(IAppRepository blogRepo, ICloudinaryService cloudinary
             , ApplicationDbContext applicationDbContext)
         {
-            this.blogRepo = blogRepo;
-            this.cloudinary = cloudinary;
+            this._blogRepo = blogRepo;
+            this._cloudinary = cloudinary;
             this._applicationDbContext = applicationDbContext;
         }
 
         public async Task<int> CreateBlogPostAsync(BlogPostCreateInputModel model, string user)
         {
-            var coverImage = this.cloudinary.UploadImageAsync(model.CoverImage, model.Title);
+            var coverImage = this._cloudinary.UploadImageAsync(model.CoverImage, model.Title);
             var blog = new BlogPost
             {
                 Title = model.Title,
@@ -38,21 +38,21 @@
                 Author = user, // only if user is an Administrator
             };
 
-            bool isPostExist = this.blogRepo.All<BlogPost>().Any(x => x.Title == model.Title);
+            bool isPostExist = this._blogRepo.All<BlogPost>().Any(x => x.Title == model.Title);
 
             if (isPostExist)
             {
                 throw new ArgumentException(string.Format(BlogPostAlredyExists, model.Title));
             }
 
-            await this.blogRepo.AddAsync(blog);
-            await this.blogRepo.SaveChangesAsync();
+            await this._blogRepo.AddAsync(blog);
+            await this._blogRepo.SaveChangesAsync();
             return blog.Id;
         }
 
         public async Task<int> EditBlog(BlogPostEditViewModel model, int blogId)
         {
-            var blog = this.blogRepo.All<BlogPost>()
+            var blog = this._blogRepo.All<BlogPost>()
                         .FirstOrDefault(b => b.Id == blogId);
 
             if (blog == null)
@@ -64,15 +64,15 @@
             blog.Content = model.Content;
             blog.UrlImage = model.UrlImage;
 
-            this.blogRepo.Update(blog);
-            await this.blogRepo.SaveChangesAsync();
+            this._blogRepo.Update(blog);
+            await this._blogRepo.SaveChangesAsync();
 
             return blog.Id;
         }
 
         public void Delete(int id)
         {
-            var blogPost = this.blogRepo
+            var blogPost = this._blogRepo
                 .All<BlogPostViewModel>()
                 .Where(x => x.BlogId == id)
                 .FirstOrDefault();
@@ -82,20 +82,20 @@
                 throw new ArgumentNullException(string.Format(NonExistingPost, $"{id}"));
             }
 
-            this.blogRepo.Delete(blogPost);
-            this.blogRepo.SaveChanges();
+            this._blogRepo.Delete(blogPost);
+            this._blogRepo.SaveChanges();
         }
 
         public int AllBlogsCount()
         {
-            return this.blogRepo
+            return this._blogRepo
                    .All<BlogPost>()
                    .Count();
         }
 
         public IEnumerable<BlogPostViewModel> GetAllBlogs()
         {
-            return this.blogRepo
+            return this._blogRepo
                 .All<BlogPost>()
                 .To<BlogPostViewModel>()
                 .ToList();
@@ -103,7 +103,7 @@
 
         public IEnumerable<BlogPostViewModel> GetAll()
         {
-            // Code changes by bhavin.    
+            // Code changes by behaviour.    
             //var blogList = blogRepo.All<BlogPostViewModel>()
             //     .OrderByDescending(b => b.CreatedOn)
             //     .ToList();
@@ -117,14 +117,15 @@
                 Title = x.Title,
                 UrlImageStr = x.UrlImage,
                 UserReaction = x.UserReaction,
-            }).ToList();
+            })
+            .ToList();
 
             return blogList;
         }
 
         public async Task<IEnumerable<BlogPostViewModel>> GetAll<T>(int? sortId, int blogId)
         {
-            // Code changes by bhavin.   
+            // Code changes by behaviour.    
             //  var blog = this.blogRepo.All<BlogPostViewModel>().OrderByDescending(x => x.CreatedOn);
             var blogList = _applicationDbContext.BlogPosts.Select(x => new BlogPostViewModel
             {
@@ -135,7 +136,8 @@
                 Title = x.Title,
                 UrlImageStr = x.UrlImage,
                 UserReaction = x.UserReaction,
-            }).OrderByDescending(x => x.CreatedOn).ToList();
+            })
+            .OrderByDescending(x => x.CreatedOn).ToList();
 
             if (sortId != null)
             {
@@ -149,7 +151,7 @@
 
         public IEnumerable<int> GetById<T>(int blogId)
         {
-            // Code changes by bhavin.   
+            // Code changes by behaviour.   
             //var blogPost = this.blogRepo
             //        .All<BlogPostViewModel>()
             //        .Where(x => x.BlogId == blogId)
@@ -164,7 +166,7 @@
 
         public async Task<string> GetAuthorIdAsync(int blogId)
         {
-            var posts = this.blogRepo
+            var posts = this._blogRepo
                 .All<BlogPostViewModel>()
                 .SingleOrDefault(p => p.BlogId == blogId);
 
@@ -173,7 +175,7 @@
 
         public async Task<List<BlogPostViewModel>> GetLatestBlogAsync<T>(int blogId)
         {
-            // Code changes by bhavin.   
+            // Code changes by behaviour.   
             //return await this.blogRepo.All<BlogPost>()
             //               .Where(b => b.Id == blogId &&
             //                    b.CreatedOn > DateTime.UtcNow.Date)
@@ -203,7 +205,7 @@
 
         public async Task<T> GetBlogPostDetailsByIdAsync<T>(int blogId)
         {
-            var blogPost = this.blogRepo
+            var blogPost = this._blogRepo
                             .All<BlogPostViewModel>()
                             .Where(b => b.BlogId == blogId)
                             .To<T>()
@@ -212,7 +214,7 @@
             return blogPost;
         }
 
-        public async Task<bool> BlogPostExists(int blogId) => this.blogRepo
+        public async Task<bool> BlogPostExists(int blogId) => this._blogRepo
                                 .All<BlogPostViewModel>()
                                 .Any(b => b.BlogId == blogId);
     }

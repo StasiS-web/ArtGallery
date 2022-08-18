@@ -181,7 +181,7 @@
 
         public async Task<IEnumerable<UpcomingEventViewModel>> GetUpcomingByIdAsync<T>(int eventId)
         {
-            // Code changes by bhavin.   
+            // Code changes by behaviour.   
             //return await this._eventRepo.All<Event>()
             //                     .Where(x => x.Id == eventId &&
             //                        x.Date.Date > DateTime.UtcNow.Date)

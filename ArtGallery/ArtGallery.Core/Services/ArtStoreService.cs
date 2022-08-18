@@ -9,11 +9,11 @@
 
     public class ArtStoreService : IArtStoreService
     {
-        private IAppRepository storeRepo;
+        private IAppRepository _storeRepo;
 
         public ArtStoreService(IAppRepository storeRepo)
         {
-            this.storeRepo = storeRepo;
+            this._storeRepo = storeRepo;
         }
 
         public async Task CreateArtAsync(ArtStoreCreateInputModel model)
@@ -27,14 +27,14 @@
                 Description = model.Description,
             };
 
-            this.storeRepo.AddAsync(art);
-            await this.storeRepo.SaveChangesAsync();
+            this._storeRepo.AddAsync(art);
+            await this._storeRepo.SaveChangesAsync();
         }
 
         public async Task<bool> UpdateArtStore(ArtStoreViewModel model)
         {
             bool result = false;
-            var artStore = this.storeRepo
+            var artStore = this._storeRepo
                 .All<ArtStoreViewModel>()
                 .SingleOrDefault(x => x.ArtId == model.ArtId);
 
@@ -45,7 +45,7 @@
                 artStore.Price = model.Price;
                 artStore.Description = model.Description;
 
-                await this.storeRepo.SaveChangesAsync();
+                await this._storeRepo.SaveChangesAsync();
                 result = true;
             }
 
@@ -54,18 +54,18 @@
 
         public async Task DeleteAsync(int id)
         {
-            var art = this.storeRepo
+            var art = this._storeRepo
                 .All<ArtStoreViewModel>()
                 .Where(x => x.ArtId == id)
                 .FirstOrDefault();
 
-            this.storeRepo.Delete(art);
-            this.storeRepo.SaveChanges();
+            this._storeRepo.Delete(art);
+            this._storeRepo.SaveChanges();
         }
 
         public IEnumerable<ArtStoreViewModel> GetAll()
         {
-            return this.storeRepo
+            return this._storeRepo
                 .All<ArtStoreViewModel>()
                 .To<ArtStoreViewModel>()
                 .ToList();
@@ -73,7 +73,7 @@
 
         public IEnumerable<int> GetById<T>(int id)
         {
-            var blogPost = this.storeRepo
+            var blogPost = this._storeRepo
                      .All<ArtStoreViewModel>()
                      .Where(x => x.ArtId == id)
                      .FirstOrDefault();
@@ -83,7 +83,7 @@
 
         public ArtDetailsViewModel Details(int artId)
         {
-            var store = this.storeRepo.AllReadonly<ArtStoreViewModel>()
+            var store = this._storeRepo.AllReadonly<ArtStoreViewModel>()
                               .Where(s => s.ArtId == artId)
                               .Select(s => new ArtDetailsViewModel
                               {
@@ -101,7 +101,7 @@
 
         public async Task<bool> CheckIfArtExists(int artId)
         {
-            var even = await this.storeRepo
+            var even = await this._storeRepo
                         .All<ArtStoreViewModel>()
                         .FirstOrDefaultAsync(x => x.ArtId == artId);
 

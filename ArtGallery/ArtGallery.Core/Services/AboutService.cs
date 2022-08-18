@@ -35,12 +35,13 @@
                 Question = model.Question,
                 Answer = model.Answer,
             };
-            // Code change by bhavin.
+            // Code change by behaviour.
             //bool isExist = await _faqRepo.All<FaqViewModel>()
             //    .AnyAsync(x => x.Question == model.Question && x.Answer == model.Answer);
 
             bool isExist = await _applicationDbContext.Faqs
-                .Where(x => x.Question == model.Question && x.Answer == model.Answer).AnyAsync();
+                .Where(x => x.Question == model.Question && x.Answer == model.Answer)
+                .AnyAsync();
 
             if (isExist)
             {

@@ -7,15 +7,15 @@
     using ArtGallery.Infrastructure.Data.Repositories;
     public class SettingsService : ISettingsService
     {
-        private readonly IAppRepository settingsRespository;
+        private readonly IAppRepository _settingsRespository;
 
         public SettingsService(IAppRepository settingsRespository)
         {
-            this.settingsRespository = settingsRespository;
+            this._settingsRespository = settingsRespository;
         }
 
-        public IEnumerable<T> GetAll<T>() => this.settingsRespository.All<Setting>().To<T>().ToList();
+        public IEnumerable<T> GetAll<T>() => this._settingsRespository.All<Setting>().To<T>().ToList();
 
-        public int GetCount() => this.settingsRespository.All<Setting>().Count();
+        public int GetCount() => this._settingsRespository.All<Setting>().Count();
     }
 }
