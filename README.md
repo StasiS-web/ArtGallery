@@ -18,9 +18,10 @@ Art Gallery's main idea is to be an app for booking and sales. A place where reg
 * Cancel booked exhibition events or request orders cancellation. Once a User cancels, an already made order should be approved by the manager.
   
 <strong> Admin: </strong>
-* Can create or delete Blog Posts.
-* Can create, update or delete events and paintings available for sale.
-* Can Manage Users.
+* Can create, edit or delete Blog Posts.
+* Can create, edit or delete events 
+* Can create, edit or delete arts for sale.
+* Can Edit, Manage Users.
   
 <strong> Manager: </strong>
 * Can approve the requested cancellation of an order.
