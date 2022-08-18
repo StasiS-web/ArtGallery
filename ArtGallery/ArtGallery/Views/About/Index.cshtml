@@ -1,7 +1,9 @@
 ﻿@using ArtGallery.Core.Models.FaqEntity
+@using Microsoft.AspNetCore.Mvc.Localization
 @model IEnumerable<FaqViewModel>
+@inject IViewLocalizer localizer
 @{
-    ViewData["Title"] = "About";
+    ViewData["Title"] = localizer["PageTitle"];
 }
 
 
