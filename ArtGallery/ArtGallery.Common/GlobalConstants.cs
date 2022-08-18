@@ -81,13 +81,13 @@
             public const string GreeanWheatFields = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1645821441/app_gallery/Green_Wheat_Fields-jpeg_dzmndr.jpg";
             public const string MonaLisa = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1645821444/app_gallery/Portrait_of_Mona_Lisa-jpeg_jhvgpi.jpg";
             public const string Landscape = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_300,w_300/v1646154562/app_gallery/landscape-jpeg_odeze0.jpg";
-            public const string SingingBirds = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--18fSIQ9v--/c_fit,h_400,w_400/v1648592592/app_gallery/y4PqRPqSako-unsplash_gzmv2d.jpg"
-                ;
+            public const string SingingBirds = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--18fSIQ9v--/c_fit,h_400,w_400/v1648592592/app_gallery/y4PqRPqSako-unsplash_gzmv2d.jpg";
+                
             // Blog (Images Resourse from rawpixel)
-            public const string ArtisticPainter = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_400,w_400/v1646156702/app_gallery/Artist_painting-jpeg_nn02fh.jpg";
+            public const string ArtisticPainter = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--0W3cGmHR--/c_fit,h_400,w_400/v1646156702/app_gallery/Artist_painting-jpeg_nn02fh.jpg";
             public const string Art = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--eMTBpUc4--/c_fit,h_400,w_400/v1646156777/app_gallery/image-from-id-405327-jpeg_njsywp.jpg";
-            public const string AnimalSpirits = "https://res.cloudinary.com/dnvg6uuxl/image/upload/c_fit,h_400,w_400/v1646157537/app_gallery/image-from-id-556828-jpeg_pvzrkd.jpg";
-            public const string Buttons = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--GIhqN_we--/c_fit,h_400,w_400/v1648590618/app_gallery/arun-prakash-unsplash_tuluof.jpg";
+            public const string AnimalSpirits = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--R7kMhOFw--/c_fit,h_400,w_400/v1646157537/app_gallery/image-from-id-556828-jpeg_pvzrkd.jpg";
+            public const string Buttons = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--qQQZbUqy--/c_fit,h_400,w_400/v1648590618/app_gallery/arun-prakash-unsplash_tuluof.jpg";
             public const string BestArt = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--7d9hBVji--/c_fit,h_400,w_400/v1648591070/app_gallery/annie-spratt-unsplash_e2hv3u.jpg";
             public const string AcrylicPainting = "https://res.cloudinary.com/dnvg6uuxl/image/upload/s--43NHpf2_--/c_fit,h_400,w_400/v1648592182/app_gallery/russn_fckr-unsplash_alixhl.jpg";
 
