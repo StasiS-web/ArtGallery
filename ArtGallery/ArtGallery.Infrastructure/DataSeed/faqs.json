@@ -1,37 +1,38 @@
 [
   {
-    "id": 1,
-    "question": "What payment menthods we are offering?",
-    "answer": "We got three payment methods Debit/Credit card, Apple Pay or Google Pay."
+    "Id": 1,
+    "Question": "What payment menthods we are offering?",
+    "Answer": "We got three payment methods Debit/Credit card, Apple Pay or Google Pay."
   },
   {
-    "id": 2,
-    "question": "What is the best time to visit us?",
-    "answer": "The best time to visit our Gallery is our openning time or during our events. In regards of visiting any of our exhibition events you are required to purchase a ticket."
+    "Id": 2,
+    "Question": "What is the best time to visit us?",
+    "Answer": "The best time to visit our Gallery is our openning time or during our events. In regards of visiting any of our exhibition events you are required to purchase a ticket."
   },
   {
     "Id": 3,
-    "question": "Do we charge for delivery?",
-    "answer": "It depends on the type of delivery. For Fast delivery we charge 3.95lev, but the Standart delivery for up to 5 day is free."
+    "Question": "Do we charge for delivery?",
+    "Answer": "It depends on the type of delivery. For Fast delivery we charge 3.95lev, but the Standart delivery for up to 5 day is free."
   },
   {
-    "id": 4,
-    "question": "Do we made an international delivery?",
-    "answer": "No, we don't deliver outside Bulgarian."
+    "Id": 4,
+    "Question": "Do we made an international delivery?",
+    "Answer": "No, we don't deliver outside Bulgarian."
   },
   {
-    "id": 5,
-    "question": "Is photography permitted?",
-    "answer": "Gallery visitors may take non-flash photography for personal enjoymnet. Photos made for commercial use, wedding photos and formal distribution or sharing are not allowed."
+    "Id": 5,
+    "Question": "Is photography permitted?",
+    "Answer": "Gallery visitors may take non-flash photography for personal enjoymnet. Photos made for commercial use, wedding photos and formal distribution or sharing are not allowed."
   },
   {
-    "id": 6,
-    "question": "Is the Gallery available for private event rentals?",
-    "answer": "Unfornatunately, we do not rent for private events to the general public. We only rent the Gallery to artist for exhibition purpose only where they can present their art."
+    "Id": 6,
+    "Question": "Is the Gallery available for private event rentals?",
+    "Answer": "Unfornatunately, we do not rent for private events to the general public. We only rent the Gallery to artist for exhibition purpose only where they can present their art."
   },
   {
-    "id": 7,
-    "question": "Are pets permitted in the GallerY?",
-    "answer": "No we are not allowing dogs or any kind of pets inside the Art Gallery."
+    "Id": 7,
+    "Question": "Are pets permitted in the GallerY?",
+    "Answer": "No we are not allowing dogs or any kind of pets inside the Art Gallery."
   }
 ]
+

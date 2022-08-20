@@ -4,6 +4,6 @@
     {
         Admin = 0,
         Manager = 1,
-        ArtGalleryUser = 2,
+        RegularUser = 2,
     }
 }

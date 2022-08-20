@@ -7,7 +7,7 @@
         public const string CloudMainFolderForImage = "app_gallery";
         public const string CloudSubFolderForErrorImages = "errors";
 
-        public const string AdministratorRoleName = "Administrator";
+        public const string AdministratorRoleName = "Admin";
         public const string GalleryManagerRoleName = "Manager";
         public const string UserRoleName = "Identity User";
 

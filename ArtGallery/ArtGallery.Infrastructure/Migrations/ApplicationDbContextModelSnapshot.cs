@@ -196,7 +196,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("ShoppingCartId");
 
-                    b.ToTable("ArtGalleryUser");
+                    b.ToTable("ArtGalleryUser", (string)null);
                 });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.ArtOrder", b =>
@@ -234,7 +234,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("ArtsOrders");
+                    b.ToTable("ArtsOrders", (string)null);
                 });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.ArtStore", b =>
@@ -288,7 +288,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("ShoppingCartId");
 
-                    b.ToTable("Arts");
+                    b.ToTable("Arts", (string)null);
 
                     b.HasData(
                         new
@@ -404,7 +404,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.BlogPost", b =>
@@ -453,7 +453,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("BlogPosts");
+                    b.ToTable("BlogPosts", (string)null);
 
                     b.HasData(
                         new
@@ -565,7 +565,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("BookingTransactions");
+                    b.ToTable("BookingTransactions", (string)null);
                 });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.ContactForm", b =>
@@ -616,7 +616,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("Contacts");
+                    b.ToTable("Contacts", (string)null);
                 });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.Event", b =>
@@ -668,7 +668,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("Events");
+                    b.ToTable("Events", (string)null);
 
                     b.HasData(
                         new
@@ -807,7 +807,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("EventsOrders");
+                    b.ToTable("EventsOrders", (string)null);
                 });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.ExhibitionHall", b =>
@@ -845,7 +845,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("ExhibitionHalls");
+                    b.ToTable("ExhibitionHalls", (string)null);
                 });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.FaqEntity", b =>
@@ -882,7 +882,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("Faqs");
+                    b.ToTable("Faqs", (string)null);
 
                     b.HasData(
                         new
@@ -972,7 +972,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("Privacies");
+                    b.ToTable("Privacies", (string)null);
                 });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.SaleTransaction", b =>
@@ -1013,7 +1013,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("SaleTransactions");
+                    b.ToTable("SaleTransactions", (string)null);
                 });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.Setting", b =>
@@ -1048,7 +1048,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("Settings");
+                    b.ToTable("Settings", (string)null);
                 });
 
             modelBuilder.Entity("ArtGallery.Infrastructure.Data.Models.ShoppingCart", b =>
@@ -1094,7 +1094,7 @@ namespace ArtGallery.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ShoppingCarts");
+                    b.ToTable("ShoppingCarts", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

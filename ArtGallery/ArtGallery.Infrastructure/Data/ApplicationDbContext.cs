@@ -1,4 +1,6 @@
-﻿namespace ArtGallery.Infrastructure.Data
+﻿using System.Runtime.CompilerServices;
+
+namespace ArtGallery.Infrastructure.Data
 {
     using System;
     using System.Linq;
@@ -53,6 +55,7 @@
         public DbSet<Privacy> Privacies { get; set; }
 
         public DbSet<FaqEntity> Faqs { get; set; }
+
         public DbSet<ArtGalleryUser> ArtGalleryUser { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
@@ -118,6 +121,9 @@
             builder.Entity<BookingTransaction>()
                 .HasKey(x => new { x.EventId, x.UserId });
 
+            builder.Entity<IdentityUserRole<string>>()
+                .HasKey(x => new { x.UserId, x.RoleId });
+
             // Proprerty Configuration
             builder.Entity<ShoppingCart>()
                 .Property(x => x.Id)
@@ -131,7 +137,7 @@
             //  builder.ApplyConfiguration(new InitialDataSeed<Event>(@"DataSeed/events.json"));
             //  builder.ApplyConfiguration(new InitialDataSeed<FaqEntity>(@"DataSeed/faqs.json"));
 
-            // Code change by bhavin.
+            // Code change by behaviour.
             builder.Entity<BlogPost>().HasData(SeedUserData<BlogPost>(@"DataSeed/blog.json"));
             builder.Entity<ArtStore>().HasData(SeedUserData<ArtStore>(@"DataSeed/arts.json"));
             builder.Entity<Event>().HasData(SeedUserData<Event>(@"DataSeed/events.json"));
@@ -156,8 +162,8 @@
         }
 
         // Applies configurations
-        private void ConfigureUserIdentityRelations(ModelBuilder builder)
-             => builder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
+       private void ConfigureUserIdentityRelations(ModelBuilder builder)
+            => builder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
 
         private void ApplyAuditInfoRules()
         {

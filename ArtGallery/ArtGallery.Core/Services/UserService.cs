@@ -38,7 +38,7 @@
 
         public async Task<ApplicationUser> GetUserById(string userId)
         {
-            //  return await this._userRepo.GetByIdAsync<ApplicationUser>(userId);
+            //  return await this.userRepo.GetByIdAsync<ApplicationUser>(userId);
             return await _applicationDbContext.ArtGalleryUser.Where(x => x.Id == userId).Select(x => new ApplicationUser()
             {
                 Id = x.Id,
@@ -51,7 +51,8 @@
                 LockoutEnabled = x.LockoutEnabled,
                 Roles = x.Roles,
                 UserName = x.UserName,
-            }).FirstOrDefaultAsync();
+            })
+            .FirstOrDefaultAsync();
         }
 
         public async Task<T> GetUser<T>(string userId)
@@ -96,7 +97,7 @@
             })
                                  .ToListAsync();
 
-            //return this._userRepo.All<ArtGalleryUser>()
+            //return this.userRepo.All<ArtGalleryUser>()
             //                     .Select(u => new UserListViewModel()
             //                     {
             //                         Email = u.Email,

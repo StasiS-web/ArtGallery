@@ -1,4 +1,6 @@
-﻿namespace ArtGallery.Infrastructure.Data.Models
+﻿using ArtGallery.Infrastructure.Data.Models.Enumeration;
+
+namespace ArtGallery.Infrastructure.Data.Models
 {
     using System;
     using Microsoft.AspNetCore.Identity;
