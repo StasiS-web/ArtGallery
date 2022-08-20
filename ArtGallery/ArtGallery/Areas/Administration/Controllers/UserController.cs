@@ -1,4 +1,6 @@
-﻿namespace ArtGallery.Areas.Administration.Controllers
+﻿using CloudinaryDotNet.Actions;
+
+namespace ArtGallery.Areas.Administration.Controllers
 {
     using ArtGallery.Common;
     using ArtGallery.Controllers;
@@ -12,8 +14,9 @@
     using Microsoft.AspNetCore.Mvc.Rendering;
     using System.Security.Claims;
     using System.Linq;
+    using ArtGallery.Infrastructure.Data.Models.Enumeration;
 
-    // Code changes by bhavin.
+    // Code changes by behaviour.
     public class UserController : AdministrationController
     {
         private readonly RoleManager<IdentityRole> roleManager;
@@ -36,14 +39,14 @@
         public async Task<IActionResult> ManageUsers()
         {
             var users = await this.userService.GetUsers();
-            var _users = users.Select(x => new UserListViewModel()
+            var mansgeUsers = users.Select(x => new UserListViewModel()
             {
                 Email = x.Email,
                 UserName = x.UserName,
                 Id = x.Id,
                 Name = x.Name,
             });
-            return View(users);
+            return View(mansgeUsers);
         }
 
         public async Task<IActionResult> Roles(string id)
@@ -62,12 +65,15 @@
                     Text = r.Name,
                     Value = r.Id,
                     Selected = userManager.IsInRoleAsync(user, r.Name).Result,
-                }).ToList();
+                })
+                .ToList();
 
             return View(model);
         }
 
-        [HttpPost("Administration/User/Roles")]
+       
+
+        [HttpPost]
         public async Task<IActionResult> Roles(UserRolesViewModel model)
         {
             var user = await userService.GetUserById(model.UserId);
@@ -89,7 +95,7 @@
             return View(model);
         }
 
-        [HttpPost("Administration/User/Edit")]
+        [HttpPost]
         public async Task<IActionResult> Edit(UserEditViewModel model)
         {
             if (!ModelState.IsValid)
@@ -113,7 +119,7 @@
         {
             await roleManager.CreateAsync(new IdentityRole()
             {
-                Name = "ArtGallery"
+                Name = "Admin"
             });
 
             return Ok();

@@ -120,7 +120,7 @@
   <data name="PageTitle" xml:space="preserve">
     <value>Blog</value>
   </data>
-  <data name="SidebarHeaderSidebarHeader" xml:space="preserve">
+  <data name="SidebarHeader" xml:space="preserve">
     <value>Últimas Publicaciones</value>
   </data>
 </root>

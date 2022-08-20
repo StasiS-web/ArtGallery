@@ -11,7 +11,7 @@ using System.Net.Mail;
 
 namespace ArtGallery.Areas.Identity.Pages.Account
 {
-    // Code change by bhavin.
+    // Code change by behaviour.
     public class LoginWith2faModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -146,5 +146,6 @@ namespace ArtGallery.Areas.Identity.Pages.Account
                 return Page();
             }
         }
+
     }
 }
