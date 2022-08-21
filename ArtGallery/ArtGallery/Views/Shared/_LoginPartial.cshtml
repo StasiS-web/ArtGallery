@@ -4,11 +4,18 @@
 @inject UserManager<ApplicationUser> UserManager
 
 <ul class="navbar-nav">
-    @if (SignInManager.IsSignedIn(User))
+    @if (this.SignInManager.IsSignedIn(this.User))
     {
         <li class="nav-item">
-            <a  asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+            <a  asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @(this.User.Identity?.Name!)</a>
         </li>
+        if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+        {
+            <li>
+                <a asp-area="Administration" asp-controller="Dashboard" asp-action="Index">Administration</a>
+            </li>
+        }
+
         <li class="nav-item">
             <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                 <button type="submit" class="nav-link text-dark"><i class="fas fa-door-closed"> Logout</i></button>
