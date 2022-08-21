@@ -121,8 +121,8 @@ namespace ArtGallery.Infrastructure.Data
             builder.Entity<BookingTransaction>()
                 .HasKey(x => new { x.EventId, x.UserId });
 
-            builder.Entity<IdentityUserRole<string>>()
-                .HasKey(x => new { x.UserId, x.RoleId });
+           // builder.Entity<IdentityUserRole<string>>()
+            //    .HasKey(x => new { x.UserId, x.RoleId });
 
             // Proprerty Configuration
             builder.Entity<ShoppingCart>()
