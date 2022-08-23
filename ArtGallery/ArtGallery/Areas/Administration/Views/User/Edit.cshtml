@@ -1,7 +1,9 @@
-﻿@using ArtGallery.Core.Models.Administrator
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using ArtGallery.Core.Models.Administrator
 @model UserEditViewModel
 @{
     ViewBag["Title"] = "User Edit";
+    Layout = "/Areas/Administration/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="row">
@@ -10,18 +12,18 @@
             <input type="hidden" name="Id" value="@Model.Id" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-floating">
-                 <label asp-for="FirstName" class="form-lable"></label>
-                 <input asp-for="FirstName" class="form-control" aria-required="true" />
-                 <span asp-validation-for="FirstName" class="text-danger"></span>
+                <label asp-for="FirstName" class="form-lable"></label>
+                <input asp-for="FirstName" class="form-control" aria-required="true" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-floating">
-                 <label asp-for="LastName" class="form-lable" ></label>
-                 <input asp-for="LastName" class="form-control" autocomplete="current-password" aria-required="true" />
-                 <span asp-validation-for="LastName" class="text-danger"></span>
+                <label asp-for="LastName" class="form-lable" ></label>
+                <input asp-for="LastName" class="form-control" autocomplete="current-password" aria-required="true" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <div class="row">
                 <div class="col-8">
-                   <button type="button" class="btn btn-block btn-success btn-sm">Edit</button>
+                    <button type="button" class="btn btn-block btn-success btn-sm">Edit</button>
                 </div>
             </div>
         </form>

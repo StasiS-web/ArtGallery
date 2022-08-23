@@ -15,8 +15,10 @@ namespace ArtGallery.Areas.Administration.Controllers
     using System.Security.Claims;
     using System.Linq;
     using ArtGallery.Infrastructure.Data.Models.Enumeration;
+    using Microsoft.AspNetCore.Authorization;
 
     // Code changes by behaviour.
+    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class UserController : AdministrationController
     {
         private readonly RoleManager<IdentityRole> roleManager;
@@ -39,14 +41,15 @@ namespace ArtGallery.Areas.Administration.Controllers
         public async Task<IActionResult> ManageUsers()
         {
             var users = await this.userService.GetUsers();
-            var mansgeUsers = users.Select(x => new UserListViewModel()
+            var manageUsers = users.Select(x => new UserListViewModel()
             {
                 Email = x.Email,
                 UserName = x.UserName,
                 Id = x.Id,
                 Name = x.Name,
             });
-            return View(mansgeUsers);
+
+            return View(manageUsers);
         }
 
         public async Task<IActionResult> Roles(string id)

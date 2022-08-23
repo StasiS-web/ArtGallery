@@ -4,6 +4,7 @@
     using ArtGallery.Core.Models.Events;
     using Microsoft.AspNetCore.Mvc;
 
+    // Code changes by behaviour.
     public class EventController : AdministrationController
     {
         private readonly IEventService eventService;
@@ -26,7 +27,9 @@
                 Price = x.Price,
                 TicketSelection = x.TicketSelection,
                 Type = x.Type,
-            }).ToList();
+            })
+            .ToList();
+
             return View(events);
         }
 
@@ -42,6 +45,7 @@
             viewModel.Description = model.Description;
             viewModel.TicketSelection = model.TicketSelection;
             viewModel.Type = model.Type;
+
             return View(viewModel);
         }
 
@@ -64,5 +68,6 @@
 
             return RedirectToAction(nameof(All));
         }
+
     }
 }

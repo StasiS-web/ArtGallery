@@ -1,24 +1,26 @@
 ﻿@using ArtGallery.Core.Models.Administrator
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model FaqCreateInputViewModel
 @{
-     ViewData["Title"] = "Create FAQ";
+    ViewData["Title"] = "Create FAQ";
+    Layout = "/Areas/Administration/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="row">
-   <div class="col-8">
-      <form asp-area="Administration" asp-controller="About" asp-action="Create" method="post">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-floating">
-             <label asp-for="Question" class="form-lable"></label>
-             <input asp-for="Question" class="form-control" />
-             <span asp-validation-for="Question" class="text-danger"></span>
-        </div>
-        <div class="form-floating">
-             <label asp-for="Answer" class="form-lable"></label>
-             <textarea asp-for="Answer" class="form-control"></textarea> />
-             <span asp-validation-for="Question" class="text-danger"></span>
-        </div>
-        <button type="button" class="btn btn-block btn-success btn-sm">Create</button>
-      </form>
-   </div>
+    <div class="col-8">
+        <form  method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating">
+                <label asp-for="@Model.Question" id="lblQuestion" class="form-lable"></label>
+                <input asp-for="@Model.Question" id="txtQuestion" class="form-control" />
+                <span asp-validation-for="Question" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <label asp-for="@Model.Answer" id="lblAnswer" class="form-lable"></label>
+                <textarea asp-for="@Model.Answer" id="txtAnswer"  class="form-control"></textarea>
+                <span asp-validation-for="Question" class="text-danger"></span>
+            </div>
+            <button type="submit" asp-area="Administration" asp-controller="About" asp-action="Create">Click Me</button>
+        </form>
+    </div>
 </div>

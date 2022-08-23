@@ -1,81 +1,90 @@
-﻿
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 @{
     ViewData["Title"] = "Dashboard";
+    Layout = "/Areas/Administration/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="mt-2">
     <div class="nav-header">Admin Access</div>
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item">
-            <a href="/"class="nav-link btn-outline-info"> <i class="fas fa-house-user"></i> Home </a>
-          </li>
-          <li class="nav-item">
-              <a asp-area="Administration" asp-controller="User" asp-action="ManageUsers" class="nav-link btn-outline-info">
+        <li class="nav-item">
+            <a href="/" class="nav-link btn-outline-info"> <i class="fas fa-house-user"></i> Home </a>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Administration" asp-controller="User" asp-action="ManageUsers" class="nav-link btn-outline-info">
                 <i class="far fa-circle nav-icon"></i> Manage Users
-              </a>
-          </li>
-          <li class="nav-item">
-              <a asp-area="Administration" asp-controller="User" asp-action="Edit" class="nav-link btn-outline-info">
-                 <i class="far fa-circle nav-icon"></i> Edit
-              </a>
-          </li>
-          <li class="nav-item">
-              <a asp-area="Administration" asp-controller="User" asp-action="Roles" class="nav-link btn-outline-info">
-                 <i class="far fa-circle nav-icon"></i> Roles
-              </a>
-          </li>
-          <li class="nav-item menu-is-opening menu-open">
-              <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                About
-                <i class="fas fa-angle-left right"></i>
-              </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Administration" asp-controller="User" asp-action="Edit" class="nav-link btn-outline-info">
+                <i class="far fa-circle nav-icon"></i> Edit
+            </a>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Administration" asp-controller="User" asp-action="Roles" class="nav-link btn-outline-info">
+                <i class="far fa-circle nav-icon"></i> Roles
+            </a>
+        </li>
+        <li class="nav-item menu-is-opening menu-open">
+            <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-book"></i>
+                <p>
+                    About
+                    <i class="fas fa-angle-left right"></i>
+                </p>
             </a>
             <ul class="nav nav-treeview" style="display: block;">
-              <li class="nav-item">
-                <a asp-area="Administration" asp-controller="About" asp-action="All" class="nav-link btn-outline-info">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>All FAQ</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a asp-area="Administration" asp-controller="About" asp-action="Create" class="nav-link btn-outline-info">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Create FAQ</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                 <a asp-area="Administration" asp-controller="About" asp-action="Edit" class="nav-link btn-outline-info">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Edit FAQ</p>
-                </a>
-              </li>
+                <li class="nav-item">
+                    <a asp-area="Administration" asp-controller="About" asp-action="All" class="nav-link btn-outline-info">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>All FAQ</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-area="Administration" asp-controller="About" asp-action="Create" class="nav-link btn-outline-info">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Create FAQ</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-area="Administration" asp-controller="About" asp-action="Edit" class="nav-link btn-outline-info">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Edit FAQ</p>
+                    </a>
+                </li>
             </ul>
-            </li>
-             <li class="nav-item menu-is-opening menu-open">
-                <a href="#"class="nav-link active">
-                  <i class="nav-icon fas fa-book"></i>
-                  <p>
+        </li>
+        <li class="nav-item menu-is-opening menu-open">
+            <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-book"></i>
+                <p>
                     Event
                     <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview" style="display: block;">
-                    <li class="nav-item">
-                        <a asp-area="Administration" asp-controller="Event" asp-action="All" class="nav-link btn-outline-info">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>All Event</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                     <a asp-area="Administration" asp-controller="Event" asp-action="Edit" class="nav-link btn-outline-info">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Edit Event</p>
+                </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: block;">
+                <li class="nav-item">
+                    <a asp-area="Administration" asp-controller="Event" asp-action="All" class="nav-link btn-outline-info">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>All Event</p>
                     </a>
-                  </li>
-                </ul>
-            </li>
-   </ul>
-   </div>
+                </li>
+                <li class="nav-item">
+                    <a asp-area="Administration" asp-controller="Event" asp-action="Edit" class="nav-link btn-outline-info">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Edit Event</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-area="Administration" asp-controller="Event" asp-action="Delete" class="nav-link btn-outline-info">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Delete Event</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
 

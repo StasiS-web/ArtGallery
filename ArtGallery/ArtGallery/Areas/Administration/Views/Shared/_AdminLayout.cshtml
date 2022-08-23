@@ -38,11 +38,6 @@
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
               </li>
                <partial name="_AdminNavigation" />
-              <li class="nav-item">
-                 <form class="form-inline" asp-area="Identity" asp-action="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                     <button type="submit" class="nav-link text-dark"><i class="fas fa-door-closed"> Logout</i></button>
-                 </form>
-              </li>
             </ul>
                
           </nav>
@@ -58,7 +53,7 @@
 
             <ul class="flex-row align-items-center justify-centre-start">
                 <partial name="_LoginPartial" />
-
+                
             </ul>
             <!-- Sidebar user panel (optional) -->
            </div>
