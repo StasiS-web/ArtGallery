@@ -32,7 +32,7 @@
         [ForeignKey(nameof(PaintingName))]
         public int ArtId { get; set; }
 
-        [MaxLength(PaintingNameMaxLenth)]
+        [MaxLength(PaintingNameMaxLength)]
         public ArtStore PaintingName { get; set; }
 
         [Required]

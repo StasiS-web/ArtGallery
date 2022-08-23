@@ -7,11 +7,11 @@
     public class ContactForm : BaseDeletableModel<int>
     {
         [Required]
-        [MaxLength(FirstNameMaxLenth)]
+        [MaxLength(FirstNameMaxLength)]
         public string FirstName { get; init; }
 
         [Required]
-        [MaxLength(LastNameMaxLenth)]
+        [MaxLength(LastNameMaxLength)]
         public string LastName { get; init; }
 
         [Required]

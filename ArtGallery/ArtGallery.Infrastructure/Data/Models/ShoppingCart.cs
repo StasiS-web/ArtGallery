@@ -22,7 +22,7 @@
         public ArtGalleryUser User { get; set; }
 
         [Required]
-        [MaxLength(PaintingNameMaxLenth)]
+        [MaxLength(PaintingNameMaxLength)]
         public string PaintingName { get; set; }
 
         [Required]

@@ -9,7 +9,7 @@
 
         public const string AdministratorRoleName = "Admin";
         public const string GalleryManagerRoleName = "Manager";
-        public const string UserRoleName = "RegularUser";
+        public const string UserRoleName = "Regular User";
 
         public const string Password = "Art-123455";
         public const string AdminEmail = "admin@artgallery.com";
@@ -19,8 +19,8 @@
 
         public static class ArtGalleryUser
         {
-            public const int FullNameMinLenth = 50;
-            public const int FullNameMaxLenth = 100;
+            public const int FullNameMinLength = 50;
+            public const int FullNameMaxLength = 100;
             public const int UsernameMinLength = 5;
             public const int UsernameMaxLength = 20;
             public const int PasswordMinLength = 6;
@@ -29,22 +29,22 @@
 
         public static class Event
         {
-            public const int EventNameMinLenth = 8;
-            public const int EventNameMaxLenth = 45;
+            public const int EventNameMinLength = 8;
+            public const int EventNameMaxLength = 45;
             public const int EventDescriptionMinLength = 250;
-            public const int EventDescriptionMaxLenth = 1500;
+            public const int EventDescriptionMaxLength = 1500;
             public const double PriceMin = 0.0;
             public const double PriceMax = 80;
         }
 
         public static class ArtStore
         {
-            public const int PaintingNameMinLenth = 10;
-            public const int PaintingNameMaxLenth = 35;
-            public const int AuthorNameMinLenth = 50;
-            public const int AuthorNameMaxLenth = 100;
-            public const int ArtsDescriptionMinLenth = 150;
-            public const int ArtsDescriptionMaxLenth = 1000;
+            public const int PaintingNameMinLength = 10;
+            public const int PaintingNameMaxLength = 35;
+            public const int AuthorNameMinLength = 50;
+            public const int AuthorNameMaxLength = 100;
+            public const int ArtsDescriptionMinLength = 150;
+            public const int ArtsDescriptionMaxLength = 1000;
             public const double PriceMin = 0.0;
             public const double PriceMax = 10000;
         }
@@ -57,7 +57,7 @@
             public const int ContentMaxLength = 3500;
             public const int AdminAuthorMinLength = 50;
             public const int AdminAuthorMaxLength = 100;
-            public const int CommnetContentMinLength = 15;
+            public const int CommentContentMinLength = 15;
             public const int CommentContentMaxLength = 150;
         }
 
@@ -117,10 +117,10 @@
 
         public static class ContactForm
         {
-            public const int FirstNameMinLenth = 3;
-            public const int FirstNameMaxLenth = 35;
-            public const int LastNameMinLenth = 3;
-            public const int LastNameMaxLenth = 35;
+            public const int FirstNameMinLength = 3;
+            public const int FirstNameMaxLength = 35;
+            public const int LastNameMinLength = 3;
+            public const int LastNameMaxLength = 35;
             public const int FullNameMinLength = 3;
             public const int FullNameMaxLength = 60;
             public const int SubjectMinLength = 10;

@@ -13,7 +13,7 @@
             this.BookingTransactions = new HashSet<BookingTransaction>();
         }
 
-        [MaxLength(EventNameMaxLenth)]
+        [MaxLength(EventNameMaxLength)]
         public string Name { get; set; }
 
         [Required]
@@ -28,7 +28,7 @@
 
         public TicketType TicketSelection { get; set; }
 
-        [MaxLength(EventDescriptionMaxLenth)]
+        [MaxLength(EventDescriptionMaxLength)]
         public string Description { get; set; }
 
         /// <summary>

@@ -13,11 +13,11 @@
         }
 
         [Required]
-        [MaxLength(PaintingNameMaxLenth)]
+        [MaxLength(PaintingNameMaxLength)]
         public string PaintingName { get; set; }
 
         [Required]
-        [MaxLength(AuthorNameMaxLenth)]
+        [MaxLength(AuthorNameMaxLength)]
         public string AuthorName { get; set; }
 
         [Required]
@@ -29,7 +29,7 @@
         public decimal Price { get; set; }
 
         [Required]
-        [MaxLength(ArtsDescriptionMaxLenth)]
+        [MaxLength(ArtsDescriptionMaxLength)]
         public string Description { get; set; }
 
         public ICollection<SaleTransaction> SaleTransactions { get; set; }

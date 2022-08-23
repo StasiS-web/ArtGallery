@@ -23,11 +23,11 @@
         }
 
         [Required]
-        [MaxLength(FullNameMaxLenth)]
+        [MaxLength(FullNameMaxLength)]
         public string FirstName { get; set; }
 
         [Required]
-        [MaxLength(FullNameMaxLenth)]
+        [MaxLength(FullNameMaxLength)]
         public string LastName { get; set; }
 
         [Required]
