@@ -15,13 +15,15 @@
         public int EventId { get; set; }
 
         [Required]
-        [MaxLength(EventNameMaxLenth)]
-        [MinLength(EventNameMinLenth)]
+        [MaxLength(EventNameMaxLength)]
+        [MinLength(EventNameMinLength)]
         [Display(Name = EventNameDisplay)]
         public string Name { get; set; }
 
+        // Code changes by bhavin.
+
         [Required]
-        [Range(PriceMax, PriceMin)]
+        [Range(PriceMin, PriceMax)]
         public decimal Price { get; set; }
 
         [Column(TypeName = "date")]
@@ -45,7 +47,7 @@
             new SelectListItem { Value = "2", Text = "Paid" },
         };
 
-        [MaxLength(EventDescriptionMaxLenth)]
+        [MaxLength(EventDescriptionMaxLength)]
         [MinLength(EventDescriptionMinLength)]
         public string Description { get; set; }
 

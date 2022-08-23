@@ -15,12 +15,12 @@
     public class ArtStoreCreateInputModel 
     {
         [Required]
-        [MaxLength(PaintingNameMaxLenth)]
-        [MinLength(PaintingNameMinLenth)]
+        [MaxLength(PaintingNameMaxLength)]
+        [MinLength(PaintingNameMinLength)]
         public string PaintingName { get; set; }
 
         [Required]
-        [MaxLength(AuthorNameMaxLenth)]
+        [MaxLength(AuthorNameMaxLength)]
         public string AuthorName { get; set; }
 
         [Required]
@@ -38,7 +38,7 @@
         public decimal Price { get; set; }
 
         [Required]
-        [MaxLength(ArtsDescriptionMaxLenth)]
+        [MaxLength(ArtsDescriptionMaxLength)]
         public string Description { get; set; }
     }
 }

@@ -9,13 +9,13 @@
     public class ContactFormViewModel
     {
         [Required(ErrorMessage = FirstNameError)]
-        [MaxLength(FirstNameMaxLenth)]
-        [MinLength(FirstNameMinLenth)]
+        [MaxLength(FirstNameMaxLength)]
+        [MinLength(FirstNameMinLength)]
         public string FirstName { get; init; }
 
         [Required(ErrorMessage = LastNameError)]
-        [MaxLength(LastNameMaxLenth)]
-        [MinLength(LastNameMinLenth)]
+        [MaxLength(LastNameMaxLength)]
+        [MinLength(LastNameMinLength)]
         public string LastName { get; init; }
 
         [Required]

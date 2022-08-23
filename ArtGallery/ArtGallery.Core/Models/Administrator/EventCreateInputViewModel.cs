@@ -8,8 +8,8 @@
 
     public class EventCreateInputViewModel 
     {
-        [MaxLength(EventNameMaxLenth)]
-        [MinLength(EventNameMinLenth)]
+        [MaxLength(EventNameMaxLength)]
+        [MinLength(EventNameMinLength)]
         public string Name { get; set; }
 
         [Required]
@@ -24,7 +24,7 @@
 
         public TicketType TicketSelection { get; set; }
 
-        [MaxLength(EventDescriptionMaxLenth)]
+        [MaxLength(EventDescriptionMaxLength)]
         [MinLength(EventDescriptionMinLength)]
         public string Description { get; set; }
     }

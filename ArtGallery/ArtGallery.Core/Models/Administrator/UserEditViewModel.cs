@@ -12,14 +12,14 @@
         public string Id { get; set; }
 
         [Required]
-        [MaxLength(FullNameMaxLenth)]
-        [MinLength(FullNameMinLenth)]
+        [MaxLength(FullNameMaxLength)]
+        [MinLength(FullNameMinLength)]
         [Display(Name = FirstNameDisplayName)]
         public string FirstName { get; set; }
 
         [Required]
-        [MaxLength(FullNameMaxLenth)]
-        [MinLength(FullNameMinLenth)]
+        [MaxLength(FullNameMaxLength)]
+        [MinLength(FullNameMinLength)]
         [Display(Name = LastNameDisplayName)]
         public string LastName { get; set; }
     }

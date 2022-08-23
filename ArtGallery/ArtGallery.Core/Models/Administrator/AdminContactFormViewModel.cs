@@ -11,7 +11,7 @@
         [Required]
         [MaxLength(FullNameMaxLength)]
         [MinLength(FullNameMinLength)]
-        public string FullName { get; set; } 
+        public string FullName { get; set; }
 
         [Required]
         [EmailAddress]
@@ -30,7 +30,7 @@
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<AdminContactFormViewModel, ContactForm>()
-                 .ForMember(des => $"{des.FirstName} {des.LastName}", opts => opts.MapFrom(x => x.FullName));
+                .ForMember(des => $"{des.FirstName} {des.LastName}", opts => opts.MapFrom(x => x.FullName));
         }
     }
 }
