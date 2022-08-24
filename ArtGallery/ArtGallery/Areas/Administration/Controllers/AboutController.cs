@@ -1,6 +1,7 @@
 ﻿using ArtGallery.Core.Models.Administrator;
 using ArtGallery.Core.Models.FaqEntity;
 using Microsoft.AspNetCore.Mvc;
+using FaqEntity = ArtGallery.Infrastructure.Data.Models.FaqEntity;
 
 namespace ArtGallery.Areas.Administration.Controllers
 {
@@ -16,7 +17,7 @@ namespace ArtGallery.Areas.Administration.Controllers
         public IActionResult Create()
         {
 
-            return View(new FaqCreateInputViewModel());
+            return View();
         }
 
         [HttpPost]
@@ -34,10 +35,10 @@ namespace ArtGallery.Areas.Administration.Controllers
         [HttpGet("Administration/About/Edit")]
         public async Task<IActionResult> Edit(int id)
         {
-            var faqToEdit = await this.aboutService.GetByIdAsync<FaqEditViewModel>(id);
+            var faqToEdit = await this.aboutService.GetByIdAsync<FaqEntity>(id);
             var _model = new FaqEditViewModel();
-            _model.Answer = faqToEdit.Answer;
             _model.FaqId = faqToEdit.FaqId;
+            _model.Answer = faqToEdit.Answer;
             _model.Question = faqToEdit.Question;
             return View(_model);
         }

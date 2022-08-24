@@ -8,7 +8,7 @@
 
 <div class="row">
     <div class="col-8">
-        <form  method="post">
+        <form asp-area="Administration" asp-controller="About" asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-floating">
                 <label asp-for="@Model.Question" id="lblQuestion" class="form-lable"></label>
@@ -20,7 +20,7 @@
                 <textarea asp-for="@Model.Answer" id="txtAnswer"  class="form-control"></textarea>
                 <span asp-validation-for="Question" class="text-danger"></span>
             </div>
-            <button type="submit" asp-area="Administration" asp-controller="About" asp-action="Create">Click Me</button>
+            <button type="submit" class="btn btn-block btn-success">Save</button>
         </form>
     </div>
 </div>
