@@ -28,87 +28,85 @@
     @this.RenderSectionAsync("Styles", required: false) 
 </head>
 <body class="hold-transition sidebar-mini">
+<partial name="_CookieConsentPartial" />
     <div class="wrapper">
-
-       <!-- Navbar -->
-          <nav class="navbar navbar-primary navbar-expand navbar-dark">
+        <!-- Navbar -->
+        <nav class="navbar navbar-primary navbar-expand navbar-dark">
             <!-- Left navbar links -->
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-              </li>
-               <partial name="_AdminNavigation" />
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <partial name="_AdminNavigation"/>
             </ul>
-               
-          </nav>
-          <!-- /.navbar -->
 
-            <!-- Main Sidebar Container -->
-       <aside class="main-sidebar sidebar-dark-primary elevation-4">
-          <div class="sidebar">
-             <!-- Brand Logo -->
-            <<a asp-area="Administration" asp-controller="User" asp-action="Profile" class="nav-link">
-              <img src="~/img/user5-128x128.jpg" alt="user image" class="brand-image img-circle elevation-3" style="opacity: .8" />
-            </a>
+        </nav>
+        <!-- /.navbar -->
 
-            <ul class="flex-row align-items-center justify-centre-start">
-                <partial name="_LoginPartial" />
-                
-            </ul>
-            <!-- Sidebar user panel (optional) -->
-           </div>
-           <!-- /.sidebar -->
-       </aside>
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <div class="sidebar">
+                <!-- Brand Logo -->
+                <a asp-area="Administration" asp-controller="User" asp-action="Profile" class="nav-link">
+                    <img src="~/img/user5-128x128.jpg" alt="user image" class="brand-image img-circle elevation-3" style="opacity: .8"/>
+                </a>
+                <ul class="flex-row align-items-center justify-centre-start">
+                    <partial name="_LoginPartial"/>
+                </ul>
+                <!-- Sidebar user panel (optional) -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper iframe-mode">
-         <!-- Content Header (Page header) -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper iframe-mode">
+            <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container-fluid">
-                   <div class="row mb-2">
-                      <div class="col-sm-6">
-                           <h1 class="m-0">@ViewData["Title"]</h1>
-                      </div><!-- /.col -->
-                      <div class="col-sm-6">
-                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Starter Page</li>
-                         </ol>
-                      </div><!-- /.col -->
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">@ViewData["Title"]</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Starter Page</li>
+                            </ol>
+                        </div><!-- /.col -->
                     </div><!-- /.row -->
-               </div><!-- /.container-fluid -->
-           </div>
-           <!-- /.content-header -->
-     
-      <!-- Main content -->
-        <div class="content">
-            <div class="container-fluid">
-              @this.RenderBody() 
-           </div><!-- /.container-fluid -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <div class="content">
+                <div class="container-fluid">
+                    @this.RenderBody()
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content -->
         </div>
-        <!-- /.content -->
-        </div>
-     <!-- /.content-wrapper -->
+        <!-- /.content-wrapper -->
 
-    <partial name="_FooterPartial" />
-</div>
-<!-- ./wrapper -->
+        <partial name="_FooterPartial"/>
+    </div>
+    <!-- ./wrapper -->
 
-  <!-- REQUIRED SCRIPTS -->
-  <!-- jQuery -->
-    <script src="/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script src="/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- overlayScrollbars -->
+<link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css"/>
 
-    <!-- AdminLTE App -->
-    <script src="/jS/adminlte.min.js"></script>
-    <script src="/lib/jquery/dist/jquery.min.js"></script>
-    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/plugins/toastr/toastr.min.js"></script>
-    <partial name="_UserMessages" />
+<!-- AdminLTE App -->
+<script src="/jS/adminlte.min.js"></script>
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/plugins/toastr/toastr.min.js"></script>
+<partial name="_UserMessages"/>
 
-     @await this.RenderSectionAsync("Scripts", required: false)
+@await this.RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
