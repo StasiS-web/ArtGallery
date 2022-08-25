@@ -18,7 +18,6 @@
     using System.Threading.Tasks;
     using static ArtGallery.Common.GlobalConstants.Formating;
 
-    // Code changes by bhavin.   
     public class EventService : IEventService
     {
         private readonly IAppRepository _eventRepo;
@@ -139,7 +138,9 @@
                 Description = x.Description,
                 TicketSelection = x.TicketSelection,
                 Type = x.Type
-            }).OrderByDescending(p => p.EventId == eventId).ToList();
+            })
+            .OrderByDescending(p => p.EventId == eventId)
+            .ToList();
         }
 
         public async Task AddAsync(EventCreateInputViewModel model)
@@ -226,7 +227,8 @@
                                 Description = x.Description,
                                 TicketSelection = x.TicketSelection,
                                 Type = x.Type
-                            }).FirstOrDefault();
+                            })
+                            .FirstOrDefault();
 
 
             return eventDetails;

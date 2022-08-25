@@ -159,7 +159,7 @@
             public const int BlogPost = 6;
             public const int ArtStore = 7;
 
-            public const int UpcomingEventCount = 3;
+            public const int UpcomingEventCount = 0;
             public const int LatestBlogCount = 2;
         }
     }

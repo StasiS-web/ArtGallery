@@ -27,5 +27,6 @@
         [MaxLength(EventDescriptionMaxLength)]
         [MinLength(EventDescriptionMinLength)]
         public string Description { get; set; }
+        
     }
 }
