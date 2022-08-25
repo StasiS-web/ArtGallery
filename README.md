@@ -10,7 +10,7 @@ My defense project for **ASP.NET Core** course at Softuni.
     Click here for more info. 
 </summary>
   
-Art Gallery's main idea is to be an app for booking and sales. A place where regular users can book an exhibition or buy a painting. 3 roles: user, admin and manager.
+Art Gallery's main idea is to be an app for booking and sales. A place where regular users can book an exhibition or buy a painting. 2 roles: user and admin.
   
 <strong> User: </strong>
 * Can book an exhibition event in the Gallery or buy a painting from the app store.
@@ -18,20 +18,14 @@ Art Gallery's main idea is to be an app for booking and sales. A place where reg
 * Cancel booked exhibition events or request orders cancellation. Once a User cancels, an already made order should be approved by the manager.
   
 <strong> Admin: </strong>
-* Can create, edit or delete Blog Posts.
-* Can create, edit or delete events 
-* Can create, edit or delete arts for sale.
-* Can Edit, Manage Users.
-  
-<strong> Manager: </strong>
-* Can approve the requested cancellation of an order.
-* Can Confirm or Decline the user's booked event. It depends on Max Capacity for the event.
-* Can control what events are available for booking.
+* Can Create, Edit or delete FAQ.
+* Can Create, Edit or delete Events 
+* Can Manage Users, Edit, Roles.
   
 <strong> :pushpin: Restrictions: </strong>
 * Guest Vistors (a user who is not Logged-in) are restricted to browsing through exhibition events and painting in the App Store, also through the Blog Posts, which are available for them to read.
-* Users are not allowed to create Blog Posts, Events or new Arts for purchases only if they are Administrators.
-* Any user can create Comments as long as it is a Logged-in user. 
+* Users are not allowed to create FAQ, Events, Blog Posts or new Arts for purchases only if they are Administrators.
+* Any user can create Comments, make orders or book events as long as it is a Logged-in user. 
 * Only Guest visitors are not allowed to create comments, make orders or book events.
 * Only admin is allowed to create Blog Posts, Events or Arts.
   
