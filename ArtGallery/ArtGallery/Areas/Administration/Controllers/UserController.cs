@@ -1,4 +1,5 @@
-﻿using CloudinaryDotNet.Actions;
+﻿using System.Collections.Immutable;
+using CloudinaryDotNet.Actions;
 
 namespace ArtGallery.Areas.Administration.Controllers
 {
@@ -32,10 +33,26 @@ namespace ArtGallery.Areas.Administration.Controllers
             this.userService = userService;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+         public async Task<IActionResult> Index()
+         {
+             var allUsers = await userManager.Users.ToListAsync();
+             var userRolesViewModel = new List<UserRolesViewModel>();
+
+             foreach (ApplicationUser user in allUsers)
+             {
+                 var viewModel = new UserRolesViewModel();
+                 viewModel.UserId = user.Id;
+                 viewModel.Name = $"{user.FirstName} {user.LastName}";
+                 viewModel.UserName = user.UserName;
+                 viewModel.Email = user.Email;
+                 viewModel.RoleNames = ViewBag.RoleNames;
+                 userRolesViewModel.Add(viewModel);
+             }
+
+             ViewBag.userRolesViewModel = userRolesViewModel.ToList();
+             return View();
+         }
+        
 
         [HttpGet("Administration/User/ManageUsers")]
         public async Task<IActionResult> ManageUsers()
@@ -48,9 +65,10 @@ namespace ArtGallery.Areas.Administration.Controllers
                 Id = x.Id,
                 Name = x.Name,
             });
-
-            return View(manageUsers);
+            ViewBag.manageUsers = manageUsers.ToList();
+            return View();
         }
+
 
         public async Task<IActionResult> Roles(string id)
         {
@@ -83,7 +101,7 @@ namespace ArtGallery.Areas.Administration.Controllers
             var userRoles = await userManager.GetRolesAsync(user);
             await userManager.RemoveFromRolesAsync(user, userRoles);
 
-            if (model.RoleNames?.Length > 0)
+            if (model.RoleNames?.Count() > 0)
             {
                 await userManager.AddToRolesAsync(user, userRoles);
             }

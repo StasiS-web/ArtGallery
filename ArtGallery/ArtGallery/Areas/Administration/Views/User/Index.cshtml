@@ -1,0 +1,70 @@
+﻿@using ArtGallery.Core.Models.Users
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model List<UserRolesViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "/Areas/Administration/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">User Roles</h3>
+            </div>
+
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th style="width: 40px">UserName</th>
+                            <th>Email</th>
+                            <th>Roles</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in ViewBag.userRolesViewModel)
+                        {
+                            <tr>
+                                <td>@user.Name</td>
+                                <td><span class="badge bg-danger">@user.UserName</span></td>
+                                <td>@user.Email</td>
+                                <td>
+                                    <select id="UserId" name="RoleNames" class="form-control">
+                                        <option selected="selected" value="">Please select...</option>
+                                        <option selected="selected" value="Admin">Admin</option>
+                                        <option selected="selected" value="Manager">Manager</option>
+                                        <option selected="selected" value="RegularUser">Regular User</option>
+                                    </select>
+                                    <span name="RoleNames" class="text-danger"></span>
+                                    
+                                </td>
+                                <td>
+                                    <div class="">
+                                        <a asp-area="Administration" asp-action="Index" asp-controller="User" asp-route-id="@user.UserId" class="btn btn-block btn-outline-success btn-sm"> Manage Roles</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer clearfix">
+                <ul class="pagination pagination-sm m-0 float-right">
+                    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                </ul>
+            </div>
+            <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
+                <i class="fas fa-chevron-up"></i>
+            </a>
+        </div>
+    </div>
+</div>
