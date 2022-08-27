@@ -11,7 +11,7 @@
         public const string GalleryManagerRoleName = "Manager";
         public const string UserRoleName = "Regular User";
 
-        public const string Password = "Art-123455";
+        public const string AdminPassword = "Art-123455";
         public const string AdminEmail = "admin@artgallery.com";
         public const string GalleryManagerEmail = "manager@artgallery.com";
         public const string GeneralInfoEmail = "info@artgallery.com";
