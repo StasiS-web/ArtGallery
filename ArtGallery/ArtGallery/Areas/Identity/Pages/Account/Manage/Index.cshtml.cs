@@ -30,6 +30,8 @@ namespace ArtGallery.Areas.Identity.Pages.Account.Manage
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
+
+        [Display(Name = "Username")]
         public string Username { get; set; }
 
         /// <summary>
@@ -52,10 +54,11 @@ namespace ArtGallery.Areas.Identity.Pages.Account.Manage
         /// </summary>
         public class InputModel
         {
+            [Display(Name = "FirstName")]
             public string FirstName { get; set; }
 
+            [Display(Name = "LastName")]
             public string LastName { get; set; }
-
 
             [EmailAddress]
             [Display(Name = "Email")]
@@ -75,11 +78,15 @@ namespace ArtGallery.Areas.Identity.Pages.Account.Manage
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             var email = await _userManager.GetEmailAsync(user);
+            var firstName = user.FirstName;
+            var lastName = user.LastName;
 
             Username = userName;
 
             Input = new InputModel
             {
+                FirstName = firstName,
+                LastName = lastName,
                 PhoneNumber = phoneNumber,
                 Email = email
             };
@@ -109,6 +116,20 @@ namespace ArtGallery.Areas.Identity.Pages.Account.Manage
             {
                 await LoadAsync(user);
                 return Page();
+            }
+
+            var firstName = user.FirstName;
+            if (Input.FirstName != firstName)
+            {
+                user.FirstName = Input.FirstName;
+                await _userManager.UpdateAsync(user);
+            }
+
+            var lastName = user.LastName;
+            if (Input.LastName != lastName)
+            {
+                user.LastName = Input.LastName;
+                await _userManager.UpdateAsync(user);
             }
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);

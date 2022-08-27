@@ -15,16 +15,19 @@
     <div class="row">
         <form id="profile-form" method="post">
              <div class="form-floating">
-                   <lable asp-for="FirstName" class="form-label"></lable>
-                   <input asp-for="Input.FirstName" class="form-label" disabled />
+                 <lable asp-for="Input.FirstName" class="form-label"></lable>
+                 <input asp-for="Input.FirstName" class="form-control" />
+                 <span asp-validation-for="Input.FirstName" class="text-danger"></span>
               </div>
                <div class="form-floating">
-                   <lablе asp-for="LastName" class="form-label"></lable>
-                   <input asp-for="Input.LastName" class="form-label" disabled />
+                   <lablе asp-for="Input.LastName" class="form-label"></lablе>
+                   <input asp-for="Input.LastName" class="form-control"/>
+                    <span asp-validation-for="Input.LastName" class="text-danger"></span>
                </div>
                <div class="form-floating">
                    <label asp-for="Username" class="form-label"></label>
-                   <input asp-for="Username" class="form-control" disabled />
+                   <input asp-for="Username" class="form-control" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
                </div>
                <div class="form-floating">
                   <lablel asp-for="Email" class="form-label"></lablel>
