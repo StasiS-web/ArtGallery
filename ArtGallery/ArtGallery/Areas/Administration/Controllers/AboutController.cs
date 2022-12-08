@@ -1,6 +1,8 @@
 ﻿using ArtGallery.Core.Models.Administrator;
+using ArtGallery.Core.Models.Events;
 using ArtGallery.Core.Models.FaqEntity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using FaqEntity = ArtGallery.Infrastructure.Data.Models.FaqEntity;
 
 namespace ArtGallery.Areas.Administration.Controllers
@@ -16,7 +18,6 @@ namespace ArtGallery.Areas.Administration.Controllers
 
         public IActionResult Create()
         {
-
             return View();
         }
 
@@ -35,10 +36,10 @@ namespace ArtGallery.Areas.Administration.Controllers
         [HttpGet("Administration/About/Edit")]
         public async Task<IActionResult> Edit(int id)
         {
-            var faqToEdit = await this.aboutService.GetByIdAsync<FaqEntity>(id);
+            var faqToEdit = await this.aboutService.GetByIdAsync<FaqEditViewModel>(id);
             var _model = new FaqEditViewModel();
-            _model.FaqId = faqToEdit.FaqId;
             _model.Answer = faqToEdit.Answer;
+            _model.FaqId = faqToEdit.FaqId;
             _model.Question = faqToEdit.Question;
             return View(_model);
         }
@@ -61,5 +62,12 @@ namespace ArtGallery.Areas.Administration.Controllers
             ViewBag.faq = faq.ToList();
             return View();
         }
+
+        public async Task<IActionResult> Delete(int faqId)
+        {
+            this.aboutService.DeleteById(faqId);
+            return RedirectToAction(nameof(All));
+        }
+
     }
 }

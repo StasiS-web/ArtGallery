@@ -12,13 +12,12 @@ namespace ArtGallery.Core.Contracts
     {
         Task<FaqViewModel> CreateAsync(FaqCreateInputViewModel model);
 
-        Task EditAsync(FaqEditViewModel model);
-
-        Task DeleteById(int faqId);
+        Task<FaqViewModel> EditAsync(FaqEditViewModel model);
 
         Task<IEnumerable<FaqViewModel>> GetAllFaqsAsync<T>();
 
         Task<FaqViewModel> GetByIdAsync<T>(int faqId);
 
+        void DeleteById(int id);
     }
 }

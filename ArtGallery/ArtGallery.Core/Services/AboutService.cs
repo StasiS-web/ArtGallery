@@ -8,6 +8,7 @@
     using ArtGallery.Infrastructure.Data;
     using ArtGallery.Infrastructure.Data.Models;
     using ArtGallery.Infrastructure.Data.Repositories;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
@@ -69,26 +70,20 @@
             return new FaqViewModel();
         }
 
-        public async Task DeleteById(int faqId)
+        public void DeleteById(int faqId)
         {
             // var faq = _faqRepo.All<FaqEntity>().FirstOrDefault(x => x.Id == faqId);
-            var faq = _applicationDbContext.Faqs.FirstOrDefault(x => x.Id == faqId);
+            var faqToDelete = _applicationDbContext.Faqs.FirstOrDefault(x => x.Id == faqId);
+    
 
-            if (faq == null)
-            {
-                throw new ArgumentNullException(string.Format(MessageConstants.FaqNotFound, faqId));
-            }
-
-            faq.IsDeleted = true;
-            faq.DeletedOn = DateTime.UtcNow;
-            //_faqRepo.Update(faq);
+            //_faqRepo.Remove(faq);
             //_faqRepo.SaveChanges();
 
-            _applicationDbContext.Faqs.Update(faq);
+            _applicationDbContext.Faqs.Remove(faqToDelete);
             _applicationDbContext.SaveChanges();
         }
 
-        public async Task EditAsync(FaqEditViewModel model)
+        public async Task<FaqViewModel> EditAsync(FaqEditViewModel model)
         {
             // var faq = _faqRepo.All<FaqEntity>().FirstOrDefault(x => x.Id == model.FaqId);
             var faq = _applicationDbContext.Faqs.FirstOrDefault(x => x.Id == model.FaqId);
@@ -107,6 +102,8 @@
 
             _applicationDbContext.Faqs.Update(faq);
             _applicationDbContext.SaveChanges();
+
+            return new FaqViewModel();
         }
 
         public async Task<IEnumerable<FaqViewModel>> GetAllFaqsAsync<T>()
