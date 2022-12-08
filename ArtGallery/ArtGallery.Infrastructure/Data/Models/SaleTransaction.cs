@@ -23,7 +23,7 @@
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
 
-        public ArtGalleryUser User { get; set; }
+        public ApplicationUser User { get; set; }
 
         [ForeignKey(nameof(PaintingName))]
         public int ArtId { get; set; }
