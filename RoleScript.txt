@@ -1,0 +1,31 @@
+Run below queries in the Database by given order only
+
+[1]  INSERT [dbo].[AspNetRoles] ([Id], [Name], [NormalizedName], [ConcurrencyStamp]) 
+      VALUES (N'1', N'Admin', N'Admin', N'Admin')
+
+Please change the userId below to your userId
+[2]  INSERT INTO [dbo].[ShoppingCarts]
+           ([UserId]
+           ,[PaintingName]
+           ,[Price1]
+           ,[TotalPrice]
+           ,[CreatedOn]
+           ,[ModifiedOn]
+           ,[IsDeleted]
+           ,[DeletedOn])
+     VALUES
+           (N'fd0d586a-2235-4079-b7ec-2721db2d52e9'
+           ,'test'
+           ,12
+           ,13
+           , CAST(N'2022-04-08T00:00:00.0000000' AS DateTime2)
+           ,NULL
+           ,0
+           ,NULL)
+           
+[3]  INSERT [dbo].[ArtGalleryUser] ([Id], [FirstName], [LastName], [UserName], [Gender], [UrlImage], [ShoppingCartId], [CreatedOn], [ModifiedOn], [IsDeleted], [DeletedOn], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) 
+     VALUES (N'1', N'Admin', N'AdminSur', N'admin', 1, N'admin', CAST(1 AS Decimal(18, 0)), CAST(N'2022-04-08T00:00:00.0000000' AS DateTime2), NULL, 0, NULL, NULL, N'admin@artgallery.com', NULL, 1, NULL, NULL, NULL, NULL, 1, 0, NULL, 0, 0)
+           
+Please change the userId below to your userId
+[4]  INSERT [dbo].[AspNetUserRoles] ([UserId], [RoleId], [ArtGalleryUserId]) 
+      VALUES (N'fd0d586a-2235-4079-b7ec-2721db2d52e9', N'1', N'1')
