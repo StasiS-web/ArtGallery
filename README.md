@@ -11,7 +11,7 @@ My defense project for **ASP.NET Core** course at Softuni.
 </summary>
   
 Art Gallery's main idea is to be an app for booking and sales. A place where regular users can book an exhibition or buy a painting. 2 roles: user and admin.
-  
+
 <strong> User: </strong>
 * Can book an exhibition event in the Gallery or buy a painting from the app store.
 * Can read Blog Posts and create comments on any Article.
@@ -48,6 +48,7 @@ Art Gallery's main idea is to be an app for booking and sales. A place where reg
 * HTML5
 * CSS
 * Two-Factor Authentication
+* Run some sql query to match user to role
   
 </details>
 
