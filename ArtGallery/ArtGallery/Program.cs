@@ -47,6 +47,7 @@ var config = new MapperConfiguration(cfg =>
     cfg.AddProfile(new AutoMapperConfig());
 });
 var mapper = config.CreateMapper();
+
 builder.Services.AddSingleton(mapper);
 
 builder.Services.AddControllersWithViews()
@@ -114,8 +115,8 @@ app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
-  name: "Area",
-  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+    name: "Area",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
     endpoints.MapControllerRoute(
     name: "default",
@@ -126,4 +127,3 @@ app.UseEndpoints(endpoints =>
 
 
 app.Run();
-

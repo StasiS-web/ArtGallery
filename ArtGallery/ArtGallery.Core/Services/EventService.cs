@@ -20,11 +20,11 @@
 
     public class EventService : IEventService
     {
-        private readonly IAppRepository _eventRepo;
+       // private readonly IAppRepository _eventRepo;
         private readonly ApplicationDbContext _applicationDbContext;
         public EventService(IAppRepository eventRepo, ApplicationDbContext applicationDbContext)
         {
-            this._eventRepo = eventRepo;
+          //  this._eventRepo = eventRepo;
             this._applicationDbContext = applicationDbContext;
         }
 
@@ -33,6 +33,7 @@
         {
             bool isCreated = false;
             var createEvent = new EventCreateInputViewModel();
+
 
             if (createEvent != null)
             {
@@ -159,11 +160,11 @@
                 Name = model.Name,
                 Price = model.Price,
                 Date = DateTime.ParseExact(model.Date,
-                      DateTimeFormat, CultureInfo.InvariantCulture),
+                     DateTimeFormat, CultureInfo.InvariantCulture),
                 Description = model.Description,
             });
 
-            // await this._eventRepo.SaveChangesAsync();
+            // await this.eventRepo.SaveChangesAsync();
             await _applicationDbContext.SaveChangesAsync();
         }
 
