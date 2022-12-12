@@ -1,5 +1,5 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@using ArtGallery.Core.Models.Administrator
+﻿@using ArtGallery.Core.Models.Administrator
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model UserEditViewModel
 @{
     ViewBag["Title"] = "User Edit";
@@ -23,7 +23,7 @@
             </div>
             <div class="row">
                 <div class="col-8">
-                    <button type="button" class="btn btn-block btn-success btn-sm">Edit</button>
+                    <button id="login-submit" type="submit" class="btn btn-block btn-success">Edit</button>
                 </div>
             </div>
         </form>
@@ -31,5 +31,5 @@
 </div>
 
 @section Scripts{
-    <partial name="__ValidationScriptsPartial" />
+    <partial name="_ValidationScriptsPartial" />
 }

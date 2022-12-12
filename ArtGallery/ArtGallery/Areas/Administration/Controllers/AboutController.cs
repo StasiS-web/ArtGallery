@@ -38,9 +38,9 @@ namespace ArtGallery.Areas.Administration.Controllers
         {
             var faqToEdit = await this.aboutService.GetByIdAsync<FaqEditViewModel>(id);
             var _model = new FaqEditViewModel();
-            _model.Answer = faqToEdit.Answer;
             _model.FaqId = faqToEdit.FaqId;
             _model.Question = faqToEdit.Question;
+            _model.Answer = faqToEdit.Answer;
             return View(_model);
         }
 

@@ -1,22 +1,18 @@
 ﻿using System.Collections.Immutable;
-using CloudinaryDotNet.Actions;
+using System.Reflection.Metadata.Ecma335;
 
 namespace ArtGallery.Areas.Administration.Controllers
 {
     using ArtGallery.Common;
-    using ArtGallery.Controllers;
     using ArtGallery.Core.Contracts;
-    using ArtGallery.Core.Mapping;
     using ArtGallery.Core.Models.Administrator;
     using ArtGallery.Core.Models.Users;
     using ArtGallery.Infrastructure.Data.Models;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
-    using System.Security.Claims;
     using System.Linq;
-    using ArtGallery.Infrastructure.Data.Models.Enumeration;
-    using Microsoft.AspNetCore.Authorization;
 
     // Code changes by behaviour.
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
@@ -25,15 +21,18 @@ namespace ArtGallery.Areas.Administration.Controllers
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IUserService userService;
+        private readonly ILogger logger;
 
-        public UserController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, IUserService userService)
+        public UserController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, 
+            IUserService userService, ILogger logger)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
             this.userService = userService;
+            this.logger = logger;
         }
 
-         public async Task<IActionResult> Index()
+        public async Task<IActionResult> ManageRoles()
          {
              var allUsers = await userManager.Users.ToListAsync();
              var userRolesViewModel = new List<UserRolesViewModel>();
@@ -44,7 +43,6 @@ namespace ArtGallery.Areas.Administration.Controllers
                  viewModel.UserId = user.Id;
                  viewModel.Name = $"{user.FirstName} {user.LastName}";
                  viewModel.UserName = user.UserName;
-                 viewModel.Email = user.Email;
                  viewModel.RoleNames = ViewBag.RoleNames;
                  userRolesViewModel.Add(viewModel);
              }
@@ -57,7 +55,7 @@ namespace ArtGallery.Areas.Administration.Controllers
         [HttpGet("Administration/User/ManageUsers")]
         public async Task<IActionResult> ManageUsers()
         {
-            var users = await this.userService.GetUsers();
+           /* var users = await this.userService.GetUsers();
             var manageUsers = users.Select(x => new UserListViewModel()
             {
                 Email = x.Email,
@@ -65,7 +63,25 @@ namespace ArtGallery.Areas.Administration.Controllers
                 Id = x.Id,
                 Name = x.Name,
             });
+            ViewBag.manageUsers = manageUsers.ToList();*/
+
+            var users = await userManager.Users.ToListAsync();
+            var manageUsers = new List<UserListViewModel>();
+
+            foreach (var manageUser in users)
+            {
+                var model = new UserListViewModel
+                {
+                    Id = manageUser.Id,
+                    Name = $"{manageUser.FirstName} {manageUser.LastName}",
+                    UserName = manageUser.UserName,
+                    Email = manageUser.Email
+                };
+                manageUsers.Add(model);
+            }
+
             ViewBag.manageUsers = manageUsers.ToList();
+
             return View();
         }
 
@@ -76,7 +92,9 @@ namespace ArtGallery.Areas.Administration.Controllers
             var model = new UserRolesViewModel()
             {
                 UserId = id,
-                Name = $"{user.FirstName} {user.LastName}"
+                Name = $"{user.FirstName} {user.LastName}",
+                UserName = user.UserName,
+                Email = user.Email,
             };
 
             ViewBag.RoleItems = roleManager.Roles
@@ -109,11 +127,10 @@ namespace ArtGallery.Areas.Administration.Controllers
             return RedirectToAction(nameof(ManageUsers));
         }
 
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(string userId)
         {
-            var model = await userService.GetUserToEdit(id);
-
-            return View(model);
+            var modelView = await userService.GetUserToEdit(userId);
+            return View(modelView);
         }
 
         [HttpPost]
@@ -126,7 +143,7 @@ namespace ArtGallery.Areas.Administration.Controllers
 
             if (await userService.UpdateUser(model))
             {
-                ViewData[MessageConstants.OperationalMessage] = "Succefully Written Down";
+                ViewData[MessageConstants.OperationalMessage] = "Successfully Written Down";
             }
             else
             {
@@ -136,14 +153,28 @@ namespace ArtGallery.Areas.Administration.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> CreateRole()
+        public IActionResult CreateRole()
         {
-            await roleManager.CreateAsync(new IdentityRole()
-            {
-                Name = "Admin"
-            });
+            return View();
+        }
 
-            return Ok();
+        [HttpPost]
+        public async Task<IActionResult> CreateRole(IFormCollection collection)
+        {
+            try
+            {
+                await roleManager.CreateAsync(new IdentityRole()
+                {
+                    Name = collection["RoleName"]
+                });
+
+                ViewBag.ResultMessage = "Role created successfully!";
+                return RedirectToAction("ManageRoles");
+            }
+            catch
+            {
+                return Ok();
+            }
         }
     }
 }

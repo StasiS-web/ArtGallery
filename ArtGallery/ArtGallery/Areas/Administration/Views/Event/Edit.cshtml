@@ -1,4 +1,4 @@
-﻿@using ArtGallery.Core.Models.Administrator
+﻿@using ArtGallery.Core.Models.Administrator;
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @model EventEditViewModel
@@ -11,28 +11,28 @@
 
 <div class="row">
     <div class="col-8">
-        <form method="post">
+        <form asp-area="Administration" asp-controller="Event" asp-action="Edit" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <h4>Edit Event with id: @Model.EventId</h4>
             <input type="hidden" asp-for="@Model.EventId" />
             <div class="form-floating">
                 <label asp-for="Name" class="form-lable"></label>
-                <input asp-for="Name" class="form-control" />
+                <input asp-for="Name" class="form-control" value="@Model.Name" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-floating">
                 <label asp-for="Price" class="form-lable"></label>
-                <input asp-for="Price" class="form-control" />
+                <input asp-for="Price" class="form-control" value="@Model.Price" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-floating">
                 <label asp-for="Date" class="form-lable"></label>
-                <input asp-for="Date" class="form-control" />
+                <input asp-for="Date" class="form-control" value="@Model.Date" />
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
             <div class="form-floating">
                 <label asp-for="Type" class="form-lable"></label>
-                <select asp-for="Type" asp-items="@evenOne" class="form-control">
+                <select asp-for="Type" asp-items="@evenOne" class="form-control" value="@Model.Type">
                     <option selected="selected" value="">Please select...</option>
                     <option selected="selected" value="1">InPerson</option>
                     <option selected="selected" value="2">Online</option>
@@ -41,7 +41,7 @@
             </div>
             <div class="form-floating">
                 <label asp-for="TicketSelection" class="form-lable"></label>
-                <select asp-for="TicketSelection" asp-items="@evenTwo" class="form-control">
+                <select asp-for="TicketSelection" asp-items="@evenTwo" class="form-control" value="@Model.TicketSelection">
                     <option selected="selected" value="">Please select...</option>
                     <option selected="selected" value="1">Free</option>
                     <option selected="selected" value="2">Paid</option>
@@ -50,10 +50,11 @@
             </div>
             <div class="form-floating">
                 <label asp-for="Description" class="form-lable"></label>
-                <input asp-for="Description" class="form-control" />
+                <input asp-for="Description" class="form-control" value="@Model.Description" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <button type="submit" asp-area="Administration" asp-controller="Event" asp-action="Edit" class="btn btn-block btn-primary btn-sm">Edit</button>
+            <button type="submit" class="btn btn-block btn-success">Edit</button>
+            <button asp-area="Administration" asp-controller="Event" asp-action="All" class="btn btn-block btn-primary">All Events</button>
         </form>
     </div>
 </div>

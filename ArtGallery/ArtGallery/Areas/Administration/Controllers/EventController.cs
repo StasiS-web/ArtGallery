@@ -13,27 +13,45 @@
         {
             this.eventService = eventService;
         }
+        
+        public IActionResult Create()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(EventCreateInputViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            await eventService.AddAsync(model);
+            return Redirect("All");
+        }
 
         public IActionResult All(int eventId)
         {
-            var allEvents = this.eventService.GetAllEvents(eventId);
+           var allEvents = this.eventService.GetAllEvents(eventId);
 
-            var events = allEvents.Select(x => new AllEventListViewModel()
-            {
-                Date = x.Date.ToString(),
-                Description = x.Description,
-                EventId = x.EventId,
-                Name = x.Name,
-                Price = x.Price,
-                TicketSelection = x.TicketSelection,
-                Type = x.Type,
-            })
-            .ToList();
-
-            return View(events);
+           var events = allEvents.Select(x => new AllEventListViewModel()
+                {
+                    Date = x.Date.ToString(),
+                    Description = x.Description,
+                    EventId = x.EventId,
+                    Name = x.Name,
+                    Price = x.Price,
+                    TicketSelection = x.TicketSelection,
+                    Type = x.Type,
+                })
+                .ToList();
+            ViewBag.events = events.ToList();
+            return View();
         }
 
-        [HttpGet("Administration/Event/Edit")]
+        [HttpGet]
         public async Task<IActionResult> Edit(int eventId)
         {
             var model = await this.eventService.GetEventDetailsByIdAsync<EventEditViewModel>(eventId);
@@ -49,7 +67,7 @@
             return View(viewModel);
         }
 
-        [HttpPost("Administration/Event/Edit")]
+        [HttpPost]
         public IActionResult Edit(EventEditViewModel model)
         {
             if (!ModelState.IsValid)
@@ -59,14 +77,28 @@
 
             this.eventService.UpdateEventAsync(model);
 
+            return RedirectToAction("All", "Event", new { area = "Administration" });
+        }
+
+        public async Task<IActionResult> Delete(int eventId)
+        {
+            this.eventService.Delete(eventId);
             return RedirectToAction(nameof(All));
         }
 
-        public IActionResult Delete(int eventId)
+        [HttpPost]
+        public async Task<IActionResult> Delete(int eventId, EventViewModel model)
         {
+            var exists = await this.eventService.CheckIfEventExists(eventId);
+
+            if (!exists)
+            {
+                return View(model);
+            }
+
             this.eventService.Delete(eventId);
 
-            return RedirectToAction(nameof(All));
+            return RedirectToAction("All", "Event", new {area = "Administration"});
         }
 
     }
