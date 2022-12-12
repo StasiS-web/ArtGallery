@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="/plugins/toastr/toastr.min.js" />
     <link rel="stylesheet" href="/css/site.css" asp-append-version="true" />
 
-    @this.RenderSectionAsync("Styles", required: false) 
+    @await RenderSectionAsync("Head", required: false) 
 </head>
 <body class="hold-transition sidebar-mini">
 <partial name="_CookieConsentPartial" />
@@ -47,7 +47,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <div class="sidebar">
                 <!-- Brand Logo -->
-                <a asp-area="Administration" asp-controller="User" asp-action="Profile" class="nav-link">
+                <a class="nav-link">
                     <img src="~/img/user5-128x128.jpg" alt="user image" class="brand-image img-circle elevation-3" style="opacity: .8"/>
                 </a>
                 <ul class="flex-row align-items-center justify-centre-start">
@@ -96,17 +96,15 @@
 <!-- jQuery -->
 <script src="/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- overlayScrollbars -->
-<link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css"/>
+<link rel="stylesheet" href="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"/>
 
 <!-- AdminLTE App -->
-<script src="/jS/adminlte.min.js"></script>
-<script src="/lib/jquery/dist/jquery.min.js"></script>
-<script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/adminlte.min.js"></script>
 <script src="/plugins/toastr/toastr.min.js"></script>
 <partial name="_UserMessages"/>
 
-@await this.RenderSectionAsync("Scripts", required: false)
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
