@@ -1,7 +1,4 @@
-﻿using System.Collections.Immutable;
-using System.Reflection.Metadata.Ecma335;
-
-namespace ArtGallery.Areas.Administration.Controllers
+﻿namespace ArtGallery.Areas.Administration.Controllers
 {
     using ArtGallery.Common;
     using ArtGallery.Core.Contracts;
@@ -24,7 +21,7 @@ namespace ArtGallery.Areas.Administration.Controllers
         private readonly ILogger logger;
 
         public UserController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, 
-            IUserService userService, ILogger logger)
+            IUserService userService, ILogger<UserController> logger)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;

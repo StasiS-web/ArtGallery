@@ -37,17 +37,18 @@ namespace ArtGallery.Areas.Administration.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var faqToEdit = await this.aboutService.GetByIdAsync<FaqEditViewModel>(id);
-            var _model = new FaqEditViewModel();
-            _model.FaqId = faqToEdit.FaqId;
-            _model.Question = faqToEdit.Question;
-            _model.Answer = faqToEdit.Answer;
+            var _model = new FaqEditViewModel()
+            {
+                Question = faqToEdit.Question,
+                Answer = faqToEdit.Answer,
+            };
             return View(_model);
         }
 
         [HttpPost("Administration/About/Edit")]
         public async Task<IActionResult> Edit(FaqEditViewModel model)
         {
-            if (!this.ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 return this.View(model);
             }

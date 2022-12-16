@@ -8,16 +8,19 @@
     public class EventController : AdministrationController
     {
         private readonly IEventService eventService;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public EventController(IEventService eventService)
+        public EventController(IEventService eventService, UserManager<ApplicationUser> userManager)
         {
             this.eventService = eventService;
+            this.userManager = userManager;
         }
         
         public IActionResult Create()
         {
-            return this.View();
+            return View();
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -28,7 +31,7 @@
                 return this.View(model);
             }
 
-            await eventService.AddAsync(model);
+            await eventService.CreateEventAsync(model);
             return Redirect("All");
         }
 
@@ -54,7 +57,7 @@
         [HttpGet]
         public async Task<IActionResult> Edit(int eventId)
         {
-            var model = await this.eventService.GetEventDetailsByIdAsync<EventEditViewModel>(eventId);
+            var model = await this.eventService.GetEventDetailsByIdAsync<EventViewModel>(eventId);
             var viewModel = new EventEditViewModel();
             viewModel.EventId = model.EventId;
             viewModel.Name = model.Name;
