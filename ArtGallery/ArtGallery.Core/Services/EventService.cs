@@ -1,20 +1,18 @@
 ﻿namespace ArtGallery.Core.Services
 {
+    using ArtGallery.Common;
     using ArtGallery.Core.Contracts;
-    using ArtGallery.Core.Mapping;
     using ArtGallery.Core.Models.Administrator;
     using ArtGallery.Core.Models.Events;
     using ArtGallery.Core.Models.Home;
     using ArtGallery.Infrastructure.Data;
     using ArtGallery.Infrastructure.Data.Models;
-    using ArtGallery.Infrastructure.Data.Models.Enumeration;
     using ArtGallery.Infrastructure.Data.Repositories;
     using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
     using static ArtGallery.Common.GlobalConstants.Formating;
 
@@ -28,47 +26,34 @@
             this._applicationDbContext = applicationDbContext;
         }
 
-        public async Task<bool> CreateEventAsync(string name, decimal price, string date,
-            string type, string ticketSelection, string description)
+        public async Task CreateEventAsync(EventCreateInputViewModel model)
         {
-            bool isCreated = false;
-            var createEvent = new EventCreateInputViewModel();
-
-
-            if (createEvent != null)
+            var newEvent = new EventViewModel
             {
-                createEvent.Name = name;
-                createEvent.Price = price;
-                createEvent.Date = date;
-                createEvent.Type = Enum.Parse<EventType>(type);
-                createEvent.TicketSelection = Enum.Parse<TicketType>(ticketSelection);
-                createEvent.Description = description;
+                Name = model.Name,
+                Price = model.Price,
+                Date = DateTime.Parse(model.Date),
+                Type = model.Type,
+                TicketSelection = model.TicketSelection,
+                Description = model.Description
+            };
 
-                //this._eventRepo.AddAsync(createEvent);
-                //await this._eventRepo.SaveChangesAsync();
+            bool isExist = await _applicationDbContext.Events
+               .Where(x => x.Name == model.Name)
+               .AnyAsync();
 
-                _applicationDbContext.Events.Add(new Event()
-                {
-                    Name = name,
-                    Price = price,
-                    Date = Convert.ToDateTime(date),
-                    Type = Enum.Parse<EventType>(type),
-                    TicketSelection = Enum.Parse<TicketType>(ticketSelection),
-                    Description = description,
-                    CreatedOn = DateTime.UtcNow,
-
-                });
-
-                _applicationDbContext.SaveChanges();
-
+            if (isExist)
+            {
+                throw new ArgumentException(string.Format(MessageConstants.EventAlreadyExist, model.Name));
             }
 
-            return isCreated;
+            await _applicationDbContext.AddAsync(newEvent);
+            _applicationDbContext.SaveChanges();
+
         }
 
-        public async Task<bool> UpdateEventAsync(EventEditViewModel model)
+        public async Task UpdateEventAsync(EventEditViewModel model)
         {
-            bool isUpdated = false;
             //var updateEvent = this._eventRepo.All<Event>()
             //                       .FirstOrDefault(e => e.Id == model.EventId);
             var updateEvent = _applicationDbContext.Events
@@ -79,7 +64,7 @@
                 updateEvent.Name = model.Name;
                 updateEvent.Price = model.Price;
                 //updateEvent.Date = DateTime.ParseExact(Convert.ToString(model.Date),
-                //                            NormalDateFormat, CultureInfo.InvariantCulture);
+                //                   NormalDateFormat, CultureInfo.InvariantCulture);
                 updateEvent.Date = DateTime.Parse(model.Date);
                 updateEvent.Type = model.Type;
                 updateEvent.TicketSelection = model.TicketSelection;
@@ -89,10 +74,7 @@
                 //await this._eventRepo.SaveChangesAsync();
                 _applicationDbContext.Events.Update(updateEvent);
                 _applicationDbContext.SaveChanges();
-                isUpdated = true;
             }
-
-            return isUpdated;
         }
 
         public void Delete(int id)
@@ -181,7 +163,7 @@
             return (IEnumerable<int>)events;
         }
 
-        public async Task<IEnumerable<UpcomingEventViewModel>> GetUpcomingByIdAsync<T>(int eventId)
+        public async Task<IEnumerable<UpcomingEventViewModel>> GetUpcomingByIdAsync<EventViewModel>(int eventId)
         {
             // Code changes by behaviour.   
             //return await this._eventRepo.All<Event>()
@@ -209,7 +191,7 @@
 
         }
 
-        public async Task<EventViewModel> GetEventDetailsByIdAsync<T>(int eventId)
+        public async Task<EventViewModel> GetEventDetailsByIdAsync<Event>(int eventId)
         {
             //var eventDetails = this._eventRepo
             //                .All<EventViewModel>()

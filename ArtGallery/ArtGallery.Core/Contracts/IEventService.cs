@@ -8,11 +8,9 @@
     using System.Threading.Tasks;
     public interface IEventService
     {
+        Task CreateEventAsync(EventCreateInputViewModel model);
 
-        Task<bool> CreateEventAsync(string name, decimal price, string date,
-            string type, string ticketSelection, string description);
-
-        Task<bool> UpdateEventAsync(EventEditViewModel model);
+        Task UpdateEventAsync(EventEditViewModel model);
 
         void Delete(int id);
 
@@ -22,11 +20,11 @@
 
         IEnumerable<int> GetByIdAsync(int eventId);
 
-        Task<IEnumerable<UpcomingEventViewModel>> GetUpcomingByIdAsync<T>(int eventId);
+        Task<IEnumerable<UpcomingEventViewModel>> GetUpcomingByIdAsync<IndexViewModel>(int eventId);
 
         Task AddAsync(EventCreateInputViewModel model);
 
-        Task<EventViewModel> GetEventDetailsByIdAsync<T>(int eventId);
+        Task<EventViewModel> GetEventDetailsByIdAsync<Event>(int eventId);
 
         Task<bool> CheckIfEventExists(int eventId);
 

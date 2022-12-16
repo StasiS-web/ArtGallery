@@ -110,7 +110,7 @@
 
         public async Task<UserEditViewModel> GetUserToEdit(string userId)
         {
-            var user = await this._userRepo.GetByIdAsync<ArtGalleryUser>(userId);
+            var user = await this._userRepo.GetByIdAsync<ApplicationUser>(userId);
 
             return new UserEditViewModel()
             {

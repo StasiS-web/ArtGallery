@@ -5,7 +5,7 @@ namespace ArtGallery.Core.Models.Events
     using ArtGallery.Infrastructure.Data.Models;
     using ArtGallery.Infrastructure.Data.Models.Enumeration;
 
-    public class EventViewModel : IMapFrom<Event>
+    public class EventViewModel 
     {
         public int EventId { get; set; }
 
@@ -20,5 +20,6 @@ namespace ArtGallery.Core.Models.Events
         public TicketType TicketSelection { get; set; }
 
         public string Description { get; set; }
+
     }
 }
