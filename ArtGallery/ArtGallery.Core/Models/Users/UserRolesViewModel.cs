@@ -11,6 +11,6 @@
 
         public string Email { get; set; }
 
-        public IEnumerable<string> RoleNames { get; set; }
+        public string[] RoleNames { get; set; }
     }
 }

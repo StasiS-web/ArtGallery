@@ -12,5 +12,7 @@
         public string UserId { get; set; }
 
         public string User { get; set; }
+
+        public DateTime CreatedOn { get; set; }
     }
 }
