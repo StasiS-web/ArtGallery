@@ -23,7 +23,6 @@
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(EventCreateInputViewModel model)
         {
             if (!this.ModelState.IsValid)

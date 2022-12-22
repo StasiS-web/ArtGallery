@@ -31,21 +31,21 @@
 
         public async Task<IActionResult> ManageRoles()
          {
-             var allUsers = await userManager.Users.ToListAsync();
-             var userRolesViewModel = new List<UserRolesViewModel>();
+            var allUsers = await userManager.Users.ToListAsync();
+            var userRolesViewModel = new List<UserRolesViewModel>();
 
-             foreach (ApplicationUser user in allUsers)
-             {
-                 var viewModel = new UserRolesViewModel();
-                 viewModel.UserId = user.Id;
-                 viewModel.Name = $"{user.FirstName} {user.LastName}";
-                 viewModel.UserName = user.UserName;
-                 viewModel.RoleNames = ViewBag.RoleNames;
-                 userRolesViewModel.Add(viewModel);
-             }
+            foreach (ApplicationUser user in allUsers)
+            {
+                var viewModel = new UserRolesViewModel();
+                viewModel.UserId = user.Id;
+                viewModel.Name = $"{user.FirstName} {user.LastName}";
+                viewModel.UserName = user.UserName;
+                viewModel.RoleNames = ViewBag.RoleNames;
+                userRolesViewModel.Add(viewModel);
+            }
 
-             ViewBag.userRolesViewModel = userRolesViewModel.ToList();
-             return View();
+            ViewBag.userRolesViewModel = userRolesViewModel.ToList();
+            return View();
          }
         
 
@@ -106,8 +106,6 @@
 
             return View(model);
         }
-
-       
 
         [HttpPost]
         public async Task<IActionResult> Roles(UserRolesViewModel model)
