@@ -11,6 +11,7 @@
     using ArtGallery.Infrastructure.Data;
     using ArtGallery.Infrastructure.Data.Models;
     using ArtGallery.Infrastructure.Data.Repositories;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using static ArtGallery.Common.MessageConstants;
 
@@ -37,20 +38,21 @@
         public async Task<ApplicationUser> GetUserById(string userId)
         {
             //  return await this.userRepo.GetByIdAsync<ApplicationUser>(userId);
-            return await _applicationDbContext.ArtGalleryUser.Where(x => x.Id == userId).Select(x => new ApplicationUser()
-            {
-                Id = x.Id,
-                AccessFailedCount = x.AccessFailedCount,
-                CreatedOn = x.CreatedOn,
-                Email = x.Email,
-                EmailConfirmed = x.EmailConfirmed,
-                FirstName = x.FirstName,
-                LastName = x.LastName,
-                LockoutEnabled = x.LockoutEnabled,
-                Roles = x.Roles,
-                UserName = x.UserName,
-            })
-            .FirstOrDefaultAsync();
+            return await _applicationDbContext.ArtGalleryUser.Where(x => x.Id == userId)
+                .Select(x => new ApplicationUser()
+                {
+                    Id = x.Id,
+                    AccessFailedCount = x.AccessFailedCount,
+                    CreatedOn = x.CreatedOn,
+                    Email = x.Email,
+                    EmailConfirmed = x.EmailConfirmed,
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    LockoutEnabled = x.LockoutEnabled,
+                    Roles = x.Roles,
+                    UserName = x.UserName,
+                })
+                .FirstOrDefaultAsync();
         }
 
         public async Task<T> GetUser<T>(string userId)
@@ -109,13 +111,12 @@
         public async Task<UserEditViewModel> GetUserToEdit(string userId)
         {
             var user = await this._userRepo.GetByIdAsync<ApplicationUser>(userId);
-
             return new UserEditViewModel()
-            {
-                Id = user.Id,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-            };
+                {
+                    Id = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                };
         }
 
         public async Task<bool> UpdateUser(UserEditViewModel model)

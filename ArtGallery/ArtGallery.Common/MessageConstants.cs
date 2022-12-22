@@ -59,7 +59,7 @@ namespace ArtGallery.Common
 
         // ErrorMessage 
         public const string UpdateError = "You will need to fill the required input fields!";
-        public const string FaqAlreadyExist = "Faq with question{0} and answer {1} already exists.";
+        public const string FaqAlreadyExist = "Faq with question {0} and answer {1} already exists.";
         public const string EventAlreadyExist = "Event with this {0} already exists.";
         public const string FaqNotFound = "Faq wiith id {0} is not found.";
     }

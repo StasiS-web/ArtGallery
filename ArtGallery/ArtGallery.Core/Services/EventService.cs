@@ -18,21 +18,21 @@
 
     public class EventService : IEventService
     {
-       // private readonly IAppRepository _eventRepo;
+        // private readonly IAppRepository _eventRepo;
         private readonly ApplicationDbContext _applicationDbContext;
         public EventService(IAppRepository eventRepo, ApplicationDbContext applicationDbContext)
         {
-          //  this._eventRepo = eventRepo;
+            //  this._eventRepo = eventRepo;
             this._applicationDbContext = applicationDbContext;
         }
 
         public async Task CreateEventAsync(EventCreateInputViewModel model)
         {
-            var newEvent = new EventViewModel
+            var newEvent = new EventCreateInputViewModel
             {
                 Name = model.Name,
                 Price = model.Price,
-                Date = DateTime.Parse(model.Date),
+                Date = model.Date,
                 Type = model.Type,
                 TicketSelection = model.TicketSelection,
                 Description = model.Description
@@ -142,7 +142,7 @@
                 Name = model.Name,
                 Price = model.Price,
                 Date = DateTime.ParseExact(model.Date,
-                     DateTimeFormat, CultureInfo.InvariantCulture),
+                          DateTimeFormat, CultureInfo.InvariantCulture),
                 Description = model.Description,
             });
 
