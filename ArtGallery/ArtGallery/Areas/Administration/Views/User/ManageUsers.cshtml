@@ -32,14 +32,14 @@
                             <td>@user.Name</td>
                             <td><span class="badge bg-danger">@user.UserName</span></td>
                             <td>@user.Email</td>
-                          <!--  <td>
-                                <div class="">
-                                    <a asp-area="Administration" asp-action="Roles" asp-controller="User" asp-route-id="@user.Id" class="btn btn-block btn-outline-success btn-sm">
-                                        <i class="fas fa-edit"></i> Edit
-                                    </a>
-                                    <a asp-area="Administration" asp-action="Index" asp-controller="User" asp-route-id="@user.Id" class="btn btn-block btn-outline-success btn-sm">Roles</a>
-                                </div>
-                            </td>  -->
+                            <td>
+                               <div class="col-auto">
+                                   <a asp-area="Administration" asp-action="Edit" asp-controller="User" asp-route-id="@user.Id" class="btn btn-block btn-outline-success btn-sm">
+                                            <i class="fas fa-edit"></i> Edit
+                                   </a>
+                                   <a asp-area="Administration" asp-action="Roles" asp-controller="User" asp-route-id="@user.Id" class="btn btn-block btn-outline-success btn-sm">Roles</a>
+                               </div>  
+                            </td>  
                         </tr>
                     }
                     </tbody>
