@@ -50,10 +50,10 @@
             return View();
         }
 
-        [Route("/Event/PostDetails/{blogId}")]
+        [Route("/Blog/PostDetails/{blogId}")]
         public IActionResult PostDetails(int blogId)
         {
-            if (blogId == null)
+            if (blogId <= 0)
             {
                 return new StatusCodeResult(404);
             }
