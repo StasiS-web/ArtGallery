@@ -73,12 +73,14 @@ Art Gallery's main idea is to be an app for booking and sales. A place where reg
 </details>
 
 ## Resources
-
 * All images are comming from (https://www.rawpixel.com/) & (https://unsplash.com/)
 * All Blog Post text were taken from various resources:
    (https://lachri.com/),
    (https://artgallery.co.uk/),
    (https://cassiestephens.blogspot.com/)
+   
+## ✍️ Give me a feedback
+If you like this project give me a 🌟
    
 ## Author Name 
 Stanislava Stoeva
