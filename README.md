@@ -1,6 +1,7 @@
 # ArtGallery
 
-<img src="https://img.shields.io/github/stars/StasiS-web/ArtGallery?color=C7D7EF&label=Stars&logo=GitHub&style=plastic" alt="repo stars" />
+<img src="https://img.shields.io/github/stars/StasiS-web/ArtGallery?color=C7D7EF&label=Stars&logo=GitHub&style=plastic" alt="repo stars" width=auto height="20"/>
+
 
 ## :art: Project Introduction
 **Art Gallery** is a Web Application. 
