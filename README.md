@@ -75,6 +75,9 @@ Art Gallery's main idea is to be an app for booking and sales. A place where reg
 <img src="https://res.cloudinary.com/dnvg6uuxl/image/upload/v1660657911/app_gallery/test%20coverage/Test_Coverage_Part_4_se9zim.png" alt="Part4" />
 </details>
 
+## Disclaimer
+The content and image used in this project does not have a commercial license and it is not used for commercial purpose. The image on the error 404 page were purchased with License for personal use only. All the content in this project is used only for educational purpose.
+
 ## Resources
 * All images are comming from (https://www.rawpixel.com/) & (https://unsplash.com/)
 * All Blog Post text were taken from various resources:
@@ -89,7 +92,8 @@ If you like this project give me a 🌟
 Stanislava Stoeva
 
 ## License
-This project is licensed with the [MIT license](LICENSE).
+This project is licensed with the [MIT license](LICENSE). 
+The [image](https://res.cloudinary.com/dnvg6uuxl/image/upload/s--yJ6E6V_n--/c_fit,h_600,w_750/v1646650092/app_gallery/errors/error_404_wnxcl7.jpg) for [404 page](https://res.cloudinary.com/dnvg6uuxl/image/upload/v1671704376/app_gallery/Screenshots/Error404_jl0dgx.png) a license for personal use only.
 
 ## Acknowledgments
 Created different structure but still Using some file from [ASP.NET-MVC-Template](https://github.com/NikolayIT/ASP.NET-MVC-Template) developed by:
