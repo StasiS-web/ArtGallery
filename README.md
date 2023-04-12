@@ -78,18 +78,15 @@ Art Gallery's main idea is to be an app for booking and sales. A place where reg
 ## Disclaimer
 The content and image used in this project does not have a commercial license and it is not used for commercial purpose. The image on the error 404 page were purchased with License for personal use only. All the content in this project is used only for educational purpose.
 
+## ✍️ Give me a feedback
+If you like this project give me a 🌟
+
 ## Resources
 * All images are comming from (https://www.rawpixel.com/) & (https://unsplash.com/)
 * All Blog Post text were taken from various resources:
    (https://lachri.com/),
    (https://artgallery.co.uk/),
    (https://cassiestephens.blogspot.com/)
-   
-## ✍️ Give me a feedback
-If you like this project give me a 🌟
-   
-## Author Name 
-Stanislava Stoeva
 
 ## License
 This project is licensed with the [MIT license](LICENSE). 
